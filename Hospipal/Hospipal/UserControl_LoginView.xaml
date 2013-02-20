@@ -6,7 +6,7 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\adeshbanvait\Desktop\WpfHospipal\WpfHospipal\Resources\Hospipal_Background.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="C:\Users\adeshbanvait\Documents\GitHub\hospipal\Hospipal\Hospipal\Resources\Hospipal_Background.png" Stretch="UniformToFill"/>
         </Grid.Background>
 
         <Grid.RowDefinitions>
@@ -43,8 +43,8 @@
                 <Button Grid.Row ="0" Grid.Column="1" HorizontalAlignment="Stretch" Name="ButtonLogin" Content="Login" VerticalAlignment="Center" FontSize="15" Height="30" />
                 <Button Grid.Row ="0" Grid.Column="3" HorizontalAlignment="Stretch" Name="ButtonReset" Content="Reset" VerticalAlignment="Center" FontSize="15" Height="30" />
             </Grid>
-            <Image HorizontalAlignment="Stretch" Height="250" VerticalAlignment="Top" Width="200" Source="C:\Users\adeshbanvait\Desktop\WpfHospipal\WpfHospipal\Resources\Hospipal_Icon.png"/>
-            <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source="C:\Users\adeshbanvait\Desktop\WpfHospipal\WpfHospipal\Resources\Hospipal_Label.png"/>
+            <Image HorizontalAlignment="Stretch" Height="250" VerticalAlignment="Top" Width="200" Source="C:\Users\adeshbanvait\Documents\GitHub\hospipal\Hospipal\Hospipal\Resources\Hospipal_Icon.png"/>
+                <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source="C:\Users\adeshbanvait\Documents\GitHub\hospipal\Hospipal\Hospipal\Resources\Hospipal_Label.png"/>
         </Grid>
     </Grid>
 
