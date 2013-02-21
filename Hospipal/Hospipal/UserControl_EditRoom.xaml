@@ -1,0 +1,14 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="Hospipal.UserControl_EditRoom" 
+             Height="350" Width="700" mc:Ignorable="d">
+    <Grid RenderTransformOrigin="0.429,0.449" HorizontalAlignment="Left" Width="1027" Background="#FFEBE8E8">
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="10.279,3.314" Margin="223,12,0,0" Height="55" Width="236" FontSize="36" FontWeight="Bold"><Run Language="en-ca" Text="EDIT ROOM"/></TextBlock>
+        <telerik:RadButton Content="Apply" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="437,263,0,0" Height="56" Width="82" Click="RadButton_Click_1" Background="#FFC9F7EB"/>
+        <telerik:RadButton Content="Cancel" HorizontalAlignment="Left" Margin="549,263,0,0" VerticalAlignment="Top" Height="52" Width="87" Background="#FFC9F7EB"/>
+        <Label Content="ROOM NUMBER" HorizontalAlignment="Left" Margin="156,90,0,0" VerticalAlignment="Top" Height="31" Width="113"/>
+        <Label Content="FLOOR NUMBER" HorizontalAlignment="Left" Margin="400,89,0,0" VerticalAlignment="Top" Height="30" Width="102"/>
+        <Grid HorizontalAlignment="Left" Height="54" Margin="-213,105,0,0" VerticalAlignment="Top" Width="973">
+            <TextBox TextWrapping="Wrap" Margin="335,19,447,3" TextChanged="TextBox_TextChanged_2"/>
+            <TextBox HorizontalAlignment="Left" Height="30" Margin="620,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" TextChanged="TextBox_TextChanged_1" BorderThickness="1"/>
+        </Grid>
+    </Grid>
+</UserControl>
