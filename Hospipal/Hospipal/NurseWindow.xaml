@@ -19,7 +19,7 @@
         <TextBox x:Name="firstNameTb" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
         <Label x:Name="EID" Content="ID:" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <Label x:Name="generatedEID" Content="" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Top" />
-        <Label x:Name="lastNameLabel" Content="Last name:" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top" Grid.Column="2" Margin="0,0,4,0" />
+        <Label x:Name="lastNameLabel" Content="Last name:" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top" Grid.Column="2"/>
         <Label x:Name="firstNameLabel" Content="First name:" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top" />
         <Label x:Name="specialtyLabel" Grid.Row="2" Content="Specialty:" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <Label Content="Add/view Employees" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="142" Grid.Column="1" Margin="0,-39,4,0"/>
