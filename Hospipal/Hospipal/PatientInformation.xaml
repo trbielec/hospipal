@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="280" Width="500">
     <Grid>
-        <Label x:Name="PatientInfoTitleLbl" Content="Add/Modify Patients" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label x:Name="PatientInfoTitleLbl" Content="Add/Modify Patients" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Segoe Marker" FontSize="20"/>
 
         <Grid Margin="0,40,0,0" VerticalAlignment="Top">
             <Grid.RowDefinitions>
@@ -33,8 +33,8 @@
             <Label x:Name="Addresslbl" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Address: "/>
             <TextBox x:Name="Addresstb" Grid.Column="1" HorizontalAlignment="Stretch"/>
         </Grid>
-        <Label x:Name="Phonelbl" Content="Phone: " HorizontalAlignment="Left" Margin="291,118,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Residencelbl" Content="Residence: " HorizontalAlignment="Left" Margin="40,118,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Phonelbl" Content="Phone: " HorizontalAlignment="Left" Margin="291,118,0,0" VerticalAlignment="Top" FontFamily="Segoe Marker" FontSize="16"/>
+        <Label x:Name="Residencelbl" Content="Residence: " HorizontalAlignment="Left" Margin="40,118,0,0" VerticalAlignment="Top" FontFamily="Segoe Marker" FontSize="16"/>
         <Grid VerticalAlignment="Top" Margin="0,140,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
