@@ -97,9 +97,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NurseWindow.xaml">
-		<SubType>Designer</SubType>
-		<Generator>MSBuild:Compile</Generator>
-	</Page>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +157,15 @@
     <Resource Include="Resources\UI Images\Employees and Treatment Window.JPG" />
     <Resource Include="Resources\UI Images\Patients and Add Patient.JPG" />
     <Resource Include="Resources\UI Images\Wards.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button Images\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button Images\edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
