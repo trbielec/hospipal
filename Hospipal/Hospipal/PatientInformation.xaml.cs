@@ -19,9 +19,33 @@ namespace Hospipal
     /// </summary>
     public partial class PatientInformation : UserControl
     {
+        private bool _isNewPatient = false;
+
         public PatientInformation()
         {
             InitializeComponent();
+        }
+        public PatientInformation(bool isNewPatient)
+        {
+            _isNewPatient = isNewPatient;
+            InitializeComponent();
+        }
+
+        private void Save(object sender, MouseButtonEventArgs e)
+        {
+            if (_isNewPatient)
+            {
+                //Add a new Patient based off of textFields
+            }
+            else
+            {
+                //Update Patient created
+            }
+        }
+
+        private void Cancel(object sender, MouseButtonEventArgs e)
+        {
+            //Hide the UI
         }
     }
 }

@@ -11,19 +11,20 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition/>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="125*" />
+                <ColumnDefinition Width="125*"/>
+                <ColumnDefinition Width="125*" />
+                <ColumnDefinition Width="97*" />
+                <ColumnDefinition Width="28*"/>
             </Grid.ColumnDefinitions>
             <Label x:Name="HealthCarelbl" Content="HealthCare #: " HorizontalAlignment="Right" VerticalAlignment="Top"/>
             <Label x:Name="FirstNamelbl" Content="First Name: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1"/>
             <TextBox x:Name="HealthCaretb" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
             <Label x:Name="DOBlbl" Content="DOB: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2"/>
-            <DatePicker x:Name="DOBdp" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <DatePicker x:Name="DOBdp" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
             <TextBox x:Name="FirstNametb" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
             <Label x:Name="LastNamelbl" Content="Last Name: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1"/>
-            <TextBox x:Name="LastNametb" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Grid.Row="1"/>
+            <TextBox x:Name="LastNametb" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2"/>
         </Grid>
         <Grid Margin="0,92,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -58,5 +59,7 @@
             <TextBox x:Name="Worktb" Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
             <TextBox x:Name="Mobiletb" Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
         </Grid>
+        <Image HorizontalAlignment="Left" Margin="350,225,0,0" VerticalAlignment="Top" MouseDown="Save" Source="./Resources/Button Images/save.png"/>
+        <Image HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" MouseDown="Cancel" Source="./Resources/Button Images/cancel.png"/>
     </Grid>
 </UserControl>
