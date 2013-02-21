@@ -71,6 +71,10 @@
     <Compile Include="NurseWindow.xaml.cs">
       <DependentUpon>NurseWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientInformation.xaml.cs">
+      <DependentUpon>PatientInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="UserControl_LoginView.xaml.cs">
       <DependentUpon>UserControl_LoginView.xaml</DependentUpon>
     </Compile>
@@ -93,6 +97,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NurseWindow.xaml">
+    <Page Include="PatientInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,6 +149,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UI Images\Employees and Treatment Window.JPG" />
+    <Resource Include="Resources\UI Images\Patients and Add Patient.JPG" />
+    <Resource Include="Resources\UI Images\Wards.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
