@@ -84,6 +84,9 @@
     <Compile Include="UserControl_PatientsView.xaml.cs">
       <DependentUpon>UserControl_PatientsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl_Ward.xaml.cs">
+      <DependentUpon>UserControl_Ward.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_PatientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_Ward.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
