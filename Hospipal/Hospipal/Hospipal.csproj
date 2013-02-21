@@ -97,6 +97,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NurseWindow.xaml">
+		<SubType>Designer</SubType>
+		<Generator>MSBuild:Compile</Generator>
+	</Page>
     <Page Include="PatientInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
