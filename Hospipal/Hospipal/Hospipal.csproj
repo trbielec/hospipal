@@ -68,6 +68,9 @@
     </ApplicationDefinition>
     <Compile Include="Class_Patients.cs" />
     <Compile Include="Class_PatientsList.cs" />
+    <Compile Include="NurseWindow.xaml.cs">
+      <DependentUpon>NurseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_LoginView.xaml.cs">
       <DependentUpon>UserControl_LoginView.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NurseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl_LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
