@@ -1,21 +1,21 @@
 ﻿<UserControl x:Class="Hospipal.PatientInformation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="400" Width="500">
+        Height="280" Width="500">
     <Grid>
         <Label x:Name="PatientInfoTitleLbl" Content="Add/Modify Patients" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
         <Grid Margin="0,40,0,0" VerticalAlignment="Top">
             <Grid.RowDefinitions>
-                <RowDefinition/>   
+                <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition/>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <Label x:Name="HealthCarelbl" Content="HealthCare #: " HorizontalAlignment="Right" VerticalAlignment="Top"/>
             <Label x:Name="FirstNamelbl" Content="First Name: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1"/>
             <TextBox x:Name="HealthCaretb" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
@@ -33,7 +33,9 @@
             <Label x:Name="Addresslbl" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Address: "/>
             <TextBox x:Name="Addresstb" Grid.Column="1" HorizontalAlignment="Stretch"/>
         </Grid>
-        <Grid VerticalAlignment="Top" Margin="0,134,0,0">
+        <Label x:Name="Phonelbl" Content="Phone: " HorizontalAlignment="Left" Margin="291,118,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Residencelbl" Content="Residence: " HorizontalAlignment="Left" Margin="40,118,0,0" VerticalAlignment="Top"/>
+        <Grid VerticalAlignment="Top" Margin="0,140,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -46,12 +48,15 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label x:Name="Provincelbl" Content="Province: " HorizontalAlignment="Right" VerticalAlignment="Top"/>
-            <Label x:Name="Citylbl" Content="City: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" />
+            <Label x:Name="Citylbl" Content="City: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" />
             <TextBox x:Name="Provincetb" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
             <Label x:Name="HomePhonelbl" Content="Home: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2"/>
-            <Label x:Name="WorkPhonelbl" Content="Work: " HorizontalAlignment="Right" VerticalAlignment="Top"/>
-            <Label x:Name="MobilePhonelbl" Content="Mobile: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1"/>
-            <TextBox x:Name="HomePhonetb" Grid.Column="1"  Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-           </Grid>
+            <Label x:Name="WorkPhonelbl" Content="Work: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
+            <Label x:Name="MobilePhonelbl" Content="Mobile: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2"/>
+            <TextBox x:Name="Citytb" Grid.Column="1"  Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <TextBox x:Name="Hometb" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <TextBox x:Name="Worktb" Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <TextBox x:Name="Mobiletb" Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </UserControl>
