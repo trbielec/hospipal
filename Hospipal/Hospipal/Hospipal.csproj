@@ -69,6 +69,7 @@
     <Compile Include="Class_Patients.cs" />
     <Compile Include="Class_PatientsList.cs" />
     <Compile Include="Class_Wards.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="NurseWindow.xaml.cs">
       <DependentUpon>NurseWindow.xaml</DependentUpon>
     </Compile>
