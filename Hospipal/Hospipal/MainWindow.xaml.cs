@@ -23,6 +23,7 @@ namespace Hospipal
         public MainWindow()
         {
             InitializeComponent();
+            Content = new UserControl_LoginView();
         }
     }
 }
