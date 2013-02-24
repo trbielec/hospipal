@@ -8,10 +8,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <telerik:RadTabControl>
-            <telerik:RadTabItem x:Name="PatientsTab" Header="Patients" Height="Auto" Width="Auto"/>
-            <telerik:RadTabItem x:Name="NursesTab" Header="Nurses" Height="Auto" Width="Auto"/>
-            <telerik:RadTabItem x:Name="WardsTab" Header="Wards" Height="Auto" Width="Auto"/>
+        <telerik:RadTabControl Name="HospipalTabControl">
+            <telerik:RadTabItem x:Name="PatientsTab" Header="Patients" Height="32" Width="100" FontSize="14" />
+            <telerik:RadTabItem x:Name="EmployeesTab" Header="Employees" Height="32" Width="100" FontSize="14" />
+            <telerik:RadTabItem x:Name="WardsTab" Header="Wards" Height="32" Width="100" FontSize="14" />
+            <telerik:RadTabItem x:Name="SchedulingTab" Header="Scheduling" Height="32" Width="100" FontSize="14" />
         </telerik:RadTabControl>
 
     </Grid>

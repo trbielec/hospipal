@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
 
 namespace Hospipal
 {
@@ -23,6 +24,9 @@ namespace Hospipal
         public UserControl_MainTabView()
         {
             InitializeComponent();
+
+            PatientsTab.Content = new UserControl_PatientsView();
+            EmployeesTab.Content = new UserControl_EmployeesView();
         }
     }
 }

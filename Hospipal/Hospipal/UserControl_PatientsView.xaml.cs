@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Data;
 
 namespace Hospipal
 {
@@ -20,14 +22,30 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_PatientsView : UserControl
     {
+
+
         public UserControl_PatientsView()
         {
             InitializeComponent();
-            //PatientsView.ItemsSource = new Class_PatientsList();
+            /*
+            // construct the dataset
+            ismacaul_HospiPalDataSet dataset = new ismacaul_HospiPalDataSet();
 
-            Binding patientsBinding = new Binding();
+            // use a table adapter to populate the Customers table
+            ismacaul_HospiPalDataSetTableAdapters.PatientTableAdapter adapter = new ismacaul_HospiPalDataSetTableAdapters.PatientTableAdapter();
+            adapter.Fill(dataset.Patient);
 
-            //patientsBinding.Path = new PropertyPath();
+            // use the Customer table as the DataContext for this Window
+            this.DataContext = dataset.Patient.DefaultView;
+             */
+
+            Patients_AddButton.Click += new RoutedEventHandler(AddPatient);
         }
+
+        
+        private void AddPatient(object sender, RoutedEventArgs e)
+        {
+        }
+        
     }
 }
