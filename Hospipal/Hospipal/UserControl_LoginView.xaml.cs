@@ -31,8 +31,9 @@ namespace Hospipal
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            RadTransitionControl transControl = this.Parent as RadTransitionControl;
-            transControl.Content = new UserControl_MainTabView();
+            //RadTransitionControl transControl = this.Parent as RadTransitionControl;
+            //transControl.Content = new UserControl_MainTabView();
+            Content = new UserControl_MainTabView();
         }
 
 

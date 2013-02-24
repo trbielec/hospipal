@@ -12,19 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Telerik.Windows.Controls;
-using Telerik.Windows.Data;
 
 namespace Hospipal
 {
     /// <summary>
-    /// Interaction logic for UserControl_PatientsView.xaml
+    /// Interaction logic for UserControl_EmployeesView.xaml
     /// </summary>
-    public partial class UserControl_PatientsView : UserControl
+    public partial class UserControl_EmployeesView : UserControl
     {
-
-
-        public UserControl_PatientsView()
+        public UserControl_EmployeesView()
         {
             InitializeComponent();
             /*
@@ -32,20 +28,13 @@ namespace Hospipal
             ismacaul_HospiPalDataSet dataset = new ismacaul_HospiPalDataSet();
 
             // use a table adapter to populate the Customers table
-            ismacaul_HospiPalDataSetTableAdapters.PatientTableAdapter adapter = new ismacaul_HospiPalDataSetTableAdapters.PatientTableAdapter();
-            adapter.Fill(dataset.Patient);
+            ismacaul_HospiPalDataSetTableAdapters.EmployeeTableAdapter adapter = new ismacaul_HospiPalDataSetTableAdapters.EmployeeTableAdapter();
+            adapter.Fill(dataset.Employee);
 
             // use the Customer table as the DataContext for this Window
-            this.DataContext = dataset.Patient.DefaultView;
+            this.DataContext = dataset.Employee.DefaultView;
              */
 
-            Patients_AddButton.Click += new RoutedEventHandler(AddPatient);
         }
-
-        
-        private void AddPatient(object sender, RoutedEventArgs e)
-        {
-        }
-        
     }
 }

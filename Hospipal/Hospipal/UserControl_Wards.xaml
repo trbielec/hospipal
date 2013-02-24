@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Hospipal.UserControl_Wards"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             MinHeight="768" MinWidth="1024">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row ="0" x:Name="Time" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Width="120"/>
+            <TextBox Grid.Row ="1"  x:Name="AssignedNurse" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Assigned Nurse" VerticalAlignment="Top" Width="120"/>
+            <TextBox Grid.Row ="2"  x:Name="WardCapacity" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="Capacity of Ward" VerticalAlignment="Top" Width="120"/>
+            <TextBox Grid.Row ="3"  x:Name="Room" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Room" VerticalAlignment="Top" Width="120"/>
+            <Button Grid.Row ="4"  Content="Add Ward" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+            <Button Grid.Row ="5"  Content="Edit Ward" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+            <Button Grid.Row ="6"  Content="Remove Ward" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+
+
+        </Grid>
+        <ListBox Grid.Column="0" x:Name="Ward" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
+        <ListBox Grid.Column="1" x:Name="Bed" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
+
+    </Grid>
+</UserControl>

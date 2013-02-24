@@ -10,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Hospipal
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Window3.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class treatmentWindow : Window
     {
-        public MainWindow()
+        public treatmentWindow()
         {
             InitializeComponent();
-            Content = new UserControl_LoginView();
         }
     }
 }
