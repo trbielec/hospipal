@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -20,28 +21,17 @@ namespace Hospipal
     public partial class EmployeeInformation : UserControl
     {
 
-        private bool _isNewEmployee = false;
+        private bool _isNewEmployee = true;
 
         public EmployeeInformation()
         {
             InitializeComponent();
-        }
-
-        public EmployeeInformation(bool isNewEmployee)
-        {
-            _isNewEmployee = isNewEmployee;
-            InitializeComponent();
-        }
-
-        private void EmployeeUC_Loaded(object sender, RoutedEventArgs e)
-        {
-
             if (_isNewEmployee)
             {
-                // Populate title
+                Employee e = new Employee();
 
-                // Find smallest unused eid in db, populate eid in ui
-
+                // Populate eid
+                generatedEID.Content = e.GetEid();
             }
             else
             {
@@ -49,7 +39,27 @@ namespace Hospipal
 
                 // Populate text fields with db info
             }
-           
+
+        }
+
+        public EmployeeInformation(bool isNewEmployee)
+        {
+            _isNewEmployee = isNewEmployee;
+            InitializeComponent();
+
+            /*if (_isNewEmployee)
+            {
+                Employee e = new Employee();
+
+                // Populate eid
+                this.generatedEID.Content = e.GetEid();
+            }
+            else
+            {
+                // Populate title
+
+                // Populate text fields with db info
+            }*/ 
         }
 
         private void Save(object sender, MouseButtonEventArgs e)
