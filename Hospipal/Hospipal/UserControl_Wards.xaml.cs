@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Hospipal
 {
     /// <summary>
-    /// Interaction logic for Wards.xaml
+    /// Interaction logic for UserControl_Wards.xaml
     /// </summary>
-    public partial class Wards : UserControl
+    public partial class UserControl_Wards : UserControl
     {
-        public Wards()
+        public UserControl_Wards()
         {
             InitializeComponent();
         }

@@ -97,8 +97,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Wards.xaml.cs">
-      <DependentUpon>Wards.xaml</DependentUpon>
+    <Compile Include="UserControl_Wards.xaml.cs">
+      <DependentUpon>UserControl_Wards.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -136,7 +136,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Wards.xaml">
+    <Page Include="UserControl_Wards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

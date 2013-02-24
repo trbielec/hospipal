@@ -24,7 +24,7 @@ namespace Hospipal
         {
             InitializeComponent();
 
-            WardsTab.Content=new Wards();
+            WardsTab.Content = new UserControl_Wards();
 
         }
     }
