@@ -24,5 +24,34 @@ namespace Hospipal
         {
             InitializeComponent();
         }
+
+        private void Save(object sender, MouseButtonEventArgs e)
+        {
+            //TODO
+
+            //if (_isNewEmployee)
+            // {
+            //Add a new employee based on entered data
+            //}
+            // else
+            // {
+            //Update current employee
+            // }
+        }
+
+        private void Cancel(object sender, MouseButtonEventArgs e)
+        {
+            //TODO - on button click, return to parent screen? 
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
