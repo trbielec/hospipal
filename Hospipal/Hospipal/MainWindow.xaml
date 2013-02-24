@@ -5,7 +5,7 @@
         xmlns:xan="clr-namespace:Hospipal"
         Title="Login" Height="768" Width="1024" MinHeight="768" MinWidth="1024" WindowStartupLocation="CenterScreen">
 
-    <telerik:RadTransitionControl x:Name="radTransitionControl" Transition="Fade">
+    <telerik:RadTransitionControl x:Name="radTransitionControl" Transition="LinearFade">
         <xan:UserControl_LoginView>
 
         </xan:UserControl_LoginView>
