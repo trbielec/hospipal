@@ -66,8 +66,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class_Patients.cs" />
-    <Compile Include="Class_PatientsList.cs" />
     <Compile Include="Class_Wards.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="EmployeeInformation.xaml.cs">
@@ -90,12 +88,6 @@
     <Compile Include="UserControl_EmployeesView.xaml.cs">
       <DependentUpon>UserControl_EmployeesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Treatment.xaml.cs">
-      <DependentUpon>Treatment.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Treatment.xaml.cs">
-      <DependentUpon>Treatment.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControl_LoginView.xaml.cs">
       <DependentUpon>UserControl_LoginView.xaml</DependentUpon>
     </Compile>
@@ -111,9 +103,6 @@
     </Page>
     <Compile Include="UserControl_TreatmentView.xaml.cs">
       <DependentUpon>UserControl_TreatmentView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl_Wards.xaml.cs">
-      <DependentUpon>UserControl_Wards.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl_Wards.xaml.cs">
       <DependentUpon>UserControl_Wards.xaml</DependentUpon>
@@ -168,10 +157,6 @@
     <Page Include="UserControl_TreatmentView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControl_Wards.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_Wards.xaml">
       <SubType>Designer</SubType>

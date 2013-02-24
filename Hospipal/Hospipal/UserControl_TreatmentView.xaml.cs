@@ -29,31 +29,29 @@ namespace Hospipal
 
             string s = "";
             List<string> treatments = new List<string>();
-<<<<<<< HEAD
             foreach (object[] element in obj)
             {
                 s = element[0].ToString();
-=======
-            for (int i = 0; i < obj.Count; i++)
-            {
-                s = Convert.ToString(obj.ElementAt(i));
->>>>>>> c793e16843c465b66af265af5f2251c556ba7b6d
-                treatments.Add(s);
-                boxTreatmentType.Items.Add(s);
+                for (int i = 0; i < obj.Count; i++)
+                {
+                    s = Convert.ToString(obj.ElementAt(i));
+                    treatments.Add(s);
+                    boxTreatmentType.Items.Add(s);
 
+                }
+
+                //MessageBox.Show("Treatment type has " + obj.Count);
+                //This is test code
+                //string history;
+                //string id;
+                //string type;
+                //id = "1";
+                //type = "test";
+                //history = (id + " " + type);
+                ////Populate treatment type from database
+                //boxHistory.Items.Add(history);
+                //boxTreatmentType.Items.Add("Test");
             }
-
-            //MessageBox.Show("Treatment type has " + obj.Count);
-            //This is test code
-            //string history;
-            //string id;
-            //string type;
-            //id = "1";
-            //type = "test";
-            //history = (id + " " + type);
-            ////Populate treatment type from database
-            //boxHistory.Items.Add(history);
-            //boxTreatmentType.Items.Add("Test");
         }
         public UserControl_TreatmentView(int pID)
         {
@@ -125,10 +123,7 @@ namespace Hospipal
         {
             //Variable declarations
             string input;
-<<<<<<< HEAD
-=======
             int TreatmentID;
->>>>>>> c793e16843c465b66af265af5f2251c556ba7b6d
             string TreatmentType;
             int DateMonth;
             int DateDay;
@@ -139,15 +134,12 @@ namespace Hospipal
 
             try
             {
-<<<<<<< HEAD
                 ////Treatment ID input from text box
                 //input = txtTreatmentID.Text;
                 //TreatmentID = parseInt(input);
-=======
                 //Treatment ID input from text box
                 input = txtTreatmentID.Text;
                 TreatmentID = parseInt(input);
->>>>>>> c793e16843c465b66af265af5f2251c556ba7b6d
 
                 //Treatment type from combo box that converts item to string
                 input = boxTreatmentType.SelectedValue.ToString();
