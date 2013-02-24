@@ -3,7 +3,9 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xan="clr-namespace:Hospipal"
-        Title="Login" Height="768" Width="1024" MinHeight="768" MinWidth="1024" WindowStartupLocation="CenterScreen">
+        Title="Hospipal" Height="768" Width="1024" MinHeight="768" MinWidth="1024"
+        WindowStartupLocation="CenterScreen"
+        Icon=".\Resources\Hospipal_Icon.png">
 
     <telerik:RadTransitionControl x:Name="radTransitionControl" Transition="LinearFade">
         <xan:UserControl_LoginView>
