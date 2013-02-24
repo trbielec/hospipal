@@ -45,13 +45,19 @@
             </Grid>
             <Image HorizontalAlignment="Stretch" Height="250" VerticalAlignment="Top" Width="200" Source=".\Resources\Hospipal_Icon.png"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source=".\Resources\Hospipal_Label.png"/>
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 90d240e2611ec037221441026f6609960de4e81d
                 <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source=".\Resources\Hospipal_Label.png"/>
 =======
             <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source=".\Resources\Hospipal_Label.png"/>
 >>>>>>> Almost Final Changes
+<<<<<<< HEAD
+>>>>>>> 90d240e2611ec037221441026f6609960de4e81d
+=======
 >>>>>>> 90d240e2611ec037221441026f6609960de4e81d
         </Grid>
     </Grid>
