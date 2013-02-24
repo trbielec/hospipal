@@ -215,8 +215,13 @@ namespace Hospipal
             err = 0;
         }
 
+
         private void boxHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Get the currently selected item in the ListBox. 
+            string selected = boxHistory.SelectedItem.ToString();
+
+            lblHistory.Content = selected;
 
         }
     }
