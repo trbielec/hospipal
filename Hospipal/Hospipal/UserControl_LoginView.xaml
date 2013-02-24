@@ -44,7 +44,15 @@
                 <Button Grid.Row ="0" Grid.Column="3" HorizontalAlignment="Stretch" Name="ButtonReset" Content="Reset" VerticalAlignment="Center" FontSize="14" Height="32" />
             </Grid>
             <Image HorizontalAlignment="Stretch" Height="250" VerticalAlignment="Top" Width="200" Source=".\Resources\Hospipal_Icon.png"/>
+<<<<<<< HEAD
             <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source=".\Resources\Hospipal_Label.png"/>
+=======
+<<<<<<< HEAD
+                <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source=".\Resources\Hospipal_Label.png"/>
+=======
+            <Image HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,50" Source=".\Resources\Hospipal_Label.png"/>
+>>>>>>> Almost Final Changes
+>>>>>>> 90d240e2611ec037221441026f6609960de4e81d
         </Grid>
     </Grid>
 

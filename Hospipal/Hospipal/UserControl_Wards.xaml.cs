@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace Hospipal
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserControl_Wards.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserControl_Wards : UserControl
     {
-        public MainWindow()
+        public UserControl_Wards()
         {
             InitializeComponent();
-            Content = new UserControl_LoginView();
         }
     }
 }

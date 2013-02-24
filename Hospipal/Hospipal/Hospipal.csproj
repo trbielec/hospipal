@@ -66,6 +66,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Class_Patients.cs" />
+    <Compile Include="Class_PatientsList.cs" />
+    <Compile Include="Class_Wards.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="EmployeeInformation.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>EmployeeInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientInformation.xaml.cs">
+      <DependentUpon>PatientInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="UserControl_AddRoom.xaml.cs">
+      <DependentUpon>UserControl_AddRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_EditRoom.xaml.cs">
+      <DependentUpon>UserControl_EditRoom.xaml</DependentUpon>
+	</Compile>
+    <Compile Include="Treatment.xaml.cs">
+      <DependentUpon>Treatment.xaml</DependentUpon>
     <Compile Include="UserControl_EmployeesView.xaml.cs">
       <DependentUpon>UserControl_EmployeesView.xaml</DependentUpon>
     </Compile>
@@ -77,6 +97,16 @@
     </Compile>
     <Compile Include="UserControl_PatientsView.xaml.cs">
       <DependentUpon>UserControl_PatientsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="EmployeeInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="UserControl_Wards.xaml.cs">
+      <DependentUpon>UserControl_Wards.xaml</DependentUpon>
+    </Compile>
+	<Compile Include="AddPatient.xaml.cs">
+      <DependentUpon>AddPatient.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -90,6 +120,22 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PatientInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_AddRoom.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_EditRoom.xaml">
+	<Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Treatment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControl_EmployeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +149,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_PatientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_Wards.xaml"> 
+	<SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddPatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +196,20 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\UI Images\Employees and Treatment Window.JPG" />
+    <Resource Include="Resources\UI Images\Patients and Add Patient.JPG" />
+    <Resource Include="Resources\UI Images\Wards.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button Images\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button Images\edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

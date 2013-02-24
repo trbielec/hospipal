@@ -16,14 +16,29 @@ using System.Windows.Shapes;
 namespace Hospipal
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserControl_Ward.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserControl_AddRoom : UserControl
     {
-        public MainWindow()
+
+        public UserControl_AddRoom()
         {
             InitializeComponent();
-            Content = new UserControl_LoginView();
+        }
+
+        private void RadButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

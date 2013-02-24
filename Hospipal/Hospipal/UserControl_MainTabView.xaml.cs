@@ -25,8 +25,18 @@ namespace Hospipal
         {
             InitializeComponent();
 
+<<<<<<< HEAD
             PatientsTab.Content = new UserControl_PatientsView();
             EmployeesTab.Content = new UserControl_EmployeesView();
+=======
+<<<<<<< HEAD
+            WardsTab.Content = new UserControl_Wards();
+
+=======
+            PatientsTab.Content = new UserControl_PatientsView();
+            EmployeesTab.Content = new UserControl_EmployeesView();
+>>>>>>> Almost Final Changes
+>>>>>>> 90d240e2611ec037221441026f6609960de4e81d
         }
     }
 }

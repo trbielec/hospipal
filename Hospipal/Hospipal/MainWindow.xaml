@@ -7,7 +7,7 @@
         WindowStartupLocation="CenterScreen"
         Icon=".\Resources\Hospipal_Icon.png">
 
-    <telerik:RadTransitionControl x:Name="radTransitionControl" Transition="Fade">
+    <telerik:RadTransitionControl x:Name="radTransitionControl" Transition="LinearFade">
         <xan:UserControl_LoginView>
 
         </xan:UserControl_LoginView>
