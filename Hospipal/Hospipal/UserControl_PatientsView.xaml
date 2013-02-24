@@ -29,11 +29,24 @@
                 <ComboBoxItem Content="Last Name"></ComboBoxItem>
             </ComboBox>
 
-          
-            <Button Grid.Column="1" Content="Add" Name="Patients_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" Width="60" Height="60"/>
-            <Button Grid.Column="1" Content="Edit" Name="Patients_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="75,0,0,0" Width="60" Height="60"/>
-            <Button Grid.Column="1" Content="Delete" Name="Patients_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="140,0,0,0" Width="60" Height="60"/>
 
+            <Button Grid.Column="1" Name="Patients_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/add.png"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="1" Name="Patients_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="75,0,0,0" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/edit.png" Width="45"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="1" Name="Patients_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="140,0,0,0" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/cancel.png"/>
+                </StackPanel>
+            </Button>
 
         </Grid>
         

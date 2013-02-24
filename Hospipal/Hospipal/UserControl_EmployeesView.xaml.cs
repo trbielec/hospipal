@@ -35,6 +35,26 @@ namespace Hospipal
             this.DataContext = dataset.Employee.DefaultView;
              */
 
+
+            Employees_AddButton.Click += new RoutedEventHandler(AddEmployee);
+            Employees_EditButton.Click += new RoutedEventHandler(EditEmployee);
+            Employees_DeleteButton.Click += new RoutedEventHandler(DeleteEmployee);
+
+        }
+
+
+        private void AddEmployee(object sender, RoutedEventArgs e)
+        {
+            Content = new EmployeeInformation();
+        }
+
+        private void EditEmployee(object sender, RoutedEventArgs e)
+        {
+            Content = new EmployeeInformation();
+        }
+
+        private void DeleteEmployee(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

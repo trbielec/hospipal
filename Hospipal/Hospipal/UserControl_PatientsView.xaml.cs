@@ -40,10 +40,22 @@ namespace Hospipal
              */
 
             Patients_AddButton.Click += new RoutedEventHandler(AddPatient);
+            Patients_EditButton.Click += new RoutedEventHandler(EditPatient);
+            Patients_DeleteButton.Click += new RoutedEventHandler(DeletePatient);
         }
 
-        
+
         private void AddPatient(object sender, RoutedEventArgs e)
+        {
+            Content = new PatientInformation();
+        }
+
+        private void EditPatient(object sender, RoutedEventArgs e)
+        {
+            Content = new PatientInformation();
+        }
+
+        private void DeletePatient(object sender, RoutedEventArgs e)
         {
         }
         
