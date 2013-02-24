@@ -83,7 +83,7 @@
     </Compile>
     <Compile Include="UserControl_EditRoom.xaml.cs">
       <DependentUpon>UserControl_EditRoom.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Treatment.xaml.cs">
       <DependentUpon>Treatment.xaml</DependentUpon>
     </Compile>
@@ -100,10 +100,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="UserControl_TreatmentView.xaml.cs">
+      <DependentUpon>UserControl_TreatmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_Wards.xaml.cs">
       <DependentUpon>UserControl_Wards.xaml</DependentUpon>
     </Compile>
-	<Compile Include="AddPatient.xaml.cs">
+    <Compile Include="AddPatient.xaml.cs">
       <DependentUpon>AddPatient.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -127,7 +130,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControl_EditRoom.xaml">
-	<Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Treatment.xaml">
@@ -146,8 +149,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl_Wards.xaml"> 
-	<SubType>Designer</SubType>
+    <Page Include="UserControl_TreatmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl_Wards.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddPatient.xaml">

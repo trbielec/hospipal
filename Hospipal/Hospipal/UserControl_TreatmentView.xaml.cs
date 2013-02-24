@@ -29,9 +29,9 @@ namespace Hospipal
 
             string s = "";
             List<string> treatments = new List<string>();
-            for (int i = 0; i < obj.Count; i++)
+            foreach (object[] element in obj)
             {
-                s = Convert.ToString(obj.ElementAt(i));
+                s = element[0].ToString();
                 treatments.Add(s);
                 boxTreatmentType.Items.Add(s);
 
@@ -119,7 +119,6 @@ namespace Hospipal
         {
             //Variable declarations
             string input;
-            int TreatmentID;
             string TreatmentType;
             int DateMonth;
             int DateDay;
@@ -130,9 +129,9 @@ namespace Hospipal
 
             try
             {
-                //Treatment ID input from text box
-                input = txtTreatmentID.Text;
-                TreatmentID = parseInt(input);
+                ////Treatment ID input from text box
+                //input = txtTreatmentID.Text;
+                //TreatmentID = parseInt(input);
 
                 //Treatment type from combo box that converts item to string
                 input = boxTreatmentType.SelectedValue.ToString();
