@@ -88,6 +88,8 @@
       <DependentUpon>Treatment.xaml</DependentUpon>
     <Compile Include="UserControl_EmployeesView.xaml.cs">
       <DependentUpon>UserControl_EmployeesView.xaml</DependentUpon>
+    <Compile Include="Treatment.xaml.cs">
+      <DependentUpon>Treatment.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl_LoginView.xaml.cs">
       <DependentUpon>UserControl_LoginView.xaml</DependentUpon>
@@ -106,6 +108,7 @@
       <DependentUpon>UserControl_Wards.xaml</DependentUpon>
     </Compile>
 	<Compile Include="AddPatient.xaml.cs">
+    <Compile Include="AddPatient.xaml.cs">
       <DependentUpon>AddPatient.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
