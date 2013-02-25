@@ -26,12 +26,14 @@ namespace Hospipal
         public EmployeeInformation()
         {
             InitializeComponent();
+
+            employeeInfo_SaveButton.Click += employeeInfo_SaveButton_Click;
+            employeeInfo_CancelButton.Click += employeeInfo_CancelButton_Click;
+
             if (_isNewEmployee)
             {
-                Employee e = new Employee();
-
                 // Populate eid
-                generatedEID.Content = e.GetEid();
+                generatedEID.Content = Employee.GenerateNewEid();
             }
             else
             {
@@ -40,6 +42,26 @@ namespace Hospipal
                 // Populate text fields with db info
             }
 
+        }
+
+        void employeeInfo_CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void employeeInfo_SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employee employee = new Employee();
+            if (_isNewEmployee)
+            {
+              employee.SetEid((int)generatedEID.Content);
+              employee.SetName(firstNameTb.Text, lastNameTb.Text);
+              //employee.SetSpecialty(specialtyComboBox.Items[specialtyComboBox.SelectedIndex].ToString());
+            }
+            else
+            {
+                employee.UpdateEmployee(employee);
+            }
         }
 
         public EmployeeInformation(bool isNewEmployee)
@@ -62,24 +84,7 @@ namespace Hospipal
             }*/ 
         }
 
-        private void Save(object sender, MouseButtonEventArgs e)
-        {
-            //TODO
-
-            if (_isNewEmployee)
-            {
-                //Add a new employee based on entered data
-            }
-            else
-            {
-                //Update current employee
-            }
-        }
-
-        private void Cancel(object sender, MouseButtonEventArgs e)
-        {
-            //TODO - on button click, return to parent screen? 
-        }
+  
 
     }
 }

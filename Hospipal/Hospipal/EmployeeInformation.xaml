@@ -30,8 +30,16 @@
 
         </Grid>
         <Label Content="Add/View Employees" HorizontalAlignment="Center" VerticalAlignment="Top" Width="165" Margin="177,-39,158,0" FontFamily="Segoe Marker" FontSize="20" />
-        <Image HorizontalAlignment="Left" Margin="350,95,0,0" Source="./Resources/Button Images/save.png" />
-        <Image HorizontalAlignment="Left" Margin="425,95,0,0" Source="./Resources/Button Images/cancel.png"  />
+        <Button Name="employeeInfo_SaveButton" HorizontalAlignment="Left" Margin="350,95,0,0" Width="50" Height="50">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/save.png"/>
+            </StackPanel>
+        </Button>
+        <Button Name="employeeInfo_CancelButton" HorizontalAlignment="Left" Margin="425,95,0,0" Width="50" Height="50">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/cancel.png"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </UserControl>
     

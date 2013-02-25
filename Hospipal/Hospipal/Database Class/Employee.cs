@@ -15,10 +15,10 @@ namespace Hospipal.Database_Class
 
         public Employee()
         {
+            _eid = GenerateNewEid();
             _fname = "";
             _lname = "";
             _specialty = "General";
-            GenerateEid();
         }
 
         public Employee(int eid, string fname, string lname, string specialty)
@@ -27,6 +27,21 @@ namespace Hospipal.Database_Class
             _fname = fname;
             _lname = lname;
             _specialty = specialty; 
+        }
+
+        public bool AddNewEmployee(Employee e)
+        {
+            return true; 
+        }
+
+        public bool UpdateEmployee(Employee e)
+        {
+            return true; 
+        }
+
+        public void SetEid(int eid)
+        {
+            _eid = eid;
         }
 
         public int GetEid()
@@ -58,10 +73,11 @@ namespace Hospipal.Database_Class
             return _specialty;
         } 
 
-        private void GenerateEid()
+
+        public static int GenerateNewEid()
         {
             List<object[]> obj = Database.Select("SELECT eid FROM ismacaul_HospiPal.Employee");
-            _eid = obj.Count() + 1;
+            return obj.Count() + 1;
         }
     }
 }
