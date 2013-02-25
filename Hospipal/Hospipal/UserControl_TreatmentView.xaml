@@ -10,21 +10,20 @@
         <Grid.Background>
             <ImageBrush/>
         </Grid.Background>
-        <ListBox x:Name="boxHistory" HorizontalAlignment="Left" Height="390" Margin="42,92,0,0" VerticalAlignment="Top" Width="187"/>
+        <ListBox x:Name="boxHistory" HorizontalAlignment="Left" Height="390" Margin="42,92,0,0" VerticalAlignment="Top" Width="187" SelectionChanged="boxHistory_SelectionChanged"/>
         <Label x:Name="lblTreatment" Content="Treatment" HorizontalAlignment="Left" Margin="233,10,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker"/>
 
-        <Label x:Name="lblTreatmentID" Content="Treatment ID:" HorizontalAlignment="Left" Margin="263,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtTreatmentID" HorizontalAlignment="Left" Height="23" Margin="375,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" SpellCheck.IsEnabled="True"/>
+        <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" Margin="263,78,0,0" VerticalAlignment="Top"/>
 
         <Label x:Name="lblHistory" Content="History" HorizontalAlignment="Left" Margin="94,56,0,0" VerticalAlignment="Top" Height="36" Width="80" FontSize="20"/>
-        <Label x:Name="lblTreatmentType" Content="Treatment Type:" HorizontalAlignment="Left" Margin="263,123,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="boxTreatmentType" HorizontalAlignment="Left" Margin="375,123,0,0" VerticalAlignment="Top" Width="168"/>
-        <Label x:Name="lblTreatmentDate" Content="Treatment Date:" HorizontalAlignment="Left" Margin="263,160,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblTreatmentTime" Content="Treatment Time:" HorizontalAlignment="Left" Margin="264,213,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTreatmentType" Content="Treatment Type:" HorizontalAlignment="Left" Margin="263,113,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="boxTreatmentType" HorizontalAlignment="Left" Margin="375,113,0,0" VerticalAlignment="Top" Width="168"/>
+        <Label x:Name="lblTreatmentDate" Content="Treatment Date:" HorizontalAlignment="Left" Margin="263,148,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTreatmentTime" Content="Treatment Time:" HorizontalAlignment="Left" Margin="264,187,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblTreatmentNotes" Content="Treatment Notes:" HorizontalAlignment="Left" Margin="263,258,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="129" Margin="375,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+        <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="129" Margin="375,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
 
-        <telerik:RadTimePicker x:Name="boxTime" HorizontalAlignment="Left" Margin="375,215,0,0" VerticalAlignment="Top" Width="168"/>
+        <telerik:RadTimePicker x:Name="boxTime" HorizontalAlignment="Left" Margin="375,189,0,0" VerticalAlignment="Top" Width="168"/>
         <Button x:Name="buttonSave" Content="" HorizontalAlignment="Left" Margin="432,423,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderBrush="White" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonSave_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/Button Images/save.png"/>
@@ -35,9 +34,10 @@
                 <ImageBrush ImageSource="Resources/Button Images/cancel.png"/>
             </Button.Background>
         </Button>
-        <DatePicker x:Name="boxDate" HorizontalAlignment="Left" Margin="375,162,0,0" VerticalAlignment="Top" Width="168"/>
-
-        <Label x:Name="lblPatientName" Content="" HorizontalAlignment="Left" Margin="375,88,0,0" VerticalAlignment="Top" Width="168"/>
+        <DatePicker x:Name="boxDate" HorizontalAlignment="Left" Margin="375,150,0,0" VerticalAlignment="Top" Width="168"/>
+        <Label x:Name="lblName" Content="" HorizontalAlignment="Left" Margin="375,78,0,0" VerticalAlignment="Top" Width="168"/>
+        <Label x:Name="lblDoctor" Content="Treating Doctor:" HorizontalAlignment="Left" Margin="264,221,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="boxDoctors" HorizontalAlignment="Left" Margin="375,225,0,0" VerticalAlignment="Top" Width="168"/>
 
     </Grid>
 </UserControl>

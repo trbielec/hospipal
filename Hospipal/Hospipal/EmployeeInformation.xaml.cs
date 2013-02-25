@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -20,28 +21,19 @@ namespace Hospipal
     public partial class EmployeeInformation : UserControl
     {
 
-        private bool _isNewEmployee = false;
+        private bool _isNewEmployee = true;
 
         public EmployeeInformation()
         {
             InitializeComponent();
-        }
 
-        public EmployeeInformation(bool isNewEmployee)
-        {
-            _isNewEmployee = isNewEmployee;
-            InitializeComponent();
-        }
-
-        private void EmployeeUC_Loaded(object sender, RoutedEventArgs e)
-        {
+            employeeInfo_SaveButton.Click += employeeInfo_SaveButton_Click;
+            employeeInfo_CancelButton.Click += employeeInfo_CancelButton_Click;
 
             if (_isNewEmployee)
             {
-                // Populate title
-
-                // Find smallest unused eid in db, populate eid in ui
-
+                // Populate eid
+                generatedEID.Content = Employee.GenerateNewEid();
             }
             else
             {
@@ -49,27 +41,52 @@ namespace Hospipal
 
                 // Populate text fields with db info
             }
-           
+
         }
 
-        private void Save(object sender, MouseButtonEventArgs e)
+        void employeeInfo_CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO
+            throw new NotImplementedException();
+        }
 
+        void employeeInfo_SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Employee employee = new Employee();
             if (_isNewEmployee)
             {
-                //Add a new employee based on entered data
+                employee.SetEid((int)generatedEID.Content);
+                employee.SetName(firstNameTb.Text, lastNameTb.Text);
+                //employee.SetSpecialty(specialtyComboBox.Items[specialtyComboBox1.SelectedIndex].ToString());
+                employee.Add(employee);
+              
             }
             else
             {
-                //Update current employee
+                employee.Update(employee);
             }
         }
 
-        private void Cancel(object sender, MouseButtonEventArgs e)
+        public EmployeeInformation(bool isNewEmployee)
         {
-            //TODO - on button click, return to parent screen? 
+            _isNewEmployee = isNewEmployee;
+            InitializeComponent();
+
+            /*if (_isNewEmployee)
+            {
+                Employee e = new Employee();
+
+                // Populate eid
+                this.generatedEID.Content = e.GetEid();
+            }
+            else
+            {
+                // Populate title
+
+                // Populate text fields with db info
+            }*/ 
         }
+
+  
 
     }
 }

@@ -20,25 +20,40 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_TreatmentView : UserControl
     {
+        private Database_Class.Treatment control;
         int patientID = 1;
+
         public UserControl_TreatmentView()
         {
             InitializeComponent();
-            List<object[]> obj = Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
-            //Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
+            control = new Database_Class.Treatment(patientID);
+
+
+            List<object[]> treatments = control.initializeTreatmentList();
+            List<string> doctors = control.initializeDoctorList();
 
             string s = "";
-            List<string> treatments = new List<string>();
-            foreach (object[] element in obj)
+            foreach (object[] element in treatments)
             {
                 s = element[0].ToString();
-                for (int i = 0; i < obj.Count; i++)
-                {
-                    s = Convert.ToString(obj.ElementAt(i));
-                    treatments.Add(s);
-                    boxTreatmentType.Items.Add(s);
+                boxTreatmentType.Items.Add(s);
 
-                }
+            }
+
+            foreach (string element in doctors)
+            {
+                boxDoctors.Items.Add(element);
+
+            }
+
+            List<string> treatmentHistory = control.initializeTreatmentHistory();
+            foreach (string element in treatmentHistory)
+            {
+                boxHistory.Items.Add(element);
+
+            }
+
+            lblName.Content = control.getPatientName();
 
                 //MessageBox.Show("Treatment type has " + obj.Count);
                 //This is test code
@@ -51,27 +66,34 @@ namespace Hospipal
                 ////Populate treatment type from database
                 //boxHistory.Items.Add(history);
                 //boxTreatmentType.Items.Add("Test");
-            }
         }
         public UserControl_TreatmentView(int pID)
         {
             InitializeComponent();
             patientID = pID;
-            
-            List<object[]> obj = Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
-            //Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
+            control = new Database_Class.Treatment(patientID);
 
-            string s;
 
-            List<string> treatments = new List<string>();
-            for (int i = 0; i < obj.Count; i++)
+            List<object[]> treatments = control.initializeTreatmentList();
+            //List<object[]> obj = Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
+
+
+            string s = "";
+            foreach (object[] element in treatments)
             {
-                s = obj.ElementAt(i).ToString();
-                treatments.Add(s);
+                s = element[0].ToString();
                 boxTreatmentType.Items.Add(s);
 
             }
 
+            List<string> treatmentHistory = control.initializeTreatmentHistory();
+            foreach (string element in treatmentHistory)
+            {
+                boxHistory.Items.Add(element);
+
+            }
+
+            lblName.Content = control.getPatientName();
         }
 
         /* This method parses a string to a integer
@@ -123,12 +145,12 @@ namespace Hospipal
         {
             //Variable declarations
             string input;
-            int TreatmentID;
             string TreatmentType;
             int DateMonth;
             int DateDay;
             int DateYear;
             string treatTime;
+            string doc;
             string treatmentNotes = "";
             int err = 0;                      //Error flag
 
@@ -138,12 +160,15 @@ namespace Hospipal
                 //input = txtTreatmentID.Text;
                 //TreatmentID = parseInt(input);
                 //Treatment ID input from text box
-                input = txtTreatmentID.Text;
-                TreatmentID = parseInt(input);
+                //input = txtTreatmentID.Text;
+                //TreatmentID = parseInt(input);
 
                 //Treatment type from combo box that converts item to string
                 input = boxTreatmentType.SelectedValue.ToString();
                 TreatmentType = input;
+
+                input = boxDoctors.SelectedValue.ToString();
+                doc = input;
 
                 //Treatment date parsed to integer value of day month year
                 input = boxDate.Text;
@@ -169,8 +194,9 @@ namespace Hospipal
 
                 if (err == 0)
                 {
-                    Database.Insert(@"INSERT INTO ismacaul_HospiPal.RecievesTreatment (patient, treatment, day, month, year, time, notes) 
-                    VALUES (" + patientID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "');");
+                    control.AddTreatment(TreatmentType,  DateDay, DateMonth, DateYear, treatTime, treatmentNotes, doc);
+                    //Database.Insert(@"INSERT INTO ismacaul_HospiPal.RecievesTreatment (patient, treatment, day, month, year, time, notes) 
+                    //VALUES (" + patientID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "');");
                     //Refreshes the user control once query is added
                     Content = new UserControl_TreatmentView();
                 }
@@ -196,6 +222,16 @@ namespace Hospipal
             }
             //Content = new UserControl_TreatmentView();
             err = 0;
+        }
+
+
+        private void boxHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Get the currently selected item in the ListBox. 
+            string selected = boxHistory.SelectedItem.ToString();
+
+            //lblHistory.Content = selected;
+
         }
     }
 }
