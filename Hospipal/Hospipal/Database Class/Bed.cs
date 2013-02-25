@@ -8,5 +8,11 @@ namespace Hospipal.Database_Class
 {
     class Bed
     {
+        private string bedNo;
+        private string state;
+        private int pid;
+        private string roomNo;
+        private string assigningNurse;
+        
     }
 }

@@ -16,17 +16,14 @@ using System.Windows.Shapes;
 namespace Hospipal
 {
     /// <summary>
-    /// Interaction logic for UserControl_Ward.xaml
+    /// Interaction logic for UserControl_EditWard.xaml
     /// </summary>
-    public partial class UserControl_AddRoom : UserControl
+    public partial class UserControl_EditWard : UserControl
     {
-
-        public UserControl_AddRoom()
+        public UserControl_EditWard()
         {
             InitializeComponent();
         }
-
-        
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
@@ -43,19 +40,19 @@ namespace Hospipal
             //TODO
 
             //if (_isNewEmployee)
-           // {
-                //Add a new employee based on entered data
+            // {
+            //Add a new employee based on entered data
             //}
-           // else
-           // {
-                //Update current employee
-           // }
+            // else
+            // {
+            //Update current employee
+            // }
         }
 
         private void Cancel(object sender, MouseButtonEventArgs e)
         {
             //When user clicks on X the Wards view is displayed
-            Content = new UserControl_Wards();
+            Content = new UserControl_Wards(); 
         }
     }
 }

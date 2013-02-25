@@ -62,11 +62,16 @@
             <TextBox x:Name="Worktb" Text="{Binding Path=patient.WorkPhoneNo,ElementName=patientControl,Mode=TwoWay}" Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
             <TextBox x:Name="Mobiletb" Text="{Binding Path=patient.MobilePhoneNo,ElementName=patientControl,Mode=TwoWay}" Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
         </Grid>
+<<<<<<< HEAD
         <Button x:Name="Savebtn" HorizontalAlignment="Left" Margin="350,225,0,0" VerticalAlignment="Top" Click="Save"  IsDefault="True" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
             <Image Source="./Resources/Button Images/save.png" Stretch="None" />
         </Button>
         <Button x:Name="Cancelbtn" HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" Click="Cancel" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
             <Image Source="./Resources/Button Images/cancel.png" Stretch="None"  />
         </Button>
+=======
+        <Image HorizontalAlignment="Left" Margin="325,225,0,0" VerticalAlignment="Top" MouseDown="Save" Source="./Resources/Button Images/save.png"/>
+        <Image HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" MouseDown="Cancel" Source="./Resources/Button Images/cancel.png"/>
+>>>>>>> origin/Brett
     </Grid>
 </UserControl>
