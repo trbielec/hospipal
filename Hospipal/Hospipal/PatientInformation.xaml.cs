@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospipal.Database_Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,33 +20,43 @@ namespace Hospipal
     /// </summary>
     public partial class PatientInformation : UserControl
     {
+        private static readonly DependencyProperty PatientProperty =
+                          DependencyProperty.Register("patient", typeof(Patient),
+                                                      typeof(PatientInformation));
         private bool _isNewPatient = false;
-
+        private Patient patient
+   {
+      get { return (Patient)GetValue(PatientProperty); }
+      set { SetValue(PatientProperty, value); }
+   }
         public PatientInformation()
         {
             InitializeComponent();
+            //patient = new Patient(Convert.ToInt32(HealthCaretb.Text), FirstNametb.Text, LastNametb.Text, Convert.ToDateTime(DOBdp.SelectedDate), Addresstb.Text, Citytb.Text, Provincetb.Text, PostalCodetb.Text, Hometb.Text, Worktb.Text, Mobiletb.Text);
+            patient = new Patient(12345);
         }
-        public PatientInformation(bool isNewPatient)
+        public PatientInformation(int HealthCareNo)
         {
-            _isNewPatient = isNewPatient;
-            InitializeComponent();
+            _isNewPatient = false;
+            patient = new Patient(HealthCareNo);
         }
-
         private void Save(object sender, MouseButtonEventArgs e)
         {
+            this.Focus();
             if (_isNewPatient)
             {
-                //Add a new Patient based off of textFields
+                patient.Insert();
             }
             else
             {
-                //Update Patient created
+                patient.Update();
             }
         }
 
         private void Cancel(object sender, MouseButtonEventArgs e)
         {
-            //Hide the UI
+            Content = new UserControl_PatientsView();
+
         }
     }
 }
