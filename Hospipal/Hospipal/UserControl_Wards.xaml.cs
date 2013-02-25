@@ -24,5 +24,66 @@ namespace Hospipal
         {
             InitializeComponent();
         }
+
+        private void boxWard_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //query rooms in the selected ward and display them
+        }
+
+        private void boxRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //query beds in the selected room and display them
+        }
+
+        private void boxBed_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void WardAdd(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void WardEdit(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void WardDelete(object sender, MouseButtonEventArgs e)
+        {
+           
+        }
+
+
+        private void RoomAdd(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void RoomEdit(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void RoomDelete(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void BedAdd(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BedEdit(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void BedDelete(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
     }
 }

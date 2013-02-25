@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             MinHeight="768" MinWidth="1024">
+             mc:Ignorable="d" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -12,7 +11,14 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
+        <!--
+        <Grid Grid.Column="3" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
@@ -26,15 +32,73 @@
             <TextBox Grid.Row ="0" x:Name="Time" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" Width="120"/>
             <TextBox Grid.Row ="1"  x:Name="AssignedNurse" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Assigned Nurse" VerticalAlignment="Top" Width="120"/>
             <TextBox Grid.Row ="2"  x:Name="WardCapacity" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="Capacity of Ward" VerticalAlignment="Top" Width="120"/>
-            <TextBox Grid.Row ="3"  x:Name="Room" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Room" VerticalAlignment="Top" Width="120"/>
+            <TextBox Grid.Row ="3"  x:Name="Room_text" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Room" VerticalAlignment="Top" Width="120"/>
             <Button Grid.Row ="4"  Content="Add Ward" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
             <Button Grid.Row ="5"  Content="Edit Ward" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
             <Button Grid.Row ="6"  Content="Remove Ward" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
 
 
         </Grid>
-        <ListBox Grid.Column="0" x:Name="Ward" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
-        <ListBox Grid.Column="1" x:Name="Bed" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto"/>
+        -->
+        
+        <ListBox Grid.Column="0" Grid.Row="1" x:Name="Ward" SelectionChanged="boxWard_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto" Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
+        <Label Grid.Column="0" Grid.Row="0" x:Name="lblWard" Content="Ward" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="0" Grid.Row="2" Name="Ward_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/add.png"/>
+            </StackPanel>
+        </Button>
 
+        <Button Grid.Column="0" Grid.Row="2" Name="Ward_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="75,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/edit.png" Width="45"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Column="0" Grid.Row="2" Name="Ward_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="140,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/cancel.png"/>
+            </StackPanel>
+        </Button>
+        <ListBox Grid.Column="1" Grid.Row="1" x:Name="Room" SelectionChanged="boxRoom_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto"  Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
+        <Label Grid.Column="1" Grid.Row="0" x:Name="lblRoom" Content="Room" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="1" Grid.Row="2" Name="Room_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/add.png"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Column="1" Grid.Row="2" Name="Room_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="75,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/edit.png" Width="45"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Column="1" Grid.Row="2" Name="Room_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="140,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/cancel.png"/>
+            </StackPanel>
+        </Button>
+        <ListBox Grid.Column="2" Grid.Row="1" x:Name="Bed" SelectionChanged="boxBed_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto"  Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
+        <Label Grid.Column="2" Grid.Row="0" x:Name="lblBed" Content="Bed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/add.png"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="75,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/edit.png" Width="45"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="140,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/cancel.png"/>
+            </StackPanel>
+        </Button>
+
+        <!--<Image Grid.Column="2" HorizontalAlignment="Left" Margin="0,80,80,0" VerticalAlignment="Bottom" MouseDown="BedDelete" Source="./Resources/Button Images/cancel.png"/>-->
     </Grid>
 </UserControl>
