@@ -30,14 +30,19 @@ namespace Hospipal
 
 
             List<object[]> treatments = control.initializeTreatmentList();
-            //List<object[]> obj = Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
-
+            List<string> doctors = control.initializeDoctorList();
 
             string s = "";
             foreach (object[] element in treatments)
             {
                 s = element[0].ToString();
                 boxTreatmentType.Items.Add(s);
+
+            }
+
+            foreach (string element in doctors)
+            {
+                boxDoctors.Items.Add(element);
 
             }
 
@@ -145,6 +150,7 @@ namespace Hospipal
             int DateDay;
             int DateYear;
             string treatTime;
+            string doc;
             string treatmentNotes = "";
             int err = 0;                      //Error flag
 
@@ -160,6 +166,9 @@ namespace Hospipal
                 //Treatment type from combo box that converts item to string
                 input = boxTreatmentType.SelectedValue.ToString();
                 TreatmentType = input;
+
+                input = boxDoctors.SelectedValue.ToString();
+                doc = input;
 
                 //Treatment date parsed to integer value of day month year
                 input = boxDate.Text;
@@ -185,7 +194,7 @@ namespace Hospipal
 
                 if (err == 0)
                 {
-                    control.AddTreatment(TreatmentType,  DateDay, DateMonth, DateYear, treatTime, treatmentNotes);
+                    control.AddTreatment(TreatmentType,  DateDay, DateMonth, DateYear, treatTime, treatmentNotes, doc);
                     //Database.Insert(@"INSERT INTO ismacaul_HospiPal.RecievesTreatment (patient, treatment, day, month, year, time, notes) 
                     //VALUES (" + patientID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "');");
                     //Refreshes the user control once query is added
@@ -221,7 +230,7 @@ namespace Hospipal
             // Get the currently selected item in the ListBox. 
             string selected = boxHistory.SelectedItem.ToString();
 
-            lblHistory.Content = selected;
+            //lblHistory.Content = selected;
 
         }
     }
