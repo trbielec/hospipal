@@ -51,7 +51,8 @@ namespace Hospipal
 
         private void Cancel(object sender, MouseButtonEventArgs e)
         {
-            //TODO - on button click, return to parent screen? 
+            //When user clicks on X the Wards view is displayed
+            Content = new UserControl_Wards(); 
         }
     }
 }

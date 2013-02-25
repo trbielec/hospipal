@@ -68,7 +68,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Class_Wards.cs" />
     <Compile Include="Database Class\Bed.cs" />
     <Compile Include="Database Class\Employee.cs" />
     <Compile Include="Database Class\Patient.cs" />
