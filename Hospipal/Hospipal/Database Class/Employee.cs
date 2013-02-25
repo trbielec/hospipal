@@ -29,12 +29,12 @@ namespace Hospipal.Database_Class
             _specialty = specialty; 
         }
 
-        public bool AddNewEmployee(Employee e)
+        public bool Add(Employee e)
         {
             return true; 
         }
 
-        public bool UpdateEmployee(Employee e)
+        public bool Update(Employee e)
         {
             return true; 
         }

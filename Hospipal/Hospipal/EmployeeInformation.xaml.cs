@@ -54,13 +54,15 @@ namespace Hospipal
             Employee employee = new Employee();
             if (_isNewEmployee)
             {
-              employee.SetEid((int)generatedEID.Content);
-              employee.SetName(firstNameTb.Text, lastNameTb.Text);
-              //employee.SetSpecialty(specialtyComboBox.Items[specialtyComboBox.SelectedIndex].ToString());
+                employee.SetEid((int)generatedEID.Content);
+                employee.SetName(firstNameTb.Text, lastNameTb.Text);
+                //employee.SetSpecialty(specialtyComboBox.Items[specialtyComboBox1.SelectedIndex].ToString());
+                employee.Add(employee);
+              
             }
             else
             {
-                employee.UpdateEmployee(employee);
+                employee.Update(employee);
             }
         }
 
