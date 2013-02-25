@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospipal.Database_Class
 {
-    public class Patient
+    public class Patient  //Self Explanatory functions and identifiers
     {
         private int _PatientID;
         private int _HealthCareNo;
