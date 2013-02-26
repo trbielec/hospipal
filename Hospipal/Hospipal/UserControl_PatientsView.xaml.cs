@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -38,6 +39,10 @@ namespace Hospipal
             // use the Customer table as the DataContext for this Window
             this.DataContext = dataset.Patient.DefaultView;
              */
+            List<Patient> Patients = Patient.GetPatients();
+
+            Patients_DataGrid.DataContext = Patients;
+           
 
             Patients_AddButton.Click += new RoutedEventHandler(AddPatient);
             Patients_EditButton.Click += new RoutedEventHandler(EditPatient);

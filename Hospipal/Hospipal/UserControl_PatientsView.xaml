@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             x:Name="PatientsView"
              d:DesignHeight="500" d:DesignWidth="800">
     
     <Grid>
@@ -35,13 +36,13 @@
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="1" Name="Patients_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="1" Name="Patients_EditButton" HorizontalAlignment="Left" Visibility="Hidden" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/edit.png" Width="45"/>
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="1" Name="Patients_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="1" Name="Patients_DeleteButton" HorizontalAlignment="Left" Visibility="Hidden" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/cancel.png"/>
                 </StackPanel>
@@ -55,10 +56,17 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition />
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-           
-            <DataGrid Name="Patients_DataGrid" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding}"/>
+
+            <DataGrid Name="Patients_DataGrid" Grid.Column="0" Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Health Care No" Binding="{Binding Path=HealthCareNo}" Width="2*"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" Width="*"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
         </Grid>
 
