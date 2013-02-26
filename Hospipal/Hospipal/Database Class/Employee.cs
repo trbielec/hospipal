@@ -103,12 +103,14 @@ namespace Hospipal.Database_Class
             _eid = eid; 
         }
 
-        public Employee(int eid, string fname, string lname, string specialty)
+        public Employee(int eid, string fname, string lname, string specialty, string employee_type, int supervisor_id)
         {
             _eid = eid; 
             _fname = fname;
             _lname = lname;
-            _specialty = specialty; 
+            _specialty = specialty;
+            _employee_type = employee_type;
+            _supervisor_id = supervisor_id;
         }
         #endregion 
 
@@ -142,10 +144,29 @@ namespace Hospipal.Database_Class
                 return false;
         }
 
+        public bool Delete()
+        {
+            return Database.Delete("DELETE * FROM Employee WHERE eid = " + _eid);
+        }
+
         public static int GenerateNewEid()
         {
             List<object[]> obj = Database.Select("SELECT eid FROM Employee");
             return obj.Count() + 1;
+        }
+
+        public static List<Employee> GetEmployees() //Send in empty string if no search
+        {
+
+            List<object[]> employeeList = Database.Select("Select * FROM Employee");
+            List<Employee> getEmployees = new List<Employee>();
+            foreach (object[] row in employeeList)
+            {
+                Employee newEmployee = new Employee(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(),
+                                            row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]));
+                getEmployees.Add(newEmployee);
+            }
+            return getEmployees;
         }
 
         #endregion
