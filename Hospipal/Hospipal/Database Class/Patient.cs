@@ -30,7 +30,9 @@ namespace Hospipal.Database_Class
             }
             set
             {
-                _HealthCareNo = value;
+
+                if(Convert.ToInt32(Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo).ElementAt(0).ElementAt(0)) == _PatientID)
+                    _HealthCareNo = value;
             }
         }
         public string FirstName
@@ -198,32 +200,20 @@ namespace Hospipal.Database_Class
             }
             return false;
         }
-        public bool CheckDuplicates()
-        {
-           return Convert.ToInt32(Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo).ElementAt(0).ElementAt(0)) == _PatientID;
-        }
 
         public bool Insert()
         {
-            if (CheckDuplicates())
                 return Database.Insert("Insert into Patient (Hc_no,fname,lname,dob_day,dob_month,dob_year,street_address,city,province,postal_code,home_phone_no,mobile_phone_no,work_phone_no)" +
                     "VALUES (" + _HealthCareNo + ",'" + _FirstName + "','" + _LastName + "'," + _DOB.Day + "," + _DOB.Month + "," + _DOB.Year + ",'" + _StreetAddress + "','" + _City + "','" + _Province + "','" + _PostalCode + "','" + _HomePhoneNo + "','" + _MobilePhoneNo + "','" + _WorkPhoneNo + "')");
-            else
-                return false;
         }
 
         public bool Update()
         {
-            if (CheckDuplicates())
-            { 
                 return Database.Update("Update Patient Set Hc_no = " + _HealthCareNo + ", fname = '" + _FirstName + "', " +
                    "lname = '" + _LastName + "', dob_day = " + _DOB.Day + ", dob_month = " + _DOB.Month + ", dob_year = " + _DOB.Year +
                    ", street_address = '" + _StreetAddress + "', city = '" + _City + "', province = '" + _Province +
                    "', postal_code = '" + _PostalCode + "', home_phone_no = '" + _HomePhoneNo + "', mobile_phone_no = '" + _MobilePhoneNo +
                    "', work_phone_no = '" + _WorkPhoneNo + "' WHERE Pid = " + _PatientID);;
-            }
-            else
-                return false;
         }
 
         public bool Delete()
