@@ -56,7 +56,16 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <DataGrid Name="Employees_DataGrid" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding}"/>
+
+            <DataGrid Name="Employee_DataGrid" Grid.Column="0" Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Employee ID" Binding="{Binding Path=Eid}" Width="*"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding Path=Fname}" Width="*"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding Path=Lname}" Width="*"/>
+                    <DataGridTextColumn Header="Employee Type" Binding="{Binding Path=Employee_type}" Width="*"/>
+                    <DataGridTextColumn Header="Specialty" Binding="{Binding Path=Specialty}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
         </Grid>
 

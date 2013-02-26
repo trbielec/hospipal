@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -35,6 +36,8 @@ namespace Hospipal
             this.DataContext = dataset.Employee.DefaultView;
              */
 
+            List<Employee> Employees = Employee.GetEmployees();
+            Employee_DataGrid.DataContext = Employees;
 
             Employees_AddButton.Click += new RoutedEventHandler(AddEmployee);
             Employees_EditButton.Click += new RoutedEventHandler(EditEmployee);
