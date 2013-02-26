@@ -54,12 +54,12 @@
                 </ComboBox>
             </Grid>
 
-            <Button Name="employeeInfo_SaveButton" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,75,0" Width="60" Height="60">
+            <Button Name="employeeInfo_SaveButton" Grid.Row="1" HorizontalAlignment="Right" Click="Save" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,75,0" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/save.png"/>
                 </StackPanel>
             </Button>
-            <Button Name="employeeInfo_CancelButton" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,0,0"  Width="60" Height="60">
+            <Button Name="employeeInfo_CancelButton" Grid.Row="1"  HorizontalAlignment="Right" Click="Cancel" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,0,0"  Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/cancel.png"/>
                 </StackPanel>
