@@ -242,10 +242,12 @@ namespace Hospipal.Database_Class
                                             new DateTime(Convert.ToInt32(row[6]), Convert.ToInt32(row[5]), Convert.ToInt32(row[4])),
                                             row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), 
                                             row[11].ToString(), row[12].ToString(), row[13].ToString());
+                newPatient._PatientID = Convert.ToInt32(row[0]);
                 getPatients.Add(newPatient);
             }
             return getPatients;
         }
         #endregion
+
     }
 }
