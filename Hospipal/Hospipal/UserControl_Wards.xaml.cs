@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Hospipal
 {
     /// <summary>
@@ -23,6 +24,8 @@ namespace Hospipal
         public UserControl_Wards()
         {
             InitializeComponent();
+
+       
         }
 
         private void boxWard_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -40,9 +43,11 @@ namespace Hospipal
 
         }
 
-        private void WardAdd(object sender, MouseButtonEventArgs e)
+        private void WardAdd(object sender, RoutedEventArgs e)
         {
-
+            UserControl_AddWard myWindow = new UserControl_AddWard();
+           
+            myWindow.ShowDialog();
         }
 
         private void WardEdit(object sender, MouseButtonEventArgs e)
