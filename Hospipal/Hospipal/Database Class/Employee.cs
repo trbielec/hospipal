@@ -69,10 +69,6 @@ namespace Hospipal.Database_Class
         #region Constructors
         public Employee()
         {
-            //_eid = GenerateNewEid();
-            //_fname = "";
-            //_lname = "";
-            //_specialty = "General";
         }
 
         public Employee(int eid)
@@ -98,19 +94,20 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            if (CheckDuplicates())
-                return Database.Insert("Insert into Employee (eid,fname,lname,specialty)" +
-                    "VALUES (" + _eid + ",'" + _fname + "','" + _lname + "'," + _specialty + "')");
-            else
-                return false;
+            string _employee_type = "Nurse";
+            int _supervisor_id = 1;
+            // We know that the generated ID is unique so go ahead and insert
+            return Database.Insert("Insert into Employee (eid,fname,lname,specialty,employee_type,supervisor_id)" +
+                    "VALUES (" + _eid + ",'" + _fname + "','" + _lname + "','" + _specialty + "','" + _employee_type + "'," + _supervisor_id + ")");
         }
 
         public bool Update()
         {
             if (CheckDuplicates())
             {
-                return Database.Update("Update Employee Set fname = '" + _fname + "', " +
-                   "lname = '" + _lname + "' WHERE eid = " + _eid); ;
+                return true;
+        //        return Database.Update("Update Employee Set fname = '" + _fname + "', " +
+          //         "lname = '" + _lname + "' WHERE eid = " + _eid); ;
             }
             else
                 return false;

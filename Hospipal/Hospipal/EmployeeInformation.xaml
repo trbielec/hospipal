@@ -1,4 +1,4 @@
-﻿<UserControl x:Name="EmployeeUC" x:Class="Hospipal.EmployeeInformation"
+﻿<UserControl x:Name="employeeControl" x:Class="Hospipal.EmployeeInformation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="768" Width="1024" MinHeight="768" MinWidth="1024">
@@ -38,16 +38,16 @@
                 </Grid.ColumnDefinitions>
 
                 <Label x:Name="EID" Content="ID: " Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                <Label x:Name="generatedEID" Content="" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Label x:Name="generatedEID" Content="{Binding Path=employee.Eid,ElementName=employeeControl,Mode=TwoWay}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
                 <Label x:Name="lastNameLabel" Content="Last name: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label x:Name="firstNameLabel" Content="First name: " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label x:Name="specialtyLabel" Content="Specialty: " Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
 
-                <TextBox x:Name="lastNameTb" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBox x:Name="firstNameTb" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBox x:Name="lastNameTb" Text="{Binding Path=employee.Lname,ElementName=employeeControl,Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="firstNameTb" Text="{Binding Path=employee.Fname,ElementName=employeeControl,Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
 
-                <ComboBox x:Name="specialtyComboBox" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,50,0">
+                <ComboBox x:Name="specialtyCb" Text="{Binding Path=employee.Specialty,ElementName=employeeControl,Mode=TwoWay}" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,50,0">
                     <ComboBoxItem Name="gen">General</ComboBoxItem>
                     <ComboBoxItem Name="emerg">Emergency</ComboBoxItem>
                     <ComboBoxItem Name="other">Other</ComboBoxItem>

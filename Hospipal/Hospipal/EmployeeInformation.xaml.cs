@@ -38,6 +38,7 @@ namespace Hospipal
         {
             InitializeComponent();
             // Populate eid
+            employee = new Employee();
             generatedEID.Content = Employee.GenerateNewEid();
         }
 
@@ -48,13 +49,13 @@ namespace Hospipal
         }
   
 
-        void Cancel(object sender, RoutedEventArgs e)
+        private void Cancel(object sender, RoutedEventArgs e)
         {
             Content = new UserControl_EmployeesView();  //This needs to be cleaned up so that rather than creating a new instance of a control
             //it should find an old instance that called it.
         }
 
-        void Save(object sender, RoutedEventArgs e)
+        private void Save(object sender, RoutedEventArgs e)
         {
             employeeInfo_SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
             if (_isNewEmployee)
@@ -65,43 +66,6 @@ namespace Hospipal
             {
                 employee.Update();
             }
-
-            
-            /*if (_isNewEmployee)
-            {
-                employee.SetEid((int)generatedEID.Content);
-                employee.SetName(firstNameTb.Text, lastNameTb.Text);
-                //employee.SetSpecialty(specialtyComboBox.Items[specialtyComboBox1.SelectedIndex].ToString());
-                employee.Add(employee);
-              
-            }
-            else
-            {
-                employee.Update(employee);
-            }*/ 
         }
-
-        public EmployeeInformation(bool isNewEmployee)
-        {
-            _isNewEmployee = isNewEmployee;
-            InitializeComponent();
-
-            /*if (_isNewEmployee)
-            {
-                Employee e = new Employee();
-
-                // Populate eid
-                this.generatedEID.Content = e.GetEid();
-            }
-            else
-            {
-                // Populate title
-
-                // Populate text fields with db info
-            }*/ 
-        }
-
-  
-
     }
 }
