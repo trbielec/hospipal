@@ -23,71 +23,49 @@ namespace Hospipal
 
         private bool _isNewEmployee = true;
 
+        //Required for databinding -- BEGIN
+        private static readonly DependencyProperty EmployeeProperty =
+                          DependencyProperty.Register("employee", typeof(Employee),
+                                                      typeof(EmployeeInformation));
+        private Employee employee
+        {
+            get { return (Employee)GetValue(EmployeeProperty); }
+            set { SetValue(EmployeeProperty, value); }
+        }
+        //Required for databinding -- END
+
         public EmployeeInformation()
         {
             InitializeComponent();
-
-            employeeInfo_SaveButton.Click += employeeInfo_SaveButton_Click;
-            employeeInfo_CancelButton.Click += employeeInfo_CancelButton_Click;
-
-            if (_isNewEmployee)
-            {
-                // Populate eid
-                generatedEID.Content = Employee.GenerateNewEid();
-            }
-            else
-            {
-                // Populate title
-
-                // Populate text fields with db info
-            }
-
+            // Populate eid
+            employee = new Employee();
+            generatedEID.Content = Employee.GenerateNewEid();
         }
 
-        void employeeInfo_CancelButton_Click(object sender, RoutedEventArgs e)
+        public EmployeeInformation(int eid)
+        {
+            _isNewEmployee = false;  //A new employee will not have an employee id to reference
+            employee = new Employee(eid);
+        }
+  
+
+        private void Cancel(object sender, RoutedEventArgs e)
         {
             Content = new UserControl_EmployeesView();  //This needs to be cleaned up so that rather than creating a new instance of a control
             //it should find an old instance that called it.
         }
 
-        void employeeInfo_SaveButton_Click(object sender, RoutedEventArgs e)
+        private void Save(object sender, RoutedEventArgs e)
         {
-            Employee employee = new Employee();
+            employeeInfo_SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
             if (_isNewEmployee)
             {
-                employee.SetEid((int)generatedEID.Content);
-                employee.SetName(firstNameTb.Text, lastNameTb.Text);
-                //employee.SetSpecialty(specialtyComboBox.Items[specialtyComboBox1.SelectedIndex].ToString());
-                employee.Add(employee);
-              
+                employee.Insert();
             }
             else
             {
-                employee.Update(employee);
+                employee.Update();
             }
         }
-
-        public EmployeeInformation(bool isNewEmployee)
-        {
-            _isNewEmployee = isNewEmployee;
-            InitializeComponent();
-
-            /*if (_isNewEmployee)
-            {
-                Employee e = new Employee();
-
-                // Populate eid
-                this.generatedEID.Content = e.GetEid();
-            }
-            else
-            {
-                // Populate title
-
-                // Populate text fields with db info
-            }*/ 
-        }
-
-  
-
     }
 }
