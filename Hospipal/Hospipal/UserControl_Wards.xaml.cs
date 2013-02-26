@@ -73,7 +73,19 @@ namespace Hospipal
 
         private void BedAdd(object sender, MouseButtonEventArgs e)
         {
+           // List<object[]> bedNumbers = Database.Select("SELECT bed_no from Bed");
 
+           // int i = 1;
+           // string nameString;
+           // foreach (object[] number in bedNumbers)
+           // {
+                //_b = number[1].ToString();
+              //  if ((Regex.Match(nameString, @"\d+").Value) == i)
+              //  {
+              //  }
+
+              //  i++;
+          //  }
         }
 
         private void BedEdit(object sender, MouseButtonEventArgs e)

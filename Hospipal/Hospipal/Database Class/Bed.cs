@@ -3,24 +3,137 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Hospipal.Database_Class
 {
     class Bed
     {
-        private string bedNo;
-        private string state;
-        private int pid;
-        private string roomNo;
-        private string assigningNurse;
+        public enum States { Occupied, Available, Maintainence };
+        private string _bedNo;
+        private States _state;
+        private int _pid;
+        private string _roomNo;
+        private string _assigningNurse;
 
-        public void addBed(string roomNo)
+        
+
+      
+        #region Getters/Setters 
+
+        public string bedNo
         {
+            get
+            {
+                return _bedNo;
+            }
+            set
+            {
+                _bedNo = value;
+            }
         }
 
-        public void deleteBed(string roomNo)
+        public States state
         {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
+            }
+        }
+
+        public int pid
+        {
+            get
+            {
+                return _pid;
+            }
+            set
+            {
+                _pid = value;
+            }
+        }
+
+        public string roomNo
+        {
+            get
+            {
+                return _roomNo;
+            }
+            set
+            {
+                _roomNo = value;
+            }
+        }
+
+        public string assigningNurse
+        {
+            get
+            {
+                return _assigningNurse;
+            }
+            set
+            {
+                _assigningNurse = value;
+            }
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public Bed()
+        {
+
+        }
+
+        public Bed(string bedNo, States state, int pid, string roomNo, string assigningNurse)
+        {
+            _bedNo =  bedNo;
+            _state = state;
+            _pid =  pid;
+            _roomNo =  roomNo;
+            _assigningNurse =  assigningNurse;
+        }
+
+        #endregion
+
+        #region Database Functions
+
+        public bool Select()
+        {
+            List<object[]> SingleRow = Database.Select("SELECT * from Bed WHERE bed_no = " + _bedNo);
+            if (SingleRow != null && SingleRow.Count > 0)
+            {
+                foreach (object[] row in SingleRow)
+                {
+                    _bedNo = row[1].ToString();
+                    _state = (States) Convert.ToInt32(row[2]);
+                    _pid = Convert.ToInt32(row[3]);
+                    _roomNo = row[4].ToString();
+                    _assigningNurse = row[5].ToString();
+                }
+                return true;
+            }
+            return false;
+        }
+
+
+        public bool Insert(string roomNo)
+        {
+            return Database.Insert("Insert into Beds (bedNo,state,pid,roomNo,assigningNurse)" +
+                    "VALUES ('" + _bedNo + "'," + _state + "," + _pid + ", '" + _roomNo + "', '" + _assigningNurse + "')");
+        }
+
+        public bool Delete(string roomNo)
+        {
+            return Database.Delete("DELETE * FROM Beds WHERE bedNo = " + _bedNo);
         }
 
     }
+
+        #endregion
 }
