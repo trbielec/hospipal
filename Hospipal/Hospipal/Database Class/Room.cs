@@ -9,7 +9,7 @@ namespace Hospipal.Database_Class
     class Room
     {
         private int _FloorNo;
-        private int _RoomNo;
+        private string _RoomNo;
         private string _WardName;
 
         
@@ -27,7 +27,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-        public int RoomNo
+        public string RoomNo
         {
             get
             {
@@ -59,13 +59,13 @@ namespace Hospipal.Database_Class
         {
         }
 
-        public Room(int RoomNo)
+        public Room(string RoomNo)
         {
             _RoomNo = RoomNo;
             Select();
         }
 
-        public Room(int FloorNo, int RoomNo, string WardName)
+        public Room(string RoomNo, string WardName,int FloorNo)
         {
             _FloorNo = FloorNo;
             _RoomNo = RoomNo;
@@ -82,7 +82,7 @@ namespace Hospipal.Database_Class
             {
                 foreach (object[] row in SingleRoomRow)
                 {
-                    _RoomNo = Convert.ToInt32(row[0]);
+                    _RoomNo = row[0].ToString();
                     _WardName = row[1].ToString();
                     _FloorNo = Convert.ToInt32(row[2]);
                 }
@@ -94,20 +94,34 @@ namespace Hospipal.Database_Class
         public bool Insert()
         {
                 return Database.Insert("Insert into Room (room_no,floor_no,ward)" +
-                    "VALUES (" + _RoomNo + "," + _FloorNo + ",'" + _WardName + "')");
+                    "VALUES ('" + _RoomNo + "'," + _FloorNo + ",'" + _WardName + "')");
         }
 
         public bool Update()
         {
                 return Database.Update("Update Room Set floor_no = " + _FloorNo + ", " +
-                   "ward = '" + _WardName + "' WHERE room_no = " + _RoomNo);;
+                   "ward = '" + _WardName + "' WHERE room_no = '" + _RoomNo + "'");
         }
 
         public bool Delete()
         {
-            return Database.Delete("DELETE * FROM Room WHERE room_no = " + _RoomNo);
+            return Database.Delete("DELETE * FROM Room WHERE room_no = '" + _RoomNo + "'");
         }
+        
         #endregion
+#region List Functions
+        public List<Room> GetRooms(String WardName)
+        {
+            List<object[]> rooms = Database.Select("Select * FROM Room WHERE ward ='" + WardName + "'");
+            List<Room> getrooms = new List<Room>();
+            foreach (object[] row in rooms)
+            {
+                Room newRoom = new Room(row[0].ToString(),row[1].ToString(),Convert.ToInt32(row[2]));
+                getrooms.Add(newRoom);
+            }
+            return getrooms;
+        }
+#endregion
 
     }
 }

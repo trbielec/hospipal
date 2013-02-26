@@ -153,7 +153,7 @@ namespace Hospipal.Database_Class
         {
         }
 
-        public Patient(int HealthCareNo, string FirstName, string LastName, DateTime DOB, string StreetAddress, string City, string Province, string PostalCode, string HomePhoneNo, string WorkPhoneNo, string MobilePhoneNo)
+        public Patient(int HealthCareNo, string FirstName, string LastName, DateTime DOB, string StreetAddress, string City, string Province, string PostalCode, string HomePhoneNo, string MobilePhoneNo, string WorkPhoneNo)
         {
             _HealthCareNo = HealthCareNo;
             _FirstName = FirstName;
@@ -219,6 +219,24 @@ namespace Hospipal.Database_Class
         public bool Delete()
         {
             return Database.Delete("DELETE * FROM Patient WHERE HC_NO = " + _HealthCareNo);
+        }
+        #endregion
+
+        #region List Functions
+        public List<Patient> GetPatients() //Send in empty string if no search
+        {
+
+            List<object[]> rooms = Database.Select("Select * FROM Patient");
+            List<Patient> getPatients = new List<Patient>();
+            foreach (object[] row in rooms)
+            {
+                Patient newRoom = new Patient(Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(),  
+                                            new DateTime(Convert.ToInt32(row[6]), Convert.ToInt32(row[5]), Convert.ToInt32(row[4])),
+                                            row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), 
+                                            row[11].ToString(), row[12].ToString(), row[13].ToString());
+                getPatients.Add(newRoom);
+            }
+            return getPatients;
         }
         #endregion
     }
