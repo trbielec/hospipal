@@ -2,71 +2,106 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
        x:Name="patientControl"
-        Height="280" Width="500">
+        Height="768" Width="1024" MinHeight="768" MinWidth="1024">
     <Grid>
-        <Label x:Name="PatientInfoTitleLbl" Content="Add/Modify Patients" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Segoe Marker" FontSize="20"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid Margin="0,40,0,0" VerticalAlignment="Top">
+        <Label Content="Add/Modify Patients" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+
+        <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="125*" />
-                <ColumnDefinition Width="125*"/>
-                <ColumnDefinition Width="125*" />
-                <ColumnDefinition Width="97*" />
-                <ColumnDefinition Width="28*"/>
-            </Grid.ColumnDefinitions>
-            <Label x:Name="HealthCarelbl" Content="HealthCare #: " HorizontalAlignment="Right" VerticalAlignment="Top"/>
-            <Label x:Name="FirstNamelbl" Content="First Name: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1"/>
-            <TextBox x:Name="HealthCaretb" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}"  Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-            <Label x:Name="DOBlbl" Content="DOB: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2"/>
-            <DatePicker x:Name="DOBdp" Text="{Binding Path=patient.DOB,ElementName=patientControl,Mode=TwoWay}" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="FirstNametb" Text="{Binding Path=patient.FirstName,ElementName=patientControl,Mode=TwoWay}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
-            <Label x:Name="LastNamelbl" Content="Last Name: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1"/>
-            <TextBox x:Name="LastNametb" Text="{Binding Path=patient.LastName,ElementName=patientControl,Mode=TwoWay}" Grid.Column="3" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="135"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="135"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="PInfolbl" Content="PERSONAL INFORMATION" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label x:Name="HealthCarelbl" Content="HealthCare #: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="FirstNamelbl" Content="First Name: " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="LastNamelbl" Content="Last Name: " Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label x:Name="Addresslbl" Content="Address: "  Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="DOBlbl" Content="DOB: " Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+
+                <TextBox x:Name="HealthCaretb" Grid.Column="1" Grid.Row="1" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <TextBox x:Name="FirstNametb" Grid.Column="1" Grid.Row="2" Text="{Binding Path=patient.FirstName,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                <TextBox x:Name="LastNametb" Grid.Column="1" Grid.Row="3" Text="{Binding Path=patient.LastName,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch"  VerticalAlignment="Center" />
+                <TextBox x:Name="Addresstb" Grid.Column="1" Grid.Row="4" Text="{Binding Path=patient.StreetAddress,ElementName=patientControl,Mode=TwoWay}" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"/>
+                <DatePicker x:Name="DOBdp" Grid.Column="3" Grid.Row="1" Text="{Binding Path=patient.DOB,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                             
+                <Label x:Name="PReslbl" Content="RESIDENCE" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label x:Name="PPhonelbl" Content="PHONE" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label x:Name="Provincelbl" Content="Province: " Grid.Column="0" Grid.Row="7"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="Citylbl" Content="City: " Grid.Column="0" Grid.Row="8"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="PostalCodelbl" Content="Postal Code: " Grid.Column="0" Grid.Row="9"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                <Label x:Name="HomePhonelbl" Content="Home: " Grid.Column="2" Grid.Row="7"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="WorkPhonelbl" Content="Work: " Grid.Column="2" Grid.Row="8"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="MobilePhonelbl" Content="Mobile: " Grid.Column="2" Grid.Row="9"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                <TextBox x:Name="Provincetb" Grid.Column="1" Grid.Row="7"  Text="{Binding Path=patient.Province,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <TextBox x:Name="Citytb" Grid.Column="1" Grid.Row="8"  Text="{Binding Path=patient.City,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <TextBox x:Name="PostalCodetb" Grid.Column="1" Grid.Row="9"  Text="{Binding Path=patient.PostalCode,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+
+                <TextBox x:Name="Hometb" Grid.Column="4" Grid.Row="7"  Text="{Binding Path=patient.HomePhoneNo,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <TextBox x:Name="Worktb" Grid.Column="4" Grid.Row="8"  Text="{Binding Path=patient.WorkPhoneNo,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <TextBox x:Name="Mobiletb" Grid.Column="4" Grid.Row="9"  Text="{Binding Path=patient.MobilePhoneNo,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+
+            </Grid>
+
+            <Button x:Name="Savebtn" Grid.Row="1" HorizontalAlignment="Right" Click="Save" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,75,0" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/save.png"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="Cancelbtn" Grid.Row="1"  HorizontalAlignment="Right" Click="Cancel" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,0,0" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/cancel.png"/>
+                </StackPanel>
+            </Button>
+
         </Grid>
-        <Grid Margin="0,92,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <Label x:Name="Addresslbl" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Address: "/>
-            <TextBox x:Name="Addresstb" Text="{Binding Path=patient.StreetAddress,ElementName=patientControl,Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Stretch"/>
-        </Grid>
-        <Label x:Name="Phonelbl" Content="Phone: " HorizontalAlignment="Left" Margin="291,118,0,0" VerticalAlignment="Top" FontFamily="Segoe Marker" FontSize="16"/>
-        <Label x:Name="Residencelbl" Content="Residence: " HorizontalAlignment="Left" Margin="40,118,0,0" VerticalAlignment="Top" FontFamily="Segoe Marker" FontSize="16"/>
-        <Grid VerticalAlignment="Top" Margin="0,140,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Label x:Name="Provincelbl" Content="Province: " HorizontalAlignment="Right" VerticalAlignment="Top"/>
-            <Label x:Name="Citylbl" Content="City: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" />
-            <Label x:Name="PostalCodelbl" Content="Postal Code: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="2"/>
-            <TextBox x:Name="Provincetb" Text="{Binding Path=patient.Province,ElementName=patientControl,Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-            <Label x:Name="HomePhonelbl" Content="Home: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2"/>
-            <Label x:Name="WorkPhonelbl" Content="Work: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
-            <Label x:Name="MobilePhonelbl" Content="Mobile: " HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2"/>
-            <TextBox x:Name="Citytb" Text="{Binding Path=patient.City,ElementName=patientControl,Mode=TwoWay}" Grid.Column="1"  Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-            <TextBox x:Name="PostalCodetb" Grid.Column="1" Grid.Row="2" Text="{Binding Path=patient.PostalCode,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
-            <TextBox x:Name="Hometb" Text="{Binding Path=patient.HomePhoneNo,ElementName=patientControl,Mode=TwoWay}" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-            <TextBox x:Name="Worktb" Text="{Binding Path=patient.WorkPhoneNo,ElementName=patientControl,Mode=TwoWay}" Grid.Column="3"  Grid.Row="1"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-            <TextBox x:Name="Mobiletb" Text="{Binding Path=patient.MobilePhoneNo,ElementName=patientControl,Mode=TwoWay}" Grid.Column="3"  Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
-        </Grid>
+<<<<<<< HEAD
         <Button x:Name="Savebtn" HorizontalAlignment="Left" Margin="350,225,0,0" VerticalAlignment="Top" Click="Save"  IsDefault="True" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
             <Image Source="./Resources/Button Images/save.png" Stretch="None" />
         </Button>
         <Button x:Name="Cancelbtn" HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" Click="Cancel" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
             <Image Source="./Resources/Button Images/cancel.png" Stretch="None"  />
         </Button>
+=======
+>>>>>>> Updated GUI Feb25 - 6pm
     </Grid>
 </UserControl>

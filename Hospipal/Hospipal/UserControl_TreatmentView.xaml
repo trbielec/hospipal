@@ -38,6 +38,7 @@
         <Label x:Name="lblName" Content="" HorizontalAlignment="Left" Margin="375,78,0,0" VerticalAlignment="Top" Width="168"/>
         <Label x:Name="lblDoctor" Content="Treating Doctor:" HorizontalAlignment="Left" Margin="264,221,0,0" VerticalAlignment="Top"/>
 
+
         <ComboBox x:Name="boxDoctors" HorizontalAlignment="Left" Margin="375,225,0,0" VerticalAlignment="Top" Width="168"/>
 
     </Grid>

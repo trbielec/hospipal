@@ -1,45 +1,70 @@
 ﻿<UserControl x:Name="EmployeeUC" x:Class="Hospipal.EmployeeInformation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="150" Width="500">
-    <Grid x:Name="myGrid">
-    <Grid Margin="0,40,0,0" VerticalAlignment="Top">    
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-          </Grid.ColumnDefinitions>
+        Height="768" Width="1024" MinHeight="768" MinWidth="1024">
+
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="lastNameTb" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Top" Grid.Column="3"/>
-        <TextBox x:Name="firstNameTb" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label x:Name="EID" Content="ID:" HorizontalAlignment="Right" VerticalAlignment="Top" />
-        <Label x:Name="generatedEID" Content="" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Top" />
-        <Label x:Name="lastNameLabel" Content="Last name:" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top" Grid.Column="2"/>
-        <Label x:Name="firstNameLabel" Content="First name:" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Top" />
-        <Label x:Name="specialtyLabel" Grid.Row="2" Content="Specialty:" HorizontalAlignment="Right" VerticalAlignment="Top" />
-            <ComboBox x:Name="specialtyComboBox" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="2" VerticalAlignment="Top" Width="120">
-                <ComboBoxItem Name="gen">General</ComboBoxItem>
-                <ComboBoxItem Name="emerg">Emergency</ComboBoxItem>
-                <ComboBoxItem Name="other">Other</ComboBoxItem>
-            </ComboBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Add/Modify Employees" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition Height="32"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="135"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="135"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="EID" Content="ID: " Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <Label x:Name="generatedEID" Content="" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Label x:Name="lastNameLabel" Content="Last name: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="firstNameLabel" Content="First name: " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Label x:Name="specialtyLabel" Content="Specialty: " Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+
+                <TextBox x:Name="lastNameTb" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="firstNameTb" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+
+                <ComboBox x:Name="specialtyComboBox" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,50,0">
+                    <ComboBoxItem Name="gen">General</ComboBoxItem>
+                    <ComboBoxItem Name="emerg">Emergency</ComboBoxItem>
+                    <ComboBoxItem Name="other">Other</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+
+            <Button Name="employeeInfo_SaveButton" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,75,0" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/save.png"/>
+                </StackPanel>
+            </Button>
+            <Button Name="employeeInfo_CancelButton" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,0,0"  Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/cancel.png"/>
+                </StackPanel>
+            </Button>
 
         </Grid>
-        <Label Content="Add/View Employees" HorizontalAlignment="Center" VerticalAlignment="Top" Width="165" Margin="177,-39,158,0" FontFamily="Segoe Marker" FontSize="20" />
-        <Button Name="employeeInfo_SaveButton" HorizontalAlignment="Left" Margin="350,95,0,0" Width="50" Height="50">
-            <StackPanel>
-                <Image Source="./Resources/Button Images/save.png"/>
-            </StackPanel>
-        </Button>
-        <Button Name="employeeInfo_CancelButton" HorizontalAlignment="Left" Margin="425,95,0,0" Width="50" Height="50">
-            <StackPanel>
-                <Image Source="./Resources/Button Images/cancel.png"/>
-            </StackPanel>
-        </Button>
     </Grid>
 </UserControl>
-    

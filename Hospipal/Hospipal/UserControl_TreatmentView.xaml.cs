@@ -30,7 +30,6 @@ namespace Hospipal
 
 
             List<object[]> treatments = control.initializeTreatmentList();
-
             List<string> doctors = control.initializeDoctorList();
 
 
@@ -44,13 +43,11 @@ namespace Hospipal
 
             }
 
-
             foreach (string element in doctors)
             {
                 boxDoctors.Items.Add(element);
 
             }
-
 
             List<string> treatmentHistory = control.initializeTreatmentHistory();
             foreach (string element in treatmentHistory)
@@ -78,8 +75,6 @@ namespace Hospipal
             InitializeComponent();
             patientID = pID;
             control = new Database_Class.Treatment(patientID);
-
-
 
 
             List<object[]> treatments = control.initializeTreatmentList();

@@ -46,7 +46,8 @@ namespace Hospipal
 
         void employeeInfo_CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Content = new UserControl_EmployeesView();  //This needs to be cleaned up so that rather than creating a new instance of a control
+            //it should find an old instance that called it.
         }
 
         void employeeInfo_SaveButton_Click(object sender, RoutedEventArgs e)
