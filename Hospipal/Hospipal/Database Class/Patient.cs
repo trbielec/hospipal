@@ -153,21 +153,21 @@ namespace Hospipal.Database_Class
         {
         }
 
-        public Patient(int HealthCareNo, string FirstName, string LastName, DateTime DOB, string StreetAddress, string City, string Province, string PostalCode, string HomePhoneNo, string MobilePhoneNo, string WorkPhoneNo)
-        {
-            _HealthCareNo = HealthCareNo;
-            _FirstName = FirstName;
-            _LastName = LastName;
-            _DOB = DOB;
-            _StreetAddress = StreetAddress;
-            _City = City;
-            _Province = Province;
-            _PostalCode = PostalCode;
-            _HomePhoneNo = HomePhoneNo;
-            _MobilePhoneNo = MobilePhoneNo;
-            _WorkPhoneNo = WorkPhoneNo;
-        }
 
+        public Patient(int healthCareNo, string firstName, string lastName, DateTime dOB, string streetAddress, string city, string province, string postalCode, string homePhoneNo, string mobilePhoneNo, string workPhoneNo)
+        {
+            HealthCareNo = healthCareNo;
+            FirstName = firstName;
+            LastName = lastName;
+            DOB = dOB;
+           StreetAddress = streetAddress;
+            City = city;
+            Province = province;
+            PostalCode = postalCode;
+            HomePhoneNo = homePhoneNo;
+            MobilePhoneNo = mobilePhoneNo;
+            WorkPhoneNo = workPhoneNo;
+        }
         public Patient(int HealthCareNo)
         {
             _HealthCareNo = HealthCareNo;

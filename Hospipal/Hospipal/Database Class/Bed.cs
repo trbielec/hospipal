@@ -110,11 +110,11 @@ namespace Hospipal.Database_Class
             {
                 foreach (object[] row in SingleRow)
                 {
-                    _bedNo = row[1].ToString();
-                    _state = (States) Convert.ToInt32(row[2]);
-                    _pid = Convert.ToInt32(row[3]);
-                    _roomNo = row[4].ToString();
-                    _assigningNurse = row[5].ToString();
+                    _bedNo = row[0].ToString();
+                    _state = (States) Convert.ToInt32(row[1]);
+                    _pid = Convert.ToInt32(row[2]);
+                    _roomNo = row[3].ToString();
+                    _assigningNurse = row[4].ToString();
                 }
                 return true;
             }
