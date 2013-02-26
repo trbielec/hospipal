@@ -94,14 +94,6 @@
             </Button>
 
         </Grid>
-<<<<<<< HEAD
-        <Button x:Name="Savebtn" HorizontalAlignment="Left" Margin="350,225,0,0" VerticalAlignment="Top" Click="Save"  IsDefault="True" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-            <Image Source="./Resources/Button Images/save.png" Stretch="None" />
-        </Button>
-        <Button x:Name="Cancelbtn" HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" Click="Cancel" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-            <Image Source="./Resources/Button Images/cancel.png" Stretch="None"  />
-        </Button>
-=======
->>>>>>> Updated GUI Feb25 - 6pm
+        
     </Grid>
 </UserControl>
