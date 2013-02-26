@@ -12,6 +12,8 @@ namespace Hospipal.Database_Class
         private string _fname;
         private string _lname;
         private string _specialty;
+        private string _employee_type;
+        private int _supervisor_id; 
 
         #region Getters/Setters
 
@@ -63,6 +65,31 @@ namespace Hospipal.Database_Class
             }
 
         }
+
+        public string Employee_type
+        {
+            get
+            {
+                return _employee_type;
+            }
+            set
+            {
+                _employee_type = value;
+            }
+
+        }
+
+        public int Supervisor_id
+        {
+            get
+            {
+                return _supervisor_id;
+            }
+            set
+            {
+                _supervisor_id = value;
+            }
+        }
         #endregion
 
 
@@ -94,8 +121,8 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            string _employee_type = "Nurse";
-            int _supervisor_id = 1;
+            _employee_type = "Nurse";
+            _supervisor_id = 1;
             // We know that the generated ID is unique so go ahead and insert
             return Database.Insert("Insert into Employee (eid,fname,lname,specialty,employee_type,supervisor_id)" +
                     "VALUES (" + _eid + ",'" + _fname + "','" + _lname + "','" + _specialty + "','" + _employee_type + "'," + _supervisor_id + ")");
@@ -103,11 +130,13 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
+            _employee_type = "Nurse";
+            _supervisor_id = 1;
+
             if (CheckDuplicates())
             {
-                return true;
-        //        return Database.Update("Update Employee Set fname = '" + _fname + "', " +
-          //         "lname = '" + _lname + "' WHERE eid = " + _eid); ;
+                return Database.Update("Update Employee Set fname = '" + _fname + "', " +
+                   "lname = '" + _lname + "', specialty = '" + _specialty + "', employee_type = '" + _employee_type + "', supervisor_id = " + _supervisor_id + " WHERE eid = " + _eid);
             }
             else
                 return false;
