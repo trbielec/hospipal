@@ -18,14 +18,14 @@ namespace Hospipal
     /// <summary>
     /// Interaction logic for UserControl_EditRoom.xaml
     /// </summary>
-    public partial class UserControl_EditRoom : UserControl
+    public partial class UserControl_EditRoom : Window
     {
         public UserControl_EditRoom()
         {
             InitializeComponent();
         }
 
-        private void Save(object sender, MouseButtonEventArgs e)
+        private void Save(object sender, RoutedEventArgs e)
         {
             //TODO
 
@@ -39,7 +39,7 @@ namespace Hospipal
             // }
         }
 
-        private void Cancel(object sender, MouseButtonEventArgs e)
+        private void Cancel(object sender, RoutedEventArgs e)
         {
             //When user clicks on X the Wards view is displayed
             Content = new UserControl_Wards();

@@ -18,7 +18,7 @@ namespace Hospipal
     /// <summary>
     /// Interaction logic for UserControl_Ward.xaml
     /// </summary>
-    public partial class UserControl_AddRoom : UserControl
+    public partial class UserControl_AddRoom : Window
     {
 
         public UserControl_AddRoom()
