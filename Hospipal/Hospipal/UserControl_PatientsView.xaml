@@ -16,9 +16,9 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="450" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="210" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Advanced Search" Margin="10,10,0,0"/>
@@ -32,17 +32,17 @@
 
             <Button Grid.Column="1" Name="Patients_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
                 <StackPanel>
-                    <Image Source="./Resources/Button Images/add.png"/>
+                    <Image Source="./Resources/Button Images/add.png" RenderTransformOrigin="1.799,1.906"/>
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="1" Name="Patients_EditButton" HorizontalAlignment="Left" Visibility="Hidden" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="1" Name="Patients_EditButton"  HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/edit.png" Width="45"/>
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="1" Name="Patients_DeleteButton" HorizontalAlignment="Left" Visibility="Hidden" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="1" Name="Patients_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/cancel.png"/>
                 </StackPanel>
@@ -56,18 +56,24 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition  Width="2*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Name="Patients_DataGrid" Grid.Column="0" Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid Name="Patients_DataGrid" Grid.Column="0" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Health Care No" Binding="{Binding Path=HealthCareNo}" Width="2*"/>
                     <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" Width="*"/>
                     <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
         </Grid>
 
         
