@@ -20,7 +20,7 @@ namespace Hospipal
     /// </summary>
     public partial class PatientInformation : UserControl
     {
-        private bool _isNewPatient = false;  //To use the same window for edits and adds.
+        private bool _isNewPatient = true;  //To use the same window for edits and adds.
 
 
         //Required for databinding -- BEGIN

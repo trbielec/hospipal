@@ -9,11 +9,9 @@ namespace Hospipal.Database_Class
     class Treatment
     {
         int patientID;
-<<<<<<< HEAD
+
         Dictionary<string, int> doctorsList;
-=======
->>>>>>> origin/Brett
-        
+
         public Treatment(int pID)
         {
             patientID = pID;
@@ -30,21 +28,21 @@ namespace Hospipal.Database_Class
 
         public List<string> initializeTreatmentHistory()
         {
-<<<<<<< HEAD
+
             List<object[]> history = Database.Select("SELECT * FROM ismacaul_HospiPal.ReceivesTreatment WHERE patient = " + patientID + " ORDER BY (rtid)" );
-=======
+
             List<object[]> history = Database.Select("SELECT * FROM ismacaul_HospiPal.ReceivesTreatment WHERE patient = " + patientID);
->>>>>>> origin/Brett
+
             List<string> historyString = new List<string>();
             string s;
 
             foreach (object[] element in history)
             {
-<<<<<<< HEAD
+
                 historyString.Add(element[2].ToString() + " " + element[3].ToString() + "/" + element[4].ToString() + "/" + element[5].ToString());
-=======
+
                 historyString.Add(element[1].ToString() + " " + element[2].ToString() + "/" + element[3].ToString() + "/" + element[4].ToString());
->>>>>>> origin/Brett
+
             }
             return historyString;
         }
@@ -61,7 +59,7 @@ namespace Hospipal.Database_Class
             return name;
         }
 
-<<<<<<< HEAD
+
 
         public void AddTreatment(string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, string d)
         {
@@ -85,7 +83,7 @@ namespace Hospipal.Database_Class
             }
 
             return docList;
-=======
+
         internal void AddTreatment()
         {
             throw new NotImplementedException();
@@ -96,7 +94,6 @@ namespace Hospipal.Database_Class
             Database.Insert(@"INSERT INTO ismacaul_HospiPal.ReceivesTreatment (patient, treatment, day, month, year, time, notes) 
                     VALUES (" + patientID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "');");
         
->>>>>>> origin/Brett
         }
     }
 }

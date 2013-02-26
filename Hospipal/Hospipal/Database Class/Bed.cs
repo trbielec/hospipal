@@ -13,6 +13,14 @@ namespace Hospipal.Database_Class
         private int pid;
         private string roomNo;
         private string assigningNurse;
-        
+
+        public void addBed(string roomNo)
+        {
+        }
+
+        public void deleteBed(string roomNo)
+        {
+        }
+
     }
 }

@@ -1,14 +1,23 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="Hospipal.UserControl_AddWard" 
-             Height="350" Width="700" mc:Ignorable="d">
-    <Grid RenderTransformOrigin="0.429,0.449" HorizontalAlignment="Left" Width="668" Background="#FFEBE8E8" Margin="0,0,0,0.4">
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="10.279,3.314" Margin="223,12,0,0" Height="55" Width="236" FontSize="36" FontWeight="Bold"><Run Language="en-ca" Text="ADD WARD"/></TextBlock>
-        <Label Content="WARD NAME" HorizontalAlignment="Left" Margin="156,90,0,0" VerticalAlignment="Top" Height="31" Width="113"/>
-        <Label Content="WARD CAPACITY" HorizontalAlignment="Left" Margin="400,89,0,0" VerticalAlignment="Top" Height="30" Width="102"/>
+             Height="301.044" Width="495.821" mc:Ignorable="d">
+    <Grid RenderTransformOrigin="0.429,0.449" HorizontalAlignment="Left" Width="498" Background="#FFEBE8E8" Margin="0,0,-2,-2.2">
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="10.279,3.314" Margin="153,13,0,0" Height="55" Width="236" FontSize="36" FontWeight="Bold"><Run Language="en-ca" Text="ADD WARD"/></TextBlock>
+        <Label Content="WARD NAME" HorizontalAlignment="Left" Margin="111,98,0,0" VerticalAlignment="Top" Height="31" Width="113"/>
+        <Label Content="WARD CAPACITY" HorizontalAlignment="Left" Margin="341,100,0,0" VerticalAlignment="Top" Height="30" Width="102"/>
         <Grid HorizontalAlignment="Left" Height="54" Margin="-213,105,0,0" VerticalAlignment="Top" Width="973">
-            <TextBox TextWrapping="Wrap" Margin="335,19,447,3" TextChanged="TextBox_TextChanged_2"/>
-            <TextBox HorizontalAlignment="Left" Height="30" Margin="620,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" TextChanged="TextBox_TextChanged_1" BorderThickness="1"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="401*"/>
+                <ColumnDefinition Width="71*"/>
+                <ColumnDefinition Width="501*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox TextWrapping="Wrap" Margin="275,20,5.606,1" TextChanged="TextBox_TextChanged_2" Grid.ColumnSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="30" Margin="85,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90" TextChanged="TextBox_TextChanged_1" BorderThickness="1" Grid.Column="2"/>
         </Grid>
-        <Image HorizontalAlignment="Left" Margin="475,252,0,0" VerticalAlignment="Top" MouseDown="Save" Source="./Resources/Button Images/save.png" Height="89" Width="76"/>
-        <Image HorizontalAlignment="Left" Margin="565,251,0,0" VerticalAlignment="Top" MouseDown="Cancel" Source="./Resources/Button Images/cancel.png" Height="75" Width="82"/>
+        <Button x:Name="SaveButton" HorizontalAlignment="Left" Margin="350,225,0,0" VerticalAlignment="Top" Click="Save"  IsDefault="True" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Image Source="./Resources/Button Images/save.png" Stretch="None" />
+        </Button>
+        <Button x:Name="CancelButton" HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" Click="Cancel" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Image Source="./Resources/Button Images/cancel.png" Stretch="None"  />
+        </Button>
     </Grid>
 </UserControl>
