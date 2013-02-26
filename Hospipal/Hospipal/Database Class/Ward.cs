@@ -96,7 +96,7 @@ namespace Hospipal.Database_Class
 
         #endregion
         #region List Functions
-        public List<Ward> GetWards()
+        public static List<Ward> GetWards()
         {
             List<object[]> wards = Database.Select("Select * FROM Ward");
             List<Ward> getwards = new List<Ward>();

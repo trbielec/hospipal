@@ -1,5 +1,6 @@
-﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="Hospipal.UserControl_AddWard" 
-             Height="301.044" Width="495.821" mc:Ignorable="d">
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="Hospipal.UserControl_AddWard" 
+             Height="321.343" Width="501.791" mc:Ignorable="d"
+        BorderBrush="Transparent">
     <Grid RenderTransformOrigin="0.429,0.449" HorizontalAlignment="Left" Width="498" Background="#FFEBE8E8" Margin="0,0,-2,-2.2">
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="10.279,3.314" Margin="153,13,0,0" Height="55" Width="236" FontSize="36" FontWeight="Bold"><Run Language="en-ca" Text="ADD WARD"/></TextBlock>
         <Label Content="WARD NAME" HorizontalAlignment="Left" Margin="111,98,0,0" VerticalAlignment="Top" Height="31" Width="113"/>
@@ -20,4 +21,4 @@
             <Image Source="./Resources/Button Images/cancel.png" Stretch="None"  />
         </Button>
     </Grid>
-</UserControl>
+</Window>
