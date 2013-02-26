@@ -30,12 +30,11 @@ namespace Hospipal
 
 
             List<object[]> treatments = control.initializeTreatmentList();
-<<<<<<< HEAD
-            List<string> doctors = control.initializeDoctorList();
-=======
-            //List<object[]> obj = Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
 
->>>>>>> origin/Brett
+            List<string> doctors = control.initializeDoctorList();
+
+
+
 
             string s = "";
             foreach (object[] element in treatments)
@@ -45,15 +44,14 @@ namespace Hospipal
 
             }
 
-<<<<<<< HEAD
+
             foreach (string element in doctors)
             {
                 boxDoctors.Items.Add(element);
 
             }
 
-=======
->>>>>>> origin/Brett
+
             List<string> treatmentHistory = control.initializeTreatmentHistory();
             foreach (string element in treatmentHistory)
             {
@@ -80,19 +78,14 @@ namespace Hospipal
             InitializeComponent();
             patientID = pID;
             control = new Database_Class.Treatment(patientID);
-<<<<<<< HEAD
+
+
 
 
             List<object[]> treatments = control.initializeTreatmentList();
-            //List<object[]> obj = Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
-
-=======
 
 
-            List<object[]> treatments = control.initializeTreatmentList();
-            //List<object[]> obj = Database.Select("SELECT * FROM ismacaul_HospiPal.Treatment");
 
->>>>>>> origin/Brett
 
             string s = "";
             foreach (object[] element in treatments)
@@ -210,11 +203,11 @@ namespace Hospipal
 
                 if (err == 0)
                 {
-<<<<<<< HEAD
+
                     control.AddTreatment(TreatmentType,  DateDay, DateMonth, DateYear, treatTime, treatmentNotes, doc);
-=======
-                    control.AddTreatment(TreatmentType,  DateDay, DateMonth, DateYear, treatTime, treatmentNotes);
->>>>>>> origin/Brett
+
+                    
+
                     //Database.Insert(@"INSERT INTO ismacaul_HospiPal.RecievesTreatment (patient, treatment, day, month, year, time, notes) 
                     //VALUES (" + patientID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "');");
                     //Refreshes the user control once query is added
@@ -250,11 +243,11 @@ namespace Hospipal
             // Get the currently selected item in the ListBox. 
             string selected = boxHistory.SelectedItem.ToString();
 
-<<<<<<< HEAD
+
             //lblHistory.Content = selected;
-=======
-            lblHistory.Content = selected;
->>>>>>> origin/Brett
+
+           
+
 
         }
     }
