@@ -18,7 +18,7 @@ namespace Hospipal
     /// <summary>
     /// Interaction logic for UserControl_AddWard.xaml
     /// </summary>
-    public partial class UserControl_AddWard : UserControl
+    public partial class UserControl_AddWard : Window
     {
         public UserControl_AddWard()
         {
@@ -52,7 +52,7 @@ namespace Hospipal
         private void Cancel(object sender, RoutedEventArgs e)
         {
             //When user clicks on X the Wards view is displayed
-            Content = new UserControl_Wards();
+            this.Close();
         }
     }
 }
