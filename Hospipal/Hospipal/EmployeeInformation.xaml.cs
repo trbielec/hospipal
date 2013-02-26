@@ -66,6 +66,8 @@ namespace Hospipal
             {
                 employee.Update();
             }
+
+            Content = new UserControl_EmployeesView(); 
         }
     }
 }

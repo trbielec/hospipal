@@ -44,6 +44,7 @@ namespace Hospipal
 
         public PatientInformation(int HealthCareNo)
         {
+            InitializeComponent();
             _isNewPatient = false;  //A new patient will not have a health care no to reference
             patient = new Patient(HealthCareNo);
         }
@@ -56,15 +57,22 @@ namespace Hospipal
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            Savebtn.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
-            if (_isNewPatient)
-            {
-                patient.Insert();
+                Savebtn.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
+                if (_isNewPatient)
+                {
+                    patient.Insert();
+                }
+                else
+                {
+                    patient.Update();
+                }
+                Content = new UserControl_PatientsView();
             }
-            else
-            {
-                patient.Update();
-            }
+
+        private void HealthCaretb_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
         }
+        
     }
 }

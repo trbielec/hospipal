@@ -30,9 +30,7 @@ namespace Hospipal.Database_Class
             }
             set
             {
-
-                if(Convert.ToInt32(Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo).ElementAt(0).ElementAt(0)) == _PatientID)
-                    _HealthCareNo = value;
+                        _HealthCareNo = value;
             }
         }
         public string FirstName
@@ -177,6 +175,11 @@ namespace Hospipal.Database_Class
 
         #region DatabaseCalls
 
+        private bool CheckDuplicates()
+        {
+            return Convert.ToInt32(Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo).ElementAt(0).ElementAt(0)) == _PatientID;
+                    
+        }
         public bool Select()
         {
             List<object[]> SingleRow = Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo);
@@ -203,18 +206,23 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
+            if(CheckDuplicates())
                 return Database.Insert("Insert into Patient (Hc_no,fname,lname,dob_day,dob_month,dob_year,street_address,city,province,postal_code,home_phone_no,mobile_phone_no,work_phone_no)" +
                     "VALUES (" + _HealthCareNo + ",'" + _FirstName + "','" + _LastName + "'," + _DOB.Day + "," + _DOB.Month + "," + _DOB.Year + ",'" + _StreetAddress + "','" + _City + "','" + _Province + "','" + _PostalCode + "','" + _HomePhoneNo + "','" + _MobilePhoneNo + "','" + _WorkPhoneNo + "')");
+            return false;
         }
 
         public bool Update()
         {
+            if (CheckDuplicates())
                 return Database.Update("Update Patient Set Hc_no = " + _HealthCareNo + ", fname = '" + _FirstName + "', " +
                    "lname = '" + _LastName + "', dob_day = " + _DOB.Day + ", dob_month = " + _DOB.Month + ", dob_year = " + _DOB.Year +
                    ", street_address = '" + _StreetAddress + "', city = '" + _City + "', province = '" + _Province +
                    "', postal_code = '" + _PostalCode + "', home_phone_no = '" + _HomePhoneNo + "', mobile_phone_no = '" + _MobilePhoneNo +
                    "', work_phone_no = '" + _WorkPhoneNo + "' WHERE Pid = " + _PatientID);;
+            return false;
         }
+
 
         public bool Delete()
         {
@@ -223,21 +231,23 @@ namespace Hospipal.Database_Class
         #endregion
 
         #region List Functions
-        public List<Patient> GetPatients() //Send in empty string if no search
+        public static List<Patient> GetPatients() //Send in empty string if no search
         {
 
             List<object[]> rooms = Database.Select("Select * FROM Patient");
             List<Patient> getPatients = new List<Patient>();
             foreach (object[] row in rooms)
             {
-                Patient newRoom = new Patient(Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(),  
+                Patient newPatient = new Patient(Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(),  
                                             new DateTime(Convert.ToInt32(row[6]), Convert.ToInt32(row[5]), Convert.ToInt32(row[4])),
                                             row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(), 
                                             row[11].ToString(), row[12].ToString(), row[13].ToString());
-                getPatients.Add(newRoom);
+                newPatient._PatientID = Convert.ToInt32(row[0]);
+                getPatients.Add(newPatient);
             }
             return getPatients;
         }
         #endregion
+
     }
 }

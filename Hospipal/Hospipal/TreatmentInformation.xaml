@@ -24,15 +24,11 @@
         <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="129" Margin="375,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
 
         <telerik:RadTimePicker x:Name="boxTime" HorizontalAlignment="Left" Margin="375,189,0,0" VerticalAlignment="Top" Width="168"/>
-        <Button x:Name="buttonSave" Content="" HorizontalAlignment="Left" Margin="432,423,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderBrush="White" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonSave_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="Resources/Button Images/save.png"/>
-            </Button.Background>
+        <Button x:Name="buttonSave" HorizontalAlignment="Left" Margin="275,421,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonSave_Click">
+            <Image Source="./Resources/Button Images/save.png" Height="57" Width="61"/>
         </Button>
-        <Button x:Name="buttonCancel" Content="" HorizontalAlignment="Left" Margin="508,423,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderBrush="White" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="Resources/Button Images/cancel.png"/>
-            </Button.Background>
+        <Button x:Name="buttonCancel" HorizontalAlignment="Left" Margin="508,423,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click">
+            <Image Source="./Resources/Button Images/cancel.png"/>
         </Button>
         <DatePicker x:Name="boxDate" HorizontalAlignment="Left" Margin="375,150,0,0" VerticalAlignment="Top" Width="168"/>
         <Label x:Name="lblName" Content="" HorizontalAlignment="Left" Margin="375,78,0,0" VerticalAlignment="Top" Width="168"/>
@@ -40,6 +36,11 @@
 
 
         <ComboBox x:Name="boxDoctors" HorizontalAlignment="Left" Margin="375,225,0,0" VerticalAlignment="Top" Width="168"/>
-
+        <Button x:Name="buttonModify" HorizontalAlignment="Left" Margin="351,423,0,0" VerticalAlignment="Top" Width="70" Height="59" Click="buttonModify_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Image Source="./Resources/Button Images/edit.png"/>
+        </Button>
+        <Button x:Name="buttonRemove" HorizontalAlignment="Left" Margin="423,423,0,0" VerticalAlignment="Top" Width="70" Height="59" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Image Source="./Resources/Button Images/save.png"/>
+        </Button>
     </Grid>
 </UserControl>

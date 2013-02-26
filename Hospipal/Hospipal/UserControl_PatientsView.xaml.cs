@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Timers;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Data;
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -27,17 +29,10 @@ namespace Hospipal
         public UserControl_PatientsView()
         {
             InitializeComponent();
-            /*
-            // construct the dataset
-            ismacaul_HospiPalDataSet dataset = new ismacaul_HospiPalDataSet();
+            List<Patient> Patients = Patient.GetPatients();
 
-            // use a table adapter to populate the Customers table
-            ismacaul_HospiPalDataSetTableAdapters.PatientTableAdapter adapter = new ismacaul_HospiPalDataSetTableAdapters.PatientTableAdapter();
-            adapter.Fill(dataset.Patient);
-
-            // use the Customer table as the DataContext for this Window
-            this.DataContext = dataset.Patient.DefaultView;
-             */
+            Patients_DataGrid.DataContext = Patients;
+           
 
             Patients_AddButton.Click += new RoutedEventHandler(AddPatient);
             Patients_EditButton.Click += new RoutedEventHandler(EditPatient);
@@ -52,12 +47,25 @@ namespace Hospipal
 
         private void EditPatient(object sender, RoutedEventArgs e)
         {
-            Content = new PatientInformation();
+            Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem).HealthCareNo);
         }
 
         private void DeletePatient(object sender, RoutedEventArgs e)
         {
         }
-        
+
+        /*private void PatientsListLostFocus(object sender, RoutedEventArgs e)
+        {
+            Patients_DeleteButton.Visibility = System.Windows.Visibility.Hidden;
+            Patients_EditButton.Visibility = System.Windows.Visibility.Hidden;
+
+        }
+
+        private void PatientsListHaveFocus(object sender, RoutedEventArgs e)
+        {
+            Patients_DeleteButton.Visibility = System.Windows.Visibility.Visible;
+            Patients_EditButton.Visibility = System.Windows.Visibility.Visible;
+        }*/
+
     }
 }
