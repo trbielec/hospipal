@@ -42,7 +42,7 @@
 
             <Button Grid.Column="1" Name="Employees_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
                 <StackPanel>
-                    <Image Source="./Resources/Button Images/cancel.png"/>
+                    <Image Source="./Resources/Button Images/trash.png"/>
                 </StackPanel>
             </Button>
         </Grid>
@@ -57,7 +57,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <DataGrid Name="Employee_DataGrid" Grid.Column="0" Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid Name="Employee_DataGrid" Grid.Column="0" Background="Transparent" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Employee ID" Binding="{Binding Path=Eid}" Width="*"/>
                     <DataGridTextColumn Header="First Name" Binding="{Binding Path=Fname}" Width="*"/>
