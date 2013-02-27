@@ -133,7 +133,7 @@ namespace Hospipal.Database_Class
             return Database.Delete("DELETE * FROM Beds WHERE bed_No = " + _bedNo);
         }
 
-        public List<Bed> GetRooms(int RoomNo)
+        public static List<Bed> GetRooms(int RoomNo)
         {
             List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno ='" + RoomNo + "'");
             List<Bed> getbeds = new List<Bed>();

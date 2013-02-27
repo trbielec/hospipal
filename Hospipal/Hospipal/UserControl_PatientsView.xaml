@@ -60,7 +60,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Name="Patients_DataGrid" Grid.Column="0" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid Name="Patients_DataGrid" IsReadOnly="True" Grid.Column="0" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Health Care No" Binding="{Binding Path=HealthCareNo}" Width="2*"/>
                     <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" Width="*"/>
