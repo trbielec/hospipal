@@ -21,22 +21,13 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_EmployeesView : UserControl
     {
+        List<Employee> Employees; 
+
         public UserControl_EmployeesView()
         {
             InitializeComponent();
-            /*
-            // construct the dataset
-            ismacaul_HospiPalDataSet dataset = new ismacaul_HospiPalDataSet();
 
-            // use a table adapter to populate the Customers table
-            ismacaul_HospiPalDataSetTableAdapters.EmployeeTableAdapter adapter = new ismacaul_HospiPalDataSetTableAdapters.EmployeeTableAdapter();
-            adapter.Fill(dataset.Employee);
-
-            // use the Customer table as the DataContext for this Window
-            this.DataContext = dataset.Employee.DefaultView;
-             */
-
-            List<Employee> Employees = Employee.GetEmployees();
+            Employees = Employee.GetEmployees();
             Employee_DataGrid.DataContext = Employees;
 
             Employees_AddButton.Click += new RoutedEventHandler(AddEmployee);
@@ -53,11 +44,20 @@ namespace Hospipal
 
         private void EditEmployee(object sender, RoutedEventArgs e)
         {
-            Content = new EmployeeInformation();
+            if (Employee_DataGrid.SelectedItems.Count > 0)
+                Content = new EmployeeInformation(((Employee)Employee_DataGrid.SelectedItem));
         }
 
         private void DeleteEmployee(object sender, RoutedEventArgs e)
         {
+            if (Employee_DataGrid.SelectedItems.Count > 0)
+            {
+                Employees[Employee_DataGrid.SelectedIndex].Delete();
+                Employees.RemoveAt(Employee_DataGrid.SelectedIndex);
+
+                Employee_DataGrid.Items.Refresh();
+            }
+            
         }
     }
 }
