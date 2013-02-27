@@ -40,13 +40,14 @@ namespace Hospipal
         public PatientInformation()
         {
             InitializeComponent(); //New patient can use default constructor
+            patient = new Patient();
         }
 
-        public PatientInformation(int PatientID)
+        public PatientInformation(Patient Patient)
         {
             InitializeComponent();
             _isNewPatient = false;  //A new patient will not have a health care no to reference
-            patient = new Patient(PatientID);
+            patient = Patient;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
