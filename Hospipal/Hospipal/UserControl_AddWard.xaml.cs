@@ -63,7 +63,6 @@ namespace Hospipal
                 SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
                 if (_isNewWard)
                 {
-                    Console.WriteLine("What");
                     ward.Insert();
                 }
                 else

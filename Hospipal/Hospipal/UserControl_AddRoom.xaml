@@ -7,7 +7,7 @@
              x:Name="roomControl"
              Height="300" Width="500" mc:Ignorable="d" ResizeMode="NoResize"
              WindowStartupLocation="CenterScreen"
-             Window.WindowStyle="None">
+             Window.WindowStyle="ToolWindow">
             
     
     <Grid>

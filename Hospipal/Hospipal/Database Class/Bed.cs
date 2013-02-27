@@ -10,7 +10,7 @@ namespace Hospipal.Database_Class
     class Bed
     {
         public enum States { Occupied, Available, Maintainence };
-        private string _bedNo;
+        private int _bedNo;
         private States _state;
         private int _pid;
         private string _roomNo;
@@ -21,17 +21,25 @@ namespace Hospipal.Database_Class
       
         #region Getters/Setters 
 
-        public string bedNo
+        public int bedNo
         {
             get
             {
                 return _bedNo;
             }
-            set
+        }
+
+        public string bed
+        {
+            get
             {
-                _bedNo = value;
+                if (_bedNo.ToString().Length < 2)
+                    return _roomNo + "00" + _bedNo.ToString();
+                else
+                    return _roomNo + "0" + _bedNo.ToString();
             }
         }
+
 
         public States state
         {
@@ -90,7 +98,7 @@ namespace Hospipal.Database_Class
 
         }
 
-        public Bed(string bedNo, States state, int pid, string roomNo, string assigningNurse)
+        public Bed(int bedNo, States state, int pid, string roomNo, string assigningNurse)
         {
             _bedNo =  bedNo;
             _state = state;
@@ -110,7 +118,7 @@ namespace Hospipal.Database_Class
             {
                 foreach (object[] row in SingleRow)
                 {
-                    _bedNo = row[0].ToString();
+                    _bedNo = Convert.ToInt32(row[0]);
                     _state = (States) Convert.ToInt32(row[1]);
                     _pid = Convert.ToInt32(row[2]);
                     _roomNo = row[3].ToString();
@@ -122,24 +130,24 @@ namespace Hospipal.Database_Class
         }
 
 
-        public bool Insert(string roomNo)
+        public bool Insert()
         {
-            return Database.Insert("Insert into Beds (bed_No,state,pid,roomNo,assigningNurse)" +
-                    "VALUES ('" + _bedNo + "'," + _state + "," + _pid + ", '" + _roomNo + "', '" + _assigningNurse + "')");
+            return Database.Insert("Insert into Bed (bed_No,state,pid,roomNo,assigning_Nurse)" +
+                    "VALUES (" + _bedNo + "," + (int)_state + "," + _pid + ", '" + _roomNo + "', '" + _assigningNurse + "')");
         }
 
-        public bool Delete(string roomNo)
+        public bool Delete()
         {
-            return Database.Delete("DELETE * FROM Beds WHERE bed_No = " + _bedNo);
+            return Database.Delete("DELETE FROM Bed WHERE bed_No = " + _bedNo);
         }
 
-        public static List<Bed> GetRooms(int RoomNo)
+        public static List<Bed> GetBeds(string RoomNo)
         {
             List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno ='" + RoomNo + "'");
             List<Bed> getbeds = new List<Bed>();
             foreach (object[] row in rooms)
             {
-                Bed newBed = new Bed(row[0].ToString(), (States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), row[3].ToString(), row[4].ToString());
+                Bed newBed = new Bed(Convert.ToInt32(row[0]), (States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), row[3].ToString(), row[4].ToString());
                 getbeds.Add(newBed);
             }
             return getbeds;

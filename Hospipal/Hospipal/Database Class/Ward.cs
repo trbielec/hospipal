@@ -65,7 +65,7 @@ namespace Hospipal.Database_Class
 
         public bool Select()
         {
-            List<object[]> SingleRoomRow = Database.Select("SELECT * from Ward WHERE ward_name = " + _wardName);
+            List<object[]> SingleRoomRow = Database.Select("SELECT * from Ward WHERE ward_name = '" + _wardName + "'");
             if (SingleRoomRow != null && SingleRoomRow.Count > 0)
             {
                 foreach (object[] row in SingleRoomRow)
@@ -90,12 +90,12 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
-            return Database.Update("Update Ward Set ward_name = '" + _slugName + "' WHERE ward_name = '" + _wardName + "'");
+            return Database.Update("Update Ward Set slug_name = '" + _slugName + "' WHERE ward_name = '" + _wardName + "'");
         }
 
         public bool Delete()
         {
-            return Database.Delete("DELETE * FROM Ward WHERE ward_name = '" + _wardName + "'");
+            return Database.Delete("DELETE FROM Ward WHERE ward_name = '" + _wardName + "'");
         }
 
         #endregion

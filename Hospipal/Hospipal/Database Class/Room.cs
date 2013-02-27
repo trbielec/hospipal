@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospipal.Database_Class
 {
-    class Room
+    public class Room
     {
         private int _FloorNo;
         private string _RoomNo;

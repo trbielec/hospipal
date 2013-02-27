@@ -22,11 +22,13 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_Wards : UserControl
     {
+        List<Ward> Wards;
+
         public UserControl_Wards()
         {
             InitializeComponent();
-            List<Ward> wards = Ward.GetWards();
-            WardDG.DataContext = wards;
+            Wards = Ward.GetWards();
+            WardDG.DataContext = Wards;
         }
         private void WardAdd(object sender, RoutedEventArgs e)
         {
@@ -47,20 +49,26 @@ namespace Hospipal
 
         private void WardDelete(object sender, RoutedEventArgs e)
         {
-           
+            if (WardDG.SelectedItems.Count > 0)
+            {
+                Wards[WardDG.SelectedIndex].Delete();
+                Wards.RemoveAt(WardDG.SelectedIndex);
+
+                WardDG.Items.Refresh();
+            }
         }
 
 
         private void RoomAdd(object sender, RoutedEventArgs e)
         {
-            UserControl_AddRoom myWindow = new UserControl_AddRoom();
+            UserControl_AddRoom myWindow = new UserControl_AddRoom(((Ward)WardDG.SelectedItem));
 
             myWindow.ShowDialog();
         }
 
         private void RoomEdit(object sender, RoutedEventArgs e)
         {
-            UserControl_AddRoom myWindow = new UserControl_AddRoom();
+            UserControl_AddRoom myWindow = new UserControl_AddRoom(((Room)RoomDG.SelectedItem),((Ward)WardDG.SelectedItem));
 
             myWindow.ShowDialog();
         }
@@ -72,35 +80,43 @@ namespace Hospipal
 
         private void BedAdd(object sender, RoutedEventArgs e)
         {
-           // List<object[]> bedNumbers = Database.Select("SELECT bed_no from Bed");
-
-           // int i = 1;
-           // string nameString;
-           // foreach (object[] number in bedNumbers)
-           // {
-                //_b = number[1].ToString();
-              //  if ((Regex.Match(nameString, @"\d+").Value) == i)
-              //  {
-              //  }
-
-              //  i++;
-          //  }
-        }
-
-        private void BedEdit(object sender, RoutedEventArgs e)
-        {
+            Bed newBed;
+            if (BedDG.Items.Count > 0 && BedDG.Items.Count < 99) //hard limit 99 beds in one room
+            {
+                Bed LastBed = ((Bed)BedDG.Items[BedDG.Items.Count - 1]);
+                newBed = new Bed(LastBed.bedNo + 1, (Bed.States)1, 0, LastBed.roomNo, "");  //Non-patients have a patient id of 0.
+            }
+            else
+            {
+                string roomNo = ((Room)RoomDG.SelectedItem).RoomNo;
+                newBed = new Bed(1, (Bed.States)1, 0, roomNo, "");
+            }
+            newBed.Insert();
 
         }
 
         private void BedDelete(object sender, RoutedEventArgs e)
         {
-            
+            Bed LastBed = ((Bed)BedDG.Items[BedDG.Items.Count - 1]);
+            LastBed.Delete();
         }
 
         private void WardDGCellChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            List<Room> rooms = Room.GetRooms(((Ward)WardDG.SelectedItem).WardName);
-            RoomDG.DataContext = rooms;
+            if (WardDG.SelectedItem != null)
+            {
+                List<Room> rooms = Room.GetRooms(((Ward)WardDG.SelectedItem).WardName);
+                RoomDG.DataContext = rooms;
+                BedDG.DataContext = new List<Bed>();
+            }
+        }
+        private void RoomDGCellChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            if (RoomDG.SelectedItem != null)
+            {
+                List<Bed> beds = Bed.GetBeds(((Room)RoomDG.SelectedItem).RoomNo);
+                BedDG.DataContext = beds;
+            }
         }
     }
 }
