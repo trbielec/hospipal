@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -20,29 +21,56 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_AddWard : Window
     {
+
+         private bool _isNewWard = true;  //To use the same window for edits and adds.
+
+
+        //Required for databinding -- BEGIN
+        /* Also if you look at the Text property of the Textboxes, you can see that the binding is done there.
+         * Also it references the name of the control in the binding
+         */
+        private static readonly DependencyProperty WardProperty =
+                          DependencyProperty.Register("ward", typeof(Ward),
+                                                      typeof(UserControl_Wards));
+        private Ward ward
+        {
+            get { return (Ward)GetValue(WardProperty); }
+            set { SetValue(WardProperty, value); }
+        }
+        //Required for databinding -- END
+
         public UserControl_AddWard()
         {
-            InitializeComponent();
+            InitializeComponent(); //New patient can use default constructor
+            ward = new Ward();
         }
 
-        private void Save(object sender, RoutedEventArgs e)
+        public UserControl_AddWard(Ward Ward)
         {
-            //TODO
-
-            //if (_isNewEmployee)
-            // {
-            //Add a new employee based on entered data
-            //}
-            // else
-            // {
-            //Update current employee
-            // }
+            InitializeComponent();
+            _isNewWard = false;  //A new patient will not have a health care no to reference
+            ward = Ward;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
         {
-            //When user clicks on X the Wards view is displayed
             this.Close();
+
         }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+                SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
+                if (_isNewWard)
+                {
+                    Console.WriteLine("What");
+                    ward.Insert();
+                }
+                else
+                {
+                    ward.Update();
+                }
+                this.Close();
+         }
     }
 }

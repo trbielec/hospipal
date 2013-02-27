@@ -92,8 +92,13 @@
                     <Image Source="./Resources/Button Images/cancel.png"/>
                 </StackPanel>
             </Button>
+            <Button x:Name="buttonTreatment" Grid.Row="1" HorizontalAlignment="Right" Click="buttonTreatment_Click" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,10,154,10" Width="60" Height="60" Visibility="Hidden">
+                <StackPanel>
+                    <Image Source="Resources/Button Images/Rx.png"/>
+                </StackPanel>
+            </Button>
 
         </Grid>
-        
+
     </Grid>
 </UserControl>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospipal.Database_Class
 {
-    class Ward
+    public class Ward
     {
         
         private string _wardName;
@@ -27,7 +27,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-        public String SlugName
+        public string SlugName
         {
             get
             {
@@ -49,7 +49,7 @@ namespace Hospipal.Database_Class
 
         public Ward(string wardName)
         {
-            WardName = wardName;
+            _wardName = WardName;
             Select();
         }
 
@@ -80,7 +80,11 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            return Database.Insert("Insert into Ward (ward_name, slug_name)" +
+
+            Console.WriteLine("what is " + _wardName);
+            Console.WriteLine("what is " + _slugName);
+
+            return Database.Insert("Insert into Ward (ward_name, ward_slug)" +
                 "VALUES ('" + _wardName + "','" + _slugName + "')");
         }
 

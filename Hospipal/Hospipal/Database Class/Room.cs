@@ -110,7 +110,7 @@ namespace Hospipal.Database_Class
         
         #endregion
 #region List Functions
-        public List<Room> GetRooms(String WardName)
+        public static List<Room> GetRooms(String WardName)
         {
             List<object[]> rooms = Database.Select("Select * FROM Room WHERE ward ='" + WardName + "'");
             List<Room> getrooms = new List<Room>();
