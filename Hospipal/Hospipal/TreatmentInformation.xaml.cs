@@ -269,7 +269,8 @@ namespace Hospipal
                 doc = input;
 
                 //Treatment date parsed to integer value of day month year
-                input = boxDate.Text;
+
+                input = boxDate.SelectedDate.Value.ToString("dd-MM-yyyy");
                 DateDay = parseInt(input.Substring(0, 2));
                 DateMonth = parseInt(input.Substring(3, 2));
                 DateYear = parseInt(input.Substring(6, 4));
