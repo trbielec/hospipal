@@ -20,71 +20,86 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_TreatmentView : UserControl
     {
+        //Database treatment control object;
         private Database_Class.Treatment control;
+
+        //Default patientID to 1
         int patientID = 1;
+        //Set curTreatment number will link to text box
         int curTreatment;
 
+        /*  Constructor that takes no arguments
+         */ 
         public UserControl_TreatmentView()
         {
             InitializeComponent();
-            try
-            {
-                control = new Database_Class.Treatment(patientID);
+          
+            //try
+            //{
+            //    control = new Database_Class.Treatment(patientID);
 
-                //Types of treatments available
-                List<object[]> treatments = control.initializeTreatmentList();
+            //    //Types of treatments available
+            //    List<object[]> treatments = control.initializeTreatmentList();
 
-                List<string> doctors = control.initializeDoctorList();
-                List<string> treatmentHistory = control.initializeTreatmentHistory();
+            //    List<string> doctors = control.initializeDoctorList();
+            //    List<string> treatmentHistory = control.initializeTreatmentHistory();
 
-                string s = "";
+            //    string s = "";
 
-                foreach (object[] element in treatments)
-                {
-                    s = element[0].ToString();
-                    boxTreatmentType.Items.Add(s);
+            //    foreach (object[] element in treatments)
+            //    {
+            //        s = element[0].ToString();
+            //        boxTreatmentType.Items.Add(s);
 
-                }
+            //    }
 
-                foreach (string element in doctors)
-                {
-                    boxDoctors.Items.Add(element);
+            //    foreach (string element in doctors)
+            //    {
+            //        boxDoctors.Items.Add(element);
 
-                }
+            //    }
 
-                foreach (string element in treatmentHistory)
-                {
-                    boxHistory.Items.Add(element);
+            //    foreach (string element in treatmentHistory)
+            //    {
+            //        boxHistory.Items.Add(element);
 
-                }
+            //    }
 
-                lblName.Content = control.getPatientName();
+            //    lblName.Content = control.getPatientName();
 
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error with getting treatment");
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Error with getting treatment");
+            //}
 
-            //MessageBox.Show("No Patient Found Call Constructor with patientID");
-            //Content = new UserControl_MainTabView();
+            MessageBox.Show("No Patient Found Call Constructor with patientID");
+            Content = new UserControl_MainTabView();
         }
 
+        /*  Constructor that takes patientID 
+        * 
+        * 
+        */
         public UserControl_TreatmentView(int pID)
         {
             InitializeComponent();
             try
             {
+                //Instantiate control as treatment class in database class folder
                 control = new Database_Class.Treatment(patientID);
 
                 //Types of treatments available
                 List<object[]> treatments = control.initializeTreatmentList();
 
+                //List of doctors
                 List<string> doctors = control.initializeDoctorList();
+                //List of treatment history
                 List<string> treatmentHistory = control.initializeTreatmentHistory();
 
                 string s = "";
 
+                //Converts each type of treatment to string and adds to text box
                 foreach (object[] element in treatments)
                 {
                     s = element[0].ToString();
@@ -92,71 +107,89 @@ namespace Hospipal
 
                 }
 
+                //Adds each doctor to drop down box
                 foreach (string element in doctors)
                 {
                     boxDoctors.Items.Add(element);
 
                 }
 
+                //Adds each treatment to drop down box
                 foreach (string element in treatmentHistory)
                 {
                     boxHistory.Items.Add(element);
 
                 }
-
+    
+                //Sets the name label to display patient name
                 lblName.Content = control.getPatientName();
 
             }
             catch(Exception)
             {
-                MessageBox.Show("Error with getting treatment");
+                //Catches getting treatment error
+                MessageBox.Show("Error with getting treatment, patient id might not exist");
             }
         }
 
+        /* Add button click event
+         * 
+         */ 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             int executeCode = 1;
             getInputs(executeCode);
         }
 
+        /* Modify button click event 
+         * 
+         */
         private void buttonModify_Click(object sender, RoutedEventArgs e)
         {
             int executeCode = 2;
             getInputs(executeCode);
         }
 
+        /* Remove button click event
+         * 
+         */ 
         private void buttonRemove_Click(object sender, RoutedEventArgs e)
         {
             int executeCode = 3;
             getInputs(executeCode);
         }
 
+        /* Cancel button click event
+         * 
+         */
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
             //When user clicks on X the main tab view is displayed
             Content = new UserControl_MainTabView();
         }
 
+        /* User selects a item in the list box
+         * 
+         */
         private void boxHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index;
             List<string> details = new List<string>();
 
             try
             {
+                //cur treatment is set to index of item selected
                 curTreatment = boxHistory.SelectedIndex;
-                index = boxHistory.SelectedIndex;
-                details = control.getTreatmentDetails(index);
 
+                //Get details of the treatment
+                details = control.getTreatmentDetails(curTreatment);
+
+                //Populate the details based on information received
                 boxTreatmentType.SelectedValue = details.ElementAt(0);
                 boxDoctors.SelectedValue = details.ElementAt(7);
-
 
                 boxDate.Text = details.ElementAt(1) + "/" + details.ElementAt(2) + "/" + details.ElementAt(3);
 
                 boxTime.SelectedValue = Convert.ToDateTime(details.ElementAt(4));
-                //boxTime.AutoCompleteDataSource = details.ElementAt(4);
-                //treatTime = dt.ToShortTimeString().ToString();
                 txtNotes.Text = details.ElementAt(5);
             }
             catch (FormatException)
@@ -208,10 +241,14 @@ namespace Hospipal
             return number;
         }
 
+        /* This method gets all the fields in the text box and parses
+         * executes from when a button is pressed
+         * 
+        */
         public void getInputs(int code)
         {
             //Variable declarations
-            string input;
+            string input;               //string that reads the fields
             string TreatmentType;
             int DateMonth;
             int DateDay;
@@ -227,6 +264,7 @@ namespace Hospipal
                 input = boxTreatmentType.SelectedValue.ToString();
                 TreatmentType = input;
 
+                //List of doctors
                 input = boxDoctors.SelectedValue.ToString();
                 doc = input;
 
@@ -252,21 +290,24 @@ namespace Hospipal
                     treatmentNotes = txtNotes.Text;
                 }
 
+                //If no errors then code is executes
                 if (err == 0)
                 {
                     if (code == 1)
                     {
+                        //Adds treatment
                         control.AddTreatment(TreatmentType, DateDay, DateMonth, DateYear, treatTime, treatmentNotes, doc);
                     }
                     else if (code == 2)
                     {
+                        //Modify treatment
                         control.ModifyTreatment(curTreatment, TreatmentType, DateDay, DateMonth, DateYear, treatTime, treatmentNotes, doc);
                     }
                     else if (code == 3)
                     {
+                        //Deletes treatment
                         if (curTreatment != -1)
                         {
-
                             control.RemoveTreatment(curTreatment);
                         }
                     }

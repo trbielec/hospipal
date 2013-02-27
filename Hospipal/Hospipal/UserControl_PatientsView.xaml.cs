@@ -25,11 +25,12 @@ namespace Hospipal
     public partial class UserControl_PatientsView : UserControl
     {
 
+        List<Patient> Patients; 
 
         public UserControl_PatientsView()
         {
             InitializeComponent();
-            List<Patient> Patients = Patient.GetPatients();
+            Patients = Patient.GetPatients();
 
             Patients_DataGrid.DataContext = Patients;
            
@@ -47,11 +48,19 @@ namespace Hospipal
 
         private void EditPatient(object sender, RoutedEventArgs e)
         {
-            Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem).PatientID);
+            if(Patients_DataGrid.SelectedItems.Count > 0)
+                Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem));
         }
 
         private void DeletePatient(object sender, RoutedEventArgs e)
         {
+            if (Patients_DataGrid.SelectedItems.Count > 0)
+            {
+                Patients[Patients_DataGrid.SelectedIndex].Delete();
+                Patients.RemoveAt(Patients_DataGrid.SelectedIndex);
+               
+                Patients_DataGrid.Items.Refresh();
+            }
         }
 
         /*private void PatientsListLostFocus(object sender, RoutedEventArgs e)

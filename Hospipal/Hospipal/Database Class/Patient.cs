@@ -184,8 +184,10 @@ namespace Hospipal.Database_Class
 
         private bool CheckDuplicates()
         {
-            return Convert.ToInt32(Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo).ElementAt(0).ElementAt(0)) == _PatientID;
-                    
+            if (Database.Select("Select * from Patient WHERE HC_NO = " + _HealthCareNo).Count > 0)
+                return Convert.ToInt32(Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo).ElementAt(0).ElementAt(0)) == _PatientID;
+            else
+                return true;
         }
         public bool Select()
         {
@@ -233,7 +235,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
-            return Database.Delete("DELETE * FROM Patient WHERE HC_NO = " + _HealthCareNo);
+            return Database.Delete("DELETE FROM Patient WHERE HC_NO = " + _HealthCareNo);
         }
         #endregion
 
