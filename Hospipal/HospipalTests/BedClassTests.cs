@@ -1,14 +1,15 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace HospipalTests
 {
-    [TestClass]
+    [TestFixture]
     public class BedClassTests
     {
-        [TestMethod]
+        [TestCase]
         public void TestMethod1()
         {
+            Assert.True(false);
         }
     }
 }
