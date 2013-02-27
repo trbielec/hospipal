@@ -52,7 +52,9 @@ namespace Hospipal
 
         private void WardEdit(object sender, MouseButtonEventArgs e)
         {
+            UserControl_AddWard myWindow = new UserControl_AddWard();
 
+            myWindow.ShowDialog();
         }
 
         private void WardDelete(object sender, MouseButtonEventArgs e)
@@ -63,12 +65,16 @@ namespace Hospipal
 
         private void RoomAdd(object sender, MouseButtonEventArgs e)
         {
+            UserControl_AddRoom myWindow = new UserControl_AddRoom();
 
+            myWindow.ShowDialog();
         }
 
         private void RoomEdit(object sender, MouseButtonEventArgs e)
         {
+            UserControl_AddRoom myWindow = new UserControl_AddRoom();
 
+            myWindow.ShowDialog();
         }
 
         private void RoomDelete(object sender, MouseButtonEventArgs e)
