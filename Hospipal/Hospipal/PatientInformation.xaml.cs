@@ -48,6 +48,7 @@ namespace Hospipal
             InitializeComponent();
             _isNewPatient = false;  //A new patient will not have a health care no to reference
             patient = Patient;
+            buttonTreatment.Visibility = Visibility.Visible;
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
@@ -55,6 +56,7 @@ namespace Hospipal
             Content = new UserControl_PatientsView();  //This needs to be cleaned up so that rather than creating a new instance of a control
                                                        //it should find an old instance that called it.
         }
+
 
         private void Save(object sender, RoutedEventArgs e)
         {
@@ -73,6 +75,13 @@ namespace Hospipal
         private void HealthCaretb_TextChanged_1(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void buttonTreatment_Click(object sender, RoutedEventArgs e)
+        {
+            int i;
+            i = patient.PatientID;
+            Content = new TreatmentInformation(patient.PatientID);
         }
         
     }

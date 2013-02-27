@@ -18,7 +18,7 @@ namespace Hospipal
     /// <summary>
     /// Interaction logic for UserControl_TreatmentView.xaml
     /// </summary>
-    public partial class UserControl_TreatmentView : UserControl
+    public partial class TreatmentInformation : UserControl
     {
         //Database treatment control object;
         private Database_Class.Treatment control;
@@ -30,7 +30,7 @@ namespace Hospipal
 
         /*  Constructor that takes no arguments
          */ 
-        public UserControl_TreatmentView()
+        public TreatmentInformation()
         {
             InitializeComponent();
           
@@ -81,11 +81,12 @@ namespace Hospipal
         * 
         * 
         */
-        public UserControl_TreatmentView(int pID)
+        public TreatmentInformation(int pID)
         {
             InitializeComponent();
             try
             {
+                this.patientID = pID;
                 //Instantiate control as treatment class in database class folder
                 control = new Database_Class.Treatment(patientID);
 
@@ -127,8 +128,7 @@ namespace Hospipal
             }
             catch(Exception)
             {
-                //Catches getting treatment error
-                MessageBox.Show("Error with getting treatment, patient id might not exist");
+                MessageBox.Show("Error with getting treatment, there might be an issue with patientID");
             }
         }
 
@@ -165,7 +165,7 @@ namespace Hospipal
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
             //When user clicks on X the main tab view is displayed
-            Content = new UserControl_MainTabView();
+            Content = new UserControl_PatientsView();
         }
 
         /* User selects a item in the list box
@@ -265,8 +265,15 @@ namespace Hospipal
                 TreatmentType = input;
 
                 //List of doctors
-                input = boxDoctors.SelectedValue.ToString();
-                doc = input;
+                if (boxDoctors.SelectedIndex == -1)
+                {
+                    doc = "";
+                }
+                else
+                {
+                    input = boxDoctors.SelectedValue.ToString();
+                    doc = input;
+                }
 
                 //Treatment date parsed to integer value of day month year
                 input = boxDate.Text;
@@ -313,7 +320,7 @@ namespace Hospipal
                     }
 
                     //Refreshes the user control once query is added
-                    Content = new UserControl_TreatmentView();
+                    Content = new TreatmentInformation(patientID);
                 }
 
             }
