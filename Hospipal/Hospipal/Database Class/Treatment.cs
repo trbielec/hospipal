@@ -120,9 +120,9 @@ namespace Hospipal.Database_Class
 
         /* Method does a add query and adds patient to the database 
          */
-        public void AddTreatment(string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, string d)
+        public bool AddTreatment(string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, string d)
         {
-            Database.Insert(@"INSERT INTO ismacaul_HospiPal.ReceivesTreatment (patient, treatment, day, month, year, time, notes, treatingDoctor) 
+            return Database.Insert(@"INSERT INTO ismacaul_HospiPal.ReceivesTreatment (patient, treatment, day, month, year, time, notes, treatingDoctor) 
                     VALUES (" + patientID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "', " + doctorsList[d] + ");");
         
         }
@@ -130,19 +130,19 @@ namespace Hospipal.Database_Class
         /* Method does a update query and the database with the new fields
          * Basically updates all the information except rtid as it is the primary key
         */
-        public void ModifyTreatment(int rtid, string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, string d)
+        public bool ModifyTreatment(int rtid, string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, string d)
         {
-            Database.Update(@"UPDATE `ismacaul_HospiPal`.`ReceivesTreatment` SET `treatment`='" + TreatmentType + "' , `day`='" + DateDay + "' , `month`='" + DateMonth + "' , `year`='" + DateYear + "' , `time`='" + treatTime + "' , `notes`='" + treatmentNotes + "' , `treatingDoctor`='" + doctorsList[d] + "' WHERE `rtid`='" + treatmentIDList[rtid] + "'");
+            return Database.Update(@"UPDATE `ismacaul_HospiPal`.`ReceivesTreatment` SET `treatment`='" + TreatmentType + "' , `day`='" + DateDay + "' , `month`='" + DateMonth + "' , `year`='" + DateYear + "' , `time`='" + treatTime + "' , `notes`='" + treatmentNotes + "' , `treatingDoctor`='" + doctorsList[d] + "' WHERE `rtid`='" + treatmentIDList[rtid] + "'");
 
         }
 
         /* Removes treatment based on rtid as it is linked the the text box index
          */
-        public void RemoveTreatment(int rtid)
+        public bool RemoveTreatment(int rtid)
         {
             //More specific delete query
             //Database.Delete("DELETE FROM `ismacaul_HospiPal`.`ReceivesTreatment` WHERE `patient`=" + patientID + " and`treatment`=" + TreatmentType + " and`day`=" + DateDay + "  and`month`=" + DateMonth + "  and`year`=" + DateYear + " and`time`=" + treatTime +"; ");
-            Database.Delete("DELETE FROM `ismacaul_HospiPal`.`ReceivesTreatment` WHERE `rtid`=" + treatmentIDList[rtid] );
+            return Database.Delete("DELETE FROM `ismacaul_HospiPal`.`ReceivesTreatment` WHERE `rtid`=" + treatmentIDList[rtid] );
 
         }
 
