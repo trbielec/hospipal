@@ -47,7 +47,7 @@ namespace Hospipal
 
         private void EditPatient(object sender, RoutedEventArgs e)
         {
-            Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem).HealthCareNo);
+            Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem).PatientID);
         }
 
         private void DeletePatient(object sender, RoutedEventArgs e)

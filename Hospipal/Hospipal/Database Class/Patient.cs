@@ -22,6 +22,13 @@ namespace Hospipal.Database_Class
         private string _WorkPhoneNo;
 
         #region Getters/Setters
+        public int PatientID
+        {
+            get
+            {
+                return _PatientID;
+            }
+        }
         public int HealthCareNo
         {
             get

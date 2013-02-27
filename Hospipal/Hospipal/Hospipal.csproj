@@ -231,7 +231,9 @@
   <ItemGroup>
     <Resource Include="Resources\Button Images\edit.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Button Images\trash.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Button Images\add.png" />
   </ItemGroup>

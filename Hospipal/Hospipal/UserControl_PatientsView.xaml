@@ -44,7 +44,7 @@
 
             <Button Grid.Column="1" Name="Patients_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
                 <StackPanel>
-                    <Image Source="./Resources/Button Images/cancel.png"/>
+                    <Image Source="./Resources/Button Images/trash.png"/>
                 </StackPanel>
             </Button>
 
