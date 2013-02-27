@@ -55,9 +55,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BedClassTests.cs" />
+    <Compile Include="EmployeeClassTests.cs" />
     <Compile Include="MySQLWrapperTests.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="PatientClassTests.cs" />
+    <Compile Include="RoomClassTests.cs" />
+    <Compile Include="TreatmentClassTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WardClassTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hospipal\Hospipal.csproj">
