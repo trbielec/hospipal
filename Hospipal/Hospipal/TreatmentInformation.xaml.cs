@@ -264,16 +264,9 @@ namespace Hospipal
                 input = boxTreatmentType.SelectedValue.ToString();
                 TreatmentType = input;
 
-                //List of doctors
-                if (boxDoctors.SelectedIndex == -1)
-                {
-                    doc = "";
-                }
-                else
-                {
-                    input = boxDoctors.SelectedValue.ToString();
-                    doc = input;
-                }
+
+                input = boxDoctors.SelectedValue.ToString();
+                doc = input;
 
                 //Treatment date parsed to integer value of day month year
                 input = boxDate.Text;
