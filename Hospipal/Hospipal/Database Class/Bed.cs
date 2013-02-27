@@ -124,16 +124,28 @@ namespace Hospipal.Database_Class
 
         public bool Insert(string roomNo)
         {
-            return Database.Insert("Insert into Beds (bedNo,state,pid,roomNo,assigningNurse)" +
+            return Database.Insert("Insert into Beds (bed_No,state,pid,roomNo,assigningNurse)" +
                     "VALUES ('" + _bedNo + "'," + _state + "," + _pid + ", '" + _roomNo + "', '" + _assigningNurse + "')");
         }
 
         public bool Delete(string roomNo)
         {
-            return Database.Delete("DELETE * FROM Beds WHERE bedNo = " + _bedNo);
+            return Database.Delete("DELETE * FROM Beds WHERE bed_No = " + _bedNo);
         }
 
+        public static List<Bed> GetRooms(int RoomNo)
+        {
+            List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno ='" + RoomNo + "'");
+            List<Bed> getbeds = new List<Bed>();
+            foreach (object[] row in rooms)
+            {
+                Bed newBed = new Bed(row[0].ToString(), (States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), row[3].ToString(), row[4].ToString());
+                getbeds.Add(newBed);
+            }
+            return getbeds;
+        }
     }
 
         #endregion
+
 }

@@ -40,9 +40,12 @@
 
         </Grid>
         -->
-        
-        <ListBox Grid.Column="0" Grid.Row="1" x:Name="Ward" SelectionChanged="boxWard_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto" Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
-        <Label Grid.Column="0" Grid.Row="0" x:Name="lblWard" Content="Ward" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <DataGrid Name="WardDG" Grid.Row="1" SelectionMode="Single" IsReadOnly="True" SelectedCellsChanged="WardDGCellChanged" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ward" Binding="{Binding Path=WardName}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Grid.Column="0" Grid.Row="2" Name="Ward_AddButton" Click="WardAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/add.png"/>
@@ -57,12 +60,14 @@
 
         <Button Grid.Column="0" Grid.Row="2" Name="Ward_DeleteButton" Click="WardDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
             <StackPanel>
-                <Image Source="./Resources/Button Images/cancel.png"/>
+                <Image Source="./Resources/Button Images/trash.png"/>
             </StackPanel>
         </Button>
-        <ListBox Grid.Column="1" Grid.Row="1" x:Name="Room" SelectionChanged="boxRoom_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto"  Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
-        <Label Grid.Column="1" Grid.Row="0" x:Name="lblRoom" Content="Room" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="1" Grid.Row="2" Name="Room_AddButton" Click="RoomAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <DataGrid Name="RoomDG" Grid.Column="1" Grid.Row="1" IsReadOnly="True" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Room" Binding="{Binding Path=RoomNo}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid><Button Grid.Column="1" Grid.Row="2" Name="Room_AddButton" Click="RoomAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/add.png"/>
             </StackPanel>
@@ -76,12 +81,14 @@
 
         <Button Grid.Column="1" Grid.Row="2" Name="Room_DeleteButton" Click="RoomDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
             <StackPanel>
-                <Image Source="./Resources/Button Images/cancel.png"/>
+                <Image Source="./Resources/Button Images/trash.png"/>
             </StackPanel>
         </Button>
-        <ListBox Grid.Column="2" Grid.Row="1" x:Name="Bed" SelectionChanged="boxBed_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto"  Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
-        <Label Grid.Column="2" Grid.Row="0" x:Name="lblBed" Content="Bed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="2" Grid.Row="2" Name="Bed_AddButton" Click="BedAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <DataGrid Name="BedDG" Grid.Column="2" Grid.Row="1" IsReadOnly="True" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Bed" Binding="{Binding Path=BedNo}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid><Button Grid.Column="2" Grid.Row="2" Name="Bed_AddButton" Click="BedAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/add.png"/>
             </StackPanel>
@@ -95,7 +102,7 @@
 
         <Button Grid.Column="2" Grid.Row="2" Name="Bed_DeleteButton" Click="BedDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
             <StackPanel>
-                <Image Source="./Resources/Button Images/cancel.png"/>
+                <Image Source="./Resources/Button Images/trash.png"/>
             </StackPanel>
         </Button>
 

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Hospipal.Database_Class;
 
 
 namespace Hospipal
@@ -24,25 +25,9 @@ namespace Hospipal
         public UserControl_Wards()
         {
             InitializeComponent();
-
-       
+            List<Ward> wards = Ward.GetWards();
+            WardDG.DataContext = wards;
         }
-
-        private void boxWard_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //query rooms in the selected ward and display them
-        }
-
-        private void boxRoom_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //query beds in the selected room and display them
-        }
-
-        private void boxBed_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void WardAdd(object sender, RoutedEventArgs e)
         {
             UserControl_AddWard myWindow = new UserControl_AddWard();
@@ -107,6 +92,12 @@ namespace Hospipal
         private void BedDelete(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void WardDGCellChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            List<Room> rooms = Room.GetRooms(((Ward)WardDG.SelectedItem).WardName);
+            RoomDG.DataContext = rooms;
         }
     }
 }
