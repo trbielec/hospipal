@@ -146,7 +146,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
-            return Database.Delete("DELETE * FROM Employee WHERE eid = " + _eid);
+            return Database.Delete("DELETE FROM Employee WHERE eid = " + _eid);
         }
 
         public static int GenerateNewEid()
