@@ -50,39 +50,39 @@ namespace Hospipal
             myWindow.ShowDialog();
         }
 
-        private void WardEdit(object sender, MouseButtonEventArgs e)
+        private void WardEdit(object sender, RoutedEventArgs e)
         {
             UserControl_AddWard myWindow = new UserControl_AddWard();
 
             myWindow.ShowDialog();
         }
 
-        private void WardDelete(object sender, MouseButtonEventArgs e)
+        private void WardDelete(object sender, RoutedEventArgs e)
         {
            
         }
 
 
-        private void RoomAdd(object sender, MouseButtonEventArgs e)
+        private void RoomAdd(object sender, RoutedEventArgs e)
         {
             UserControl_AddRoom myWindow = new UserControl_AddRoom();
 
             myWindow.ShowDialog();
         }
 
-        private void RoomEdit(object sender, MouseButtonEventArgs e)
+        private void RoomEdit(object sender, RoutedEventArgs e)
         {
             UserControl_AddRoom myWindow = new UserControl_AddRoom();
 
             myWindow.ShowDialog();
         }
 
-        private void RoomDelete(object sender, MouseButtonEventArgs e)
+        private void RoomDelete(object sender, RoutedEventArgs e)
         {
             
         }
 
-        private void BedAdd(object sender, MouseButtonEventArgs e)
+        private void BedAdd(object sender, RoutedEventArgs e)
         {
            // List<object[]> bedNumbers = Database.Select("SELECT bed_no from Bed");
 
@@ -99,12 +99,12 @@ namespace Hospipal
           //  }
         }
 
-        private void BedEdit(object sender, MouseButtonEventArgs e)
+        private void BedEdit(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void BedDelete(object sender, MouseButtonEventArgs e)
+        private void BedDelete(object sender, RoutedEventArgs e)
         {
             
         }
