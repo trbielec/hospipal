@@ -49,51 +49,51 @@
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="0" Grid.Row="2" Name="Ward_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="0" Grid.Row="2" Name="Ward_EditButton" Click="WardEdit" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/edit.png" Width="45"/>
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="0" Grid.Row="2" Name="Ward_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="0" Grid.Row="2" Name="Ward_DeleteButton" Click="WardDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/cancel.png"/>
             </StackPanel>
         </Button>
         <ListBox Grid.Column="1" Grid.Row="1" x:Name="Room" SelectionChanged="boxRoom_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto"  Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
         <Label Grid.Column="1" Grid.Row="0" x:Name="lblRoom" Content="Room" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="1" Grid.Row="2" Name="Room_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="1" Grid.Row="2" Name="Room_AddButton" Click="RoomAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/add.png"/>
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="2" Name="Room_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="1" Grid.Row="2" Name="Room_EditButton" Click="RoomEdit" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/edit.png" Width="45"/>
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="1" Grid.Row="2" Name="Room_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="1" Grid.Row="2" Name="Room_DeleteButton" Click="RoomDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/cancel.png"/>
             </StackPanel>
         </Button>
         <ListBox Grid.Column="2" Grid.Row="1" x:Name="Bed" SelectionChanged="boxBed_SelectionChanged" HorizontalAlignment="Stretch" Height="Auto"  Margin="5,0,5,0" VerticalAlignment="Stretch" Width="Auto"/>
         <Label Grid.Column="2" Grid.Row="0" x:Name="lblBed" Content="Bed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Grid.Column="2" Grid.Row="2" Name="Bed_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_AddButton" Click="BedAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/add.png"/>
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="2" Grid.Row="2" Name="Bed_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_EditButton" Click="BedEdit" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/edit.png" Width="45"/>
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="2" Grid.Row="2" Name="Bed_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_DeleteButton" Click="BedDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/cancel.png"/>
             </StackPanel>

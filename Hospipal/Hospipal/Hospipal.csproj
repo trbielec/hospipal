@@ -86,17 +86,11 @@
     <Compile Include="TreatmentInformation.xaml.cs">
       <DependentUpon>TreatmentInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl_EditWard.xaml.cs">
-      <DependentUpon>UserControl_EditWard.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControl_AddWard.xaml.cs">
       <DependentUpon>UserControl_AddWard.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl_AddRoom.xaml.cs">
       <DependentUpon>UserControl_AddRoom.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl_EditRoom.xaml.cs">
-      <DependentUpon>UserControl_EditRoom.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControl_EmployeesView.xaml.cs">
       <DependentUpon>UserControl_EmployeesView.xaml</DependentUpon>
@@ -140,19 +134,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControl_EditWard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControl_AddWard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_AddRoom.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControl_EditRoom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

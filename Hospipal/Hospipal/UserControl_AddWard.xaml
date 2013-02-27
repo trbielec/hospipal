@@ -4,31 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
         x:Class="Hospipal.UserControl_AddWard" 
-        Height="321.343" Width="501.791" mc:Ignorable="d"
-        BorderBrush="Transparent"
+        mc:Ignorable="d"
         x:Name="wardControl"
-        Window.WindowStyle ="None" >
-    
-    <Grid RenderTransformOrigin="0.429,0.449" HorizontalAlignment="Left" Width="498" Background="#FFEBE8E8" Margin="0,0,-2,-2.2">
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="10.279,3.314" Margin="153,13,0,0" Height="55" Width="236" FontSize="36" FontWeight="Bold"><Run Language="en-ca" Text="ADD WARD"/></TextBlock>
-        <Label Content="WARD NAME" HorizontalAlignment="Left" Margin="111,98,0,0" VerticalAlignment="Top" Height="31" Width="113"/>
-        <Label Content="WARD CAPACITY" HorizontalAlignment="Left" Margin="341,100,0,0" VerticalAlignment="Top" Height="30" Width="102"/>
-        <Grid HorizontalAlignment="Left" Height="54" Margin="-213,105,0,0" VerticalAlignment="Top" Width="973">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="401*"/>
-                <ColumnDefinition Width="71*"/>
-                <ColumnDefinition Width="501*"/>
-            </Grid.ColumnDefinitions>
+        ResizeMode="NoResize"
+        Window.WindowStyle ="None"
+        Height="300" Width="500" >
 
-            <TextBox x:Name="WardName"  HorizontalAlignment="Left" Height="30" Margin="299,18,0,0" VerticalAlignment="Top" Width="141"  Text="{Binding Path=ward.WardName,ElementName=roomControl,Mode=TwoWay}" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="WardCapacity" HorizontalAlignment="Left" Height="30" Margin="79,24,0,0"  VerticalAlignment="Top" Width="90" Text="{Binding Path=ward.WardCapacity,ElementName=roomControl,Mode=TwoWay}" Grid.Column="2"/>
-            
-        </Grid>
-        <Button x:Name="SaveButton" HorizontalAlignment="Left" Margin="350,225,0,0" VerticalAlignment="Top" Click="Save"  IsDefault="True" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-            <Image Source="./Resources/Button Images/save.png" Stretch="None" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="ADD/EDIT WARD" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
+
+        <Label Content="Ward Name:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Ward Capacity:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="WardName" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.WardName,ElementName=wardControl,Mode=TwoWay}"/>
+        <TextBox x:Name="WardCapacity" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.WardCapacity,ElementName=wardControl,Mode=TwoWay}"/>
+
+        <Button Grid.Column="3" Grid.Row="4" Name="SaveButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/save.png" />
+            </StackPanel>
         </Button>
-        <Button x:Name="CancelButton" HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" Click="Cancel" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-            <Image Source="./Resources/Button Images/cancel.png" Stretch="None"  />
+
+        <Button  Grid.Column="3" Grid.Row="4"  Name="CancelButton" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/cancel.png" />
+            </StackPanel>
         </Button>
     </Grid>
 </Window>

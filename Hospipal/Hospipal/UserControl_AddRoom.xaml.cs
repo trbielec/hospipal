@@ -26,18 +26,6 @@ namespace Hospipal
             InitializeComponent();
         }
 
-        
-
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Save(object sender, RoutedEventArgs e)
         {
             //TODO
@@ -55,7 +43,7 @@ namespace Hospipal
         private void Cancel(object sender, RoutedEventArgs e)
         {
             //When user clicks on X the Wards view is displayed
-            Content = new UserControl_Wards();
+            this.Close();
         }
     }
 }

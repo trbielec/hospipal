@@ -5,25 +5,46 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
              x:Class="Hospipal.UserControl_AddRoom" 
              x:Name="roomControl"
-             Height="294.08" Width="489.079" mc:Ignorable="d"
+             Height="300" Width="500" mc:Ignorable="d" ResizeMode="NoResize"
              Window.WindowStyle="None">
             
     
-    <Grid RenderTransformOrigin="0.429,0.449" HorizontalAlignment="Left" Width="504" Background="#FFEBE8E8" Margin="0,0,0,-0.4">
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="10.279,3.314" Margin="154,12,0,0" Height="55" Width="236" FontSize="36" FontWeight="Bold"><Run Language="en-ca" Text="ADD ROOM"/></TextBlock>
-        <Label Content="ROOM NUMBER" HorizontalAlignment="Left" Margin="118,99,0,0" VerticalAlignment="Top" Height="31" Width="113"/>
-        <Label Content="FLOOR NUMBER" HorizontalAlignment="Left" Margin="326,98,0,0" VerticalAlignment="Top" Height="30" Width="102"/>
-        <Grid HorizontalAlignment="Left" Height="54" Margin="-213,105,0,0" VerticalAlignment="Top" Width="973">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        
+        <Label Content="ADD/EDIT ROOM" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
 
-            <TextBox x:Name="RoomNo"  HorizontalAlignment="Left" Height="30" Margin="334,20,498,0" VerticalAlignment="Top" Width="141"  Text="{Binding Path=room.RoomNo,ElementName=roomControl,Mode=TwoWay}"/>
-            <TextBox x:Name="FloorNo" HorizontalAlignment="Left" Height="30" Margin="541,22,0,0"  VerticalAlignment="Top" Width="90" Text="{Binding Path=room.FloorNo,ElementName=roomControl,Mode=TwoWay}"/>
-           
-        </Grid>
-        <Button x:Name="SaveButton" HorizontalAlignment="Left" Margin="350,225,0,0" VerticalAlignment="Top" Click="Save"  IsDefault="True" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-            <Image Source="./Resources/Button Images/save.png" Stretch="None" />
+        <Label Content="Room Number:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Floor Number:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <TextBox x:Name="RoomNo" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=room.RoomNo,ElementName=roomControl,Mode=TwoWay}"/>
+        <TextBox x:Name="FloorNo" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=room.FloorNo,ElementName=roomControl,Mode=TwoWay}"/>
+
+        <Button Grid.Column="3" Grid.Row="4" Name="SaveButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/save.png" />
+            </StackPanel>
         </Button>
-        <Button x:Name="CancelButton" HorizontalAlignment="Left" Margin="425,225,0,0" VerticalAlignment="Top" Click="Cancel" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-            <Image Source="./Resources/Button Images/cancel.png" Stretch="None"  />
+
+        <Button  Grid.Column="3" Grid.Row="4"  Name="CancelButton" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/cancel.png" />
+            </StackPanel>
         </Button>
+
     </Grid>
 </Window>
