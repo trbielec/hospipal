@@ -14,7 +14,7 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="450" />
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="210" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -30,11 +30,11 @@
 
             <Button Grid.Column="1" Name="Employees_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
                 <StackPanel>
-                    <Image Source="./Resources/Button Images/add.png"/>
+                    <Image Source="./Resources/Button Images/add.png" RenderTransformOrigin="1.799,1.906"/>
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="1" Name="Employees_EditButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="1" Name="Employees_EditButton"  HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/edit.png" Width="45"/>
                 </StackPanel>
@@ -45,6 +45,7 @@
                     <Image Source="./Resources/Button Images/trash.png"/>
                 </StackPanel>
             </Button>
+
         </Grid>
 
 

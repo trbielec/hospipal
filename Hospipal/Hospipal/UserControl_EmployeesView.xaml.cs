@@ -21,11 +21,13 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_EmployeesView : UserControl
     {
+        List<Employee> Employees; 
+
         public UserControl_EmployeesView()
         {
             InitializeComponent();
 
-            List<Employee> Employees = Employee.GetEmployees();
+            Employees = Employee.GetEmployees();
             Employee_DataGrid.DataContext = Employees;
 
             Employees_AddButton.Click += new RoutedEventHandler(AddEmployee);
@@ -42,11 +44,19 @@ namespace Hospipal
 
         private void EditEmployee(object sender, RoutedEventArgs e)
         {
-            Content = new EmployeeInformation(((Employee)Employee_DataGrid.SelectedItem).Eid);
+            if (Employee_DataGrid.SelectedItems.Count > 0)
+                Content = new EmployeeInformation(((Employee)Employee_DataGrid.SelectedItem));
         }
 
         private void DeleteEmployee(object sender, RoutedEventArgs e)
         {
+            if (Employee_DataGrid.SelectedItems.Count > 0)
+            {
+                Employees[Employee_DataGrid.SelectedIndex].Delete();
+                Employees.RemoveAt(Employee_DataGrid.SelectedIndex);
+
+                Employee_DataGrid.Items.Refresh();
+            }
             
         }
     }

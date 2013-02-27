@@ -42,10 +42,11 @@ namespace Hospipal
             generatedEID.Content = Employee.GenerateNewEid();
         }
 
-        public EmployeeInformation(int eid)
+        public EmployeeInformation(Employee Employee)
         {
+            InitializeComponent();
             _isNewEmployee = false;  //A new employee will not have an employee id to reference
-            employee = new Employee(eid);
+            employee = Employee;
         }
   
 
