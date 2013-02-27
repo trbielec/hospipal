@@ -24,17 +24,6 @@ namespace Hospipal
         public UserControl_EmployeesView()
         {
             InitializeComponent();
-            /*
-            // construct the dataset
-            ismacaul_HospiPalDataSet dataset = new ismacaul_HospiPalDataSet();
-
-            // use a table adapter to populate the Customers table
-            ismacaul_HospiPalDataSetTableAdapters.EmployeeTableAdapter adapter = new ismacaul_HospiPalDataSetTableAdapters.EmployeeTableAdapter();
-            adapter.Fill(dataset.Employee);
-
-            // use the Customer table as the DataContext for this Window
-            this.DataContext = dataset.Employee.DefaultView;
-             */
 
             List<Employee> Employees = Employee.GetEmployees();
             Employee_DataGrid.DataContext = Employees;
@@ -53,11 +42,12 @@ namespace Hospipal
 
         private void EditEmployee(object sender, RoutedEventArgs e)
         {
-            Content = new EmployeeInformation();
+            Content = new EmployeeInformation(((Employee)Employee_DataGrid.SelectedItem).Eid);
         }
 
         private void DeleteEmployee(object sender, RoutedEventArgs e)
         {
+            
         }
     }
 }
