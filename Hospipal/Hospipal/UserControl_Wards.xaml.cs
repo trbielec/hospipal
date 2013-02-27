@@ -37,9 +37,12 @@ namespace Hospipal
 
         private void WardEdit(object sender, RoutedEventArgs e)
         {
-            UserControl_AddWard myWindow = new UserControl_AddWard();
+            if (WardDG.SelectedItems.Count > 0)
+            {
+                UserControl_AddWard myWindow = new UserControl_AddWard((Ward)WardDG.SelectedItem);
 
-            myWindow.ShowDialog();
+                myWindow.ShowDialog();
+            }
         }
 
         private void WardDelete(object sender, RoutedEventArgs e)

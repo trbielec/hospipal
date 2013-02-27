@@ -41,6 +41,7 @@ namespace Hospipal
         {
             InitializeComponent(); //New patient can use default constructor
             patient = new Patient();
+           
         }
 
         public PatientInformation(Patient Patient)

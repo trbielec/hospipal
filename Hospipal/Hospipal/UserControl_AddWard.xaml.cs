@@ -31,7 +31,7 @@ namespace Hospipal
          */
         private static readonly DependencyProperty WardProperty =
                           DependencyProperty.Register("ward", typeof(Ward),
-                                                      typeof(UserControl_Wards));
+                                                      typeof(UserControl_AddWard));
         private Ward ward
         {
             get { return (Ward)GetValue(WardProperty); }
