@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         x:Name="wardControl"
         ResizeMode="NoResize"
-        Window.WindowStyle ="None"
+        Window.WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen"
         Height="300" Width="500" >
 
     <Grid>
@@ -30,18 +31,18 @@
         <Label Content="ADD/EDIT WARD" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" FontWeight="Bold"/>
 
         <Label Content="Ward Name:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label Content="Ward Capacity:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Ward Slug:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <TextBox x:Name="WardName" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.WardName,ElementName=wardControl,Mode=TwoWay}"/>
-        <TextBox x:Name="WardCapacity" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.WardCapacity,ElementName=wardControl,Mode=TwoWay}"/>
+        <TextBox x:Name="slugName" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.SlugName,ElementName=wardControl,Mode=TwoWay}"/>
 
-        <Button Grid.Column="3" Grid.Row="4" Name="SaveButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="3" Grid.Row="4" Name="SaveButton" Click="Save" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/save.png" />
             </StackPanel>
         </Button>
 
-        <Button  Grid.Column="3" Grid.Row="4"  Name="CancelButton" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <Button  Grid.Column="3" Grid.Row="4"  Name="CancelButton" Click="Cancel" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/cancel.png" />
             </StackPanel>
