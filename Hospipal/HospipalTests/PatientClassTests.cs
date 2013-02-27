@@ -41,6 +41,7 @@ namespace HospipalTests
 
             patient = new Patient(1000);
             Assert.True(patient.Delete());
+            Assert.False(patient.Delete());
         }
 
         [TestCase]

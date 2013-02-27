@@ -129,9 +129,12 @@ namespace Hospipal
                 try
                 {
                     MySqlCommand command = new MySqlCommand(query, connection);
-                    command.ExecuteNonQuery();
+                    int ret = command.ExecuteNonQuery();
                     CloseConnection();
-                    return true;
+                    if (ret > 0)
+                        return true;
+                    else
+                        return false;
                 }
                 catch (MySqlException e)
                 {

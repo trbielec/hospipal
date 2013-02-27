@@ -90,7 +90,7 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
-            return Database.Update("Update Ward Set slug_name = '" + _slugName + "' WHERE ward_name = '" + _wardName + "'");
+            return Database.Update("Update Ward Set ward_slug = '" + _slugName + "' WHERE ward_name = '" + _wardName + "'");
         }
 
         public bool Delete()

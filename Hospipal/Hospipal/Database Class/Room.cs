@@ -77,7 +77,7 @@ namespace Hospipal.Database_Class
 
         public bool Select()
         {
-            List<object[]> SingleRoomRow = Database.Select("SELECT * from Room WHERE room_no = " + _RoomNo);
+            List<object[]> SingleRoomRow = Database.Select("SELECT * from Room WHERE room_no = '" + _RoomNo + "'");
             if (SingleRoomRow != null && SingleRoomRow.Count > 0)
             {
                 foreach (object[] row in SingleRoomRow)
@@ -105,7 +105,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
-            return Database.Delete("DELETE * FROM Room WHERE room_no = '" + _RoomNo + "'");
+            return Database.Delete("DELETE FROM Room WHERE room_no = '" + _RoomNo + "'");
         }
         
         #endregion

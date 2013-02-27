@@ -19,7 +19,8 @@ namespace HospipalTests
             employee.Fname = "Test3";
             Assert.True(employee.Update());
 
-            Assert.True(employee.Delete());            
+            Assert.True(employee.Delete());
+            Assert.False(employee.Delete());
         }
 
         [TestCase]

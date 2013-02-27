@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Hospipal.Database_Class
 {
-    class Bed
+    public class Bed
     {
         public enum States { Occupied, Available, Maintainence };
         private int _bedNo;
