@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Globalization;
+using System.Threading;
 
 namespace Hospipal
 {
@@ -84,6 +86,11 @@ namespace Hospipal
         public TreatmentInformation(int pID)
         {
             InitializeComponent();
+
+            CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
+            ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            Thread.CurrentThread.CurrentCulture = ci;
+
             try
             {
                 this.patientID = pID;
@@ -174,7 +181,8 @@ namespace Hospipal
         private void boxHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             List<string> details = new List<string>();
-
+            string o = "";
+            
             try
             {
                 //cur treatment is set to index of item selected
@@ -187,7 +195,9 @@ namespace Hospipal
                 boxTreatmentType.SelectedValue = details.ElementAt(0);
                 boxDoctors.SelectedValue = details.ElementAt(7);
 
-                boxDate.Text = details.ElementAt(1) + "/" + details.ElementAt(2) + "/" + details.ElementAt(3);
+                o = details.ElementAt(1) + "/" + details.ElementAt(2) + "/" + details.ElementAt(3);
+
+                boxDate.Text = o;
 
                 boxTime.SelectedValue = Convert.ToDateTime(details.ElementAt(4));
                 txtNotes.Text = details.ElementAt(5);
