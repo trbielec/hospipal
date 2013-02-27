@@ -28,55 +28,53 @@ namespace Hospipal
         //Set curTreatment number will link to text box
         int curTreatment;
 
-        /*
-         * 
-         * 
+        /*  Constructor that takes no arguments
          */ 
         public UserControl_TreatmentView()
         {
             InitializeComponent();
           
-            try
-            {
-                control = new Database_Class.Treatment(patientID);
+            //try
+            //{
+            //    control = new Database_Class.Treatment(patientID);
 
-                //Types of treatments available
-                List<object[]> treatments = control.initializeTreatmentList();
+            //    //Types of treatments available
+            //    List<object[]> treatments = control.initializeTreatmentList();
 
-                List<string> doctors = control.initializeDoctorList();
-                List<string> treatmentHistory = control.initializeTreatmentHistory();
+            //    List<string> doctors = control.initializeDoctorList();
+            //    List<string> treatmentHistory = control.initializeTreatmentHistory();
 
-                string s = "";
+            //    string s = "";
 
-                foreach (object[] element in treatments)
-                {
-                    s = element[0].ToString();
-                    boxTreatmentType.Items.Add(s);
+            //    foreach (object[] element in treatments)
+            //    {
+            //        s = element[0].ToString();
+            //        boxTreatmentType.Items.Add(s);
 
-                }
+            //    }
 
-                foreach (string element in doctors)
-                {
-                    boxDoctors.Items.Add(element);
+            //    foreach (string element in doctors)
+            //    {
+            //        boxDoctors.Items.Add(element);
 
-                }
+            //    }
 
-                foreach (string element in treatmentHistory)
-                {
-                    boxHistory.Items.Add(element);
+            //    foreach (string element in treatmentHistory)
+            //    {
+            //        boxHistory.Items.Add(element);
 
-                }
+            //    }
 
-                lblName.Content = control.getPatientName();
+            //    lblName.Content = control.getPatientName();
 
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error with getting treatment");
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Error with getting treatment");
+            //}
 
-            //MessageBox.Show("No Patient Found Call Constructor with patientID");
-            //Content = new UserControl_MainTabView();
+            MessageBox.Show("No Patient Found Call Constructor with patientID");
+            Content = new UserControl_MainTabView();
         }
 
         /*  Constructor that takes patientID 
@@ -130,7 +128,7 @@ namespace Hospipal
             catch(Exception)
             {
                 //Catches getting treatment error
-                MessageBox.Show("Error with getting treatment");
+                MessageBox.Show("Error with getting treatment, patient id might not exist");
             }
         }
 
