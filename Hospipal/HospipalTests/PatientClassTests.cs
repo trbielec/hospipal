@@ -12,7 +12,7 @@ namespace HospipalTests
         [TestCase]
         public void TestSelectMethodWithValidPatient()
         {
-            patient = new Patient(40);
+            patient = new Patient(10);
 
             Assert.True(patient.Select());
         }
@@ -31,15 +31,22 @@ namespace HospipalTests
 
             Assert.True(patient.Insert());
             Assert.False(patient.Insert());
-            /*
+
+            patient = new Patient(1000);
             patient.FirstName = "Test1";
             Assert.True(patient.Update());
 
-            patient.HealthCareNo = 40;
+            patient.HealthCareNo = 10;
             Assert.False(patient.Update());
 
+            patient = new Patient(1000);
             Assert.True(patient.Delete());
-            Assert.False(patient.Delete());*/
+        }
+
+        [TestCase]
+        public void TestGetPatients()
+        {
+            Assert.NotNull(Patient.GetPatients());
         }
     }
 }
