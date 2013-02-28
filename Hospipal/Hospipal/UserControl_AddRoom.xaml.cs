@@ -67,8 +67,8 @@ namespace Hospipal
 
         private void Save(object sender, RoutedEventArgs e)
         {
-            room.RoomNo = _Ward.SlugName + RoomNo.Text;
-            room.WardName = _Ward.WardName;
+            room.RoomNo = Convert.ToInt32(RoomNo.Text);
+            room.WardName = _Ward.SlugName;
             SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
             if (_isNewRoom)
             {
@@ -79,7 +79,7 @@ namespace Hospipal
                 room.Update();
             }
 
-            ParentWardsWindow.RoomDG.DataContext = Room.GetRooms(_Ward.WardName);
+            ParentWardsWindow.RoomDG.DataContext = Room.GetRooms(_Ward.SlugName);
                 
             this.Close();
         }

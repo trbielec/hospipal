@@ -9,7 +9,7 @@ namespace Hospipal.Database_Class
     public class Room
     {
         private int _FloorNo;
-        private string _RoomNo;
+        private int _RoomNo;
         private string _WardName;
 
         
@@ -27,7 +27,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-        public string RoomNo
+        public int RoomNo
         {
             get
             {
@@ -36,6 +36,17 @@ namespace Hospipal.Database_Class
             set
             {
                     _RoomNo = value;
+            }
+        }
+
+        public string RoomString
+        {
+            get
+            {
+                if (_RoomNo.ToString().Length < 2)
+                    return _WardName + "00" + _RoomNo.ToString();
+                else
+                    return _WardName + "0" + _RoomNo.ToString();
             }
         }
 
@@ -59,13 +70,14 @@ namespace Hospipal.Database_Class
         {
         }
 
-        public Room(string RoomNo)
+        public Room(int RoomNo, string WardSlug)
         {
             _RoomNo = RoomNo;
+            _WardName = WardSlug;
             Select();
         }
 
-        public Room(string RoomNo, string WardName,int FloorNo)
+        public Room(int RoomNo, string WardName,int FloorNo)
         {
             _FloorNo = FloorNo;
             _RoomNo = RoomNo;
@@ -77,12 +89,12 @@ namespace Hospipal.Database_Class
 
         public bool Select()
         {
-            List<object[]> SingleRoomRow = Database.Select("SELECT * from Room WHERE room_no = '" + _RoomNo + "'");
+            List<object[]> SingleRoomRow = Database.Select("SELECT * from Room WHERE room_no = " + _RoomNo + " AND ward = '" + _WardName + "'");
             if (SingleRoomRow != null && SingleRoomRow.Count > 0)
             {
                 foreach (object[] row in SingleRoomRow)
                 {
-                    _RoomNo = row[0].ToString();
+                    _RoomNo = Convert.ToInt32(row[0]);
                     _WardName = row[1].ToString();
                     _FloorNo = Convert.ToInt32(row[2]);
                 }
@@ -94,18 +106,18 @@ namespace Hospipal.Database_Class
         public bool Insert()
         {
                 return Database.Insert("Insert into Room (room_no,floor_no,ward)" +
-                    "VALUES ('" + _RoomNo + "'," + _FloorNo + ",'" + _WardName + "')");
+                    "VALUES (" + _RoomNo + "," + _FloorNo + ",'" + _WardName + "')");
         }
 
         public bool Update()
         {
                 return Database.Update("Update Room Set floor_no = " + _FloorNo + ", " +
-                   "ward = '" + _WardName + "' WHERE room_no = '" + _RoomNo + "'");
+                   "ward = '" + _WardName + "' WHERE room_no = " + _RoomNo + " AND ward = '" + _WardName + "'");
         }
 
         public bool Delete()
         {
-            return Database.Delete("DELETE FROM Room WHERE room_no = '" + _RoomNo + "'");
+            return Database.Delete("DELETE FROM Room WHERE room_no = " + _RoomNo + " AND ward = '" + _WardName + "'");
         }
         
         #endregion
@@ -116,7 +128,7 @@ namespace Hospipal.Database_Class
             List<Room> getrooms = new List<Room>();
             foreach (object[] row in rooms)
             {
-                Room newRoom = new Room(row[0].ToString(),row[1].ToString(),Convert.ToInt32(row[2]));
+                Room newRoom = new Room(Convert.ToInt32(row[0]),row[1].ToString(),Convert.ToInt32(row[2]));
                 getrooms.Add(newRoom);
             }
             return getrooms;

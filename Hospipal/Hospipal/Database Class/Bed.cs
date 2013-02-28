@@ -13,8 +13,9 @@ namespace Hospipal.Database_Class
         private int _bedNo;
         private States _state;
         private int _pid;
-        private string _roomNo;
+        private int _roomNo;
         private string _assigningNurse;
+        private string _ward;
 
         
 
@@ -33,10 +34,11 @@ namespace Hospipal.Database_Class
         {
             get
             {
+                Room getRoomName = new Room(_roomNo,_ward);
                 if (_bedNo.ToString().Length < 2)
-                    return _roomNo + "00" + _bedNo.ToString();
+                    return getRoomName.RoomString + "00" + _bedNo.ToString();
                 else
-                    return _roomNo + "0" + _bedNo.ToString();
+                    return getRoomName.RoomString + "0" + _bedNo.ToString();
             }
         }
 
@@ -65,7 +67,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-        public string roomNo
+        public int roomNo
         {
             get
             {
@@ -74,6 +76,19 @@ namespace Hospipal.Database_Class
             set
             {
                 _roomNo = value;
+            }
+        }
+
+
+        public string ward
+        {
+            get
+            {
+                return _ward;
+            }
+            set
+            {
+                _ward = value;
             }
         }
 
@@ -98,13 +113,14 @@ namespace Hospipal.Database_Class
 
         }
 
-        public Bed(int bedNo, States state, int pid, string roomNo, string assigningNurse)
+        public Bed(int bedNo, States state, int pid, int roomNo, string assigningNurse, string ward)
         {
             _bedNo =  bedNo;
             _state = state;
             _pid =  pid;
             _roomNo =  roomNo;
             _assigningNurse =  assigningNurse;
+            _ward = ward;
         }
 
         #endregion
@@ -121,8 +137,9 @@ namespace Hospipal.Database_Class
                     _bedNo = Convert.ToInt32(row[0]);
                     _state = (States) Convert.ToInt32(row[1]);
                     _pid = Convert.ToInt32(row[2]);
-                    _roomNo = row[3].ToString();
+                    _roomNo = Convert.ToInt32(row[3].ToString());
                     _assigningNurse = row[4].ToString();
+                    _ward = row[5].ToString();
                 }
                 return true;
             }
@@ -132,8 +149,8 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            return Database.Insert("Insert into Bed (bed_No,state,pid,roomNo,assigning_Nurse)" +
-                    "VALUES (" + _bedNo + "," + (int)_state + "," + _pid + ", '" + _roomNo + "', '" + _assigningNurse + "')");
+            return Database.Insert("Insert into Bed (bed_No,state,pid,roomNo,assigning_Nurse,ward)" +
+                    "VALUES (" + _bedNo + "," + (int)_state + "," + _pid + ", " + _roomNo + ", '" + _assigningNurse + "','" + _ward + "')");
         }
 
         public bool Delete()
@@ -141,13 +158,13 @@ namespace Hospipal.Database_Class
             return Database.Delete("DELETE FROM Bed WHERE bed_No = " + _bedNo);
         }
 
-        public static List<Bed> GetBeds(string RoomNo)
+        public static List<Bed> GetBeds(int RoomNo,string ward)
         {
-            List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno ='" + RoomNo + "' ORDER BY Bed_no");
+            List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno =" + RoomNo + " AND ward = '" + ward + "' ORDER BY Bed_no");
             List<Bed> getbeds = new List<Bed>();
             foreach (object[] row in rooms)
             {
-                Bed newBed = new Bed(Convert.ToInt32(row[0]), (States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), row[3].ToString(), row[4].ToString());
+                Bed newBed = new Bed(Convert.ToInt32(row[0]), (States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), Convert.ToInt32(row[3]), row[4].ToString(),row[5].ToString());
                 getbeds.Add(newBed);
             }
             return getbeds;
