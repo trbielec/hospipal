@@ -143,7 +143,7 @@ namespace Hospipal.Database_Class
 
         public static List<Bed> GetBeds(string RoomNo)
         {
-            List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno ='" + RoomNo + "'");
+            List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno ='" + RoomNo + "' ORDER BY Bed_no");
             List<Bed> getbeds = new List<Bed>();
             foreach (object[] row in rooms)
             {

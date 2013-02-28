@@ -136,18 +136,21 @@ namespace Hospipal
         private void BedAdd(object sender, RoutedEventArgs e)
         {
             Bed newBed;
-            if (BedDG.Items.Count > 0 && BedDG.Items.Count < 99) //hard limit 99 beds in one room
+            if (BedDG.Items.Count < 99)
             {
-                Bed LastBed = ((Bed)BedDG.Items[BedDG.Items.Count - 1]);
-                newBed = new Bed(LastBed.bedNo + 1, (Bed.States)1, 0, LastBed.roomNo, "");  //Non-patients have a patient id of 0.
+                if (BedDG.Items.Count > 0) //hard limit 99 beds in one room
+                {
+                    Bed LastBed = ((Bed)BedDG.Items[BedDG.Items.Count - 1]);
+                    newBed = new Bed(LastBed.bedNo + 1, (Bed.States)1, 0, LastBed.roomNo, "");  //Non-patients have a patient id of 0.
+                }
+                else
+                {
+                    string roomNo = ((Room)RoomDG.SelectedItem).RoomNo;
+                    newBed = new Bed(1, (Bed.States)1, 0, roomNo, "");
+                }
+                newBed.Insert();
             }
-            else
-            {
-                string roomNo = ((Room)RoomDG.SelectedItem).RoomNo;
-                newBed = new Bed(1, (Bed.States)1, 0, roomNo, "");
-            }
-            newBed.Insert();
-
+            
             List<Bed> beds = Bed.GetBeds(((Room)RoomDG.SelectedItem).RoomNo);
             BedDG.DataContext = beds;
             BedDG.Items.Refresh();
@@ -156,6 +159,7 @@ namespace Hospipal
 
         private void BedDelete(object sender, RoutedEventArgs e)
         {
+
             Bed LastBed = ((Bed)BedDG.Items[BedDG.Items.Count - 1]);
             LastBed.Delete();
             
