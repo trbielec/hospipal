@@ -23,6 +23,7 @@ namespace Hospipal
     {
         private bool _isNewRoom = true;  //To use the same window for edits and adds.
 
+        private UserControl_Wards ParentWardsWindow = null;
 
         //Required for databinding -- BEGIN
         /* Also if you look at the Text property of the Textboxes, you can see that the binding is done there.
@@ -41,19 +42,21 @@ namespace Hospipal
 
         private Ward _Ward;
 
-        public UserControl_AddRoom(Ward ward)
+        public UserControl_AddRoom(Ward ward, UserControl_Wards parentUC)
         {
             InitializeComponent();
             room = new Room();
             _Ward = ward;
+            ParentWardsWindow = parentUC as UserControl_Wards;
         }
 
-        public UserControl_AddRoom(Room Room, Ward ward)
+        public UserControl_AddRoom(Room Room, Ward ward, UserControl_Wards parentUC)
         {
             InitializeComponent();
             _isNewRoom = false;  //A new patient will not have a health care no to reference
             room = Room;
             _Ward = ward;
+            ParentWardsWindow = parentUC as UserControl_Wards;
 
         }
 
@@ -75,6 +78,9 @@ namespace Hospipal
             {
                 room.Update();
             }
+
+            ParentWardsWindow.RoomDG.DataContext = Room.GetRooms(_Ward.WardName);
+                
             this.Close();
         }
 

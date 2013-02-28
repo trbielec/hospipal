@@ -88,19 +88,19 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Bed" Binding="{Binding Path=bed}" Width="*"/>
             </DataGrid.Columns>
-        </DataGrid><Button Grid.Column="2" Grid.Row="2" Name="Bed_AddButton" Click="BedAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        </DataGrid><Button Grid.Column="2" Grid.Row="2" Name="Bed_AddButton" Click="BedAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="40,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/add.png"/>
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="2" Grid.Row="2" Name="Bed_EditButton" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_EditButton" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/edit.png" Width="45"/>
             </StackPanel>
         </Button>
 
-        <Button Grid.Column="2" Grid.Row="2" Name="Bed_DeleteButton" Click="BedDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="2" Grid.Row="2" Name="Bed_DeleteButton" Click="BedDelete" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="105,0,0,0" Width="60" Height="60">
             <StackPanel>
                 <Image Source="./Resources/Button Images/trash.png"/>
             </StackPanel>
