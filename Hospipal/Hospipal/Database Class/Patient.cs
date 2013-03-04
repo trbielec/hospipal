@@ -219,10 +219,25 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            if(CheckDuplicates())
-                return Database.Insert("Insert into Patient (Hc_no,fname,lname,dob_day,dob_month,dob_year,street_address,city,province,postal_code,home_phone_no,mobile_phone_no,work_phone_no)" +
-                    "VALUES (" + _HealthCareNo + ",'" + _FirstName + "','" + _LastName + "'," + _DOB.Day + "," + _DOB.Month + "," + _DOB.Year + ",'" + _StreetAddress + "','" + _City + "','" + _Province + "','" + _PostalCode + "','" + _HomePhoneNo + "','" + _MobilePhoneNo + "','" + _WorkPhoneNo + "')");
-            return false;
+            MySqlCommand patient = new MySqlCommand("Insert_Patient(@new_hc_no,@new_fname,@new_lname,@new_dob_day,@new_dob_month,@new_dob_year,@new_street_address,@new_city,@new_province,@new_postal_code,@new_home_phone_no,@new_mobile_phone_no,@new_work_phone_no);");
+            if (CheckDuplicates())
+            {
+                patient.Parameters.AddWithValue("new_hc_no", _HealthCareNo);
+                patient.Parameters.AddWithValue("new_fname", _FirstName);
+                patient.Parameters.AddWithValue("new_lname", _LastName);
+                patient.Parameters.AddWithValue("new_dob_day", _DOB.Day);
+                patient.Parameters.AddWithValue("new_dob_month", _DOB.Month);
+                patient.Parameters.AddWithValue("new_dob_year", _DOB.Year);
+                patient.Parameters.AddWithValue("new_street_address", _StreetAddress);
+                patient.Parameters.AddWithValue("new_city", _City);
+                patient.Parameters.AddWithValue("new_province", _Province);
+                patient.Parameters.AddWithValue("new_postal_code", _PostalCode);
+                patient.Parameters.AddWithValue("new_home_phone_no", _HomePhoneNo);
+                patient.Parameters.AddWithValue("new_mobile_phone_no", _MobilePhoneNo);
+                patient.Parameters.AddWithValue("new_work_phone_no", _WorkPhoneNo);
+                return Database.Insert(patient);
+            } 
+           return false;
         }
 
         public bool Update()

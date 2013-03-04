@@ -208,9 +208,13 @@ namespace Hospipal
             }
         }
 
-        internal bool Update(MySqlCommand patient)
+        internal bool Update(MySqlCommand command)
         {
-            return RunQueryWithNoReturn(patient);
+            return RunQueryWithNoReturn(command);
+        }
+        internal bool Insert(MySqlCommand command)
+        {
+            return RunQueryWithNoReturn(command);
         }
 
         private bool RunQueryWithNoReturn(MySqlCommand command)
@@ -274,7 +278,6 @@ namespace Hospipal
 
             return null;
         }
-
     }
 
 

@@ -34,5 +34,10 @@ namespace Hospipal
         {
             return db.Update(command);
         }
+
+        internal static bool Insert(MySql.Data.MySqlClient.MySqlCommand command)
+        {
+            return db.Insert(command);
+        }
     }
 }
