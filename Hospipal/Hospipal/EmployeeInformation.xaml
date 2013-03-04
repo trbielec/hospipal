@@ -46,8 +46,8 @@
                 <Label x:Name="nurseTypeLabel" Content="Nurse " Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
 
-                <TextBox x:Name="lastNameTb" Text="{Binding Path=employee.Lname,ElementName=employeeControl,Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBox x:Name="firstNameTb" Text="{Binding Path=employee.Fname,ElementName=employeeControl,Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+                <TextBox x:Name="lastNameTb" Text="{Binding Path=employee.Lname,ElementName=employeeControl,Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" MaxLength="50"/>
+                <TextBox x:Name="firstNameTb" Text="{Binding Path=employee.Fname,ElementName=employeeControl,Mode=TwoWay}" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" MaxLength="50"/>
 
                 <ComboBox x:Name="specialtyCb" SelectedIndex="0"  Text="{Binding Path=employee.Specialty,ElementName=employeeControl,Mode=TwoWay}" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="Auto" Margin="0,0,50,0">
                     <ComboBoxItem Name="gen">General</ComboBoxItem>

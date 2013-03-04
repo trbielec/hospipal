@@ -1,7 +1,7 @@
 ﻿<Application x:Class="Hospipal.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
-             StartupUri="PatientInformation.xaml">
+             StartupUri="MainWindow.xaml">
 
         <Application.Resources>
             <Style TargetType="{x:Type TextBox}">
@@ -10,6 +10,8 @@
             </Style>
         <Style TargetType="{x:Type TextBox}" x:Key="Numeric">
             <EventSetter Event="PreviewTextInput" Handler="checkInput">
+            </EventSetter>
+            <EventSetter Event="TextChanged" Handler="highlightBox">
             </EventSetter>
         </Style>
     </Application.Resources>

@@ -32,8 +32,8 @@
         <Label Content="Ward Name:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Content="Ward Slug:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <TextBox x:Name="WardNametb" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.WardName,ElementName=wardControl,Mode=TwoWay}"/>
-        <TextBox x:Name="slugNametb" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.SlugName,ElementName=wardControl,Mode=TwoWay}"/>
+        <TextBox x:Name="WardNametb" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.WardName,ElementName=wardControl,Mode=TwoWay}" MaxLength="50"/>
+        <TextBox x:Name="slugNametb" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=ward.SlugName,ElementName=wardControl,Mode=TwoWay}" MaxLength="4"/>
 
         <Button Grid.Column="3" Grid.Row="4" Name="SaveButton" Click="Save" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>

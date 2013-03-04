@@ -21,7 +21,7 @@
         <Label x:Name="lblTreatmentDate" Content="Treatment Date:" HorizontalAlignment="Left" Margin="263,148,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblTreatmentTime" Content="Treatment Time:" HorizontalAlignment="Left" Margin="264,187,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblTreatmentNotes" Content="Treatment Notes:" HorizontalAlignment="Left" Margin="263,258,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="129" Margin="375,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+        <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="129" Margin="375,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172" MaxLength="500"/>
 
         <telerik:RadTimePicker x:Name="boxTime" HorizontalAlignment="Left" Margin="375,189,0,0" VerticalAlignment="Top" Width="168"/>
         <Button x:Name="buttonSave" HorizontalAlignment="Left" Margin="275,421,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonSave_Click">
