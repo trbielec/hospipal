@@ -32,8 +32,8 @@
         <Label Content="Room Number:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label Content="Floor Number:" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <TextBox x:Name="RoomNo" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=room.RoomNo,ElementName=roomControl,Mode=TwoWay}"/>
-        <TextBox x:Name="FloorNo" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path=room.FloorNo,ElementName=roomControl,Mode=TwoWay}"/>
+        <TextBox x:Name="RoomNo" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Style="{StaticResource Numeric}" VerticalAlignment="Center" Text="{Binding Path=room.RoomNo,ElementName=roomControl,Mode=TwoWay}"/>
+        <TextBox x:Name="FloorNo" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" Style="{StaticResource Numeric}" VerticalAlignment="Center" Text="{Binding Path=room.FloorNo,ElementName=roomControl,Mode=TwoWay}"/>
 
         <Button Grid.Column="3" Grid.Row="4" Name="SaveButton" Click="Save" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
