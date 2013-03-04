@@ -29,5 +29,10 @@ namespace Hospipal
         {
             return db.Select(query);
         }
+
+        internal static bool Update(MySql.Data.MySqlClient.MySqlCommand command)
+        {
+            return db.Update(command);
+        }
     }
 }

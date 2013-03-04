@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace Hospipal.Database_Class
 {
@@ -20,7 +22,7 @@ namespace Hospipal.Database_Class
         private string _HomePhoneNo;
         private string _MobilePhoneNo;
         private string _WorkPhoneNo;
-
+        
         #region Getters/Setters
         public int PatientID
         {
@@ -37,7 +39,8 @@ namespace Hospipal.Database_Class
             }
             set
             {
-                        _HealthCareNo = value;
+                _HealthCareNo = value;
+                
             }
         }
         public string FirstName
@@ -156,6 +159,7 @@ namespace Hospipal.Database_Class
 
         public Patient()
         {
+            _DOB = new DateTime(1990, 1, 1);
         }
 
 
@@ -165,7 +169,7 @@ namespace Hospipal.Database_Class
             FirstName = firstName;
             LastName = lastName;
             DOB = dOB;
-           StreetAddress = streetAddress;
+            StreetAddress = streetAddress;
             City = city;
             Province = province;
             PostalCode = postalCode;
@@ -223,12 +227,32 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
+            MySqlCommand patient = new MySqlCommand("Update_Patient(@same_pid,@new_hc_no,@new_fname,@new_lname,@new_dob_day,@new_dob_month," +
+                                                                "@new_dob_year,@new_street_address,@new_city,@new_province,@new_postal_code," +
+                                                                "@new_home_phone_no,@new_mobile_phone_no,@new_work_phone_no);");
             if (CheckDuplicates())
-                return Database.Update("Update Patient Set Hc_no = " + _HealthCareNo + ", fname = '" + _FirstName + "', " +
-                   "lname = '" + _LastName + "', dob_day = " + _DOB.Day + ", dob_month = " + _DOB.Month + ", dob_year = " + _DOB.Year +
-                   ", street_address = '" + _StreetAddress + "', city = '" + _City + "', province = '" + _Province +
-                   "', postal_code = '" + _PostalCode + "', home_phone_no = '" + _HomePhoneNo + "', mobile_phone_no = '" + _MobilePhoneNo +
-                   "', work_phone_no = '" + _WorkPhoneNo + "' WHERE Pid = " + _PatientID);;
+            {
+                patient.Parameters.AddWithValue("same_pid", _PatientID);
+                patient.Parameters.AddWithValue("new_hc_no", _HealthCareNo);
+                patient.Parameters.AddWithValue("new_fname", _FirstName);
+                patient.Parameters.AddWithValue("new_lname", _LastName);
+                patient.Parameters.AddWithValue("new_dob_day", _DOB.Day);
+                patient.Parameters.AddWithValue("new_dob_month", _DOB.Month);
+                patient.Parameters.AddWithValue("new_dob_year", _DOB.Year);
+                patient.Parameters.AddWithValue("new_street_address", _StreetAddress);
+                patient.Parameters.AddWithValue("new_city", _City);
+                patient.Parameters.AddWithValue("new_province", _Province);
+                patient.Parameters.AddWithValue("new_postal_code", _PostalCode);
+                patient.Parameters.AddWithValue("new_home_phone_no", _HomePhoneNo);
+                patient.Parameters.AddWithValue("new_mobile_phone_no", _MobilePhoneNo);
+                patient.Parameters.AddWithValue("new_work_phone_no", _WorkPhoneNo);
+                return Database.Update(patient);
+            }
+               /* return Database.Update("Update Patient Set Hc_no = @hc_no, fname = @fname, " +
+                   "lname = @lname, dob_day = @dob_day, dob_month = @dob_month, dob_year = @dob_year" +
+                   ", street_address = @street_address, city = @city, province = @province " +
+                   ", postal_code = @postal_code, home_phone_no = @home_phone_no, mobile_phone_no = @mobile_phone_no" +
+                   ", work_phone_no = @work_phone_no WHERE Pid = " + _PatientID,patient);*/
             return false;
         }
 

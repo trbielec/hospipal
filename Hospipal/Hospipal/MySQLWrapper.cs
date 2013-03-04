@@ -207,6 +207,76 @@ namespace Hospipal
                 return false;
             }
         }
+
+        internal bool Update(MySqlCommand patient)
+        {
+            return RunQueryWithNoReturn(patient);
+        }
+
+        private bool RunQueryWithNoReturn(MySqlCommand command)
+        {
+            if (OpenConnection())
+            {
+                try
+                {
+                    command.Connection = connection;
+                    int ret = command.ExecuteNonQuery();
+                    CloseConnection();
+                    if (ret > 0)
+                        return true;
+                    else
+                        return false;
+                }
+                catch (MySqlException e)
+                {
+                    Console.WriteLine("MySQL Error " + e.Number + ":" + e.InnerException.Message);
+                    CloseConnection();
+                }
+            }
+
+            return false;
+        }
+
+        private List<object[]> RunQueryWithReturn(MySqlCommand command)
+        {
+            if (OpenConnection())
+            {
+                try
+                {
+                    // Create SQL Command from query and connection object
+                    command.Connection =  connection;
+                    // Execute command
+                    MySqlDataReader data = command.ExecuteReader();
+                    List<object[]> allData = new List<object[]>();
+                    // Loop through all returned objects from the DB and add them to the List
+                    // Each element in the list is an object[] containing all the data for each row
+                    while (data.Read())
+                    {
+                        object[] rowData = new object[data.FieldCount];
+                        for (int i = 0; i < rowData.Length; i++)
+                        {
+                            rowData[i] = data[i];
+                        }
+                        allData.Add(rowData);
+                    }
+
+                    // clean up
+                    data.Close();
+                    CloseConnection();
+                    return allData;
+                }
+                catch (MySqlException e)
+                {
+                    Console.WriteLine("MySQL Error " + e.Number + ":" + e.Message);
+                    CloseConnection();
+                }
+            }
+
+            return null;
+        }
+
     }
+
+
 
 }
