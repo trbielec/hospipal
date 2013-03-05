@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
              StartupUri="MainWindow.xaml">
 
-        <Application.Resources>
-            <Style TargetType="{x:Type TextBox}" >
-                <EventSetter Event="TextChanged" Handler="highlightBox">
-                </EventSetter>
-            </Style>
-            
-            <Style TargetType="{x:Type TextBox}" x:Key="Numeric">
-                <EventSetter Event="PreviewTextInput" Handler="checkInput">
-                </EventSetter>
-                <EventSetter Event="TextChanged" Handler="highlightBox">
-                </EventSetter>
-                <EventSetter Event="DataObject.Pasting" Handler="noPaste">
-                </EventSetter>
-            </Style>
-        </Application.Resources>
+    <Application.Resources>
+        <Style TargetType="{x:Type TextBox}" >
+            <EventSetter Event="TextChanged" Handler="highlightBox">
+            </EventSetter>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" x:Key="Numeric">
+            <EventSetter Event="PreviewTextInput" Handler="checkInput">
+            </EventSetter>
+            <EventSetter Event="TextChanged" Handler="highlightBox">
+            </EventSetter>
+            <EventSetter Event="DataObject.Pasting" Handler="noPaste">
+            </EventSetter>
+        </Style>
+    </Application.Resources>
 </Application>

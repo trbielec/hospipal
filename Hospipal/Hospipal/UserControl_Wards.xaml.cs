@@ -24,7 +24,7 @@ namespace Hospipal
     {
         private List<Ward> Wards;
         private List<Room> Rooms;
-    
+
         public UserControl_Wards()
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace Hospipal
         private void WardAdd(object sender, RoutedEventArgs e)
         {
             UserControl_AddWard myWindow = new UserControl_AddWard(this);
-           
+
             myWindow.ShowDialog();
         }
 
@@ -54,20 +54,20 @@ namespace Hospipal
             if (WardDG.SelectedItems.Count > 0)
             {
                 //List<Ward> WardToDel = Ward.GetWards();
-                
-                    List<Room> roomsToDel = Room.GetRooms(((Ward)WardDG.SelectedItem).SlugName);
-                    foreach (Room roomRow in roomsToDel)
-                    {
-                            List<Bed> bedsToDel = Bed.GetBeds(((Room)RoomDG.SelectedItem).RoomNo,((Room)RoomDG.SelectedItem).WardName);
-                            foreach (Bed bedRow in bedsToDel)
-                            {
-                                bedRow.Delete();
-                            }    
 
-                        roomRow.Delete();
+                List<Room> roomsToDel = Room.GetRooms(((Ward)WardDG.SelectedItem).SlugName);
+                foreach (Room roomRow in roomsToDel)
+                {
+                    List<Bed> bedsToDel = Bed.GetBeds(((Room)RoomDG.SelectedItem).RoomNo, ((Room)RoomDG.SelectedItem).WardName);
+                    foreach (Bed bedRow in bedsToDel)
+                    {
+                        bedRow.Delete();
                     }
 
-                
+                    roomRow.Delete();
+                }
+
+
 
                 ((Ward)WardDG.SelectedItem).Delete();
 
@@ -97,7 +97,7 @@ namespace Hospipal
 
         private void RoomEdit(object sender, RoutedEventArgs e)
         {
-            UserControl_AddRoom myWindow = new UserControl_AddRoom(((Room)RoomDG.SelectedItem),((Ward)WardDG.SelectedItem), this);
+            UserControl_AddRoom myWindow = new UserControl_AddRoom(((Room)RoomDG.SelectedItem), ((Ward)WardDG.SelectedItem), this);
 
             myWindow.ShowDialog();
         }
@@ -107,17 +107,19 @@ namespace Hospipal
             if (RoomDG.SelectedItems.Count > 0)
             {
                 List<Bed> bedsToDel = Bed.GetBeds(((Room)RoomDG.SelectedItem).RoomNo, ((Room)RoomDG.SelectedItem).WardName);
-                foreach (Bed row in bedsToDel){
+                foreach (Bed row in bedsToDel)
+                {
                     row.Delete();
-            }
+                }
+
 
                 BedDG.DataContext = Bed.GetBeds(((Room)RoomDG.SelectedItem).RoomNo, ((Room)RoomDG.SelectedItem).WardName);
-            BedDG.Items.Refresh();
+                BedDG.Items.Refresh();
 
-            ((Room)RoomDG.SelectedItem).Delete();
+                ((Room)RoomDG.SelectedItem).Delete();
 
-            RoomDG.DataContext = Room.GetRooms(((Ward)WardDG.SelectedItem).WardName);
-            RoomDG.Items.Refresh();
+                RoomDG.DataContext = Room.GetRooms(((Ward)WardDG.SelectedItem).SlugName);
+                RoomDG.Items.Refresh();
             }
         }
 
@@ -135,13 +137,13 @@ namespace Hospipal
                 if (BedDG.Items.Count > 0) //hard limit 99 beds in one room
                 {
                     Bed LastBed = ((Bed)BedDG.Items[BedDG.Items.Count - 1]);
-                    newBed = new Bed(LastBed.bedNo + 1, (Bed.States)1, 0, LastBed.roomNo, "",LastBed.ward);  //Non-patients have a patient id of 0.
+                    newBed = new Bed(LastBed.bedNo + 1, (Bed.States)1, 0, LastBed.roomNo, "", LastBed.ward);  //Non-patients have a patient id of 0.
                 }
                 else
                 {
                     int roomNo = ((Room)RoomDG.SelectedItem).RoomNo;
                     string wardName = ((Ward)WardDG.SelectedItem).SlugName;
-                    newBed = new Bed(1, (Bed.States)1, 0, roomNo, "",wardName);
+                    newBed = new Bed(1, (Bed.States)1, 0, roomNo, "", wardName);
                 }
                 newBed.Insert();
 
@@ -165,7 +167,7 @@ namespace Hospipal
                 BedDG.DataContext = beds;
                 BedDG.Items.Refresh();
             }
-                
+
         }
 
         private void WardDGCellChanged(object sender, SelectedCellsChangedEventArgs e)

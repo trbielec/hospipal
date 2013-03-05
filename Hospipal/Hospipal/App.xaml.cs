@@ -24,6 +24,7 @@ namespace Hospipal
 
         }
 
+
         private void checkInput(object sender, TextCompositionEventArgs a)
         {
             Regex regex = new Regex("[^0-9]+");

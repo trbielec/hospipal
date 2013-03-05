@@ -125,7 +125,7 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            _employee_type = "Doctor";
+            _employee_type = "Nurse";
             _supervisor_id = 1;
             MySqlCommand employee = new MySqlCommand("Insert_Employee(@fname,@lname,@specialty,@employee_type,@supervisor_id);");
             employee.Parameters.AddWithValue("fname", _fname);
