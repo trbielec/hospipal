@@ -9,24 +9,26 @@ namespace HospipalTests
     {
         private Employee employee;
 
-        [TestCase]
-        public void TestEmployeeInsertUpdateDeleteMethods()
+        [SetUp]
+        public void setup()
         {
-            employee = new Employee(1000, "Test", "Test", "Test", "Test", 1);
-            Assert.True(employee.Insert());
-            Assert.False(employee.Insert());
+            employee = new Employee(1, "TestFname", "TestLname", "TestSpec", "TestType", 1);
+            employee.Insert();
+        }
 
-            employee.Fname = "Test3";
-            Assert.True(employee.Update());
-
-            Assert.True(employee.Delete());
-            Assert.False(employee.Delete());
+        [TearDown]
+        public void teardown()
+        {
+            employee.Delete();
         }
 
         [TestCase]
-        public void TestGetNewEid()
+        public void TestEmployeeInsert()
         {
-            Assert.Greater(Employee.GenerateNewEid(), -1);
+            Employee testEmployee = new Employee(1, null, null, null, null, 0);
+            Assert.True(testEmployee.Insert());
+
+            testEmployee.Delete();
         }
 
         [TestCase]

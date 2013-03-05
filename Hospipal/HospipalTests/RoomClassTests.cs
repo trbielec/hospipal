@@ -9,39 +9,58 @@ namespace HospipalTests
     {
         private Room room;
 
-        [TestCase]
-        public void TestInsertUpdateDeleteRoom()
+        [SetUp]
+        public void setup()
         {
-            room = new Room("TestRoom", "TestWard", 1);
-            Assert.True(room.Insert());
-            Assert.False(room.Insert());
+            room = new Room(1, "TestRoom", 1);
+            room.Insert();
+        }
 
-            room.WardName = "TestChangedWardName";
+        [TearDown]
+        public void teardown()
+        {
+            room.Delete();
+        }
+
+        [TestCase]
+        public void TestUpdateRoom()
+        {
+            room.FloorNo = -1;
             Assert.True(room.Update());
 
-            Assert.True(room.Delete());
-            Assert.False(room.Delete());
+            room.RoomNo = 1;
+            Assert.True(room.Update());
+        }
+
+        [TestCase]
+        public void TestInsertRoom()
+        {
+            Room testRoom = new Room(1, "TestWard", 1);
+            Assert.True(testRoom.Insert());
+            testRoom.Delete();
+        }
+
+        [TestCase]
+        public void TestDeleteRoom()
+        {
+            Room testRoom = new Room(1, "TestWard", 1);
+            testRoom.Insert();
+            Assert.True(testRoom.Delete());
         }
 
         [TestCase]
         public void TestRoomSelect()
         {
-            room = new Room(null, null, 0);
-            Assert.False(room.Select());
+            Room testroom = new Room(-1, null);
+            Assert.False(testroom.Select());
 
-            room = new Room("TestRoom", "TestWard", 1);
-            Assert.True(room.Insert());
             Assert.True(room.Select());
-
-            Assert.True(room.Delete());
         }
 
         [TestCase]
-        public void TestGetRooms()
+        public void TestGetRoomsWithInvlaidWardName()
         {
             Assert.IsEmpty(Room.GetRooms(null));
-            Assert.IsNotEmpty(Room.GetRooms("Psychiatric"));
         }
-
     }
 }

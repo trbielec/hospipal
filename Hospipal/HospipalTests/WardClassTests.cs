@@ -9,6 +9,7 @@ namespace HospipalTests
     {
         private Ward ward;
 
+        /*
         [TestCase]
         public void TestInsertUpdateDeleteWard()
         {
@@ -21,8 +22,9 @@ namespace HospipalTests
 
             Assert.True(ward.Delete());
             Assert.False(ward.Delete());
-        }
+        }*/
 
+        /*
         [TestCase]
         public void TestSelectWard()
         {
@@ -33,7 +35,7 @@ namespace HospipalTests
             ward = new Ward("Test", "TW");
             Assert.True(ward.Select());
             Assert.True(ward.Delete());
-        }
+        }*/
 
         [TestCase]
         public void TestGetWards()
