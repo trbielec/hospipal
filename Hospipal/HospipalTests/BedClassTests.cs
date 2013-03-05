@@ -9,36 +9,45 @@ namespace HospipalTests
     {
         private Bed bed;
 
+        [SetUp]
+        public void setup()
+        {
+            bed = new Bed(-1, Bed.States.Available, 0, 0, "TestNurse", "TestWard");
+            bed.Insert();
+        }
+
+        [TearDown]
+        public void teardown()
+        {
+            bed.Delete();
+        }
+
         [TestCase]
         public void TestBedSelect()
         {
-            bed = new Bed();
-            Assert.False(bed.Select());
-
-            bed = new Bed(1, 0, 0, null, null);
             Assert.True(bed.Select());
         }
 
         [TestCase]
-        public void TestInsertDeleteBeds()
+        public void TestInsertBeds()
         {
-            bed = new Bed(1000, Bed.States.Occupied, 1, "Room", "Nurse");
-            Assert.True(bed.Insert());
-            Assert.False(bed.Insert());
-
-            Assert.True(bed.Delete());
-            Assert.False(bed.Delete());
+            Bed testBed = new Bed(0, Bed.States.Available, 0, 0, "TestNurse", "TestWard");
+            Assert.True(testBed.Insert());
+            testBed.Delete();
         }
 
         [TestCase]
-        public void TestGetBeds()
+        public void TestDeleteBeds()
         {
-            Assert.IsEmpty(Bed.GetBeds(""));
+            Bed testBed = new Bed(0, Bed.States.Available, 0, 0, "TestNurse", "TestWard");
+            testBed.Insert();
+            Assert.True(testBed.Delete());
+        }
 
-            bed = new Bed(1000, Bed.States.Occupied, 1, "TestRoom", "Nurse");
-            Assert.True(bed.Insert());
-            Assert.IsNotEmpty(Bed.GetBeds("TestRoom"));
-            Assert.True(bed.Delete());
+        [TestCase]
+        public void TestGetBedsInvalidInput()
+        {
+            Assert.IsEmpty(Bed.GetBeds(-1,null));
         }
     }
 }
