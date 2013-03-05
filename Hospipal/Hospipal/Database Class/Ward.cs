@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -80,12 +81,11 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-
-            Console.WriteLine("what is " + _wardName);
-            Console.WriteLine("what is " + _slugName);
-
-            return Database.Insert("Insert into Ward (ward_name, ward_slug)" +
-                "VALUES ('" + _wardName + "','" + _slugName + "')");
+            MySqlCommand ward = new MySqlCommand("Insert_Ward(@ward,@slug);");
+            ward.Parameters.AddWithValue("ward", _wardName);
+            ward.Parameters.AddWithValue("slug", _slugName);
+            
+            return Database.Insert(ward);
         }
 
         public bool Update()
