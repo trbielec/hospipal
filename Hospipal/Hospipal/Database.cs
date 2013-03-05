@@ -39,5 +39,10 @@ namespace Hospipal
         {
             return db.Insert(command);
         }
+
+        internal static bool CheckConnection()
+        {
+            return db.TestConnection();
+        }
     }
 }

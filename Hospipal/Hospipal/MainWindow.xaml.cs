@@ -23,7 +23,13 @@ namespace Hospipal
         public MainWindow()
         {
             InitializeComponent();
-            Content = new UserControl_LoginView();
+            if (!Database.CheckConnection())
+            {
+                MessageBox.Show("There is no internet connectivity.  Fix it");
+                this.Close();
+            }
+            else
+                Content = new UserControl_LoginView();
         }
     }
 }

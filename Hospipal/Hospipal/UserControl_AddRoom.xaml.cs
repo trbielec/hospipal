@@ -70,18 +70,16 @@ namespace Hospipal
             room.RoomNo = Convert.ToInt32(RoomNo.Text);
             room.WardName = _Ward.SlugName;
             SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
-            if (_isNewRoom)
+            if (_isNewRoom && room.Insert())
             {
-                room.Insert();
+                ParentWardsWindow.RoomDG.DataContext = Room.GetRooms(_Ward.SlugName);
+                this.Close();
             }
             else
             {
-                room.Update();
+                MessageBox.Show("There is already a room with that number on that floor");
             }
 
-            ParentWardsWindow.RoomDG.DataContext = Room.GetRooms(_Ward.SlugName);
-                
-            this.Close();
         }
 
     }

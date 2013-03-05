@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Hospipal
 {
     using MySql.Data.MySqlClient;
+    using System.Windows;
 
     public class MySQLWrapper
     {
@@ -233,8 +234,8 @@ namespace Hospipal
                 }
                 catch (MySqlException e)
                 {
-                    Console.WriteLine("MySQL Error " + e.Number + ":" + e.InnerException.Message);
                     CloseConnection();
+                    return false;
                 }
             }
 

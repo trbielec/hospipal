@@ -64,17 +64,16 @@ namespace Hospipal
         private void Save(object sender, RoutedEventArgs e)
         {
                 SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
-                if (_isNewWard)
+                if ((_isNewWard && ward.Insert()))
                 {
-                    ward.Insert();
+                    ParentWardsWindow.WardDG.DataContext = Ward.GetWards();
+                    this.Close();
                 }
                 else
                 {
-                    ward.Update();
+                    MessageBox.Show("The Ward already exists.");
                 }
 
-                ParentWardsWindow.WardDG.DataContext = Ward.GetWards();
-                this.Close();
          }
     }
 }
