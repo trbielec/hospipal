@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -115,6 +116,7 @@ namespace Hospipal.Database_Class
         #endregion 
 
         #region Database Functions 
+        //Louay --No need to check duplicates as Eid should be auto-generated and never editable.
         public bool CheckDuplicates()
         {
             return Convert.ToInt32(Database.Select("SELECT * from Employee WHERE eid = " + _eid).ElementAt(0).ElementAt(0)) == _eid;
@@ -123,25 +125,38 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            _employee_type = "Nurse";
+            _employee_type = "Doctor";
             _supervisor_id = 1;
+            MySqlCommand employee = new MySqlCommand("Insert_Employee(@fname,@lname,@specialty,@employee_type,@supervisor_id);");
+            employee.Parameters.AddWithValue("fname", _fname);
+            employee.Parameters.AddWithValue("lname", _lname);
+            employee.Parameters.AddWithValue("specialty", _specialty);
+            employee.Parameters.AddWithValue("employee_type", _employee_type);
+            employee.Parameters.AddWithValue("supervisor_id", _supervisor_id);
+            
             // We know that the generated ID is unique so go ahead and insert
-            return Database.Insert("Insert into Employee (eid,fname,lname,specialty,employee_type,supervisor_id)" +
-                    "VALUES (" + _eid + ",'" + _fname + "','" + _lname + "','" + _specialty + "','" + _employee_type + "'," + _supervisor_id + ")");
+            return Database.Insert(employee);
         }
 
         public bool Update()
         {
             _employee_type = "Nurse";
             _supervisor_id = 1;
-
-            if (CheckDuplicates())
+            MySqlCommand employee = new MySqlCommand("Update_Employee(@eid,@fname,@lname,@specialty,@employee_type,@supervisor_id);");
+            employee.Parameters.AddWithValue("eid", _eid);
+            employee.Parameters.AddWithValue("fname", _fname);
+            employee.Parameters.AddWithValue("lname", _lname);
+            employee.Parameters.AddWithValue("specialty", _specialty);
+            employee.Parameters.AddWithValue("employee_type", _employee_type);
+            employee.Parameters.AddWithValue("supervisor_id", _supervisor_id);
+            return Database.Update(employee);
+           /* if (CheckDuplicates())
             {
                 return Database.Update("Update Employee Set fname = '" + _fname + "', " +
                    "lname = '" + _lname + "', specialty = '" + _specialty + "', employee_type = '" + _employee_type + "', supervisor_id = " + _supervisor_id + " WHERE eid = " + _eid);
             }
             else
-                return false;
+                return false;*/
         }
 
         public bool Delete()
@@ -149,11 +164,12 @@ namespace Hospipal.Database_Class
             return Database.Delete("DELETE FROM Employee WHERE eid = " + _eid);
         }
 
-        public static int GenerateNewEid()
+        /*public static int GenerateNewEid()  //Louay - Should replace eid with Auto-Number.  This will break if you delete the 2nd last one and try to insert one,
+                                            //Eg. 3 rows, 1,2,3 delete #2 add a new one eid will generate #3 for ID, so it will never be able to insert a new one.
         {
             List<object[]> obj = Database.Select("SELECT eid FROM Employee");
             return obj.Count() + 1;
-        }
+        }*/
 
         public static List<Employee> GetEmployees() //Send in empty string if no search
         {

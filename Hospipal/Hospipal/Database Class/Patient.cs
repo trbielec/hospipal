@@ -263,11 +263,6 @@ namespace Hospipal.Database_Class
                 patient.Parameters.AddWithValue("new_work_phone_no", _WorkPhoneNo);
                 return Database.Update(patient);
             }
-               /* return Database.Update("Update Patient Set Hc_no = @hc_no, fname = @fname, " +
-                   "lname = @lname, dob_day = @dob_day, dob_month = @dob_month, dob_year = @dob_year" +
-                   ", street_address = @street_address, city = @city, province = @province " +
-                   ", postal_code = @postal_code, home_phone_no = @home_phone_no, mobile_phone_no = @mobile_phone_no" +
-                   ", work_phone_no = @work_phone_no WHERE Pid = " + _PatientID,patient);*/
             return false;
         }
 

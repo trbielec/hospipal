@@ -62,15 +62,14 @@ namespace Hospipal
         private void Save(object sender, RoutedEventArgs e)
         {
                 Savebtn.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
-                if (_isNewPatient)
+                if ((_isNewPatient && patient.Insert()) || patient.Update())
                 {
-                    patient.Insert();
+                    Content = new UserControl_PatientsView();   
                 }
                 else
                 {
-                    patient.Update();
+                    MessageBox.Show("The HealthCare No entered is already in use.");
                 }
-                Content = new UserControl_PatientsView();
             }
 
         private void HealthCaretb_TextChanged_1(object sender, TextChangedEventArgs e)

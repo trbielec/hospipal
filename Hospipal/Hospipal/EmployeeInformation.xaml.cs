@@ -39,7 +39,7 @@ namespace Hospipal
             InitializeComponent();
             // Populate eid
             employee = new Employee();
-            generatedEID.Content = Employee.GenerateNewEid();
+            //Removed Generate New ID as it can easily be done in the database.
         }
 
         public EmployeeInformation(Employee Employee)
