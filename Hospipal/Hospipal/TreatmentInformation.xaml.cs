@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Globalization;
 using System.Threading;
+using System.Text.RegularExpressions;
+
 
 namespace Hospipal
 {
@@ -298,7 +300,8 @@ namespace Hospipal
                 else
                 {
                     //Store string description of notes
-                    treatmentNotes = txtNotes.Text;
+                    input = Regex.Replace(txtNotes.Text, @"[^\w\s.,]", "");
+                    treatmentNotes = input;
                 }
 
                 //If no errors then code is executes
