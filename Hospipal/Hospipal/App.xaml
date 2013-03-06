@@ -9,6 +9,58 @@
             </EventSetter>
         </Style>
 
+        <Style TargetType="{x:Type Button}" x:Key="PatientButtons">
+        <Style.Triggers>
+            <DataTrigger 
+                     Binding ="{Binding ElementName=Patients_DataGrid, Path=SelectedIndex}" 
+                     Value="-1">
+                <Setter Property="Button.Visibility" Value="Hidden"/>
+            </DataTrigger>
+        </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="EmployeeButtons">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=Employee_DataGrid, Path=SelectedIndex}" 
+                     Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="WardButtons">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=WardDG, Path=SelectedIndex}" 
+                     Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="RoomButtons">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=RoomDG, Path=SelectedIndex}" 
+                     Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+        <Style TargetType="{x:Type Button}" x:Key="TreatmentButtons">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=boxHistory, Path=SelectedIndex}" 
+                     Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
         <Style TargetType="{x:Type TextBox}" x:Key="Numeric">
             <EventSetter Event="PreviewTextInput" Handler="checkInput">
             </EventSetter>

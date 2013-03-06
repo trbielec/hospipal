@@ -14,7 +14,8 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="401.493" />
+                <ColumnDefinition Width="13.507"/>
                 <ColumnDefinition Width="210" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -23,24 +24,24 @@
             <TextBox Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="Employees_SearchBox" Height="28" Width="200" Margin="10,45,0,0" TextWrapping="Wrap" Text="Search"/>
 
             <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Options" Margin="215,10,0,0"/>
-            <ComboBox Grid.Column="0" Margin="215,45,0,0" Name="Employees_SearchOptionBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="28">
+            <ComboBox Grid.Column="0" Margin="215,45,0,0" Name="Employees_SearchOptionBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="28" Grid.ColumnSpan="2">
                 <ComboBoxItem Content="First Name" IsSelected="True"></ComboBoxItem>
                 <ComboBoxItem Content="Last Name"></ComboBoxItem>
             </ComboBox>
 
-            <Button Grid.Column="1" Name="Employees_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="2" Name="Employees_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,20,0,20" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/add.png" RenderTransformOrigin="1.799,1.906"/>
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="1" Name="Employees_EditButton"  HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="2" Name="Employees_EditButton" Style="{StaticResource EmployeeButtons}"  HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,20,0,20" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/edit.png" Width="45"/>
                 </StackPanel>
             </Button>
 
-            <Button Grid.Column="1" Name="Employees_DeleteButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,0,0,0" Width="60" Height="60">
+            <Button Grid.Column="2" Name="Employees_DeleteButton" Style="{StaticResource EmployeeButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,20,0,20" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/trash.png"/>
                 </StackPanel>

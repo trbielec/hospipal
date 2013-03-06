@@ -48,8 +48,10 @@ namespace Hospipal
 
         private void EditPatient(object sender, RoutedEventArgs e)
         {
-            if(Patients_DataGrid.SelectedItems.Count > 0)
+            if (Patients_DataGrid.SelectedItems.Count > 0)
                 Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem));
+            else
+                MessageBox.Show("Please select a patient from the list.");
         }
 
         private void DeletePatient(object sender, RoutedEventArgs e)

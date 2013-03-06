@@ -67,8 +67,6 @@ namespace Hospipal
                     roomRow.Delete();
                 }
 
-
-
                 ((Ward)WardDG.SelectedItem).Delete();
 
                 BedDG.DataContext = null;
