@@ -163,8 +163,11 @@ namespace Hospipal.Database_Class
             foreach (object[] element in obj)
             {
                 s = element[1].ToString() + " " + element[2].ToString();
-                docList.Add(s);
-                doctorsList.Add(s, Convert.ToInt32(element[0]));
+                if (!doctorsList.ContainsKey(s))
+                {
+                    docList.Add(s);
+                    doctorsList.Add(s, Convert.ToInt32(element[0]));
+                }
             }
 
             //returns a string list of doctors
