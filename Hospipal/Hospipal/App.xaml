@@ -3,22 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
              StartupUri="MainWindow.xaml">
 
+
+
     <Application.Resources>
+
+        <!-- Text Box Styles -->
+
+        <!-- Highlights a non-empty textbox -->
         <Style TargetType="{x:Type TextBox}" >
             <EventSetter Event="TextChanged" Handler="highlightBox">
             </EventSetter>
         </Style>
 
-        <Style TargetType="{x:Type Button}" x:Key="PatientButtons">
-        <Style.Triggers>
-            <DataTrigger 
-                     Binding ="{Binding ElementName=Patients_DataGrid, Path=SelectedIndex}" 
-                     Value="-1">
-                <Setter Property="Button.Visibility" Value="Hidden"/>
-            </DataTrigger>
-        </Style.Triggers>
+        <!-- Makes textboxes numeric only input-->
+        <Style TargetType="{x:Type TextBox}" x:Key="Numeric">
+            <EventSetter Event="PreviewTextInput" Handler="checkInput">
+            </EventSetter>
+            <EventSetter Event="TextChanged" Handler="highlightBox">
+            </EventSetter>
+            <EventSetter Event="DataObject.Pasting" Handler="noPaste">
+            </EventSetter>
         </Style>
 
+
+        <!-- Textbox with this style is a required field-->
+        <Style TargetType="{x:Type TextBox}" x:Key="RequiredField">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                    <Setter Property="TextBox.ToolTip" Value="Input value is mandatory" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Required Field and Numeric Only-->
+        <Style TargetType="{x:Type TextBox}" x:Key="NumericRequiredField">
+            <EventSetter Event="PreviewTextInput" Handler="checkInput">
+            </EventSetter>
+            <EventSetter Event="TextChanged" Handler="highlightBox">
+            </EventSetter>
+            <EventSetter Event="DataObject.Pasting" Handler="noPaste">
+            </EventSetter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                    <Setter Property="TextBox.ToolTip" Value="Input value is mandatory" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Button Styles -->
+
+        <!-- This set of styles all hide buttons on certain screens based on which datagrid has an item selected-->
+
+        <!-- Hides the Patient Edit and Delete button if there is no selected row.-->
+        <Style TargetType="{x:Type Button}" x:Key="PatientButtons">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=Patients_DataGrid, Path=SelectedIndex}" 
+                     Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Hides the Employee Edit and Delete button if there is no selected row.-->
         <Style TargetType="{x:Type Button}" x:Key="EmployeeButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -29,6 +76,7 @@
             </Style.Triggers>
         </Style>
 
+        <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected row.-->
         <Style TargetType="{x:Type Button}" x:Key="WardButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -38,6 +86,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+
+        <!-- Hides the Room Delete button and Bed Add and Delete Button if there is no selected row.-->
 
         <Style TargetType="{x:Type Button}" x:Key="RoomButtons">
             <Style.Triggers>
@@ -50,7 +100,7 @@
         </Style>
 
 
-
+        <!-- Hides the Treatment Edit and Delete button if there is no selected row.-->
         <Style TargetType="{x:Type Button}" x:Key="TreatmentButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -60,14 +110,16 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
-        <Style TargetType="{x:Type TextBox}" x:Key="Numeric">
-            <EventSetter Event="PreviewTextInput" Handler="checkInput">
-            </EventSetter>
-            <EventSetter Event="TextChanged" Handler="highlightBox">
-            </EventSetter>
-            <EventSetter Event="DataObject.Pasting" Handler="noPaste">
-            </EventSetter>
-        </Style>
+
+
+        <!-- Brush Resources-->
+            
+        <!-- Required field indicator brush-->
+        <LinearGradientBrush x:Uid="LinearGradientBrush_1" x:Key="FaultyBorderBrush" EndPoint="0,20" StartPoint="0,0" MappingMode="Absolute">
+            <GradientStop x:Uid="GradientStop_1" Color="#FFABADB3" Offset="0.05"/>
+            <GradientStop x:Uid="GradientStop_2" Color="#FFE2E3EA" Offset="0.07"/>
+            <GradientStop x:Uid="GradientStop_3" Color="#FFFF0000" Offset="1"/>
+        </LinearGradientBrush>
+
     </Application.Resources>
 </Application>
