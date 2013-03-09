@@ -73,6 +73,7 @@
     <Compile Include="Database Class\Patient.cs" />
     <Compile Include="Database Class\Room.cs" />
     <Compile Include="Database Class\Treatment.cs" />
+    <Compile Include="Database Class\WaitlistedPatient.cs" />
     <Compile Include="Database Class\Ward.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="EmployeeInformation.xaml.cs">
@@ -103,6 +104,9 @@
     </Compile>
     <Compile Include="UserControl_PatientsView.xaml.cs">
       <DependentUpon>UserControl_PatientsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WaitlistView.xaml.cs">
+      <DependentUpon>WaitlistView.xaml</DependentUpon>
     </Compile>
     <Page Include="EmployeeInformation.xaml">
       <SubType>Designer</SubType>
@@ -163,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddPatient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WaitlistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
