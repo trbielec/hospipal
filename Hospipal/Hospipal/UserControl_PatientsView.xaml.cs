@@ -60,7 +60,7 @@ namespace Hospipal
             {
                 Patients[Patients_DataGrid.SelectedIndex].Delete();
                 Patients.RemoveAt(Patients_DataGrid.SelectedIndex);
-               
+                
                 Patients_DataGrid.Items.Refresh();
             }
         }
