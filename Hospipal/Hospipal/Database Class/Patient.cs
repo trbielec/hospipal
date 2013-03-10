@@ -76,6 +76,15 @@ namespace Hospipal.Database_Class
                 _DOB = value;
             }
         }
+
+        public string getDOB 
+        {
+            get
+            {
+                return _DOB.ToShortDateString();
+            }
+        }
+
         public string StreetAddress
         {
             get
