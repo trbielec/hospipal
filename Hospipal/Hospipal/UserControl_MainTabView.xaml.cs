@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
 
+
 namespace Hospipal
 {
     /// <summary>
@@ -28,6 +29,7 @@ namespace Hospipal
             PatientsTab.Content = new UserControl_PatientsView();
             EmployeesTab.Content = new UserControl_EmployeesView();
             WardsTab.Content = new UserControl_Wards();
+            SchedulingTab.Content = new UserControl_ScheduleView();
         }
     }
 }
