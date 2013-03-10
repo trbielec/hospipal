@@ -67,6 +67,13 @@ namespace Hospipal.Database_Class
             }
         }
 
+        public string DateToShortDateString
+        {
+            get
+            {
+                return _Date.ToShortDateString();
+            }
+        }
         public string Time
         {
             get
