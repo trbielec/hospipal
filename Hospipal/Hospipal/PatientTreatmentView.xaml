@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="600" HorizontalAlignment="Center">
     <Grid>
-        <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Height="228" Width="490" VerticalGridLinesBrush="{x:Null}" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" SelectionChanged="dataGridTreatments_SelectionChanged">
+        <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Height="228" Width="490" VerticalGridLinesBrush="{x:Null}" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Treatment Type" Binding="{Binding Path=TreatmentType}" Width="*"/>
                 <DataGridTextColumn Header="Month" Binding="{Binding Path=Month}" Width="50"/>

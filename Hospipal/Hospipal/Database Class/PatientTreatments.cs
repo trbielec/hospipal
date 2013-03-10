@@ -12,11 +12,7 @@ namespace Hospipal.Database_Class
     {
         #region Attributes
         private int patientID;
-        List<SingleTreatment> receiveTreatments = new List<SingleTreatment>();
-        public static Dictionary<string, int> doctorsList;
-
-        // Maps a index starting from 0 to a patients treatment because a patient can have multiple treatments
-        public static Dictionary<int, int> treatmentIDList;
+        List<Treatment> receiveTreatments = new List<Treatment>();
         #endregion
 
         #region Constructor
@@ -93,17 +89,17 @@ namespace Hospipal.Database_Class
             return name;
         }
 
-        public static List<SingleTreatment> GetTreatmentHistory(int pID) 
+        public static List<Treatment> GetTreatmentHistory(int pID) 
         {
             List<object[]> treatmentsFromDatabase = Database.Select("Select * FROM ismacaul_HospiPal.ReceivesTreatment  WHERE patient = " + pID + " ORDER BY (rtid)");
-            List<SingleTreatment> treatments = new List<SingleTreatment>();
+            List<Treatment> treatments = new List<Treatment>();
             treatmentIDList = new Dictionary<int, int>();
 
             int i = 0;
 
             foreach (object[] element in treatmentsFromDatabase)
             {
-                SingleTreatment treatmentForPatient = new SingleTreatment(pID, element[2].ToString(), Convert.ToInt32(element[3]), Convert.ToInt32(element[4]), Convert.ToInt32(element[5]), element[6].ToString(), element[7].ToString(), Convert.ToInt32(element[8]));
+                Treatment treatmentForPatient = new Treatment(Convert.ToInt32(element[0]),pID, element[2].ToString(), Convert.ToInt32(element[3]), Convert.ToInt32(element[4]), Convert.ToInt32(element[5]), element[6].ToString(), element[7].ToString(), Convert.ToInt32(element[8]));
                 treatmentForPatient.TreatmentID = Convert.ToInt32(element[0]);               
                 treatments.Add(treatmentForPatient);
 
