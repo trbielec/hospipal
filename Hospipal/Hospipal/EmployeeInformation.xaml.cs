@@ -37,9 +37,8 @@ namespace Hospipal
         public EmployeeInformation()
         {
             InitializeComponent();
-            // Populate eid
             employee = new Employee();
-            //Removed Generate New ID as it can easily be done in the database.
+            generatedEID.Content = Employee.GenerateNextEid(); //Show the next EID when page loads
         }
 
         public EmployeeInformation(Employee Employee)
@@ -59,13 +58,21 @@ namespace Hospipal
         private void Save(object sender, RoutedEventArgs e)
         {
             employeeInfo_SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
-            if (_isNewEmployee)
+        
+            if (string.IsNullOrEmpty(employeeCb.Text) || string.IsNullOrEmpty(specialtyCb.Text))
             {
-                employee.Insert();
+                MessageBox.Show("No value is selected for the employee type or specialty type");
             }
+            else if (string.IsNullOrEmpty(lastNameTb.Text) || string.IsNullOrEmpty(firstNameTb.Text))
+            {
+                MessageBox.Show("No value is entered for the first name or the last name");
+            } 
             else
             {
-                employee.Update();
+                if (_isNewEmployee)
+                    employee.Insert();
+                else
+                    employee.Update();
             }
 
             Content = new UserControl_EmployeesView(); 

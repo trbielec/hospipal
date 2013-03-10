@@ -116,12 +116,6 @@ namespace Hospipal.Database_Class
         #endregion 
 
         #region Database Functions 
-        //Louay --No need to check duplicates as Eid should be auto-generated and never editable.
-        public bool CheckDuplicates()
-        {
-            return Convert.ToInt32(Database.Select("SELECT * from Employee WHERE eid = " + _eid).ElementAt(0).ElementAt(0)) == _eid;
-        }
-
 
         public bool Insert()
         {
@@ -140,7 +134,6 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
-            _employee_type = "Nurse";
             _supervisor_id = 1;
             MySqlCommand employee = new MySqlCommand("Update_Employee(@eid,@fname,@lname,@specialty,@employee_type,@supervisor_id);");
             employee.Parameters.AddWithValue("eid", _eid);
@@ -150,13 +143,6 @@ namespace Hospipal.Database_Class
             employee.Parameters.AddWithValue("employee_type", _employee_type);
             employee.Parameters.AddWithValue("supervisor_id", _supervisor_id);
             return Database.Update(employee);
-           /* if (CheckDuplicates())
-            {
-                return Database.Update("Update Employee Set fname = '" + _fname + "', " +
-                   "lname = '" + _lname + "', specialty = '" + _specialty + "', employee_type = '" + _employee_type + "', supervisor_id = " + _supervisor_id + " WHERE eid = " + _eid);
-            }
-            else
-                return false;*/
         }
 
         public bool Delete()
@@ -164,16 +150,20 @@ namespace Hospipal.Database_Class
             return Database.Delete("DELETE FROM Employee WHERE eid = " + _eid);
         }
 
-        /*public static int GenerateNewEid()  //Louay - Should replace eid with Auto-Number.  This will break if you delete the 2nd last one and try to insert one,
-                                            //Eg. 3 rows, 1,2,3 delete #2 add a new one eid will generate #3 for ID, so it will never be able to insert a new one.
+        public static int GenerateNextEid()
         {
-            List<object[]> obj = Database.Select("SELECT eid FROM Employee");
-            return obj.Count() + 1;
-        }*/
+            List<object[]> results = Database.Select("SELECT MAX(eid) FROM Employee");
+            int maxId = 0;
+            foreach (object[] row in results)
+            {
+                maxId = Convert.ToInt32(row[0]);
+            }
+
+            return maxId + 1;      
+        }
 
         public static List<Employee> GetEmployees() //Send in empty string if no search
         {
-
             List<object[]> employeeList = Database.Select("Select * FROM Employee");
             List<Employee> getEmployees = new List<Employee>();
             foreach (object[] row in employeeList)
