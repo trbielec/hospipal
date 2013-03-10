@@ -76,7 +76,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected row.-->
+        <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected ward.-->
         <Style TargetType="{x:Type Button}" x:Key="WardButtons">
             <Style.Triggers>
                 <DataTrigger 

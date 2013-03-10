@@ -17,7 +17,7 @@
 
         <Label Content="Add/Modify Patients" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
 
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.ColumnSpan="2" Margin="95,83,5,16.6" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="80"/>
@@ -71,6 +71,8 @@
                 <Label x:Name="WorkPhonelbl" Content="Work: " Grid.Column="2" Grid.Row="8"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 <Label x:Name="MobilePhonelbl" Content="Mobile: " Grid.Column="2" Grid.Row="9"  HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
+                <Label x:Name="Treatmentlbl" Content="Treatment: " Grid.Column="0" Grid.Row="11"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,23.2,1.2,-16.4"/>
+                
                 <TextBox x:Name="Provincetb" Grid.Column="1" Grid.Row="7"  Text="{Binding Path=patient.Province,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="50"/>
                 <TextBox x:Name="Citytb" Grid.Column="1" Grid.Row="8"  Text="{Binding Path=patient.City,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="50"/>
                 <TextBox x:Name="PostalCodetb" Grid.Column="1" Grid.Row="9"  Text="{Binding Path=patient.PostalCode,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="6" />
@@ -78,7 +80,21 @@
                 <TextBox x:Name="Hometb" Grid.Column="4" Grid.Row="7"  Text="{Binding Path=patient.HomePhoneNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource Numeric}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="Worktb" Grid.Column="4" Grid.Row="8"  Text="{Binding Path=patient.WorkPhoneNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource Numeric}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="Mobiletb" Grid.Column="4" Grid.Row="9"  Text="{Binding Path=patient.MobilePhoneNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource Numeric}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
+                <TextBox x:Name="CurrentTreatmenttb" Grid.Row="11"  Text="{Binding Path=patient.CurrentTreatment,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True"  Grid.ColumnSpan="2" Margin="134,25.2,1,-14.4" />
 
+                <Button x:Name="CancelTreatmentbtn" Grid.Row="11" HorizontalAlignment="Right" Click="Save" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,7.2,68.2,-34.4" Width="60" Height="60" Grid.Column="2">
+                    <Button.ToolTip>
+                        <ToolTip>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold">Stop Treatment</TextBlock>
+                                <TextBlock>Ends the current treatment for this patient.</TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                    <StackPanel>
+                        <Image Source="./Resources/Button Images/stop-sign_2.png"/>
+                    </StackPanel>
+                </Button>
             </Grid>
 
             <Button x:Name="Savebtn" Grid.Row="1" HorizontalAlignment="Right" Click="Save" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,75,0" Width="60" Height="60">
@@ -97,8 +113,8 @@
                     <Image Source="Resources/Button Images/Rx.png"/>
                 </StackPanel>
             </Button>
-
         </Grid>
+        
 
     </Grid>
 </UserControl>
