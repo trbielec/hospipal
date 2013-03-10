@@ -9,6 +9,7 @@ namespace Hospipal.Database_Class
 {
     public class WaitlistedPatient
     {
+        private int waitlistId;
         private int pid;
         private string fname;
         private string lname;
@@ -66,8 +67,9 @@ namespace Hospipal.Database_Class
         #endregion 
 
         #region Constructors
-        public WaitlistedPatient(int pid, string fname, string lname, string priority)
+        public WaitlistedPatient(int waitlistId, int pid, string fname, string lname, string priority)
         {
+            this.waitlistId = waitlistId;
             this.pid = pid;
             this.fname = fname;
             this.lname = lname;
@@ -75,16 +77,30 @@ namespace Hospipal.Database_Class
         }
         #endregion
 
+        #region Functions
+        public bool AssignPatientToBed(int bedId)
+        {
+            string query = "update Bed set pid = " + pid + ", state = 0 where bed_no = " + bedId + ";";
+            return Database.Update(query);
+        }
+
+        public bool RemovedPatientFromWaitlist()
+        {
+            string query = "delete from Waitlist where waitlistId = " + waitlistId + ";";
+            return Database.Delete(query);
+        }
+        #endregion
+
         #region Static Methods
         public static List<WaitlistedPatient> GetWaitlistedPatientsForWard(string ward)
         {
-            List<object[]> patients = Database.Select("SELECT pid, fname, lname, priority from Waitlist, Patient where Waitlist.patientId = Patient.pid and Waitlist.wardName = '"+ ward + "' order by priority='Low', priority='Medium', priority='High', waitlistId;");
+            List<object[]> patients = Database.Select("SELECT waitlistId, pid, fname, lname, priority from Waitlist, Patient where Waitlist.patientId = Patient.pid and Waitlist.wardName = '"+ ward + "' order by priority='Low', priority='Medium', priority='High', waitlistId;");
             List<WaitlistedPatient> getpatients = new List<WaitlistedPatient>();
             foreach (object[] row in patients)
             {
-                if (row.Length == 4)
+                if (row.Length == 5)
                 {
-                    WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(), row[3].ToString());
+                    WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(), row[4].ToString());
                     getpatients.Add(newPatient);
                 }
             }

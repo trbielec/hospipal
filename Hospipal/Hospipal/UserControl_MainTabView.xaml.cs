@@ -28,6 +28,7 @@ namespace Hospipal
             PatientsTab.Content = new UserControl_PatientsView();
             EmployeesTab.Content = new UserControl_EmployeesView();
             WardsTab.Content = new UserControl_Wards();
+            WaitlsitTab.Content = new WaitlistView();
         }
     }
 }
