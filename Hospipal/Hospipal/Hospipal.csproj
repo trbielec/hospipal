@@ -68,10 +68,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddTreatment.xaml.cs">
+      <DependentUpon>AddTreatment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database Class\Bed.cs" />
     <Compile Include="Database Class\Employee.cs" />
     <Compile Include="Database Class\Patient.cs" />
+    <Compile Include="Database Class\PatientTreatments.cs" />
     <Compile Include="Database Class\Room.cs" />
+    <Compile Include="Database Class\SingleTreatment.cs" />
     <Compile Include="Database Class\Treatment.cs" />
     <Compile Include="Database Class\WaitlistedPatient.cs" />
     <Compile Include="Database Class\Ward.cs" />
@@ -82,6 +87,9 @@
     </Compile>
     <Compile Include="PatientInformation.xaml.cs">
       <DependentUpon>PatientInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatientTreatmentView.xaml.cs">
+      <DependentUpon>PatientTreatmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="TreatmentInformation.xaml.cs">
@@ -108,6 +116,10 @@
     <Compile Include="WaitlistView.xaml.cs">
       <DependentUpon>WaitlistView.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddTreatment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="EmployeeInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +145,10 @@
     <Page Include="PatientInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatientTreatmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TreatmentInformation.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -81,7 +81,7 @@ namespace Hospipal
         {
             int i;
             i = patient.PatientID;
-            Content = new TreatmentInformation(patient.PatientID);
+            Content = new PatientTreatmentView(patient.PatientID);
         }
         
     }
