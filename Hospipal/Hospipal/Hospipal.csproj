@@ -56,6 +56,10 @@
     <Reference Include="Telerik.Windows.Controls.Input, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="telerik.windows.controls.navigation, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="telerik.windows.controls.ribbonview, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.ScheduleView, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Telerik\RadControls for WPF Q2 2012\Binaries\WPF40\Telerik.Windows.Controls.ScheduleView.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Data, Version=2012.2.607.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
@@ -107,6 +111,9 @@
     </Compile>
     <Compile Include="UserControl_PatientsView.xaml.cs">
       <DependentUpon>UserControl_PatientsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_ScheduleView.xaml.cs">
+      <DependentUpon>UserControl_ScheduleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="WaitlistView.xaml.cs">
       <DependentUpon>WaitlistView.xaml</DependentUpon>
@@ -166,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_PatientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl_ScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
