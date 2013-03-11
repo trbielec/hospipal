@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Database Class\Bed.cs" />
     <Compile Include="Database Class\Employee.cs" />
+    <Compile Include="Database Class\Notification.cs" />
     <Compile Include="Database Class\Patient.cs" />
     <Compile Include="Database Class\PatientTreatments.cs" />
     <Compile Include="Database Class\Room.cs" />
