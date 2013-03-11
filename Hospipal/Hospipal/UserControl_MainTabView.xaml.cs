@@ -42,7 +42,7 @@ namespace Hospipal
             WardsTab.Content = new UserControl_Wards();
 
             DispatcherTimer _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromMilliseconds(5000); //5 seconds
+            _timer.Interval = TimeSpan.FromMilliseconds(10000); //10 seconds
             _timer.Tick += new EventHandler(delegate(object s, EventArgs a)
             {
                 Notif.RetrieveNotification();
