@@ -36,13 +36,7 @@ namespace HospipalTests
         }
 
         [TestCase]
-        public void TestGetBedsInvalidInput()
-        {
-            Assert.IsEmpty(Bed.GetBeds(-1, null));
-        }
-
-        [TestCase]
-        public void TestGetBedsValidInput()
+        public void TestGetBeds()
         {
             Ward ward = new Ward("UnitTestWard", "UTW");
             ward.Insert();
