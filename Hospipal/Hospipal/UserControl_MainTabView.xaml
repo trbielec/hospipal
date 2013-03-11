@@ -1,5 +1,6 @@
 ﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            x:Name="MainView" 
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -8,13 +9,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
-        <telerik:RadTabControl Name="HospipalTabControl">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <telerik:RadTabControl Grid.Row="0" Name="HospipalTabControl">
             <telerik:RadTabItem x:Name="PatientsTab" Header="Patients" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="EmployeesTab" Header="Employees" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="WardsTab" Header="Wards" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="SchedulingTab" Header="Scheduling" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="WaitlsitTab" Header="Waitlist" Height="32" Width="100" FontSize="14" />
         </telerik:RadTabControl>
-
+        <TextBox Grid.Row="1" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" LostKeyboardFocus="Notifications_Bar_LostFocus"/>
     </Grid>
 </UserControl>
