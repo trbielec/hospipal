@@ -111,7 +111,7 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
-                return Database.Update("Update Room Set floor_no = " + _FloorNo + ", " +
+                return Database.Update("Update Room set floor_no = " + _FloorNo + ", " +
                    "ward = '" + _WardName + "' WHERE room_no = " + _RoomNo + " AND ward = '" + _WardName + "'");
         }
 
