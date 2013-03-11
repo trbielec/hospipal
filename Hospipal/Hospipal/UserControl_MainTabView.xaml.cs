@@ -41,10 +41,8 @@ namespace Hospipal
             PatientsTab.Content = new UserControl_PatientsView();
             EmployeesTab.Content = new UserControl_EmployeesView();
             WardsTab.Content = new UserControl_Wards();
-<<<<<<< HEAD
             WaitlsitTab.Content = new WaitlistView();
             SchedulingTab.Content = new UserControl_ScheduleView();
-=======
 
             DispatcherTimer _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(10000); //10 seconds
@@ -63,7 +61,6 @@ namespace Hospipal
             Notif.SendNotification(notification);
             //Should it retrieve the notification after sending?
             //Notif.RetrieveNotification();
->>>>>>> origin/tom
         }
         #endregion
     }
