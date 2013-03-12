@@ -76,7 +76,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected row.-->
+        <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected ward.-->
         <Style TargetType="{x:Type Button}" x:Key="WardButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -105,6 +105,28 @@
             <Style.Triggers>
                 <DataTrigger 
                      Binding ="{Binding ElementName=boxHistory, Path=SelectedIndex}" 
+                     Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Hides the Waitlist Add button if there is no selected row.-->
+        <Style TargetType="{x:Type Button}" x:Key="WaitlistButton">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=PatientWaitlistDG, Path=SelectedIndex}" 
+                     Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Hides the Waitlist Refresh button if there is no selected ward.-->
+        <Style TargetType="{x:Type Button}" x:Key="RefreshWaitlistButton">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=WardSelectionBox, Path=SelectedIndex}" 
                      Value="-1">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
                 </DataTrigger>

@@ -152,14 +152,8 @@ namespace Hospipal.Database_Class
 
         public static int GenerateNextEid()
         {
-            List<object[]> results = Database.Select("SELECT MAX(eid) FROM Employee");
-            int maxId = 0;
-            foreach (object[] row in results)
-            {
-                maxId = Convert.ToInt32(row[0]);
-            }
-
-            return maxId + 1;      
+            List<object[]> results = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'Employee' AND table_schema = DATABASE();");
+            return Convert.ToInt32(results[0][0]);
         }
 
         public static List<Employee> GetEmployees() //Send in empty string if no search

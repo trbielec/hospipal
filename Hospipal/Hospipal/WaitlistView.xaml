@@ -18,9 +18,23 @@
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
         
-        <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Ward" Margin="10,10,0,0" Height="25" Width="39"/>
-        <ComboBox Grid.Column="0" Name="WardSelectionBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="28" Margin="57,10,0,0" Grid.RowSpan="2" SelectionChanged="WardSelectionBoxEvent"/>
- 
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ward:" Height="25" Width="50"/>
+            <ComboBox Grid.Column="1" Name="WardSelectionBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="28" SelectionChanged="WardSelectionBoxEvent"/>
+            <Button Grid.Column="2" Grid.Row="0" Name="RefreshWaitlistButton" Style="{StaticResource RefreshWaitlistButton}"  Click="RefreshViewEvent" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="26" Height="28">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/refresh.png" RenderTransformOrigin="1.799,1.906"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+        
+        
         <DataGrid Name="PatientWaitlistDG" Grid.Column="0" Grid.Row="1" SelectionMode="Single" IsReadOnly="True" CanUserDeleteRows="False" AlternatingRowBackground="Bisque" Background="Transparent" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding}" Grid.RowSpan="2" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Patient ID" Binding="{Binding Path=Pid}" Width="*"/>
@@ -36,9 +50,9 @@
             </DataGrid.Columns>
         </DataGrid>
         
-        <Button Grid.Column="2" Grid.Row="1" Name="AssignPatientButton" Click="AssignPatientToBed" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="2" Grid.Row="1" Name="AssignPatientButton" Style="{StaticResource WaitlistButton}" Click="AssignPatientToBed" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
             <StackPanel>
-                <Image Source="./Resources/Button Images/add.png" RenderTransformOrigin="1.799,1.906"/>
+                <Image Source="./Resources/Button Images/person_plus.png" RenderTransformOrigin="1.799,1.906"/>
             </StackPanel>
         </Button>
     </Grid>
