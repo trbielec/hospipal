@@ -1,46 +1,64 @@
 ﻿using System;
 using NUnit.Framework;
 using Hospipal.Database_Class;
+using System.Collections.Generic;
 
 namespace HospipalTests
 {
     [TestFixture]
     public class WardClassTests
     {
-        private Ward ward;
-
-        /*
         [TestCase]
-        public void TestInsertUpdateDeleteWard()
+        public void TestWardSelect()
         {
-            ward = new Ward("TestWard", "TW");
-            Assert.True(ward.Insert());
-            Assert.False(ward.Insert());
+            Ward ward = new Ward("UnitTestWard", "UTW");
+            ward.Insert();
 
-            ward.SlugName = "CWS";
+            Assert.True(ward.Select());
+
+            ward.Delete();
+        }
+
+        [TestCase]
+        public void TestWardInsert()
+        {
+            Ward ward = new Ward("UnitTestWard", "UTW");
+            Assert.True(ward.Insert());
+
+            ward.Delete();   
+        }
+
+        [TestCase]
+        public void TestWardUpdate()
+        {
+            Ward ward = new Ward("UnitTestWard", "UTW");
+            ward.Insert();
+
+            ward.SlugName = "TEST";
             Assert.True(ward.Update());
 
-            Assert.True(ward.Delete());
-            Assert.False(ward.Delete());
-        }*/
+            ward.Delete();
+        }
 
-        /*
         [TestCase]
-        public void TestSelectWard()
+        public void TestWardDelete()
         {
-            ward = new Ward(null, null);
-            Assert.False(ward.Select());
+            Ward ward = new Ward("UnitTestWard", "UTW");
+            ward.Insert();
 
-            Assert.True(new Ward("Test", "TW").Insert());
-            ward = new Ward("Test", "TW");
-            Assert.True(ward.Select());
             Assert.True(ward.Delete());
-        }*/
+        }
 
         [TestCase]
         public void TestGetWards()
         {
-            Assert.NotNull(Ward.GetWards());
+            Ward ward = new Ward("UnitTestWard", "UTW");
+            ward.Insert();
+
+            List<Ward> w = Ward.GetWards();
+            Assert.True(w.Count >= 1);
+
+            ward.Delete();
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
-using System.Collections.Generic;
 
 
 namespace Hospipal.Database_Class
@@ -67,6 +66,13 @@ namespace Hospipal.Database_Class
             }
         }
 
+        public string DateToShortDateString
+        {
+            get
+            {
+                return _Date.ToShortDateString();
+            }
+        }
         public string Time
         {
             get

@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Hospipal.Database_Class;
+using System.Collections.Generic;
 
 namespace HospipalTests
 {
@@ -10,44 +11,57 @@ namespace HospipalTests
         private Patient patient;
 
         [TestCase]
-        public void TestSelectMethodWithValidPatient()
+        public void TestPatientSelect()
         {
-            patient = new Patient(10);
+            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            patient.Insert();
 
             Assert.True(patient.Select());
+
+            patient.Delete();
         }
 
         [TestCase]
-        public void TestSelectMethodWithInvalidPatient()
+        public void TestPatientInsert()
         {
-            patient = new Patient(-1);
-            Assert.False(patient.Select());
-        }
-
-        [TestCase]
-        public void TestInsetUpdateDeletePatient()
-        {
-            patient = new Patient(1000, "Test", "Case", new DateTime(), "Test Add", "Test City", "Test Province", "Test PC", "Test homephone", "Test mobile", "test work");
-
+            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
             Assert.True(patient.Insert());
-            Assert.False(patient.Insert());
 
-            patient = new Patient(1000);
-            patient.FirstName = "Test1";
+            patient.Delete();
+        }
+
+        [TestCase]
+        public void TestPatientUpdate()
+        {
+            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            patient.Insert();
+            patient.Select();
+
+            patient.FirstName = "RenamedPatient";
             Assert.True(patient.Update());
 
-            patient.HealthCareNo = 10;
-            Assert.False(patient.Update());
+            patient.Delete();
+        }
 
-            patient = new Patient(1000);
+        [TestCase]
+        public void TestPatientDelete()
+        {
+            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            patient.Insert();
+
             Assert.True(patient.Delete());
-            Assert.False(patient.Delete());
         }
 
         [TestCase]
         public void TestGetPatients()
         {
-            Assert.NotNull(Patient.GetPatients());
+            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            patient.Insert();
+
+            List<Patient> p = Patient.GetPatients();
+            Assert.IsNotEmpty(p);
+
+            patient.Delete();
         }
     }
 }

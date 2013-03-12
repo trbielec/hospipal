@@ -123,6 +123,11 @@ namespace Hospipal.Database_Class
 
             return openbeds;
         }
+
+        public static bool AddPatientToWaitlist(int pid, string ward, string priority)
+        {
+            return Database.Insert("Insert into Waitlist (patientId, wardName, priority) values (" + pid + ", '" + ward + "', '" + priority + "')");
+        }
         #endregion
     }
 }

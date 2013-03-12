@@ -37,7 +37,9 @@ namespace Hospipal
         {
             InitializeComponent();
             patient = new Patient(pID);
+            lblName.Content = patient.LastName + ", " + patient.FirstName;
             treatmentHistory = Treatment.GetTreatments(pID);
+            dataGridTreatments.DataContext = treatmentHistory;
         }
         #endregion
 
