@@ -62,7 +62,17 @@ namespace Hospipal
                 }
                 else
                 {
-                    bed = beds[0];
+                    if (beds.Count != 0)
+                        bed = beds[0];
+                    else
+                    {
+                        string messagetext = "There are no beds to assign '" + patient.Fname + " " + patient.Lname + "' too";
+                        string cap = "Error: No Beds Available";
+                        MessageBoxButton but = MessageBoxButton.OK;
+                        MessageBoxImage img = MessageBoxImage.Error;
+                        MessageBox.Show(messagetext, cap, but, img);
+                        return;
+                    }
                 }
 
                 string messageboxtext = "Assign '" + patient.Fname + " " + patient.Lname + "' to " + bed.bed + "?";

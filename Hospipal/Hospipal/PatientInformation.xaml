@@ -82,6 +82,9 @@
                 <TextBox x:Name="Mobiletb" Grid.Column="4" Grid.Row="9"  Text="{Binding Path=patient.MobilePhoneNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource Numeric}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="CurrentTreatmenttb" Grid.Row="11"  Text="{Binding Path=patient.CurrentTreatment,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsReadOnly="True"  Grid.ColumnSpan="2" Margin="134,25.2,1,-14.4" />
 
+             
+
+
                 <Button x:Name="CancelTreatmentbtn" Grid.Row="11" HorizontalAlignment="Right" Click="Save" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,7.2,68.2,-34.4" Width="60" Height="60" Grid.Column="2">
                     <Button.ToolTip>
                         <ToolTip>
@@ -109,6 +112,14 @@
                 </StackPanel>
             </Button>
             <Button x:Name="buttonTreatment" Grid.Row="1" HorizontalAlignment="Right" Click="buttonTreatment_Click" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,10,154,10" Width="60" Height="60" Visibility="Hidden">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold"> Patient Treatment</TextBlock>
+                            <TextBlock>Add or edit a treatment for a patient.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
                 <StackPanel>
                     <Image Source="Resources/Button Images/Rx.png"/>
                 </StackPanel>

@@ -65,6 +65,90 @@ namespace Hospipal
             }
         }
 
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbHealthCare.Text) && string.IsNullOrWhiteSpace(tbFName.Text) && string.IsNullOrWhiteSpace(tbLName.Text) && (dpDOB.Text == "") && string.IsNullOrWhiteSpace(tbAddress.Text) && string.IsNullOrWhiteSpace(tbCity.Text) && string.IsNullOrWhiteSpace(tbProvince.Text) && string.IsNullOrWhiteSpace(tbPostalCode.Text) && string.IsNullOrWhiteSpace(tbPhoneNumber.Text))
+            {
+                Patients = Patient.GetPatients();
+                Patients_DataGrid.DataContext = Patients;
+            }
+            else
+            {
+                validateInputs();
+            }
+        }
+
+        public void validateInputs()
+        {
+            Search advancedSearch = new Search("Patient");
+            List<string> dbSideVariables = new List<string>();
+            List<string> cSideVariables = new List<string>();
+
+            #region Box Checking
+            if (!string.IsNullOrWhiteSpace(tbHealthCare.Text))
+            {
+                cSideVariables.Add(tbHealthCare.Text);
+                dbSideVariables.Add("hc_no");
+            }
+            if (!string.IsNullOrWhiteSpace(tbFName.Text))
+            {
+                cSideVariables.Add(tbFName.Text);
+                dbSideVariables.Add("fname");
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbLName.Text))
+            {
+                cSideVariables.Add(tbLName.Text);
+                dbSideVariables.Add("lname");
+            }
+
+            if (!(dpDOB.SelectedDate == null))
+            {
+                cSideVariables.Add(dpDOB.SelectedDate.Value.Day.ToString());
+                cSideVariables.Add(dpDOB.SelectedDate.Value.Month.ToString());
+                cSideVariables.Add(dpDOB.SelectedDate.Value.Year.ToString());
+
+                dbSideVariables.Add("dob_day");
+                dbSideVariables.Add("dob_month");
+                dbSideVariables.Add("dob_year");
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbAddress.Text))
+            {
+                cSideVariables.Add(tbAddress.Text);
+                dbSideVariables.Add("street_address");
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbCity.Text))
+            {
+                cSideVariables.Add(tbCity.Text);
+                dbSideVariables.Add("city");
+            }
+            if (!string.IsNullOrWhiteSpace(tbProvince.Text))
+            {
+                cSideVariables.Add(tbProvince.Text);
+                dbSideVariables.Add("province");
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbPostalCode.Text))
+            {
+                cSideVariables.Add(tbPostalCode.Text);
+                dbSideVariables.Add("postal_code");
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbPhoneNumber.Text))
+            {
+                cSideVariables.Add(tbPhoneNumber.Text);
+                dbSideVariables.Add("home_phone_no");
+            }
+            #endregion
+
+            advancedSearch.UseInputsPatient(dbSideVariables, cSideVariables);
+ 
+            Patients = Search.SearchPatient(advancedSearch.GetBuiltQuery());
+            Patients_DataGrid.DataContext = Patients;
+        }
+
         /*private void PatientsListLostFocus(object sender, RoutedEventArgs e)
         {
             Patients_DeleteButton.Visibility = System.Windows.Visibility.Hidden;
