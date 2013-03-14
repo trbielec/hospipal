@@ -92,6 +92,9 @@
     <Compile Include="PatientInformation.xaml.cs">
       <DependentUpon>PatientInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatientTreatmentHistory.xaml.cs">
+      <DependentUpon>PatientTreatmentHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientTreatmentView.xaml.cs">
       <DependentUpon>PatientTreatmentView.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PatientInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PatientTreatmentHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
