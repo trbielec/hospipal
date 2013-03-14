@@ -76,6 +76,7 @@
       <DependentUpon>AddTreatment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database Class\Bed.cs" />
+    <Compile Include="Database Class\Search.cs" />
     <Compile Include="Database Class\Employee.cs" />
     <Compile Include="Database Class\Notification.cs" />
     <Compile Include="Database Class\Patient.cs" />

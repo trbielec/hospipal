@@ -18,10 +18,10 @@
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="32*"/>
-                <RowDefinition Height="42*"/>
-                <RowDefinition Height="43*"/>
-                <RowDefinition Height="42*"/>
-                <RowDefinition Height="42*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
                 <RowDefinition Height="43*"/>
                 <RowDefinition Height="20*"/>
 
@@ -34,25 +34,28 @@
                 <ColumnDefinition Width="217*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Advanced Search" Height="26" FontWeight="Bold"/>
-            <Label x:Name="HealthLabel" Content="Health Care No: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Height="26"/>
-            <Label Content="FirstName: " HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Height="26"/>
-            <Label Content="Address: " HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Height="26"/>
-            <Label Content="DOB: " Grid.Column="2" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Center" Height="26"/>
-            <Label Content="Last Name: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Height="26"/>
-            <Label Content="Phone: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Height="26"/>
-            <Label Content="Province: " HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center" Height="26"/>
-            <Label Content="City: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center" Height="26"/>
-            <TextBox Name="tbHealthCare" Grid.Column="1" HorizontalAlignment="Stretch" Height="22" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbFName" Grid.Column="1" HorizontalAlignment="Stretch" Height="22" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbAddress" Grid.Column="1" HorizontalAlignment="Stretch" Height="22" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
-            <TextBox Name="tbLName" Grid.Column="3" HorizontalAlignment="Stretch" Height="22" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <DatePicker Name="dpDOB" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Height="24" Margin="0,9,0,10"/>
-            <TextBox Name="txProvince" Grid.Column="1" HorizontalAlignment="Stretch" Height="22" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbCity" Grid.Column="3" HorizontalAlignment="Stretch" Height="24" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbPostalCode" Grid.Column="1" HorizontalAlignment="Stretch" Height="22" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbPhoneNumber" Grid.Column="3" HorizontalAlignment="Stretch" Height="22" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <Label Content="Postal Code: " HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Height="26"/>
+            <Label x:Name="lblSearch" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Advanced Search" FontWeight="Bold"/>
+            
+            <Label x:Name="HealthLabel" Content="Health Care No: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <Label Content="FirstName: " HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
+            <Label Content="Address: " HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center"/>
+            <Label Content="DOB: " Grid.Column="2" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Center"/>
+            <Label Content="Last Name: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
+            <Label Content="Phone: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center"/>
+            <Label Content="Province: " HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center"/>
+            <Label Content="City: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center"/>
+            <Label Content="Postal Code: " HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center"/>
+
+            <TextBox Name="tbHealthCare" Grid.Column="1" MaxLength="10" HorizontalAlignment="Stretch" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource Numeric}"/>
+            <TextBox Name="tbFName" Grid.Column="1" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBox Name="tbAddress" Grid.Column="1" MaxLength="100" HorizontalAlignment="Stretch" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
+            <TextBox Name="tbLName" Grid.Column="3" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBox Name="tbProvince" Grid.Column="1" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBox Name="tbCity" Grid.Column="3" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBox Name="tbPostalCode" Grid.Column="1" MaxLength="6" HorizontalAlignment="Stretch" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBox Name="tbPhoneNumber" Grid.Column="3" MaxLength="10" HorizontalAlignment="Stretch" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource Numeric}"/>
+            
+            <DatePicker Name="dpDOB" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center"/>
         </Grid>
         
 
@@ -65,7 +68,7 @@
                 <ColumnDefinition Width="219*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Name="Patients_DataGrid" IsReadOnly="True" Grid.Column="0" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid Name="Patients_DataGrid" IsReadOnly="True" Grid.Column="0" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" VerticalGridLinesBrush="{x:Null}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Health Care No" Binding="{Binding Path=HealthCareNo}" Width="*"/>
                     <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" Width="*"/>
@@ -97,7 +100,7 @@
                         <Image Source="./Resources/Button Images/add.png" RenderTransformOrigin="1.799,1.906"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="buttonSearch" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="60" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Button x:Name="buttonSearch" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="60" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonSearch_Click">
                     <Image Source="Resources/Button Images/search.png" Height="60" Width="60"/>
                 </Button>
             </Grid>
