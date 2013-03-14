@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Hospipal.PatientTreatmentHistory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblPatientName" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Generate Patient Name"/>
+        <Label x:Name="lblHistory" Grid.Row="1" Content="History" HorizontalAlignment="Center"/>
+        <Label x:Name="lblDetails" Grid.Row="1" Grid.Column="4" Content="Generate Treatment Time and Day" HorizontalAlignment="Left" Grid.ColumnSpan="4"/>
+        <DataGrid x:Name="dgHistory" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="7" />
+        <Grid x:Name="GridDetails" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!-- 14 Rows-->
+            <Label x:Name="lblType" Content="Treatment Type: " HorizontalAlignment="Right"/>
+            <Label x:Name="lblWard" Content="Assigning Ward: " HorizontalAlignment="Right" Grid.Row="1"/>
+            <Label x:Name="lblPriority" Content="Treatment Priority: " HorizontalAlignment="Right"  Grid.Row="2"/>
+            <Label x:Name="lblDate" Content="Treatment Date: " HorizontalAlignment="Right"  Grid.Row="3"/>
+            <Label x:Name="lblTime" Content="Treatment Time: " HorizontalAlignment="Right" Grid.Row="4"/>
+            <Label x:Name="lblDoctor" Content="Treating Doctor: " HorizontalAlignment="Right"  Grid.Row="5"/>
+            <Label x:Name="lblNotes" Content="Treatment Notes: " HorizontalAlignment="Right"  Grid.Row="6"/>
+            <TextBox x:Name="txtType" IsReadOnly="True"  Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtWard" IsReadOnly="True" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtPriority" IsReadOnly="True" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtDate" IsReadOnly="True" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtTime" IsReadOnly="True" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtDoctor" IsReadOnly="True" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtNotes" IsReadOnly="True" Grid.Column="1" Grid.Row="6" Grid.RowSpan="5" VerticalAlignment="Stretch"/>
+        </Grid>
+    </Grid>
+</UserControl>

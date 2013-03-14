@@ -133,6 +133,10 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Image">
+            <Setter Property="Image.Width" Value="54"/>
+            <Setter Property="Image.Height" Value="54"/>
+        </Style>
 
         <!-- Brush Resources-->
             

@@ -1,30 +1,54 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="Hospipal.AddTreatment" 
-             d:DesignHeight="500" d:DesignWidth="450" mc:Ignorable="d">
+             d:DesignHeight="600" d:DesignWidth="450" mc:Ignorable="d">
     <Grid HorizontalAlignment="Center">
-
-        <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" Margin="-8,70,0,0" VerticalAlignment="Top"/>
-
-        <Label x:Name="lblTreatmentType" Content="Treatment Type:" HorizontalAlignment="Left" Margin="-8,105,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="boxTreatmentType" HorizontalAlignment="Left" Margin="104,105,0,0" VerticalAlignment="Top" Width="168"/>
-        <Label x:Name="lblTreatmentDate" Content="Treatment Date:" HorizontalAlignment="Left" Margin="-8,140,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblTreatmentTime" Content="Treatment Time:" HorizontalAlignment="Left" Margin="-7,179,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblTreatmentNotes" Content="Treatment Notes:" HorizontalAlignment="Left" Margin="-10,251,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="129" Margin="104,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-
-        <telerik:RadTimePicker x:Name="boxTime" HorizontalAlignment="Left" Margin="104,181,0,0" VerticalAlignment="Top" Width="168"/>
-        <Button x:Name="buttonCancel" HorizontalAlignment="Left" Margin="237,405,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click">
-            <Image Source="Resources/Button Images/cancel.png"/>
-        </Button>
-        <DatePicker x:Name="boxDate" HorizontalAlignment="Left" Margin="104,142,0,0" VerticalAlignment="Top" Width="168" Text =" {Binding Path = SelectedDate,  StringFormat ='dd/MM/yyyy', RelativeSource = {RelativeSource AncestorType={x:Type DatePicker}}}"/>
-        <Label x:Name="lblName" Content="" HorizontalAlignment="Left" Margin="104,70,0,0" VerticalAlignment="Top" Width="168"/>
-        <Label x:Name="lblDoctor" Content="Treating Doctor:" HorizontalAlignment="Left" Margin="-7,213,0,0" VerticalAlignment="Top"/>
-
-
-        <ComboBox x:Name="boxDoctors" HorizontalAlignment="Left" Margin="104,217,0,0" VerticalAlignment="Top" Width="168"/>
-        <Button x:Name="buttonSave" HorizontalAlignment="Left" Margin="152,410,0,0" VerticalAlignment="Top" Width="70" Height="59" Click="buttonSave_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-            <Image Source="Resources/Button Images/save.png"/>
-        </Button>
-        <Label x:Name="lblTreatment" Content="Add/Modify Treatment" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker" Width="283"/>
-
+        <Label x:Name="lblTreatment" Content="Add/Modify Treatment" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker" Width="283"/>
+        <Grid HorizontalAlignment="Left" Height="600
+              " Margin="-68,0,-71,0" VerticalAlignment="Top" Width="447">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
+            <Label x:Name="lblTreatmentType" Content="Treatment Type:" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3"/>
+            <Label x:Name="lblWard" Content="Assigning Ward:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4"/>
+            <Label x:Name="lblPriority" Content="Treatment Priority:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5"/>
+            <Label x:Name="lblTreatmentDate" Content="Treatment Date:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="6"/>
+            <Label x:Name="lblTreatmentTime" Content="Treatment Time:" HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Column="1" Grid.Row="7"/>
+            <Label x:Name="lblDoctor" Content="Treating Doctor:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8"/>
+            <Label x:Name="lblTreatmentNotes" Content="Treatment Notes:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="9"/>
+            <TextBox x:Name="txtNotes" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="172" Grid.Column="2" Grid.Row="9" Grid.RowSpan="4"/>
+            <ComboBox x:Name="boxDoctors" HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="8"/>
+            <telerik:RadTimePicker x:Name="boxTime" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"/>
+            <DatePicker x:Name="boxDate" HorizontalAlignment="Stretch"  VerticalAlignment="Center"  Text =" {Binding Path = SelectedDate,  StringFormat ='dd/MM/yyyy', RelativeSource = {RelativeSource AncestorType={x:Type DatePicker}}}" Grid.Column="2" Grid.Row="6"/>
+            <ComboBox x:Name="boxPriority" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"/>
+            <ComboBox x:Name="boxWard" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"/>
+            <ComboBox x:Name="boxTreatmentType" HorizontalAlignment="Stretch"  VerticalAlignment="Center"  Grid.Column="2" Grid.Row="3"/>
+            <Label x:Name="lblName" Content="" HorizontalAlignment="Stretch"  VerticalAlignment="Center"  Grid.Column="2" Grid.Row="2"/>
+            <Button x:Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Grid.RowSpan="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click" Grid.Column="2" Grid.Row="13">
+                <Image Source="Resources/Button Images/cancel.png" HorizontalAlignment="Left" />
+            </Button>
+            <Button x:Name="buttonSave" HorizontalAlignment="Right" VerticalAlignment="Top"  Grid.Column="2" Grid.Row="13" Grid.RowSpan="2" Click="buttonSave_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Source="Resources/Button Images/save.png"/>
+            </Button>
+            </Grid>
     </Grid>
 </UserControl>
