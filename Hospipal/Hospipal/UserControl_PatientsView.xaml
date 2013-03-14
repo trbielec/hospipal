@@ -27,11 +27,11 @@
 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="115" />
-                <ColumnDefinition Width="186*" />
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="186*"/>
                 <ColumnDefinition Width="96*"/>
-                <ColumnDefinition Width="186*" />
-                <ColumnDefinition Width="217*"/>
+                <ColumnDefinition Width="186*"/>
+                <ColumnDefinition Width="120*"/>
             </Grid.ColumnDefinitions>
 
             <Label x:Name="lblSearch" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Advanced Search" FontWeight="Bold"/>
@@ -46,14 +46,14 @@
             <Label Content="City: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center"/>
             <Label Content="Postal Code: " HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center"/>
 
-            <TextBox Name="tbHealthCare" Grid.Column="1" MaxLength="10" HorizontalAlignment="Stretch" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource Numeric}"/>
-            <TextBox Name="tbFName" Grid.Column="1" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbAddress" Grid.Column="1" MaxLength="100" HorizontalAlignment="Stretch" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="3"/>
-            <TextBox Name="tbLName" Grid.Column="3" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbProvince" Grid.Column="1" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbCity" Grid.Column="3" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbPostalCode" Grid.Column="1" MaxLength="6" HorizontalAlignment="Stretch" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center"/>
-            <TextBox Name="tbPhoneNumber" Grid.Column="3" MaxLength="10" HorizontalAlignment="Stretch" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Center" Style="{StaticResource Numeric}"/>
+            <TextBox Name="tbHealthCare" Grid.Column="1" MaxLength="10" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource Numeric}"/>
+            <TextBox Name="tbFName" Grid.Column="1" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource AlphaAndNumeric}"/>
+            <TextBox Name="tbAddress" Grid.Column="1" MaxLength="100" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Style="{StaticResource AlphaAndNumeric}" />
+            <TextBox Name="tbLName" Grid.Column="3" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource AlphaAndNumeric}"/>
+            <TextBox Name="tbProvince" Grid.Column="1" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource AlphaAndNumeric}"/>
+            <TextBox Name="tbCity" Grid.Column="3" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource AlphaAndNumeric}"/>
+            <TextBox Name="tbPostalCode" Grid.Column="1" MaxLength="6" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource AlphaAndNumeric}"/>
+            <TextBox Name="tbPhoneNumber" Grid.Column="3" MaxLength="10" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource Numeric}"/>
             
             <DatePicker Name="dpDOB" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center"/>
         </Grid>
@@ -64,8 +64,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="581*"/>
-                <ColumnDefinition Width="219*"/>
+                <ColumnDefinition  Width="361*"/>
+                <ColumnDefinition Width="39*"/>
             </Grid.ColumnDefinitions>
 
             <DataGrid Name="Patients_DataGrid" IsReadOnly="True" Grid.Column="0" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" VerticalGridLinesBrush="{x:Null}">
@@ -97,7 +97,7 @@
                 </Button>
                 <Button x:Name="Patients_AddButton" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
                     <StackPanel>
-                        <Image Source="./Resources/Button Images/add.png" RenderTransformOrigin="1.799,1.906"/>
+                        <Image Source="./Resources/Button Images/add.png"/>
                     </StackPanel>
                 </Button>
                 <Button x:Name="buttonSearch" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="60" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonSearch_Click">

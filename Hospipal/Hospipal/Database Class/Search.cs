@@ -59,7 +59,20 @@ namespace Hospipal.Database_Class
             return getPatients;
         }
 
-        public void UseInputsPatient(List<string> dbSideVariables, List<string> cSideVariables)
+        public static List<Employee> SearchEmployees(string queryBuilt  )
+        {
+            List<object[]> employeeList = Database.Select(queryBuilt);
+            List<Employee> getEmployees = new List<Employee>();
+            foreach (object[] row in employeeList)
+            {
+                Employee newEmployee = new Employee(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(),
+                                            row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]));
+                getEmployees.Add(newEmployee);
+            }
+            return getEmployees;
+        }
+
+        public void UseInputs(List<string> dbSideVariables, List<string> cSideVariables)
         {
             for (int i = 0; i < cSideVariables.Count(); i++)
             {

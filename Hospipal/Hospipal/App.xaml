@@ -25,6 +25,15 @@
             </EventSetter>
         </Style>
 
+        <!-- Makes textboxes numeric only input-->
+        <Style TargetType="{x:Type TextBox}" x:Key="AlphaAndNumeric">
+            <EventSetter Event="PreviewTextInput" Handler="checkInputLetters">
+            </EventSetter>
+            <EventSetter Event="TextChanged" Handler="highlightBox">
+            </EventSetter>
+            <EventSetter Event="DataObject.Pasting" Handler="noPaste">
+            </EventSetter>
+        </Style>
 
         <!-- Textbox with this style is a required field-->
         <Style TargetType="{x:Type TextBox}" x:Key="RequiredField">

@@ -143,7 +143,7 @@ namespace Hospipal
             }
             #endregion
 
-            advancedSearch.UseInputsPatient(dbSideVariables, cSideVariables);
+            advancedSearch.UseInputs(dbSideVariables, cSideVariables);
  
             Patients = Search.SearchPatient(advancedSearch.GetBuiltQuery());
             Patients_DataGrid.DataContext = Patients;
