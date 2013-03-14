@@ -286,9 +286,9 @@ namespace Hospipal.Database_Class
         public static List<Patient> GetPatients() //Send in empty string if no search
         {
 
-            List<object[]> rooms = Database.Select("Select * FROM Patient");
+            List<object[]> rows = Database.Select("Select * FROM Patient");
             List<Patient> getPatients = new List<Patient>();
-            foreach (object[] row in rooms)
+            foreach (object[] row in rows)
             {
                 Patient newPatient = new Patient(Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(),  
                                             new DateTime(Convert.ToInt32(row[6]), Convert.ToInt32(row[5]), Convert.ToInt32(row[4])),

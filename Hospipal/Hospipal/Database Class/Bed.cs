@@ -16,6 +16,7 @@ namespace Hospipal.Database_Class
         private int _roomNo;
         private string _assigningNurse;
         private string _ward;
+       
 
         
 

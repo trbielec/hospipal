@@ -4,33 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600" HorizontalAlignment="Center">
+             d:DesignHeight="400" d:DesignWidth="800" HorizontalAlignment="Center">
     <Grid>
-        <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Height="228" Width="490" VerticalGridLinesBrush="{x:Null}" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" SelectionChanged="dataGridTreatments_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Treatment Type" Binding="{Binding Path=TreatmentType}" Width="*"/>
-                <DataGridTextColumn Header="Month" Binding="{Binding Path=Month}" Width="50"/>
-                <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="40"/>
-                <DataGridTextColumn Header="Year" Binding="{Binding Path=Year}" Width="45"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Height="32" Width="84"/>
-        <Label x:Name="lblName" Content="" HorizontalAlignment="Left" Margin="99,57,0,0" VerticalAlignment="Top" Width="247" FontWeight="Bold"/>
-        <Label x:Name="lblTreatment" Content="Treatment" HorizontalAlignment="Left" Margin="219,10,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker"/>
-        <Label x:Name="lblHistory" Content="History" HorizontalAlignment="Left" Margin="13,86,0,0" VerticalAlignment="Top" Height="36" Width="80" FontSize="20"/>
-        <Button x:Name="buttonSave" HorizontalAlignment="Left" Margin="515,58,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonAdd_Click">
-            <Image x:Name="buttonAdd" Source="Resources/Button Images/add.png" Height="57" Width="61"/>
-        </Button>
-        <Button x:Name="buttonCancel" HorizontalAlignment="Left" Margin="516,285,0,0" VerticalAlignment="Top" Width="71" Height="67" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click">
-            <Image Source="Resources/Button Images/cancel.png"/>
-        </Button>
-        <Button x:Name="buttonModify" HorizontalAlignment="Left" Margin="515,129,0,0" VerticalAlignment="Top" Width="70" Height="59" Click="buttonModify_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden">
-            <Image x:Name="buttonModify1" Source="Resources/Button Images/edit.png"/>
-        </Button>
-        <Button x:Name="buttonRemove" HorizontalAlignment="Left" Margin="514,194,0,0" VerticalAlignment="Top" Width="70" Height="59" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Visibility="Hidden">
-            <Image Source="Resources/Button Images/trash.png"/>
-        </Button>
+
+        <Label x:Name="lblTreatment" Content="Treatment" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker"/>
+        <Grid Margin="0,55,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label x:Name="lblName" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label x:Name="lblHistory" Grid.Row="1" Content="History" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>
+            <Button x:Name="buttonCancel" HorizontalAlignment="lEFT" VerticalAlignment="Top" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click" Grid.Column="3" Grid.Row="7">
+                <Image Source="Resources/Button Images/cancel.png"/>
+            </Button>
+            <Button x:Name="buttonModify" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonModify_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.Column="3" Grid.Row="3">
+                <Image x:Name="buttonModify1" Source="Resources/Button Images/edit.png"/>
+            </Button>
+            <Button x:Name="buttonRemove" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Grid.Row="5" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Source="Resources/Button Images/trash.png"/>
+            </Button>
+            <Button x:Name="buttonAdd" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Grid.Row="1" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Source="Resources/Button Images/add.png"/>
+            </Button>
+            <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalGridLinesBrush="{x:Null}" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="6" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Treatment Type" Binding="{Binding Type}" Width="1*"/>
+                    <DataGridTextColumn Header="Treatment Date" Binding="{Binding DateToShortDateString}" Width="1*"/>
+                    <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="1*"/>
+                    <DataGridTextColumn Header="Ward" Binding="{Binding Ward}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
 
     </Grid>
 </UserControl>

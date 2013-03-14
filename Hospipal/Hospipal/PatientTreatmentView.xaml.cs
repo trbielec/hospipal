@@ -22,9 +22,8 @@ namespace Hospipal
     public partial class PatientTreatmentView : UserControl
     {
         #region Attributes 
-        PatientTreatments patientTreatment;
-        List<SingleTreatment> treatmentHistory;
-        int patientID = 0;
+        List<Treatment> treatmentHistory;
+        Patient patient;
         #endregion  
         
         #region Constructors
@@ -37,26 +36,11 @@ namespace Hospipal
         public PatientTreatmentView(int pID)
         {
             InitializeComponent();
-            patientID = pID;
-
-            patientTreatment = new PatientTreatments(pID);
-            displayPatientName(pID);
-            populateHistory(pID);
-        }
-        #endregion
-
-        #region Function call and methods
-        public void displayPatientName(int pID)
-        {
-            lblName.Content = PatientTreatments.GetPatientName(pID);
-        }
-
-        public void populateHistory(int pID)
-        {
-            treatmentHistory = PatientTreatments.GetTreatmentHistory(pID);
+            patient = new Patient(pID);
+            lblName.Content = patient.LastName + ", " + patient.FirstName;
+            treatmentHistory = Treatment.GetTreatments(pID);
             dataGridTreatments.DataContext = treatmentHistory;
         }
-
         #endregion
 
 
@@ -65,7 +49,7 @@ namespace Hospipal
          */
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            Content = new AddTreatment(patientID);
+            Content = new AddTreatment(patient.PatientID);
         }
 
         /* Modify button click event 
@@ -74,7 +58,7 @@ namespace Hospipal
         {
             if (dataGridTreatments.SelectedItems.Count > 0)
             {
-                Content = new AddTreatment(((SingleTreatment)dataGridTreatments.SelectedItem));
+                Content = new AddTreatment(((Treatment)dataGridTreatments.SelectedItem));
             }
         }
 
@@ -84,9 +68,7 @@ namespace Hospipal
         {
             if (dataGridTreatments.SelectedItems.Count > 0)
             {
-                patientTreatment.RemoveTreatment(PatientTreatments.treatmentIDList[dataGridTreatments.SelectedIndex]);
                 treatmentHistory.RemoveAt(dataGridTreatments.SelectedIndex);
-
                 dataGridTreatments.Items.Refresh();
             }
         }
@@ -97,10 +79,5 @@ namespace Hospipal
         }
         #endregion
 
-        private void dataGridTreatments_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            buttonModify.Visibility = Visibility.Visible;
-            buttonRemove.Visibility = Visibility.Visible;
-        }
     }
 }
