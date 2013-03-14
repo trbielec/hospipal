@@ -58,7 +58,7 @@ namespace Hospipal
                 List<Room> roomsToDel = Room.GetRooms(((Ward)WardDG.SelectedItem).SlugName);
                 foreach (Room roomRow in roomsToDel)
                 {
-                    List<Bed> bedsToDel = Bed.GetBeds(((Room)RoomDG.SelectedItem).RoomNo, ((Room)RoomDG.SelectedItem).WardName);
+                    List<Bed> bedsToDel = Bed.GetBeds(roomRow.RoomNo, roomRow.WardName);
                     foreach (Bed bedRow in bedsToDel)
                     {
                         bedRow.Delete();
