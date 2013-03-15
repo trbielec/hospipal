@@ -14,6 +14,8 @@ namespace Hospipal.Database_Class
         private string fname;
         private string lname;
         private string priority;
+        private int treatmentId;
+        private string treatment;
 
         #region Getters/Setters
 
@@ -64,16 +66,30 @@ namespace Hospipal.Database_Class
                 priority = value;
             }
         }
+
+        public string Treatment
+        {
+            get
+            {
+                return treatment;
+            }
+            set
+            {
+                treatment = value;
+            }
+        }
         #endregion 
 
         #region Constructors
-        public WaitlistedPatient(int waitlistId, int pid, string fname, string lname, string priority)
+        public WaitlistedPatient(int waitlistId, int pid, string fname, string lname, string priority, int rtid, string treatment)
         {
             this.waitlistId = waitlistId;
             this.pid = pid;
             this.fname = fname;
             this.lname = lname;
             this.priority = priority;
+            this.treatmentId = rtid;
+            this.treatment = treatment;
         }
         #endregion
 
@@ -94,13 +110,13 @@ namespace Hospipal.Database_Class
         #region Static Methods
         public static List<WaitlistedPatient> GetWaitlistedPatientsForWard(string ward)
         {
-            List<object[]> patients = Database.Select("SELECT waitlistId, pid, fname, lname, priority from Waitlist, Patient where Waitlist.patientId = Patient.pid and Waitlist.wardName = '"+ ward + "' order by priority='Low', priority='Medium', priority='High', waitlistId;");
+            List<object[]> patients = Database.Select("SELECT waitlistId, pid, fname, lname, priority, treatmentID, treatment  from Waitlist, Patient, ReceivesTreatment where Waitlist.patientId = Patient.pid and ReceivesTreatment.rtid = Waitlist.treatmentID and Waitlist.wardName = '"+ ward + "' order by priority='Low', priority='Medium', priority='High', waitlistId;");
             List<WaitlistedPatient> getpatients = new List<WaitlistedPatient>();
             foreach (object[] row in patients)
             {
-                if (row.Length == 5)
+                if (row.Length == 7)
                 {
-                    WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(), row[4].ToString());
+                    WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]), row[6].ToString());
                     getpatients.Add(newPatient);
                 }
             }
@@ -124,9 +140,9 @@ namespace Hospipal.Database_Class
             return openbeds;
         }
 
-        public static bool AddPatientToWaitlist(int pid, string ward, string priority)
+        public static bool AddPatientToWaitlist(int pid, string ward, string priority, int rtid)
         {
-            return Database.Insert("Insert into Waitlist (patientId, wardName, priority) values (" + pid + ", '" + ward + "', '" + priority + "')");
+            return Database.Insert("Insert into Waitlist (patientId, wardName, priority, treatmentID) values (" + pid + ", '" + ward + "', '" + priority + "', " + rtid + ")");
         }
         #endregion
     }

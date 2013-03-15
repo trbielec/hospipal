@@ -8,12 +8,10 @@ namespace HospipalTests
     [TestFixture]
     public class PatientClassTests
     {
-        private Patient patient;
-
         [TestCase]
         public void TestPatientSelect()
         {
-            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            Patient patient = new Patient(10000000, "UnitTestPatient", "UnitTestLName", new DateTime(), "", "", "", "", "", "", "");
             patient.Insert();
 
             Assert.True(patient.Select());
@@ -24,7 +22,7 @@ namespace HospipalTests
         [TestCase]
         public void TestPatientInsert()
         {
-            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            Patient patient = new Patient(10000000, "UnitTestPatient", "UnitTestLName", new DateTime(), "", "", "", "", "", "", "");
             Assert.True(patient.Insert());
 
             patient.Delete();
@@ -33,7 +31,7 @@ namespace HospipalTests
         [TestCase]
         public void TestPatientUpdate()
         {
-            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            Patient patient = new Patient(10000000, "UnitTestPatient", "UnitTestLName", new DateTime(), "", "", "", "", "", "", "");
             patient.Insert();
             patient.Select();
 
@@ -46,7 +44,7 @@ namespace HospipalTests
         [TestCase]
         public void TestPatientDelete()
         {
-            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            Patient patient = new Patient(10000000, "UnitTestPatient", "UnitTestLName", new DateTime(), "", "", "", "", "", "", "");
             patient.Insert();
 
             Assert.True(patient.Delete());
@@ -55,7 +53,7 @@ namespace HospipalTests
         [TestCase]
         public void TestGetPatients()
         {
-            Patient patient = new Patient(10000000, "TestPatient", "TestLName", new DateTime(), "", "", "", "", "", "", "");
+            Patient patient = new Patient(10000000, "UnitTestPatient", "UnitTestLName", new DateTime(), "", "", "", "", "", "", "");
             patient.Insert();
 
             List<Patient> p = Patient.GetPatients();
