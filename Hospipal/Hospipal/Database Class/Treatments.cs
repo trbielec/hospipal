@@ -19,6 +19,7 @@ namespace Hospipal.Database_Class
         private string _Time;
         private string _notes;
         private int _Doctor;
+        private string _Status;
         #endregion
 
         #region Getters/Setters
@@ -109,6 +110,17 @@ namespace Hospipal.Database_Class
             }
         }
 
+        public string Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                _Status = value;
+            }
+        }
         #endregion
 
         #region Constructor
@@ -118,7 +130,7 @@ namespace Hospipal.Database_Class
             _Date = new DateTime(1990, 1, 1);
         }
 
-        public Treatment(int pID, string type, int day, int month, int year, string time, string notes, int doc)
+        public Treatment(int pID, string type, int day, int month, int year, string time, string notes, int doc,string status)
         {
 
             _patientID = pID;
@@ -127,6 +139,7 @@ namespace Hospipal.Database_Class
             _Type = type;
             _notes = notes;
             _Doctor = doc;
+            _Status = status;   
         }
 
         #endregion      
@@ -148,6 +161,7 @@ namespace Hospipal.Database_Class
                         _Time = row[6].ToString();
                         _notes = row[7].ToString();
                         _Doctor = Convert.ToInt32(row[8]);
+                        _Status = row[9].ToString();
                     }
                 }
                 return true;
@@ -188,7 +202,7 @@ namespace Hospipal.Database_Class
             {
                 Treatment newTreatment = new Treatment(Convert.ToInt32(row[1]), row[2].ToString(),
                                         Convert.ToInt32(row[3]), Convert.ToInt32(row[4]), Convert.ToInt32(row[5]),
-                                        row[6].ToString(), row[7].ToString(), Convert.ToInt32(row[8]));
+                                        row[6].ToString(), row[7].ToString(), Convert.ToInt32(row[8]),row[9].ToString());
                 newTreatment._treatmentID = Convert.ToInt32(row[0]);
                 getTreatments.Add(newTreatment);
             }

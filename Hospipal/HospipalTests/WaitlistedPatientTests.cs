@@ -21,14 +21,18 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
+            Treatment.Insert(10000, "TestTreatment", 1, 1, 1, "", "", 1);
+            List<Treatment> list = Treatment.GetTreatments(10000);
+            Treatment t = list[0];
 
-            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High");
+            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID);
             List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
             List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard");
 
             Assert.True(patients[0].AssignPatientToBed(bed[0].bedNo));
 
             patients[0].RemovedPatientFromWaitlist();
+            t.Delete();
             p.Delete();
             b.Delete();
             r.Delete();
@@ -47,14 +51,18 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
+            Treatment.Insert(10000, "TestTreatment", 1, 1, 1, "", "", 1);
+            List<Treatment> list = Treatment.GetTreatments(10000);
+            Treatment t = list[0];
 
-            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High");
+            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID);
             List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
             List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard");
 
             patients[0].AssignPatientToBed(bed[0].bedNo);
 
             Assert.True(patients[0].RemovedPatientFromWaitlist());
+            t.Delete();
             p.Delete();
             b.Delete();
             r.Delete();
@@ -80,13 +88,17 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
+            Treatment.Insert(10000, "TestTreatment", 1, 1, 1, "", "", 1);
+            List<Treatment> list = Treatment.GetTreatments(10000);
+            Treatment t = list[0];
 
-            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High");
+            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID);
             List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
 
             Assert.True(patients.Count >= 1);
 
             patients[0].RemovedPatientFromWaitlist();
+            t.Delete();
             p.Delete();
             b.Delete();
             r.Delete();
