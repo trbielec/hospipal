@@ -149,6 +149,14 @@ namespace Hospipal
             Patients_DataGrid.DataContext = Patients;
         }
 
+        private void Patients_DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (Patients_DataGrid.SelectedItems.Count > 0)
+                Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem));
+            else
+                MessageBox.Show("No patients available");
+        }
+
         /*private void PatientsListLostFocus(object sender, RoutedEventArgs e)
         {
             Patients_DeleteButton.Visibility = System.Windows.Visibility.Hidden;

@@ -37,6 +37,8 @@ namespace Hospipal.Database_Class
         #endregion
 
         #region Functions and Logic
+        /* Returns a list of patients based on query built from entries in UI
+         */
         public static List<Patient> SearchPatient(string queryBuilt) 
         {
             List<Patient> getPatients = new List<Patient>();
@@ -52,26 +54,37 @@ namespace Hospipal.Database_Class
                     getPatients.Add(newPatient);
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
-                System.Windows.MessageBox.Show("Error getting data from database");
+                System.Windows.MessageBox.Show("Error getting data from database and/or converting");
             }
             return getPatients;
         }
 
-        public static List<Employee> SearchEmployees(string queryBuilt  )
+        /* Returns a list of employees based on query built from entries in UI
+        */
+        public static List<Employee> SearchEmployees(string queryBuilt)
         {
-            List<object[]> employeeList = Database.Select(queryBuilt);
             List<Employee> getEmployees = new List<Employee>();
-            foreach (object[] row in employeeList)
+            try
             {
-                Employee newEmployee = new Employee(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(),
-                                            row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]));
-                getEmployees.Add(newEmployee);
+                List<object[]> employeeList = Database.Select(queryBuilt);
+                foreach (object[] row in employeeList)
+                {
+                    Employee newEmployee = new Employee(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(),
+                                                row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]));
+                    getEmployees.Add(newEmployee);
+                }
+            }
+            catch (Exception)
+            {
+                System.Windows.MessageBox.Show("Error getting data from database and/or converting");
             }
             return getEmployees;
         }
 
+        /* Uses lists generated from UI to build query where cSideVariables matches dbSideVariables for database call
+        */
         public void UseInputs(List<string> dbSideVariables, List<string> cSideVariables)
         {
             for (int i = 0; i < cSideVariables.Count(); i++)

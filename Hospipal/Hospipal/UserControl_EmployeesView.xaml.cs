@@ -59,7 +59,6 @@ namespace Hospipal
 
                 Employee_DataGrid.Items.Refresh();
             }
-            
         }
 
         private void SearchEmployee(object sender, RoutedEventArgs e)
@@ -123,9 +122,13 @@ namespace Hospipal
             advancedSearch.UseInputs(dbSideVariables, cSideVariables);
 
             Employees = Search.SearchEmployees(advancedSearch.GetBuiltQuery());
-            Employee_DataGrid.DataContext = Employees;
+            Employee_DataGrid.DataContext = Employees;  
+        }
 
-           
+        private void Employee_DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (Employee_DataGrid.SelectedItems.Count > 0)
+                Content = new EmployeeInformation(((Employee)Employee_DataGrid.SelectedItem));
         }
     }
 }
