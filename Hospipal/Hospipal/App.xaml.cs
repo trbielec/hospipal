@@ -22,13 +22,18 @@ namespace Hospipal
             TextBox t = sender as TextBox;
             t.Background = System.Windows.Media.Brushes.LightGoldenrodYellow;
 
-
         }
 
 
         private void checkInput(object sender, TextCompositionEventArgs a)
         {
             Regex regex = new Regex("[^0-9]+");
+            a.Handled = regex.IsMatch(a.Text);
+        }
+
+        private void checkInputLetters(object sender, TextCompositionEventArgs a)
+        {
+            Regex regex = new Regex(@"[^\w\s.]");
             a.Handled = regex.IsMatch(a.Text);
         }
 
@@ -45,6 +50,12 @@ namespace Hospipal
         private bool textAllowed(string text)
         {
             Regex regex = new Regex("[^0-9]+");
+            return regex.IsMatch(text);
+        }
+
+        private bool textAllowedLetters(string text)
+        {
+            Regex regex = new Regex(@"[^\w\s.]");
             return regex.IsMatch(text);
         }
     }
