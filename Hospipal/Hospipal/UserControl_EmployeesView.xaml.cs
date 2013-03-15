@@ -61,7 +61,7 @@ namespace Hospipal
             }
         }
 
-        private void SearchEmployee(object sender, RoutedEventArgs e)
+        private void SearchEmployee_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(tbEID.Text) && string.IsNullOrWhiteSpace(tbFName.Text) && string.IsNullOrWhiteSpace(tbLName.Text) && string.IsNullOrWhiteSpace(tbSupervisorID.Text) && string.IsNullOrWhiteSpace(cbEmployeeType.Text) && string.IsNullOrWhiteSpace(cbSpecialty.Text))
             {
@@ -74,74 +74,11 @@ namespace Hospipal
             }
         }
 
-        public void validateInputs()
-        {
-            Search advancedSearch = new Search("Employee");
-            List<string> dbSideVariables = new List<string>();
-            List<string> cSideVariables = new List<string>();
-
-            #region Box Checking
-            if (!string.IsNullOrWhiteSpace(tbEID.Text))
-            {
-
-                dbSideVariables.Add("eid");
-                cSideVariables.Add(tbEID.Text);
-            }
-
-            if (!string.IsNullOrWhiteSpace(tbFName.Text))
-            {
-                dbSideVariables.Add("fname");
-                cSideVariables.Add(tbFName.Text);
-            }
-
-            if (!string.IsNullOrWhiteSpace(tbLName.Text))
-            {
-                dbSideVariables.Add("lname");
-                cSideVariables.Add(tbLName.Text);
-            }
-
-            if (!string.IsNullOrWhiteSpace(cbSpecialty.Text))
-            {
-                dbSideVariables.Add("specialty");
-                cSideVariables.Add(cbSpecialty.Text);
-            }
-
-            if (!string.IsNullOrWhiteSpace(cbEmployeeType.Text))
-            {
-                dbSideVariables.Add("employee_type");
-                cSideVariables.Add(cbEmployeeType.Text);
-            }
-
-            if (!string.IsNullOrWhiteSpace(tbSupervisorID.Text))
-            {
-                dbSideVariables.Add("supervisor_id");
-                cSideVariables.Add(tbSupervisorID.Text);
-            }
-            #endregion
-
-            advancedSearch.UseInputs(dbSideVariables, cSideVariables);
-
-            Employees = Search.SearchEmployees(advancedSearch.GetBuiltQuery());
-            Employee_DataGrid.DataContext = Employees;  
-        }
 
         private void Employee_DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (Employee_DataGrid.SelectedItems.Count > 0)
                 Content = new EmployeeInformation(((Employee)Employee_DataGrid.SelectedItem));
-        }
-
-        private void SearchEmployee(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbEID.Text) && string.IsNullOrWhiteSpace(tbFName.Text) && string.IsNullOrWhiteSpace(tbLName.Text) && string.IsNullOrWhiteSpace(tbSupervisorID.Text) && string.IsNullOrWhiteSpace(cbEmployeeType.Text) && string.IsNullOrWhiteSpace(cbSpecialty.Text))
-            {
-                Employees = Employee.GetEmployees();
-                Employee_DataGrid.DataContext = Employees;
-            }
-            else
-            {
-                validateInputs();
-            }
         }
 
         public void validateInputs()

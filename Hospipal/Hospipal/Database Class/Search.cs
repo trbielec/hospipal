@@ -61,17 +61,6 @@ namespace Hospipal.Database_Class
             return getPatients;
         }
 
-<<<<<<< HEAD
-        public static List<Employee> SearchEmployees(string queryBuilt  )
-        {
-            List<object[]> employeeList = Database.Select(queryBuilt);
-            List<Employee> getEmployees = new List<Employee>();
-            foreach (object[] row in employeeList)
-            {
-                Employee newEmployee = new Employee(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(),
-                                            row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]));
-                getEmployees.Add(newEmployee);
-=======
         /* Returns a list of employees based on query built from entries in UI
         */
         public static List<Employee> SearchEmployees(string queryBuilt)
@@ -90,16 +79,13 @@ namespace Hospipal.Database_Class
             catch (Exception)
             {
                 System.Windows.MessageBox.Show("Error getting data from database and/or converting");
->>>>>>> origin/AdvancedSearch
             }
             return getEmployees;
         }
 
-<<<<<<< HEAD
-=======
         /* Uses lists generated from UI to build query where cSideVariables matches dbSideVariables for database call
         */
->>>>>>> origin/AdvancedSearch
+
         public void UseInputs(List<string> dbSideVariables, List<string> cSideVariables)
         {
             for (int i = 0; i < cSideVariables.Count(); i++)

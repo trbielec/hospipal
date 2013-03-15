@@ -6,11 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
-<<<<<<< HEAD
-    <Grid>
-=======
+    
     <Grid HorizontalAlignment="Center">
->>>>>>> origin/AdvancedSearch
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="73*"/>
             <ColumnDefinition Width="7*"/>
@@ -107,7 +104,7 @@
                     <Image Source="./Resources/Button Images/trash.png"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="Employees_SearchButton" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" Height="60" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SearchEmployee">
+            <Button x:Name="Employees_SearchButton" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" Height="60" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SearchEmployee_Click">
                 <Image Source="Resources/Button Images/search.png" Height="60" Width="60"/>
             </Button>
         </Grid>
