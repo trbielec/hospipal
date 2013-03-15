@@ -7,8 +7,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -41,6 +41,7 @@
                 <DataGridTextColumn Header="First Name" Binding="{Binding Path=Fname}" Width="*"/>
                 <DataGridTextColumn Header="Last Name" Binding="{Binding Path=Lname}" Width="*"/>
                 <DataGridTextColumn Header="Priority" Binding="{Binding Path=Priority}" Width="*"/>
+                <DataGridTextColumn Header="Treatment" Binding="{Binding Path=Treatment}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
        
