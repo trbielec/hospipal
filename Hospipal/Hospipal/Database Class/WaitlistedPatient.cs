@@ -13,6 +13,7 @@ namespace Hospipal.Database_Class
         private int pid;
         private string fname;
         private string lname;
+        private string wardname;
         private string priority;
         private int treatmentId;
         private string treatment;
@@ -55,6 +56,17 @@ namespace Hospipal.Database_Class
             }
         }
 
+        public string Ward
+        {
+            get
+            {
+                return wardname;
+            }
+            set
+            {
+                wardname=value;
+            }
+        }
         public string Priority
         {
             get
@@ -91,9 +103,33 @@ namespace Hospipal.Database_Class
             this.treatmentId = rtid;
             this.treatment = treatment;
         }
+        //FOR EXISTING WAITLIST ITEMS
+        public WaitlistedPatient(int rtid)
+        {
+            treatmentId = rtid; 
+            Select();
+        }
         #endregion
 
         #region Functions
+
+        //FOR EXISTING WAITLIST ITEMS
+        private void Select()
+        {
+            string query = "Select * from Waitlist where rtid = " + treatmentId + ";";
+            List<object[]> SingleRow = Database.Select(query);
+            if (SingleRow != null && SingleRow.Count > 0)
+            {
+                foreach (object[] row in SingleRow)
+                {
+                    waitlistId = Convert.ToInt32(row[0]);
+                    pid = Convert.ToInt32(row[1]);
+                    wardname = row[2].ToString();
+                    priority = row[3].ToString();
+                }
+            }
+        }
+
         public bool AssignPatientToBed(int bedId)
         {
             string query = "update Bed set pid = " + pid + ", state = 0 where bed_no = " + bedId + ";";

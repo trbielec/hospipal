@@ -31,11 +31,25 @@ namespace Hospipal
             set { SetValue(TreatmentProperty, value); }
         }
 
+        private static readonly DependencyProperty WaitlistProperty =
+                          DependencyProperty.Register("waitlist", typeof(Patient),
+                                                      typeof(PatientInformation));
+        private WaitlistedPatient waitlist  
+        {
+            get { return (WaitlistedPatient)GetValue(WaitlistProperty); }
+            set { SetValue(WaitlistProperty, value); }
+        }
+
         List<Treatment> treatments;
+
+
         public PatientTreatmentHistory(int Pid)
         {
             InitializeComponent();
+            Patient p = new Patient(Pid);
+            lblPatientName.Content = p.LastName + ", " + p.FirstName;
             treatments = Treatment.GetTreatments(Pid,"History");
+            dgHistory.DataContext = treatments;
 
         }
 
@@ -47,6 +61,8 @@ namespace Hospipal
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             treatment = (Treatment)dgHistory.SelectedItem;
+            waitlist = new WaitlistedPatient(treatment.TreatmentID);
+            lblDetails.Content = treatment.Type + " " + treatment.DateToShortDateString + " " + treatment.Time;
         }
     }
 }

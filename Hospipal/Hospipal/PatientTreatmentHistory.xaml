@@ -32,10 +32,9 @@
         <Label x:Name="lblDetails" Grid.Row="1" Grid.Column="4" Content="Generate Treatment Time and Day" HorizontalAlignment="Left" Grid.ColumnSpan="4"/>
         <DataGrid x:Name="dgHistory" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="7" SelectionChanged="dgHistory_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Treatment Type" Binding="{Binding Path=HealthCareNo}" Width="2*"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding Path=FirstName}" Width="*"/>
-                <DataGridTextColumn Header="Time" Binding="{Binding Path=LastName}" Width="*"/>
-                <DataGridTextColumn Header="Ward" Binding="{Binding Path=getDOB}" Width="2*"/>
+                <DataGridTextColumn Header="Treatment Type" Binding="{Binding Path=Type}" Width="2*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Path=DateToShortDateString}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid x:Name="GridDetails" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="9">
@@ -63,18 +62,14 @@
             <Label x:Name="lblType" Content="Treatment Type: " HorizontalAlignment="Right"/>
             <Label x:Name="lblWard" Content="Assigning Ward: " HorizontalAlignment="Right" Grid.Row="1"/>
             <Label x:Name="lblPriority" Content="Treatment Priority: " HorizontalAlignment="Right"  Grid.Row="2" Height="35" VerticalAlignment="Bottom"/>
-            <Label x:Name="lblDate" Content="Treatment Date: " HorizontalAlignment="Right"  Grid.Row="3"/>
-            <Label x:Name="lblTime" Content="Treatment Time: " HorizontalAlignment="Right" Grid.Row="4"/>
-            <Label x:Name="lblDoctor" Content="Treating Doctor: " HorizontalAlignment="Right"  Grid.Row="5"/>
-            <Label x:Name="lblNotes" Content="Treatment Notes: " HorizontalAlignment="Right"  Grid.Row="6"/>
+            <Label x:Name="lblDoctor" Content="Treating Doctor: " HorizontalAlignment="Right"  Grid.Row="3"/>
+            <Label x:Name="lblNotes" Content="Treatment Notes: " HorizontalAlignment="Right"  Grid.Row="4"/>
             <TextBox x:Name="txtType" Text="{Binding Path=treatment.Type,ElementName=Treathistory}" IsReadOnly="True"  Grid.Column="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtWard" IsReadOnly="True" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtPriority" IsReadOnly="True" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtDate" IsReadOnly="True" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtTime" IsReadOnly="True" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtDoctor" IsReadOnly="True" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtNotes" IsReadOnly="True" Grid.Column="1" Grid.Row="6" Grid.RowSpan="5" VerticalAlignment="Stretch"/>
-            <Button x:Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Close"  Grid.Column="3" Grid.RowSpan="2" Grid.Row="11">
+            <TextBox x:Name="txtWard" Text="{Binding Path=waitlist.Ward,ElementName=Treathistory}"  IsReadOnly="True" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtPriority" Text="{Binding Path=waitlist.Priority,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtDoctor" Text="{Binding Path=treatment.Doctor,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtNotes" Text="{Binding Path=treatment.Notes,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" VerticalAlignment="Stretch"/>
+            <Button x:Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Close"  Grid.Column="3" Grid.RowSpan="2" Grid.Row="9">
                 <Image Source="Resources/Button Images/cancel.png"/>
             </Button>
         </Grid>

@@ -183,6 +183,7 @@ namespace Hospipal.Database_Class
             treatment.Parameters.AddWithValue("notes", _notes);
             treatment.Parameters.AddWithValue("doctor", _Doctor);
             treatment.Parameters.AddWithValue("status", _Status);
+
             return Database.Update(treatment);
 
         }
