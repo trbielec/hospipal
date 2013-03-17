@@ -33,26 +33,26 @@
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Name ="lblSearch" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Advanced Search" FontWeight="Bold"/>
+            <Label Name ="lblSearch" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Advanced Search" Style="{StaticResource headerStyle}"/>
 
 
-            <Label Content="Employee ID: " HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
-            <Label Content="First Name: " HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
-            <Label Content="Specialty: " HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-            <Label Content="Employee Type: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center"/>
-            <Label Content="Last Name: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
-            <Label Content="Supervisor ID: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center"/>
+            <Label Content="Employee ID: " HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="First Name: " HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Specialty: " HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Employee Type: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Last Name: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Supervisor ID: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
 
             <TextBox x:Name="tbEID" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" MaxLength="10" Style="{StaticResource Numeric}"/>
             <TextBox x:Name="tbFName" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" MaxLength="50" Style="{StaticResource AlphaAndNumeric}"/>
             <TextBox x:Name="tbLName" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" MaxLength="50" Style="{StaticResource AlphaAndNumeric}"/>
             <TextBox x:Name="tbSupervisorID" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center" MaxLength="10" Style="{StaticResource Numeric}"/>
-            <ComboBox x:Name="cbSpecialty" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center">
+            <ComboBox x:Name="cbSpecialty" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource textStyle}">
                 <ComboBoxItem Name="General">General</ComboBoxItem>
                 <ComboBoxItem Name="Emergency">Emergency</ComboBoxItem>
                 <ComboBoxItem Name="Other">Other</ComboBoxItem>
             </ComboBox>
-            <ComboBox Grid.Column="3" x:Name="cbEmployeeType" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center">
+            <ComboBox Grid.Column="3" x:Name="cbEmployeeType" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource textStyle}">
                 <ComboBoxItem Name="Nurse">Nurse</ComboBoxItem>
                 <ComboBoxItem Name="Doctor">Doctor</ComboBoxItem>
                 <ComboBoxItem Name="Support">Support Staff</ComboBoxItem>
