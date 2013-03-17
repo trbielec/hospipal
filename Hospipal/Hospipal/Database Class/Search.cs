@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospipal.Database_Class
 {
-    class Search
+    public class Search
     {
         #region Attributes
         string _tableName;
