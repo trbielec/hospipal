@@ -72,6 +72,17 @@ namespace Hospipal
             {
                 validateInputs();
             }
+            clearBoxes();
+        }
+
+        private void clearBoxes()
+        {
+            tbEID.Clear();
+            tbFName.Clear();
+            tbLName.Clear();
+            tbSupervisorID.Clear();
+            cbEmployeeType.Text = string.Empty;
+            cbSpecialty.Text = String.Empty;
         }
 
 
