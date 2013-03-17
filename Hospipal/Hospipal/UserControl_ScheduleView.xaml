@@ -11,12 +11,15 @@
 
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         
-        <telerik:RadScheduleView Grid.Row="0" SnapAppointments="True" VerticalAlignment="Stretch" x:Name="scheduleView" FirstDayOfWeek="Monday" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ShowDialog="RadScheduleView_ShowDialog">
+        <telerik:RadScheduleView Grid.Row="0" SnapAppointments="True" VerticalAlignment="Stretch" x:Name="scheduleView" FirstDayOfWeek="Monday" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ShowDialog="RadScheduleView_ShowDialog" AppointmentsSource="{Binding Appointments}">
             <telerik:RadScheduleView.ViewDefinitions>
                 <telerik:WeekViewDefinition MajorTickLength="1h" MinorTickLength="1h" Title="Weekly View" />
             </telerik:RadScheduleView.ViewDefinitions>
         </telerik:RadScheduleView>
+        
+        
     </Grid>
 </UserControl>

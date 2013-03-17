@@ -6,79 +6,42 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.ScheduleView;
+using System.Collections.ObjectModel;
 
 namespace Hospipal.Database_Class
 {
     class Schedule
     {
-        private int _day;
-        private int _month;
-        private int _year;
-        private int _start_time;
-        private int _end_time;
+        private DateTime _start;
+        private DateTime _end;
         private int _employee;
         private string _ward;
 
 
 #region Getters/Setters
 
-        public int Day
+
+        public DateTime Start
         {
             get
             {
-                return _day;
+                return _start;
             }
             set
             {
-                _day = value;
+                _start = value;
             }
         }
 
-        public int Month
+        public DateTime End
         {
             get
             {
-                return _month;
+                return _end;
             }
             set
             {
-                _month = value;
-            }
-        }
-
-        public int Year
-        {
-            get
-            {
-                return _year;
-            }
-            set
-            {
-                _year = value;
-            }
-        }
-
-        public int Start_time
-        {
-            get
-            {
-                return _start_time;
-            }
-            set
-            {
-                _start_time = value;
-            }
-        }
-
-        public int End_time
-        {
-            get
-            {
-                return _end_time;
-            }
-            set
-            {
-                _end_time = value;
+                _end = value;
             }
 
         }
@@ -115,13 +78,11 @@ namespace Hospipal.Database_Class
         {
         }
 
-        public Schedule(int day, int month, int year, int start_time, int end_time, int employee, string ward)
+        public Schedule(DateTime start, DateTime end, int employee, string ward)
         {
-            _day = day;
-            _month = month;
-            _year = year;
-            _start_time = start_time;
-            _end_time = end_time;
+            
+            _start = start;
+            _end = end;
             _employee = employee;
             _ward = ward; 
         }
@@ -133,12 +94,10 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            MySqlCommand schedule = new MySqlCommand("Insert_Schedule(@day,@month,@year,@start_time,@end_time,@employee,@ward);");
-            schedule.Parameters.AddWithValue("day", _day);
-            schedule.Parameters.AddWithValue("month", _month);
-            schedule.Parameters.AddWithValue("year", _year);
-            schedule.Parameters.AddWithValue("start_time", _start_time);
-            schedule.Parameters.AddWithValue("end_time", _end_time);
+            MySqlCommand schedule = new MySqlCommand("Insert_Schedule(@start,@end,@employee,@ward);");
+
+            schedule.Parameters.AddWithValue("start", _start);
+            schedule.Parameters.AddWithValue("end", _end);
             schedule.Parameters.AddWithValue("employee", _employee);
             schedule.Parameters.AddWithValue("ward", _ward);
             return Database.Insert(schedule);
@@ -146,12 +105,10 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
-            MySqlCommand schedule = new MySqlCommand("Update_Schedule(@day,@month,@year,@start_time,@end_time,@employee,@ward);");
-            schedule.Parameters.AddWithValue("day", _day);
-            schedule.Parameters.AddWithValue("month", _month);
-            schedule.Parameters.AddWithValue("year", _year);
-            schedule.Parameters.AddWithValue("start_time", _start_time);
-            schedule.Parameters.AddWithValue("end_time", _end_time);
+            MySqlCommand schedule = new MySqlCommand("Update_Schedule(@start,@end,@employee,@ward);");
+
+            schedule.Parameters.AddWithValue("start", _start);
+            schedule.Parameters.AddWithValue("end", _end);
             schedule.Parameters.AddWithValue("employee", _employee);
             schedule.Parameters.AddWithValue("ward", _ward);
             return Database.Update(schedule);
@@ -159,20 +116,25 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
-           return Database.Delete("DELETE FROM Schedule WHERE day = " + _day + " AND month = " + _month + " AND year = " + _year + " AND start_time = " + _start_time + " AND end_time = " + _end_time + " AND employee = " + _employee);
+           return Database.Delete("DELETE FROM Schedule WHERE start = " + _start + " AND end = " + _end + " AND employee = " + _employee);
         }
 
-        public static List<Schedule> Select()
+        public static ObservableCollection<Appointment> Select()
         {
             List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
-            List<Schedule> allSchedules = new List<Schedule>();
+            ObservableCollection<Appointment> allAppointments = new ObservableCollection<Appointment>();
             foreach (object[] row in scheduleTable)
             {
-                Schedule newSchedule = new Schedule(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), Convert.ToInt32(row[2]),
-                                            Convert.ToInt32(row[3]), Convert.ToInt32(row[4]), Convert.ToInt32(row[5]), row[6].ToString());
-                allSchedules.Add(newSchedule);               
+                Appointment newAppt = new Appointment() { 
+                    Start = Convert.ToDateTime(row[0]),
+                    End = Convert.ToDateTime(row[1]),
+                    Subject = row[2].ToString(),
+                    Body = row[3].ToString(),
+                };
+
+                allAppointments.Add(newAppt);               
             }
-            return allSchedules;
+            return allAppointments;
         }
         
         #endregion
