@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Telerik.Windows.Controls;
+using Telerik.Windows.Controls.ScheduleView;
 
 namespace Hospipal.Database_Class
 {
@@ -12,9 +14,9 @@ namespace Hospipal.Database_Class
         private int _day;
         private int _month;
         private int _year;
-        private string _start_time;
-        private string _end_time;
-        private string _employee;
+        private int _start_time;
+        private int _end_time;
+        private int _employee;
         private string _ward;
 
 
@@ -56,7 +58,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-        public string Start_time
+        public int Start_time
         {
             get
             {
@@ -68,7 +70,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-        public string End_time
+        public int End_time
         {
             get
             {
@@ -81,7 +83,7 @@ namespace Hospipal.Database_Class
 
         }
 
-        public string Employee
+        public int Employee
         {
             get
             {
@@ -107,7 +109,27 @@ namespace Hospipal.Database_Class
 
 #endregion
 
-#region Database functions
+        #region Constructors
+
+        public Schedule()
+        {
+        }
+
+        public Schedule(int day, int month, int year, int start_time, int end_time, int employee, string ward)
+        {
+            _day = day;
+            _month = month;
+            _year = year;
+            _start_time = start_time;
+            _end_time = end_time;
+            _employee = employee;
+            _ward = ward; 
+        }
+
+        #endregion
+
+
+        #region Database functions
 
         public bool Insert()
         {
@@ -135,14 +157,24 @@ namespace Hospipal.Database_Class
             return Database.Update(schedule);
         }
 
-        /*public bool Delete()
+        public bool Delete()
         {
-           return Database.Delete("DELETE FROM Schedule WHERE day = " + _day + " AND month = " + _month + " AND year = " + _year);
-        }*/
-#endregion
+           return Database.Delete("DELETE FROM Schedule WHERE day = " + _day + " AND month = " + _month + " AND year = " + _year + " AND start_time = " + _start_time + " AND end_time = " + _end_time + " AND employee = " + _employee);
+        }
 
-
-
-
+        public List<Schedule> Select()
+        {
+            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
+            List<Schedule> allSchedules = new List<Schedule>();
+            foreach (object[] row in scheduleTable)
+            {
+                Schedule newSchedule = new Schedule(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), Convert.ToInt32(row[2]),
+                                            Convert.ToInt32(row[3]), Convert.ToInt32(row[4]), Convert.ToInt32(row[5]), row[6].ToString());
+                allSchedules.Add(newSchedule);               
+            }
+            return allSchedules;
+        }
+        
+        #endregion
     }
 }
