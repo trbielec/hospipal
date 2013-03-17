@@ -21,7 +21,6 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment.Insert(10000, "TestTreatment", 1, 1, 1, "", "", 1);
             List<Treatment> list = Treatment.GetTreatments(10000);
             Treatment t = list[0];
 
@@ -51,7 +50,8 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment.Insert(10000, "TestTreatment", 1, 1, 1, "", "", 1);
+            Treatment treat = new Treatment(10000, "TestTreatment", 1, 1, 1, "", "", 1,"History");
+            treat.Insert();
             List<Treatment> list = Treatment.GetTreatments(10000);
             Treatment t = list[0];
 
@@ -88,11 +88,12 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment.Insert(10000, "TestTreatment", 1, 1, 1, "", "", 1);
+            Treatment treat = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
+            treat.Insert();
             List<Treatment> list = Treatment.GetTreatments(10000);
             Treatment t = list[0];
 
-            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID);
+            //WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID,t.Type);
             List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
 
             Assert.True(patients.Count >= 1);
