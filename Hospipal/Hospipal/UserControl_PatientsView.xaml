@@ -34,17 +34,17 @@
                 <ColumnDefinition Width="120*"/>
             </Grid.ColumnDefinitions>
 
-            <Label x:Name="lblSearch" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Advanced Search" FontWeight="Bold"/>
-            
-            <Label x:Name="HealthLabel" Content="Health Care No: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <Label Content="FirstName: " HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
-            <Label Content="Address: " HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center"/>
-            <Label Content="DOB: " Grid.Column="2" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Center"/>
-            <Label Content="Last Name: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center"/>
-            <Label Content="Phone: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center"/>
-            <Label Content="Province: " HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center"/>
-            <Label Content="City: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center"/>
-            <Label Content="Postal Code: " HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center"/>
+            <Label x:Name="lblSearch" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Advanced Search" Style="{StaticResource headerStyle}"/>
+
+            <Label x:Name="HealthLabel" Content="Health Care No: " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="FirstName: " HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Address: " HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="DOB: " Grid.Column="2" HorizontalAlignment="Right"  Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Last Name: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Phone: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Province: " HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="City: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Postal Code: " HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
 
             <TextBox Name="tbHealthCare" Grid.Column="1" MaxLength="10" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource Numeric}"/>
             <TextBox Name="tbFName" Grid.Column="1" MaxLength="50" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource AlphaAndNumeric}"/>
