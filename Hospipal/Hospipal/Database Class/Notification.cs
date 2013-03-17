@@ -40,54 +40,19 @@ namespace Hospipal.Database_Class
         #endregion
 
         #region Database Calls
-        //Alternate method found
-        //public string PollDatabase()
-        //{
-        //    //Need to thread this eventually so that it doesn't block the UI
-        //    while (true)
-        //    {
-        //        System.Threading.Thread.Sleep(5000);
-        //        RetrieveNotification();
-        //        return _Text;
-        //    }
-            
-        //}
 
         public void RetrieveNotification()
         {
             _Text = Convert.ToString(Database.Select("SELECT * from Notification;").ElementAt(0).ElementAt(1));
-        }
-
-        public void SendNotification(string sender)
-        {
-            _Text = sender;
-            
-            //Test works
             //MessageBoxResult result = MessageBox.Show("Retrieved value: " + _Text);
         }
 
-        //public void SendNotification(string sender)
-        //{
-       
-        //    _Text = sender;
-            
-        //    MySqlCommand notification = new MySqlCommand("Update_Notification(@_Text);");
-        //    notification.Parameters.AddWithValue("_Text", _Text);
-        //    Database.Update(notification);
-
-        //    MessageBoxResult result = MessageBox.Show("Value sent to database: " + _Text);
-
-        //    //Test
-        //    //MessageBoxResult result = MessageBox.Show("Database should be changed now!");
-
-        //}
         public void SendNotification()
         {
             //MessageBoxResult result = MessageBox.Show("Value to send to database: " + _Text);
             MySqlCommand notification = new MySqlCommand("Update_Notification(@_Text);");
             notification.Parameters.AddWithValue("_Text", _Text);
             Database.Update(notification);
-
         }
         #endregion
     }
