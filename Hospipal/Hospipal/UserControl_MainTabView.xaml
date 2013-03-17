@@ -22,6 +22,9 @@
             <telerik:RadTabItem x:Name="WardsTab" Header="Wards" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="SchedulingTab" Header="Scheduling" Height="32" Width="100" FontSize="14" />
         </telerik:RadTabControl>
-        <TextBox Grid.Row="1" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" LostKeyboardFocus="Notifications_Bar_LostFocus"/>
+        <!--<Label Grid.Row="1" Grid.ColumnSpan="1" Width="90" Height="20" Content="Press Tab to Submit" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>-->
+        <TextBox Grid.Row="1" ToolTipService.ToolTip="Press Tab to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
+        
+        <!--<Button Grid.Row="1" Content="Button" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75"/>-->
     </Grid>
 </UserControl>
