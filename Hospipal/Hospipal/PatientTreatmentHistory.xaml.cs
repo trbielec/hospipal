@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospipal.Database_Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,32 @@ namespace Hospipal
     /// </summary>
     public partial class PatientTreatmentHistory : UserControl
     {
-        public PatientTreatmentHistory()
+
+        private static readonly DependencyProperty TreatmentProperty =
+                          DependencyProperty.Register("treatment", typeof(Patient),
+                                                      typeof(PatientInformation));
+        private Treatment treatment
+        {
+            get { return (Treatment)GetValue(TreatmentProperty); }
+            set { SetValue(TreatmentProperty, value); }
+        }
+
+        List<Treatment> treatments;
+        public PatientTreatmentHistory(int Pid)
         {
             InitializeComponent();
+            treatments = Treatment.GetTreatments(Pid,"History");
+
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            Content = new PatientTreatmentView();
+        }
+
+        private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            treatment = (Treatment)dgHistory.SelectedItem;
         }
     }
 }

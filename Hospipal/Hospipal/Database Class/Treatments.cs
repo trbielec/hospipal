@@ -212,9 +212,9 @@ namespace Hospipal.Database_Class
 
         #region List Functions
 
-        public static List<Treatment> GetTreatments(int pid)
+        public static List<Treatment> GetTreatments(int pid,string status)
         {
-            List<object[]> rows = Database.Select("Select * FROM ReceivesTreatment WHERE patient = " + pid);
+            List<object[]> rows = Database.Select("Select * FROM ReceivesTreatment WHERE patient = " + pid + " AND treatmentstatus = '" + status + "'");
             List<Treatment> getTreatments = new List<Treatment>();
 
             foreach (object[] row in rows)

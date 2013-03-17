@@ -14,7 +14,7 @@ namespace HospipalTests
             Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1,"History");
 
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000);
+            List<Treatment> list = Treatment.GetTreatments(100000,"History");
             
             Treatment treatment = list[0];
             Assert.True(treatment.Select());
@@ -28,7 +28,7 @@ namespace HospipalTests
             Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
             t.Insert();
             Assert.True(t.Insert());
-            List<Treatment> list = Treatment.GetTreatments(100000);
+            List<Treatment> list = Treatment.GetTreatments(100000, "History");
 
             Treatment treatment = list[0];
             treatment.Delete();
@@ -39,7 +39,7 @@ namespace HospipalTests
         {
             Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000);
+            List<Treatment> list = Treatment.GetTreatments(100000, "History");
 
             Treatment treatment = list[0];
             treatment.Notes = "TEST NOTES";
@@ -53,7 +53,7 @@ namespace HospipalTests
         {
             Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000);
+            List<Treatment> list = Treatment.GetTreatments(100000, "History");
 
             Treatment treatment = list[0];
             Assert.True(treatment.Delete());
@@ -64,7 +64,7 @@ namespace HospipalTests
         {
             Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000);
+            List<Treatment> list = Treatment.GetTreatments(100000, "History");
             Assert.True(list.Count >= 1);
 
             Treatment treatment = list[0];
