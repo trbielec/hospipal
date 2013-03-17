@@ -81,6 +81,7 @@
     <Compile Include="Database Class\Notification.cs" />
     <Compile Include="Database Class\Patient.cs" />
     <Compile Include="Database Class\Room.cs" />
+    <Compile Include="Database Class\Schedule.cs" />
     <Compile Include="Database Class\Treatments.cs" />
     <Compile Include="Database Class\WaitlistedPatient.cs" />
     <Compile Include="Database Class\Ward.cs" />

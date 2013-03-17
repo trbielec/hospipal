@@ -34,12 +34,15 @@ namespace Hospipal
         {
             ObservableAppointmentCollection appointments = new ObservableAppointmentCollection();
 
-            appointments.Add(new Appointment()
+            /*appointments.Add(new Appointment()
             {
                 Subject = "New appointment",
                 Start = new DateTime(2013, 3, 10, 12, 30, 00),
                 End = new DateTime(2013, 3, 10, 13, 00, 00),
-            });
+            });*/ 
+
+            // Get appointment data from database
+
 
             scheduleView.AppointmentsSource = appointments;
 
