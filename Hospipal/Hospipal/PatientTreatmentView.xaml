@@ -8,14 +8,15 @@
     <Grid>
 
         <Label x:Name="lblTreatment" Content="Treatment" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker"/>
-        <Grid Margin="0,55,0,0">
+        <Grid Margin="-77,49,77,6">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="57*"/>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="58*"/>
+                <RowDefinition Height="43*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="58*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -25,20 +26,20 @@
             </Grid.ColumnDefinitions>
             <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <Label x:Name="lblName" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
-            <Label x:Name="lblHistory" Grid.Row="1" Content="History" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>
-            <Button x:Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click" Grid.Column="3" Grid.Row="7">
+            <Label x:Name="lblHistory" Grid.Row="1" Content="Upcoming Treatments" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="20" Margin="0,0,0,0.4"/>
+            <Button x:Name="buttonCancel" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click" Grid.Column="3" Grid.Row="5" Margin="71,14.4,71,-0.2" Grid.RowSpan="2">
                 <Image Source="Resources/Button Images/cancel.png"/>
             </Button>
-            <Button x:Name="buttonModify" HorizontalAlignment="Left" VerticalAlignment="Center" Click="buttonModify_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.Column="3" Grid.Row="3">
+            <Button x:Name="buttonModify" HorizontalAlignment="Center" VerticalAlignment="Center" Click="buttonModify_Click" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.Column="3" Grid.Row="3" Margin="70,0,70,42.6" Grid.RowSpan="2">
                 <Image x:Name="buttonModify1" Source="Resources/Button Images/edit.png"/>
             </Button>
-            <Button x:Name="buttonRemove" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Grid.RowSpan="2" Grid.Row="5" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Button x:Name="buttonRemove" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Grid.Row="4" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="70,0.4,70,0" Grid.RowSpan="2">
                 <Image Source="Resources/Button Images/trash.png"/>
             </Button>
-            <Button x:Name="buttonAdd" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Grid.Row="1" Grid.RowSpan="2" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+            <Button x:Name="buttonAdd" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Grid.Row="1" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="70,57.2,70,0" Grid.RowSpan="2">
                 <Image Source="Resources/Button Images/add.png"/>
             </Button>
-            <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalGridLinesBrush="{x:Null}" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="6" >
+            <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalGridLinesBrush="{x:Null}" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2" Margin="0,57.2,0,0" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Treatment Type" Binding="{Binding Type}" Width="1*"/>
                     <DataGridTextColumn Header="Treatment Date" Binding="{Binding DateToShortDateString}" Width="1*"/>
