@@ -13,7 +13,7 @@ namespace HospipalTests
         [TestCase]
         public void TestEmployeeInsert()
         {
-            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "TestEmployee", "TestLname", "", "", 0);
+            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "UnitTestEmployee", "UnitTestLname", "", "", 0);
             Assert.True(testEmployee.Insert());
 
             testEmployee.Delete();
@@ -22,7 +22,7 @@ namespace HospipalTests
         [Test]
         public void TestEmployeeUpdate()
         {
-            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "TestEmployee", "TestLname", "", "", 0);
+            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "UnitTestEmployee", "UnitTestLname", "", "", 0);
             testEmployee.Insert();
 
             testEmployee.Fname = "ChangedName";
@@ -34,7 +34,7 @@ namespace HospipalTests
         [TestCase]
         public void TestEmployeeDelete()
         {
-            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "TestEmployee", "TestLname", "", "", 0);
+            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "UnitTestEmployee", "UnitTestLname", "", "", 0);
             testEmployee.Insert();
 
             Assert.True(testEmployee.Delete());
@@ -43,7 +43,7 @@ namespace HospipalTests
         [TestCase]
         public void TestGetEmployees()
         {
-            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "TestEmployee", "TestLname", "", "", 0);
+            Employee testEmployee = new Employee(Employee.GenerateNextEid(), "UnitTestEmployee", "UnitTestLname", "", "", 0);
             testEmployee.Insert();
 
             List<Employee> employees = Employee.GetEmployees();

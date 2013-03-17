@@ -26,23 +26,56 @@ namespace Hospipal
         public UserControl_ScheduleView()
         {
             InitializeComponent();
-
             this.Loaded += UserControl_ScheduleView_Loaded;
+
+        }
+
+        private void RadScheduleView_ShowDialog(object sender, ShowDialogEventArgs e)
+        {
+            if (e.DialogViewModel is AppointmentDialogViewModel)
+                e.Cancel = true;
+
+            if (e.DialogViewModel is ConfirmDialogViewModel)
+            {
+                e.DefaultDialogResult = true;
+                e.Cancel = true;
+            }
+
+            var dialogViewModel = e.DialogViewModel as RecurrenceChoiceDialogViewModel;
+            if (dialogViewModel != null)
+            {
+                dialogViewModel.IsSeriesModeSelected = true;
+            }
         }
 
         void UserControl_ScheduleView_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
+            var ReadOnlySlots = new ObservableCollection<Slot>();
+            Slot slot = new Slot()
+            {
+                Start = DateTime.MinValue,
+                End = DateTime.MaxValue,
+                IsReadOnly = true
+            };
+
+            slot.Resources.Add(new Resource());
+            ReadOnlySlots.Add(slot);
+
+            scheduleView.SpecialSlotsSource = ReadOnlySlots;
+            */
             ObservableAppointmentCollection appointments = new ObservableAppointmentCollection();
 
-            appointments.Add(new Appointment()
-            {
-                Subject = "New appointment",
-                Start = new DateTime(2013, 3, 10, 12, 30, 00),
-                End = new DateTime(2013, 3, 10, 13, 00, 00),
-            });
+            Appointment appt = new Appointment();
+            appt.Subject = "New appointment";
+            appt.Start = new DateTime(2013, 3, 15, 00, 00, 00);
+            appt.End = new DateTime(2013, 3, 15, 05, 00, 00);
+
+            appointments.Add(appt);
+
 
             scheduleView.AppointmentsSource = appointments;
-
+            
         }
     }
 }

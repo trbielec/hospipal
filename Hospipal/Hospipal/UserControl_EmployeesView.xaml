@@ -6,47 +6,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
-    <Grid>
+    
+    <Grid HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="209" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="31*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="30*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="401.493" />
-                <ColumnDefinition Width="13.507"/>
-                <ColumnDefinition Width="210" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150*" />
+                <ColumnDefinition Width="190*"/>
+                <ColumnDefinition Width="150*" />
+                <ColumnDefinition Width="190*" />
+                <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Advanced Search" Margin="10,10,0,0"/>
-            <TextBox Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Name="Employees_SearchBox" Height="28" Width="200" Margin="10,45,0,0" TextWrapping="Wrap" Text="Search"/>
+            <Label Name ="lblSearch" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Advanced Search" Style="{StaticResource headerStyle}"/>
 
-            <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Options" Margin="215,10,0,0"/>
-            <ComboBox Grid.Column="0" Margin="215,45,0,0" Name="Employees_SearchOptionBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="28" Grid.ColumnSpan="2">
-                <ComboBoxItem Content="First Name" IsSelected="True"></ComboBoxItem>
-                <ComboBoxItem Content="Last Name"></ComboBoxItem>
+
+            <Label Content="Employee ID: " HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="First Name: " HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Specialty: " HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Employee Type: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Last Name: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+            <Label Content="Supervisor ID: " Grid.Column="2" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource textStyle}"/>
+
+            <TextBox x:Name="tbEID" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" MaxLength="10" Style="{StaticResource Numeric}"/>
+            <TextBox x:Name="tbFName" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" MaxLength="50" Style="{StaticResource AlphaAndNumeric}"/>
+            <TextBox x:Name="tbLName" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Center" MaxLength="50" Style="{StaticResource AlphaAndNumeric}"/>
+            <TextBox x:Name="tbSupervisorID" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center" MaxLength="10" Style="{StaticResource Numeric}"/>
+            <ComboBox x:Name="cbSpecialty" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource textStyle}">
+                <ComboBoxItem Name="General">General</ComboBoxItem>
+                <ComboBoxItem Name="Emergency">Emergency</ComboBoxItem>
+                <ComboBoxItem Name="Other">Other</ComboBoxItem>
             </ComboBox>
-
-            <Button Grid.Column="2" Name="Employees_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,20,0,20" Width="60" Height="60">
-                <StackPanel>
-                    <Image Source="./Resources/Button Images/add.png" RenderTransformOrigin="1.799,1.906"/>
-                </StackPanel>
-            </Button>
-
-            <Button Grid.Column="2" Name="Employees_EditButton" Style="{StaticResource EmployeeButtons}"  HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="75,20,0,20" Width="60" Height="60">
-                <StackPanel>
-                    <Image Source="./Resources/Button Images/edit.png" Width="45"/>
-                </StackPanel>
-            </Button>
-
-            <Button Grid.Column="2" Name="Employees_DeleteButton" Style="{StaticResource EmployeeButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="140,20,0,20" Width="60" Height="60">
-                <StackPanel>
-                    <Image Source="./Resources/Button Images/trash.png"/>
-                </StackPanel>
-            </Button>
-
+            <ComboBox Grid.Column="3" x:Name="cbEmployeeType" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource textStyle}">
+                <ComboBoxItem Name="Nurse">Nurse</ComboBoxItem>
+                <ComboBoxItem Name="Doctor">Doctor</ComboBoxItem>
+                <ComboBoxItem Name="Support">Support Staff</ComboBoxItem>
+            </ComboBox>
         </Grid>
 
 
@@ -59,7 +69,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <DataGrid Name="Employee_DataGrid" Grid.Column="0" IsReadOnly="True" Background="Transparent" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}">
+            <DataGrid Name="Employee_DataGrid" Grid.Column="0" IsReadOnly="True" Background="Transparent" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" MouseDoubleClick="Employee_DataGrid_MouseDoubleClick" VerticalGridLinesBrush="{x:Null}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Employee ID" Binding="{Binding Path=Eid}" Width="*"/>
                     <DataGridTextColumn Header="First Name" Binding="{Binding Path=Fname}" Width="*"/>
@@ -69,6 +79,34 @@
                 </DataGrid.Columns>
             </DataGrid>
 
+        </Grid>
+        <Grid Grid.Column="1" Height="480" VerticalAlignment="Top" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="47*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="Employees_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="2">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/add.png"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="3" Name="Employees_EditButton" Style="{StaticResource EmployeeButtons}"  HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/edit.png" Width="45"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="4" Name="Employees_DeleteButton" Style="{StaticResource EmployeeButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+                <StackPanel>
+                    <Image Source="./Resources/Button Images/trash.png"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="Employees_SearchButton" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" Height="60" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="SearchEmployee_Click">
+                <Image Source="Resources/Button Images/search.png" Height="60" Width="60"/>
+            </Button>
         </Grid>
 
 

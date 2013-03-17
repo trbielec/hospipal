@@ -76,6 +76,21 @@ namespace Hospipal
             {
                 validateInputs();
             }
+
+            clearBoxes();
+        }
+
+        private void clearBoxes()
+        {
+            tbHealthCare.Clear();
+            tbAddress.Clear();
+            tbCity.Clear();
+            tbFName.Clear();
+            tbLName.Clear();
+            tbPhoneNumber.Clear();
+            tbPostalCode.Clear();
+            tbProvince.Clear();
+            dpDOB.Text = string.Empty;
         }
 
         public void validateInputs()
@@ -143,10 +158,16 @@ namespace Hospipal
             }
             #endregion
 
-            advancedSearch.UseInputsPatient(dbSideVariables, cSideVariables);
+            advancedSearch.UseInputs(dbSideVariables, cSideVariables);
  
             Patients = Search.SearchPatient(advancedSearch.GetBuiltQuery());
             Patients_DataGrid.DataContext = Patients;
+        }
+
+        private void Patients_DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (Patients_DataGrid.SelectedItems.Count > 0)
+                Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem));
         }
 
         /*private void PatientsListLostFocus(object sender, RoutedEventArgs e)

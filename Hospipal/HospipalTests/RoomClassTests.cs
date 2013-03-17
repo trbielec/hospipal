@@ -50,14 +50,14 @@ namespace HospipalTests
         }
 
         [TestCase]
-        public void TestGetRoomsWithValidWard()
+        public void TestGetRoomsWithInvalidWard()
         {
             List<Room> rooms = Room.GetRooms("UnitTestRoom1");
             Assert.True(rooms.Count == 0);
         }
 
         [TestCase]
-        public void TestGetRoomsWithInvalidWard()
+        public void TestGetRoomsWithValidWard()
         {
             Room room = new Room(100000, "UnitTestWard", 1);
             room.Insert();

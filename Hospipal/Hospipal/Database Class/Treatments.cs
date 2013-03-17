@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 
 namespace Hospipal.Database_Class
@@ -19,6 +20,7 @@ namespace Hospipal.Database_Class
         private string _Time;
         private string _notes;
         private int _Doctor;
+        private string _Status;
         #endregion
 
         #region Getters/Setters
@@ -109,6 +111,17 @@ namespace Hospipal.Database_Class
             }
         }
 
+        public string Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                _Status = value;
+            }
+        }
         #endregion
 
         #region Constructor
@@ -118,7 +131,7 @@ namespace Hospipal.Database_Class
             _Date = new DateTime(1990, 1, 1);
         }
 
-        public Treatment(int pID, string type, int day, int month, int year, string time, string notes, int doc)
+        public Treatment(int pID, string type, int day, int month, int year, string time, string notes, int doc,string status)
         {
 
             _patientID = pID;
@@ -127,6 +140,7 @@ namespace Hospipal.Database_Class
             _Type = type;
             _notes = notes;
             _Doctor = doc;
+            _Status = status;   
         }
 
         #endregion      
@@ -148,6 +162,7 @@ namespace Hospipal.Database_Class
                         _Time = row[6].ToString();
                         _notes = row[7].ToString();
                         _Doctor = Convert.ToInt32(row[8]);
+                        _Status = row[9].ToString();
                     }
                 }
                 return true;
@@ -156,19 +171,38 @@ namespace Hospipal.Database_Class
         }
         /* Method does a add query and adds patient to the database 
          */
-        public static bool Insert(int pID, string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, int dNum)
+        public bool Insert()
         {
-            return Database.Insert(@"INSERT INTO ismacaul_HospiPal.ReceivesTreatment (patient, treatment, day, month, year, time, notes, treatingDoctor) 
-                    VALUES (" + pID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "', " + dNum + ");");
+            MySqlCommand treatment = new MySqlCommand("Insert_Treatment(@pid,@type,@day,@month,@year,@time,@notes,@doctor,@status)");
+            treatment.Parameters.AddWithValue("pid", _patientID);
+            treatment.Parameters.AddWithValue("type", _Type);
+            treatment.Parameters.AddWithValue("day", _Date.Day);
+            treatment.Parameters.AddWithValue("month", _Date.Month);
+            treatment.Parameters.AddWithValue("year", _Date.Year);
+            treatment.Parameters.AddWithValue("time", _Time);
+            treatment.Parameters.AddWithValue("notes", _notes);
+            treatment.Parameters.AddWithValue("doctor", _Doctor);
+            treatment.Parameters.AddWithValue("status", _Status);
+
+            return Database.Update(treatment);
 
         }
 
         /* Method does a update query and the database with the new fields
         */
-        public static bool Update(int rtid, string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, int dNum)
+        public bool Update()
         {
-            return Database.Update(@"UPDATE `ismacaul_HospiPal`.`ReceivesTreatment` SET `treatment`='" + TreatmentType + "' , `day`='" + DateDay + "' , `month`='" + DateMonth + "' , `year`='" + DateYear + "' , `time`='" + treatTime + "' , `notes`='" + treatmentNotes + "' , `treatingDoctor`='" + dNum + "' WHERE `rtid`='" + rtid + "'");
-
+            MySqlCommand treatment = new MySqlCommand("Update_Treatment(@rtid,@type,@day,@month,@year,@time,@notes,@doctor,@status)");
+            treatment.Parameters.AddWithValue("rtid", _treatmentID);
+            treatment.Parameters.AddWithValue("type", _Type);
+            treatment.Parameters.AddWithValue("day", _Date.Day);
+            treatment.Parameters.AddWithValue("month", _Date.Month);
+            treatment.Parameters.AddWithValue("year", _Date.Year);
+            treatment.Parameters.AddWithValue("time", _Time);
+            treatment.Parameters.AddWithValue("notes", _notes);
+            treatment.Parameters.AddWithValue("doctor", _Doctor);
+            treatment.Parameters.AddWithValue("status", _Status);
+            return Database.Insert(treatment);
         }
 
         public bool Delete()
@@ -179,16 +213,16 @@ namespace Hospipal.Database_Class
 
         #region List Functions
 
-        public static List<Treatment> GetTreatments(int pid)
+        public static List<Treatment> GetTreatments(int pid,string status)
         {
-            List<object[]> rows = Database.Select("Select * FROM ReceivesTreatment WHERE patient = " + pid);
+            List<object[]> rows = Database.Select("Select * FROM ReceivesTreatment WHERE patient = " + pid + " AND treatmentstatus = '" + status + "'");
             List<Treatment> getTreatments = new List<Treatment>();
 
             foreach (object[] row in rows)
             {
                 Treatment newTreatment = new Treatment(Convert.ToInt32(row[1]), row[2].ToString(),
                                         Convert.ToInt32(row[3]), Convert.ToInt32(row[4]), Convert.ToInt32(row[5]),
-                                        row[6].ToString(), row[7].ToString(), Convert.ToInt32(row[8]));
+                                        row[6].ToString(), row[7].ToString(), Convert.ToInt32(row[8]),row[9].ToString());
                 newTreatment._treatmentID = Convert.ToInt32(row[0]);
                 getTreatments.Add(newTreatment);
             }
