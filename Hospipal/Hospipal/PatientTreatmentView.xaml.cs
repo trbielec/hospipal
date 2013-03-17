@@ -79,5 +79,12 @@ namespace Hospipal
         }
         #endregion
 
+        private void buttonStop_Click(object sender, RoutedEventArgs e)
+        {
+            //Content = new AddTreatment(patient.PatientID);
+        }
+
+        /* Stop button click event 
+         */
     }
 }
