@@ -79,9 +79,7 @@ namespace Hospipal
 
         private void buttonTreatment_Click(object sender, RoutedEventArgs e)
         {
-            int i;
-            i = patient.PatientID;
-            Content = new PatientTreatmentView(patient.PatientID);
+            Content = new PatientTreatmentView(patient.HealthCareNo);
         }
         
     }

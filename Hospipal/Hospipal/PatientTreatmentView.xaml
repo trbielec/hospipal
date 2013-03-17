@@ -57,15 +57,12 @@
                  </Grid.ColumnDefinitions>
 
                  <Label x:Name="lblCurrent" Content="Current Treatment" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Height="36" Width="173" Grid.Row="3" Grid.ColumnSpan="4" />
-                 <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="0"/>
-                 <Label x:Name="lblName" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Height="10" Margin="115,0,0,0" Width="10" Grid.ColumnSpan="2"/>
+                 <Label x:Name="lblName" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.ColumnSpan="3" Width="398"/>
                  <Label x:Name="lblUpcoming" Grid.Row="6" Content="Upcoming Treatments" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Height="36" Width="208" Grid.ColumnSpan="4" Margin="0,30" Grid.RowSpan="3"/>
                  <Label x:Name="lblType" Grid.Row="4" Content="Treatment Type" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                  <Label x:Name="lblDate" Grid.Row="5" Content="Treatment Date" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                  <Label x:Name="lblTime" Grid.Row="4" Grid.Column="2" Content="Treatment Time" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                  <Label x:Name="lblWard" Grid.Row="5" Grid.Column="2" Content="Ward" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                <TextBox x:Name="currentNametb" Grid.Column="1" Grid.Row="0" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="currentDatetb" Grid.Column="1" Grid.Row="4" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="currentTypetb" Grid.Column="1" Grid.Row="5" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="currentTimetb" Grid.Column="3" Grid.Row="4" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
