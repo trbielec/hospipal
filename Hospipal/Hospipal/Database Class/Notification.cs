@@ -61,6 +61,29 @@ namespace Hospipal.Database_Class
         public void SendNotification(string sender)
         {
             _Text = sender;
+            
+            //Test works
+            //MessageBoxResult result = MessageBox.Show("Retrieved value: " + _Text);
+        }
+
+        //public void SendNotification(string sender)
+        //{
+       
+        //    _Text = sender;
+            
+        //    MySqlCommand notification = new MySqlCommand("Update_Notification(@_Text);");
+        //    notification.Parameters.AddWithValue("_Text", _Text);
+        //    Database.Update(notification);
+
+        //    MessageBoxResult result = MessageBox.Show("Value sent to database: " + _Text);
+
+        //    //Test
+        //    //MessageBoxResult result = MessageBox.Show("Database should be changed now!");
+
+        //}
+        public void SendNotification()
+        {
+            //MessageBoxResult result = MessageBox.Show("Value to send to database: " + _Text);
             MySqlCommand notification = new MySqlCommand("Update_Notification(@_Text);");
             notification.Parameters.AddWithValue("_Text", _Text);
             Database.Update(notification);

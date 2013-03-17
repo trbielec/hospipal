@@ -24,11 +24,15 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_MainTabView : UserControl
     {
+        DispatcherTimer _timer = new DispatcherTimer();
         Database_Class.Notification Notif = new Database_Class.Notification();
-        private static readonly DependencyProperty NotificationProperty =
+        
+        private static DependencyProperty NotificationProperty =
                           DependencyProperty.Register("notification", typeof(string),
                                                       typeof(UserControl_MainTabView));
-        private string notification
+
+
+        public string notification
         {
             get { return (string)GetValue(NotificationProperty); }
             set { SetValue(NotificationProperty, value); }
@@ -43,6 +47,12 @@ namespace Hospipal
             WardsTab.Content = new UserControl_Wards();
             WaitlsitTab.Content = new WaitlistView();
             SchedulingTab.Content = new UserControl_ScheduleView();
+
+            //Add event handler for notification text box
+            Notifications_Bar.LostKeyboardFocus += new KeyboardFocusChangedEventHandler(Notifications_Bar_LostFocus);
+
+            Notif.RetrieveNotification();
+            notification = Notif.Text;
 
             DispatcherTimer _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(10000); //10 seconds
@@ -61,6 +71,26 @@ namespace Hospipal
             Notif.SendNotification(notification);
             //Should it retrieve the notification after sending?
             //Notif.RetrieveNotification();
+            //MessageBoxResult result = MessageBox.Show("");
+
+            //Ugliest workaround for a bug in the history of man?
+            //A blank window is the only way I could find for the 'notification' text from the UI to be updated and pass into the following functions
+            Window window = new Window();
+                window.Visibility = Visibility.Hidden;
+                window.Show();
+                window.Height = 0;
+                window.Width = 0;
+                window.Top = 5000;
+                window.Hide();
+                window.Close();
+            
+            Notif.Text = notification;
+            //string test = "test" + notification;
+            Notif.SendNotification();
+
+            //Should it retrieve the notification right after sending?
+            //Notif.RetrieveNotification();
+            //notification = Notif.Text;
         }
         #endregion
     }
