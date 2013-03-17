@@ -24,7 +24,7 @@ namespace Hospipal
     /// </summary>
     public partial class UserControl_MainTabView : UserControl
     {
-        DispatcherTimer _timer = new DispatcherTimer();
+        private DispatcherTimer _timer;
         Database_Class.Notification Notif = new Database_Class.Notification();
         
         private static DependencyProperty NotificationProperty =
@@ -56,7 +56,13 @@ namespace Hospipal
             notification = Notif.Text;
 
             //Start a timer to retrieve notifications via polling
-            DispatcherTimer _timer = new DispatcherTimer();
+            _timer = new DispatcherTimer();
+            StartTimer();
+
+        }
+
+        public void StartTimer()
+        {
             _timer.Interval = TimeSpan.FromMilliseconds(10000); //10 seconds
             _timer.Tick += new EventHandler(delegate(object s, EventArgs a)
             {
@@ -64,12 +70,17 @@ namespace Hospipal
                 notification = Notif.Text;
             });
             _timer.Start();
+        }
 
+        public void StopTimer()
+        {
+            _timer.Stop();
         }
 
         #region event handlers
         private void Notifications_Bar_LostFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
+            StopTimer();
             //Ugliest workaround for a bug in the history of man?
             //A blank window is the only way I could find for the 'notification' text from the UI to be updated and pass into the following functions
             Window window = new Window();
@@ -84,6 +95,8 @@ namespace Hospipal
             //Send the notification
             Notif.Text = notification;
             Notif.SendNotification();
+
+            StartTimer();
 
             //Should it retrieve the notification right after sending? I decided not to
             //Notif.RetrieveNotification();
