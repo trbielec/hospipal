@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospipal.Database_Class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,48 @@ namespace Hospipal
     /// </summary>
     public partial class PatientTreatmentHistory : UserControl
     {
-        public PatientTreatmentHistory()
+
+        private static readonly DependencyProperty TreatmentProperty =
+                          DependencyProperty.Register("treatment", typeof(Patient),
+                                                      typeof(PatientInformation));
+        private Treatment treatment
+        {
+            get { return (Treatment)GetValue(TreatmentProperty); }
+            set { SetValue(TreatmentProperty, value); }
+        }
+
+        private static readonly DependencyProperty WaitlistProperty =
+                          DependencyProperty.Register("waitlist", typeof(Patient),
+                                                      typeof(PatientInformation));
+        private WaitlistedPatient waitlist  
+        {
+            get { return (WaitlistedPatient)GetValue(WaitlistProperty); }
+            set { SetValue(WaitlistProperty, value); }
+        }
+
+        List<Treatment> treatments;
+
+
+        public PatientTreatmentHistory(int Pid)
         {
             InitializeComponent();
+            Patient p = new Patient(Pid);
+            lblPatientName.Content = p.LastName + ", " + p.FirstName;
+            treatments = Treatment.GetTreatments(Pid,"History");
+            dgHistory.DataContext = treatments;
+
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            Content = new PatientTreatmentView();
+        }
+
+        private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            treatment = (Treatment)dgHistory.SelectedItem;
+            waitlist = new WaitlistedPatient(treatment.TreatmentID);
+            lblDetails.Content = treatment.Type + " " + treatment.DateToShortDateString + " " + treatment.Time;
         }
     }
 }

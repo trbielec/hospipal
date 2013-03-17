@@ -38,7 +38,7 @@ namespace Hospipal
             InitializeComponent();
             patient = new Patient(pID);
             lblName.Content = patient.LastName + ", " + patient.FirstName;
-            treatmentHistory = Treatment.GetTreatments(pID);
+            treatmentHistory = Treatment.GetTreatments(pID,"Upcoming");
             dataGridTreatments.DataContext = treatmentHistory;
         }
         #endregion
@@ -79,5 +79,12 @@ namespace Hospipal
         }
         #endregion
 
+        private void buttonStop_Click(object sender, RoutedEventArgs e)
+        {
+            //Content = new AddTreatment(patient.PatientID);
+        }
+
+        /* Stop button click event 
+         */
     }
 }

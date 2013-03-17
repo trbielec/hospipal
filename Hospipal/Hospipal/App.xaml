@@ -7,6 +7,24 @@
 
     <Application.Resources>
 
+        <!-- Default custom fonts -->
+        <Style x:Key="titleStyle" TargetType="{x:Type Control}">
+            <Setter Property="FontSize" Value="20px"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="headerStyle" TargetType="{x:Type Control}">
+            <Setter Property="FontSize" Value="15px"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="textStyle" TargetType="{x:Type Control}">
+            <Setter Property="FontSize" Value="14px"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+        </Style>
+        
         <!-- Text Box Styles -->
 
         <!-- Highlights a non-empty textbox -->
@@ -16,7 +34,7 @@
         </Style>
 
         <!-- Makes textboxes numeric only input-->
-        <Style TargetType="{x:Type TextBox}" x:Key="Numeric">
+        <Style TargetType="{x:Type TextBox}" x:Key="Numeric" BasedOn="{StaticResource textStyle}">
             <EventSetter Event="PreviewTextInput" Handler="checkInput">
             </EventSetter>
             <EventSetter Event="TextChanged" Handler="highlightBox">
@@ -25,8 +43,8 @@
             </EventSetter>
         </Style>
 
-        <!-- Makes textboxes numeric only input-->
-        <Style TargetType="{x:Type TextBox}" x:Key="AlphaAndNumeric">
+        <!-- Makes textboxes numeric and letter only input-->
+        <Style TargetType="{x:Type TextBox}" x:Key="AlphaAndNumeric" BasedOn="{StaticResource textStyle}">
             <EventSetter Event="PreviewTextInput" Handler="checkInputLetters">
             </EventSetter>
             <EventSetter Event="TextChanged" Handler="highlightBox">
@@ -36,7 +54,7 @@
         </Style>
 
         <!-- Textbox with this style is a required field-->
-        <Style TargetType="{x:Type TextBox}" x:Key="RequiredField">
+        <Style TargetType="{x:Type TextBox}" x:Key="RequiredField" BasedOn="{StaticResource textStyle}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
                     <Setter Property="TextBox.ToolTip" Value="Input value is mandatory" />
@@ -45,7 +63,7 @@
         </Style>
 
         <!-- Required Field and Numeric Only-->
-        <Style TargetType="{x:Type TextBox}" x:Key="NumericRequiredField">
+        <Style TargetType="{x:Type TextBox}" x:Key="NumericRequiredField" BasedOn="{StaticResource textStyle}">
             <EventSetter Event="PreviewTextInput" Handler="checkInput">
             </EventSetter>
             <EventSetter Event="TextChanged" Handler="highlightBox">

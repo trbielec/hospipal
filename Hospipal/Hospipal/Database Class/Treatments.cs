@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 
 namespace Hospipal.Database_Class
@@ -170,19 +171,38 @@ namespace Hospipal.Database_Class
         }
         /* Method does a add query and adds patient to the database 
          */
-        public static bool Insert(int pID, string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, int dNum)
+        public bool Insert()
         {
-            return Database.Insert(@"INSERT INTO ismacaul_HospiPal.ReceivesTreatment (patient, treatment, day, month, year, time, notes, treatingDoctor) 
-                    VALUES (" + pID + ", '" + TreatmentType + "', " + DateDay + ", " + DateMonth + ", " + DateYear + ", '" + treatTime + "', '" + treatmentNotes + "', " + dNum + ");");
+            MySqlCommand treatment = new MySqlCommand("Insert_Treatment(@pid,@type,@day,@month,@year,@time,@notes,@doctor,@status)");
+            treatment.Parameters.AddWithValue("pid", _patientID);
+            treatment.Parameters.AddWithValue("type", _Type);
+            treatment.Parameters.AddWithValue("day", _Date.Day);
+            treatment.Parameters.AddWithValue("month", _Date.Month);
+            treatment.Parameters.AddWithValue("year", _Date.Year);
+            treatment.Parameters.AddWithValue("time", _Time);
+            treatment.Parameters.AddWithValue("notes", _notes);
+            treatment.Parameters.AddWithValue("doctor", _Doctor);
+            treatment.Parameters.AddWithValue("status", _Status);
+
+            return Database.Update(treatment);
 
         }
 
         /* Method does a update query and the database with the new fields
         */
-        public static bool Update(int rtid, string TreatmentType, int DateDay, int DateMonth, int DateYear, string treatTime, string treatmentNotes, int dNum)
+        public bool Update()
         {
-            return Database.Update(@"UPDATE `ismacaul_HospiPal`.`ReceivesTreatment` SET `treatment`='" + TreatmentType + "' , `day`='" + DateDay + "' , `month`='" + DateMonth + "' , `year`='" + DateYear + "' , `time`='" + treatTime + "' , `notes`='" + treatmentNotes + "' , `treatingDoctor`='" + dNum + "' WHERE `rtid`='" + rtid + "'");
-
+            MySqlCommand treatment = new MySqlCommand("Update_Treatment(@rtid,@type,@day,@month,@year,@time,@notes,@doctor,@status)");
+            treatment.Parameters.AddWithValue("rtid", _treatmentID);
+            treatment.Parameters.AddWithValue("type", _Type);
+            treatment.Parameters.AddWithValue("day", _Date.Day);
+            treatment.Parameters.AddWithValue("month", _Date.Month);
+            treatment.Parameters.AddWithValue("year", _Date.Year);
+            treatment.Parameters.AddWithValue("time", _Time);
+            treatment.Parameters.AddWithValue("notes", _notes);
+            treatment.Parameters.AddWithValue("doctor", _Doctor);
+            treatment.Parameters.AddWithValue("status", _Status);
+            return Database.Insert(treatment);
         }
 
         public bool Delete()
@@ -193,9 +213,9 @@ namespace Hospipal.Database_Class
 
         #region List Functions
 
-        public static List<Treatment> GetTreatments(int pid)
+        public static List<Treatment> GetTreatments(int pid,string status)
         {
-            List<object[]> rows = Database.Select("Select * FROM ReceivesTreatment WHERE patient = " + pid);
+            List<object[]> rows = Database.Select("Select * FROM ReceivesTreatment WHERE patient = " + pid + " AND treatmentstatus = '" + status + "'");
             List<Treatment> getTreatments = new List<Treatment>();
 
             foreach (object[] row in rows)
