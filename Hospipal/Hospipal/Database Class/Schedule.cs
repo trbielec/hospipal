@@ -162,7 +162,7 @@ namespace Hospipal.Database_Class
            return Database.Delete("DELETE FROM Schedule WHERE day = " + _day + " AND month = " + _month + " AND year = " + _year + " AND start_time = " + _start_time + " AND end_time = " + _end_time + " AND employee = " + _employee);
         }
 
-        public List<Schedule> Select()
+        public static List<Schedule> Select()
         {
             List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
             List<Schedule> allSchedules = new List<Schedule>();
