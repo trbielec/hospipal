@@ -76,6 +76,21 @@ namespace Hospipal
             {
                 validateInputs();
             }
+
+            clearBoxes();
+        }
+
+        private void clearBoxes()
+        {
+            tbHealthCare.Clear();
+            tbAddress.Clear();
+            tbCity.Clear();
+            tbFName.Clear();
+            tbLName.Clear();
+            tbPhoneNumber.Clear();
+            tbPostalCode.Clear();
+            tbProvince.Clear();
+            dpDOB.Text = string.Empty;
         }
 
         public void validateInputs()
@@ -153,8 +168,6 @@ namespace Hospipal
         {
             if (Patients_DataGrid.SelectedItems.Count > 0)
                 Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem));
-            else
-                MessageBox.Show("No patients available");
         }
 
         /*private void PatientsListLostFocus(object sender, RoutedEventArgs e)
