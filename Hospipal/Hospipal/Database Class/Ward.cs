@@ -14,6 +14,11 @@ namespace Hospipal.Database_Class
         private string _slugName;
 
 
+        public override string ToString()
+        {
+            return _wardName;
+        }
+
         #region Getters/Setters
 
         public string WardName

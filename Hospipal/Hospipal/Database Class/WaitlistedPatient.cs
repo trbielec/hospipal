@@ -109,6 +109,11 @@ namespace Hospipal.Database_Class
             treatmentId = rtid; 
             Select();
         }
+
+        public WaitlistedPatient()
+        {
+            // TODO: Complete member initialization
+        }
         #endregion
 
         #region Functions

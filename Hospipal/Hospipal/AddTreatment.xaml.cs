@@ -28,6 +28,10 @@ namespace Hospipal
         #region Attributes
         private bool _isNewTreatment = true;
         int patientID;
+
+        List<string> doctors;
+        List<string> type;
+        List<Ward> wards;
         #endregion  
 
         #region Data Binding
@@ -40,6 +44,15 @@ namespace Hospipal
             get { return (Treatment)GetValue(TreatmentProperty); }
             set { SetValue(TreatmentProperty, value); }
         }
+
+        private static readonly DependencyProperty WaitlistProperty =
+                          DependencyProperty.Register("waitlist", typeof(WaitlistedPatient),
+                                                      typeof(AddTreatment));
+        private WaitlistedPatient waitlist
+        {
+            get { return (WaitlistedPatient)GetValue(WaitlistProperty); }
+            set { SetValue(WaitlistProperty, value); }
+        }
         //Required for databinding -- END
         #endregion
 
@@ -48,15 +61,20 @@ namespace Hospipal
         {
             InitializeComponent();
             this.patientID = pID;
-      
+            treatment = new Treatment();
+            waitlist = new WaitlistedPatient();
+            treatment.Status = "Upcoming";
+            waitlist.Pid = patientID;
+            populatePreBoxFields();
         }
 
         public AddTreatment(Treatment pTreatment)
         {
             InitializeComponent();
             treatment = pTreatment;
+            waitlist = new WaitlistedPatient(treatment.TreatmentID);
             this.patientID = treatment.PatientID;
-
+            populatePreBoxFields();
              _isNewTreatment  = false;
 
         }
@@ -64,21 +82,13 @@ namespace Hospipal
         #endregion
 
         #region Functions and Methods
-        public void setDateFormat()
-        {
-            //Sets a default date format to formate date because this will display differently on different computers and just standardizes it
-            CultureInfo ci = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name);
-            ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
-            Thread.CurrentThread.CurrentCulture = ci;
-        }
 
         public void populatePreBoxFields()
         {
-            setDateFormat();
-
-            List<string> type = Treatment.GetTreatmentTypes();
+            type = Treatment.GetTreatmentTypes();
             List<Employee> allEmployees = Employee.GetEmployees();
-            List<string> doctors = new List<string>();
+            wards = Ward.GetWards();
+            doctors = new List<string>();
 
             foreach (Employee employee in allEmployees)
             {
@@ -86,13 +96,11 @@ namespace Hospipal
                     doctors.Add(employee.Lname + ", " + employee.Fname);
             }
 
-
+            boxDoctors.DataContext = doctors;
+            boxTreatmentType.DataContext = type;
+            boxWard.DataContext = wards;
+            boxDoctors.Items.Refresh();
         }
-
-       
-        /* This method parses a string to a integer
-        * and catched exceptions that might occur during conversion
-        */
        
         #endregion  
 
@@ -104,7 +112,16 @@ namespace Hospipal
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            
+            buttonSave.Focus(); //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
+            if ((_isNewTreatment && treatment.Insert()) || treatment.Update())
+            {
+                //need to give waitlist treatment ID which I do not have.
+                Content = new UserControl_PatientsView();
+            }
+            else
+            {
+                MessageBox.Show("The HealthCare No entered is already in use.");
+            }
         }
         #endregion
 

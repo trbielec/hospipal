@@ -23,8 +23,8 @@ namespace Hospipal
     {
 
         private static readonly DependencyProperty TreatmentProperty =
-                          DependencyProperty.Register("treatment", typeof(Patient),
-                                                      typeof(PatientInformation));
+                          DependencyProperty.Register("treatment", typeof(Treatment),
+                                                      typeof(PatientTreatmentHistory));
         private Treatment treatment
         {
             get { return (Treatment)GetValue(TreatmentProperty); }
@@ -32,8 +32,8 @@ namespace Hospipal
         }
 
         private static readonly DependencyProperty WaitlistProperty =
-                          DependencyProperty.Register("waitlist", typeof(Patient),
-                                                      typeof(PatientInformation));
+                          DependencyProperty.Register("waitlist", typeof(WaitlistedPatient),
+                                                      typeof(PatientTreatmentHistory));
         private WaitlistedPatient waitlist  
         {
             get { return (WaitlistedPatient)GetValue(WaitlistProperty); }
