@@ -19,7 +19,22 @@
                 <telerik:WeekViewDefinition MajorTickLength="1h" MinorTickLength="1h" Title="Weekly View" />
             </telerik:RadScheduleView.ViewDefinitions>
         </telerik:RadScheduleView>
-        
-        
+
+        <Button x:Name="Schedule_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="1">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/add.png"/>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="1" Name="Schedule_EditButton" Style="{StaticResource EmployeeButtons}"  HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/edit.png" Width="45"/>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="1" Name="Schedule_DeleteButton" Style="{StaticResource EmployeeButtons}" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+            <StackPanel>
+                <Image Source="./Resources/Button Images/trash.png"/>
+            </StackPanel>
+        </Button>
+
     </Grid>
 </UserControl>

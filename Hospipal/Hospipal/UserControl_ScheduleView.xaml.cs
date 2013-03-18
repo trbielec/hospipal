@@ -62,12 +62,41 @@ namespace Hospipal
         }
         */
 
+        private Schedule schedule = new Schedule();
+
         public UserControl_ScheduleView()
         {
             InitializeComponent();
             this.Loaded += UserControl_ScheduleView_Loaded;
 
+            Schedule_AddButton.Click += Schedule_AddButton_Click;
+            Schedule_EditButton.Click += Schedule_EditButton_Click;
+            Schedule_DeleteButton.Click += Schedule_DeleteButton_Click;
+
         }
+
+        void Schedule_AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl_AddSchedule addSchd = new UserControl_AddSchedule(this);
+
+            addSchd.ShowDialog();
+        }
+
+        void Schedule_EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl_AddSchedule addSchd = new UserControl_AddSchedule(this);
+
+            addSchd.ShowDialog();
+        }
+
+        void Schedule_DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+
 
         private void RadScheduleView_ShowDialog(object sender, ShowDialogEventArgs e)
         {
