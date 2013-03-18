@@ -12,21 +12,24 @@ namespace HospipalTests
         [TestCase]
         public void TestAssignPatientToBed()
         {
-            Ward w = new Ward("UnitTestWard", "UTW");
+            Ward w = new Ward("UnitTestWard-WLP", "UTW");
             w.Insert();
-            Room r = new Room(1, "UnitTestWard", 1);
+            Room r = new Room(1, "UnitTestWard-WLP", 1);
             r.Insert();
-            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard");
+            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard-WLP");
             b.Insert();
-            Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
+            Patient p = new Patient(10000, "Test-WLP", "Test-WLP", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            List<Treatment> list = Treatment.GetTreatments(10000,"");
+            Treatment treat = new Treatment(p.PatientID, "UnitTestTreatemnt-WLP", 1, 1, 1, "", "", 1, "WLP");
+            treat.Insert();
+
+            List<Treatment> list = Treatment.GetTreatments(p.PatientID,"WLP");
             Treatment t = list[0];
 
-            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID);
-            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
-            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard");
+            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard-WLP", "High", t.TreatmentID);
+            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard-WLP");
+            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard-WLP");
 
             Assert.True(patients[0].AssignPatientToBed(bed[0].bedNo));
 
@@ -41,23 +44,23 @@ namespace HospipalTests
         [TestCase]
         public void TestRemovePatientFromWaitlist()
         {
-            Ward w = new Ward("UnitTestWard", "UTW");
+            Ward w = new Ward("UnitTestWard-WLP", "UTW");
             w.Insert();
-            Room r = new Room(1, "UnitTestWard", 1);
+            Room r = new Room(1, "UnitTestWard-WLP", 1);
             r.Insert();
-            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard");
+            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard-WLP");
             b.Insert();
-            Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
+            Patient p = new Patient(10000, "Test-WLP", "Test-WLP", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment treat = new Treatment(10000, "TestTreatment", 1, 1, 1, "", "", 1,"History");
+            Treatment treat = new Treatment(p.PatientID, "UnitTestTreatment-WLP", 1, 1, 1, "", "", 1, "WLP");
             treat.Insert();
-            List<Treatment> list = Treatment.GetTreatments(10000,"");
+            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "WLP");
             Treatment t = list[0];
 
-            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID);
-            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
-            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard");
+            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard-WLP", "High", t.TreatmentID);
+            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard-WLP");
+            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard-WLP");
 
             patients[0].AssignPatientToBed(bed[0].bedNo);
 
@@ -72,29 +75,29 @@ namespace HospipalTests
         [TestCase]
         public void TestGetWaitlistForWardWithInvalidWard()
         {
-            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
+            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard-WLP");
             Assert.True(patients.Count == 0);
         }
 
         [TestCase]
         public void TestGetWaitlistForWardWithValidWard()
         {
-            Ward w = new Ward("UnitTestWard", "UTW");
+            Ward w = new Ward("UnitTestWard-WLP", "UTW");
             w.Insert();
-            Room r = new Room(1, "UnitTestWard", 1);
+            Room r = new Room(1, "UnitTestWard-WLP", 1);
             r.Insert();
-            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard");
+            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard-WLP");
             b.Insert();
-            Patient p = new Patient(10000, "Test", "Test", new DateTime(), "", "", "", "", "", "", "");
+            Patient p = new Patient(10000, "Test-WLP", "Test-WLP", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment treat = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
+            Treatment treat = new Treatment(p.PatientID, "UnitTestTreatment-WLP", 1, 1, 1, "", "", 1, "WLP");
             treat.Insert();
-            List<Treatment> list = Treatment.GetTreatments(10000,"");
+            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "WLP");
             Treatment t = list[0];
 
-            //WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard", "High", t.TreatmentID,t.Type);
-            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard");
+            WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard-WLP", "High", t.TreatmentID);
+            List<WaitlistedPatient> patients = WaitlistedPatient.GetWaitlistedPatientsForWard("UnitTestWard-WLP");
 
             Assert.True(patients.Count >= 1);
 
@@ -109,21 +112,21 @@ namespace HospipalTests
         [TestCase]
         public void TestGetOpenBedsForWardWithInvalidWard()
         {
-            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard1");
+            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard-WLP");
             Assert.True(bed.Count == 0);
         }
 
         [TestCase]
         public void TestGetOpenBedsForWardWithValidWard()
         {
-            Ward w = new Ward("UnitTestWard", "UTW");
+            Ward w = new Ward("UnitTestWard-WLP", "UTW");
             w.Insert();
-            Room r = new Room(1, "UnitTestWard", 1);
+            Room r = new Room(1, "UnitTestWard-WLP", 1);
             r.Insert();
-            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard");
+            Bed b = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard-WLP");
             b.Insert();
 
-            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard");
+            List<Bed> bed = WaitlistedPatient.GetOpenBedsForWard("UnitTestWard-WLP");
             Assert.True(bed.Count >= 1);
 
             b.Delete();
