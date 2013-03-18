@@ -81,6 +81,11 @@ namespace Hospipal
         {
             Content = new PatientTreatmentView(patient.HealthCareNo);
         }
+
+        private void buttonGoToHistory_Click(object sender, RoutedEventArgs e)
+        {
+           Content = new PatientTreatmentHistory(patient.HealthCareNo);
+        }
         
     }
 }

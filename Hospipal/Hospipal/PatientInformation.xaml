@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="Hospipal.PatientInformation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-       x:Name="patientControl"
+        x:Name="patientControl"
         Height="768" Width="1024" MinHeight="768" MinWidth="1024">
     <Grid>
         <Grid.RowDefinitions>
@@ -99,7 +99,7 @@
                     <Image Source="./Resources/Button Images/cancel.png"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="buttonTreatment" Grid.Row="1" HorizontalAlignment="Right" Click="buttonTreatment_Click" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,10,154,10" Width="60" Height="60" Visibility="Hidden">
+            <Button x:Name="buttonTreatment" Grid.Row="1" HorizontalAlignment="Right" Click="buttonTreatment_Click" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,150,10" Width="60" Height="60" Visibility="Hidden">
                 <Button.ToolTip>
                     <ToolTip>
                         <StackPanel>
@@ -110,6 +110,20 @@
                 </Button.ToolTip>
                 <StackPanel>
                     <Image Source="Resources/Button Images/Rx.png"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="buttonHistory" Grid.Row="1" HorizontalAlignment="Right" Click="buttonTreatment_Click" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="0,0,225,10" Width="60" Height="60" Visibility="Hidden">
+                <Button.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold"> Patient Treatment History</TextBlock>
+                            <TextBlock>View the treatment history of a patient.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+                <StackPanel>
+                    <Image Source="Resources/Button Images/History.png"/>
                 </StackPanel>
             </Button>
         </Grid>

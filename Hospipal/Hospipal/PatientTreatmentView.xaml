@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+             x:Name="treatmentControl"
              d:DesignHeight="600" d:DesignWidth="800" HorizontalAlignment="Center">
     <Grid>
         <Grid.RowDefinitions>
@@ -34,7 +35,7 @@
             </Grid.RowDefinitions>
 
              <Label x:Name="lblTreatment" Content="Treatment" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker" Height="48" Margin="236,0,231.4,0" Width="163"/>
-            <Grid  Grid.RowSpan="8" Margin="0,59,0.4,1.2" >
+            <Grid  Grid.RowSpan="8">
                  <Grid.RowDefinitions>
                     <RowDefinition Height="32"/>
                     <RowDefinition Height="32"/>
@@ -63,10 +64,10 @@
                  <Label x:Name="lblDate" Grid.Row="5" Content="Treatment Date" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                  <Label x:Name="lblTime" Grid.Row="4" Grid.Column="2" Content="Treatment Time" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                  <Label x:Name="lblWard" Grid.Row="5" Grid.Column="2" Content="Ward" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <TextBox x:Name="currentDatetb" Grid.Column="1" Grid.Row="4" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
-                <TextBox x:Name="currentTypetb" Grid.Column="1" Grid.Row="5" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
-                <TextBox x:Name="currentTimetb" Grid.Column="3" Grid.Row="4" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
-                <TextBox x:Name="currentWardtb" Grid.Column="3" Grid.Row="5" Text="{Binding Path=patient.HealthCareNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource NumericRequiredField}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
+                <TextBox x:Name="currentDatetb" Grid.Column="1" Grid.Row="4" Text="{Binding Path=treatment.TreatmentType,ElementName=treatmentControl}"  HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
+                <TextBox x:Name="currentTypetb" Grid.Column="1" Grid.Row="5" Text="{Binding Path=treatment.TreatmentDate,ElementName=treatmentControl}"  HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
+                <TextBox x:Name="currentTimetb" Grid.Column="3" Grid.Row="4" Text="{Binding Path=treatment.TreatmentTime,ElementName=treatmentControl}"  HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
+                <TextBox x:Name="currentWardtb" Grid.Column="3" Grid.Row="5" Text="{Binding Path=treatment.TreatmentWard,ElementName=treatmentControl}"  HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
 
                 <Button x:Name="CancelTreatmentbtn" Grid.Row="1" HorizontalAlignment="Center" Click="buttonStop_Click" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Column="4" Grid.RowSpan="2">
                     <Button.ToolTip>
@@ -82,7 +83,7 @@
                     </StackPanel>
                 </Button>
 
-                <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalGridLinesBrush="{x:Null}" SelectionMode="Single" CanUserDeleteRows="False" AlternatingRowBackground="Bisque"  Background="Transparent"  CanUserAddRows="False" AutoGenerateColumns="false" ItemsSource="{Binding}" Grid.ColumnSpan="4" Grid.Row="8" Margin="0,7,0,0" Height="26" Width="600" Grid.RowSpan="2" >
+                <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="7" Grid.RowSpan="5" Margin="0,32.4,0.4,-96.4" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Treatment Type" Binding="{Binding Type}" Width="1*"/>
                         <DataGridTextColumn Header="Treatment Date" Binding="{Binding DateToShortDateString}" Width="1*"/>
@@ -104,7 +105,8 @@
             <Button x:Name="buttonAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="4" Click="buttonAdd_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
                 <Image Source="Resources/Button Images/add.png" Height="47"/>
             </Button>
-    
+           
+
         </Grid>
     </Grid>
 </UserControl>

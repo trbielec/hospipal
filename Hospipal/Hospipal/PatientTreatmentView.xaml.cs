@@ -24,8 +24,26 @@ namespace Hospipal
         #region Attributes 
         List<Treatment> treatmentHistory;
         Patient patient;
+        Treatment treatment;
         #endregion  
-        
+
+        private static readonly DependencyProperty TreatmentProperty =
+                         DependencyProperty.Register("treatment", typeof(Treatment),
+                                                     typeof(PatientTreatmentView));
+        #region Getters/Setters
+        private Treatment treatment
+        {
+            get { return (Treatment)GetValue(TreatmentProperty); }
+            set { SetValue(TreatmentProperty, value); }
+        }
+
+        private Patient patient
+        {
+            get { return (Patient)GetValue(TreatmentProperty); }
+            set { SetValue(TreatmentProperty, value); }
+        }
+        #endregion
+
         #region Constructors
         public PatientTreatmentView()
         {
