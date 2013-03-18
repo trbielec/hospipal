@@ -11,10 +11,10 @@ namespace HospipalTests
         [TestCase]
         public void TestTreatmentSelect()
         {
-            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1,"History");
+            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1,"History1");
 
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000,"History");
+            List<Treatment> list = Treatment.GetTreatments(100000,"History1");
             
             Treatment treatment = list[0];
             Assert.True(treatment.Select());
@@ -25,10 +25,9 @@ namespace HospipalTests
         [TestCase]
         public void TestTreamentInsert()
         {
-            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
-            t.Insert();
+            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History2");
             Assert.True(t.Insert());
-            List<Treatment> list = Treatment.GetTreatments(100000, "History");
+            List<Treatment> list = Treatment.GetTreatments(100000, "History2");
 
             Treatment treatment = list[0];
             treatment.Delete();
@@ -37,9 +36,9 @@ namespace HospipalTests
         [TestCase]
         public void TestTreatmentUpdate()
         {
-            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
+            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History3");
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000, "History");
+            List<Treatment> list = Treatment.GetTreatments(100000, "History3");
 
             Treatment treatment = list[0];
             treatment.Notes = "TEST NOTES";
@@ -51,9 +50,9 @@ namespace HospipalTests
         [TestCase]
         public void TestTreatmentDelete()
         {
-            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
+            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History4");
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000, "History");
+            List<Treatment> list = Treatment.GetTreatments(100000, "History4");
 
             Treatment treatment = list[0];
             Assert.True(treatment.Delete());
@@ -62,9 +61,9 @@ namespace HospipalTests
         [TestCase]
         public void TestGetTreatments()
         {
-            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History");
+            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History5");
             t.Insert();
-            List<Treatment> list = Treatment.GetTreatments(100000, "History");
+            List<Treatment> list = Treatment.GetTreatments(100000, "History5");
             Assert.True(list.Count >= 1);
 
             Treatment treatment = list[0];
