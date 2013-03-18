@@ -22,9 +22,9 @@ namespace Hospipal
     public partial class PatientTreatmentView : UserControl
     {
         #region Attributes 
-        List<Treatment> treatmentHistory;
+        List<Treatment> Treatments;
         Patient patient;
-        Treatment treatment;
+       
         #endregion  
 
         private static readonly DependencyProperty TreatmentProperty =
@@ -37,27 +37,18 @@ namespace Hospipal
             set { SetValue(TreatmentProperty, value); }
         }
 
-        private Patient patient
-        {
-            get { return (Patient)GetValue(TreatmentProperty); }
-            set { SetValue(TreatmentProperty, value); }
-        }
         #endregion
 
         #region Constructors
-        public PatientTreatmentView()
+       
+
+        public PatientTreatmentView(int HCNO)
         {
             InitializeComponent();
-
-        }
-
-        public PatientTreatmentView(int pID)
-        {
-            InitializeComponent();
-            patient = new Patient(pID);
+            patient = new Patient(HCNO);
             lblName.Content = patient.LastName + ", " + patient.FirstName;
-            treatmentHistory = Treatment.GetTreatments(pID,"Upcoming");
-            dataGridTreatments.DataContext = treatmentHistory;
+            Treatments = Treatment.GetTreatments(patient.PatientID, "Upcoming");
+            dataGridTreatments.DataContext = Treatments;
         }
         #endregion
 
@@ -67,7 +58,7 @@ namespace Hospipal
          */
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            Content = new AddTreatment(patient.PatientID);
+            Content = new AddTreatment(patient.HealthCareNo);
         }
 
         /* Modify button click event 
@@ -86,7 +77,7 @@ namespace Hospipal
         {
             if (dataGridTreatments.SelectedItems.Count > 0)
             {
-                treatmentHistory.RemoveAt(dataGridTreatments.SelectedIndex);
+                Treatments.RemoveAt(dataGridTreatments.SelectedIndex);
                 dataGridTreatments.Items.Refresh();
             }
         }

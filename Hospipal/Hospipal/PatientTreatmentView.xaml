@@ -83,12 +83,12 @@
                     </StackPanel>
                 </Button>
 
-                <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="7" Grid.RowSpan="5" Margin="0,32.4,0.4,-96.4" >
+                <DataGrid x:Name="dataGridTreatments" IsReadOnly="True" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="7" Grid.RowSpan="5" Margin="0,32.4,0.4,-96.4" CanUserDeleteRows="False" AutoGenerateColumns="false" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Treatment Type" Binding="{Binding Type}" Width="1*"/>
-                        <DataGridTextColumn Header="Treatment Date" Binding="{Binding DateToShortDateString}" Width="1*"/>
-                        <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="1*"/>
-                        <DataGridTextColumn Header="Ward" Binding="{Binding Ward}" Width="1*"/>
+                        <DataGridTextColumn Header="Treatment Type" Binding="{Binding Path=Type}" Width="1*"/>
+                        <DataGridTextColumn Header="Treatment Date" Binding="{Binding Path=DateToShortDateString}" Width="1*"/>
+                        <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="1*"/>
+                        <DataGridTextColumn Header="Ward" Binding="{Binding Path=Ward}" Width="1*"/>
                     </DataGrid.Columns>
                 </DataGrid>
                

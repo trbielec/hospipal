@@ -55,7 +55,7 @@ namespace Hospipal
 
         private void Close(object sender, RoutedEventArgs e)
         {
-            Content = new PatientTreatmentView();
+            Content = new PatientTreatmentView(treatment.PatientID);
         }
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)

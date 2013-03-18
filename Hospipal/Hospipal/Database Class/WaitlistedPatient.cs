@@ -121,7 +121,7 @@ namespace Hospipal.Database_Class
         //FOR EXISTING WAITLIST ITEMS
         private void Select()
         {
-            string query = "Select * from Waitlist where rtid = " + treatmentId + ";";
+            string query = "Select * from Waitlist where TreatmentID = " + treatmentId + ";";
             List<object[]> SingleRow = Database.Select(query);
             if (SingleRow != null && SingleRow.Count > 0)
             {
