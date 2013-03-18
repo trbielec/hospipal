@@ -27,11 +27,12 @@ namespace Hospipal
     {
         #region Attributes
         private bool _isNewTreatment = true;
-        int patientID;
+        Patient patient;
 
         List<string> doctors;
         List<string> type;
         List<Ward> wards;
+        List<int> employeeIDs;
         #endregion  
 
         #region Data Binding
@@ -57,14 +58,15 @@ namespace Hospipal
         #endregion
 
         #region Constructors
-        public AddTreatment(int pID)
+        public AddTreatment(int healthCareNo)
         {
             InitializeComponent();
-            this.patientID = pID;
+            this.patient = new Patient(healthCareNo);
             treatment = new Treatment();
             waitlist = new WaitlistedPatient();
             treatment.Status = "Upcoming";
-            waitlist.Pid = patientID;
+            treatment.PatientID = patient.PatientID;
+            waitlist.Pid = patient.PatientID;
             populatePreBoxFields();
         }
 
@@ -73,7 +75,7 @@ namespace Hospipal
             InitializeComponent();
             treatment = pTreatment;
             waitlist = new WaitlistedPatient(treatment.TreatmentID);
-            this.patientID = treatment.PatientID;
+            this.patient = new Patient(treatment.PatientID);
             populatePreBoxFields();
              _isNewTreatment  = false;
 
@@ -89,17 +91,23 @@ namespace Hospipal
             List<Employee> allEmployees = Employee.GetEmployees();
             wards = Ward.GetWards();
             doctors = new List<string>();
+            employeeIDs = new List<int>();
 
             foreach (Employee employee in allEmployees)
             {
                 if (employee.Employee_type == "Doctor")
+                {
                     doctors.Add(employee.Lname + ", " + employee.Fname);
+                    employeeIDs.Add(employee.Eid);
+                }
             }
 
             boxDoctors.DataContext = doctors;
             boxTreatmentType.DataContext = type;
             boxWard.DataContext = wards;
             boxDoctors.Items.Refresh();
+            patient.Select();
+            lblName.Content = patient.LastName + ", " + patient.FirstName;
         }
        
         #endregion  
@@ -107,20 +115,26 @@ namespace Hospipal
         #region event handlers
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-            Content = new PatientTreatmentView(patientID);
+            Content = new PatientTreatmentView(patient.PatientID);
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             buttonSave.Focus(); //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
-            if ((_isNewTreatment && treatment.Insert()) || treatment.Update())
+            treatment.Doctor = employeeIDs[boxDoctors.SelectedIndex];
+            if ((_isNewTreatment && treatment.Insert()))
             {
-                //need to give waitlist treatment ID which I do not have.
-                Content = new UserControl_PatientsView();
+                WaitlistedPatient.AddPatientToWaitlist(treatment.PatientID, waitlist.Ward, waitlist.Priority, Treatment.GenerateNextrtid() - 1);
+                Content = new PatientTreatmentView(treatment.PatientID);
+            }
+            else if (treatment.Update())
+            {
+                WaitlistedPatient.AddPatientToWaitlist(treatment.PatientID, waitlist.Ward, waitlist.Priority, treatment.TreatmentID);
+                Content = new PatientTreatmentView(treatment.PatientID);
             }
             else
             {
-                MessageBox.Show("The HealthCare No entered is already in use.");
+                MessageBox.Show("Error Occured");
             }
         }
         #endregion

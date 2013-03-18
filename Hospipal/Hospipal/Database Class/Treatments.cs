@@ -184,7 +184,7 @@ namespace Hospipal.Database_Class
             treatment.Parameters.AddWithValue("doctor", _Doctor);
             treatment.Parameters.AddWithValue("status", _Status);
 
-            return Database.Update(treatment);
+            return Database.Insert(treatment);
 
         }
 
@@ -202,7 +202,7 @@ namespace Hospipal.Database_Class
             treatment.Parameters.AddWithValue("notes", _notes);
             treatment.Parameters.AddWithValue("doctor", _Doctor);
             treatment.Parameters.AddWithValue("status", _Status);
-            return Database.Insert(treatment);
+            return Database.Update(treatment);
         }
 
         public bool Delete()
@@ -243,5 +243,11 @@ namespace Hospipal.Database_Class
         }
 
         #endregion
+
+        public static int GenerateNextrtid()
+        {
+            List<object[]> results = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'ReceivesTreatment' AND table_schema = DATABASE();");
+            return Convert.ToInt32(results[0][0]);
+        }
     }
 }

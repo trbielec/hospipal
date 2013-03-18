@@ -1,7 +1,7 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="Hospipal.AddTreatment" 
              d:DesignHeight="600" d:DesignWidth="450" mc:Ignorable="d" x:Name="treatmentControl">
     <Grid HorizontalAlignment="Center">
-        <Label x:Name="lblTreatment" Content="Add/Modify Treatment" HorizontalAlignment="Center"  VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Segoe Marker" Width="283"/>
+        <Label x:Name="lblTreatment" Content="Add/Modify Treatment" HorizontalAlignment="Center"  VerticalAlignment="Top" Style="{StaticResource ResourceKey=titleStyle}"/>
         <Grid HorizontalAlignment="Left" Height="600
               " Margin="-68,0,-71,0" VerticalAlignment="Top" Width="447">
             <Grid.ColumnDefinitions>
@@ -27,27 +27,27 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"/>
-            <Label x:Name="lblTreatmentType" Content="Treatment Type:" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3"/>
-            <Label x:Name="lblWard" Content="Assigning Ward:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4"/>
-            <Label x:Name="lblPriority" Content="Treatment Priority:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5"/>
-            <Label x:Name="lblTreatmentDate" Content="Treatment Date:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="6"/>
-            <Label x:Name="lblTreatmentTime" Content="Treatment Time:" HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Column="1" Grid.Row="7"/>
-            <Label x:Name="lblDoctor" Content="Treating Doctor:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8"/>
-            <Label x:Name="lblTreatmentNotes" Content="Treatment Notes:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="9"/>
+            <Label x:Name="lblPatientName" Content="Patient Name:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblTreatmentType" Content="Treatment Type:" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblWard" Content="Assigning Ward:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="4" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblPriority" Content="Treatment Priority:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblTreatmentDate" Content="Treatment Date:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="6" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblTreatmentTime" Content="Treatment Time:" HorizontalAlignment="Left"  VerticalAlignment="Top" Grid.Column="1" Grid.Row="7" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblDoctor" Content="Treating Doctor:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="8" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblTreatmentNotes" Content="Treatment Notes:" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Grid.Row="9" Style="{StaticResource ResourceKey=textStyle}"/>
             <TextBox x:Name="txtNotes" Text="{Binding Path=treatment.Notes,ElementName=treatmentControl,Mode=TwoWay}" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="172" Grid.Column="2" Grid.Row="9" Grid.RowSpan="4"/>
-            <ComboBox x:Name="boxDoctors" ItemsSource="{Binding}" HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="8"/>
+            <ComboBox x:Name="boxDoctors" ItemsSource="{Binding}"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="8"/>
 
-            <TextBox x:Name="boxTime" Text="{Binding Path=treatment.Time,ElementName=treatmentControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"/>
+            <telerik:RadTimePicker x:Name="boxTime" SelectedTime="{Binding Path=treatment.Time,ElementName=treatmentControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"/>
             <DatePicker x:Name="boxDate" HorizontalAlignment="Stretch" Text="{Binding Path=treatment.Date, ElementName=treatmentControl,Mode=TwoWay}" VerticalAlignment="Center"   Grid.Column="2" Grid.Row="6"/>
             <ComboBox x:Name="boxPriority" Text="{Binding Path=waitlist.Priority,ElementName=treatmentControl,Mode=TwoWay}"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5">
-                <ComboBoxItem Content="Low" HorizontalAlignment="Left"/>
-                <ComboBoxItem Content="Medium" HorizontalAlignment="Left"/>
-                <ComboBoxItem Content="High" HorizontalAlignment="Left"/>
+                <ComboBoxItem Content="Low" HorizontalAlignment="Left" Width="190"/>
+                <ComboBoxItem Content="Medium" HorizontalAlignment="Left" Width="190"/>
+                <ComboBoxItem Content="High" HorizontalAlignment="Left" Width="190"/>
             </ComboBox>
             <ComboBox x:Name="boxWard" ItemsSource="{Binding}" Text="{Binding Path=waitlist.Ward,ElementName=treatmentControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"/>
             <ComboBox x:Name="boxTreatmentType" ItemsSource="{Binding}" Text="{Binding Path=treatment.Type,ElementName=treatmentControl,Mode=TwoWay}" HorizontalAlignment="Stretch"  VerticalAlignment="Center"  Grid.Column="2" Grid.Row="3"/>
-            <Label x:Name="lblName" Content="" HorizontalAlignment="Stretch"  VerticalAlignment="Center"  Grid.Column="2" Grid.Row="2"/>
+            <Label x:Name="lblName" HorizontalAlignment="Stretch"  VerticalAlignment="Center"  Grid.Column="2" Grid.Row="2"/>
             <Button x:Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Grid.RowSpan="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click" Grid.Column="2" Grid.Row="13">
                 <Image Source="Resources/Button Images/cancel.png" HorizontalAlignment="Left" />
             </Button>
