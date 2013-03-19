@@ -153,6 +153,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> patients = Database.Select("SELECT waitlistId, pid, fname, lname, priority, treatmentID, treatment  from Waitlist, Patient, ReceivesTreatment where Waitlist.patientId = Patient.pid and ReceivesTreatment.rtid = Waitlist.treatmentID and Waitlist.wardName = '"+ ward + "' order by priority='Low', priority='Medium', priority='High', waitlistId;");
             List<WaitlistedPatient> getpatients = new List<WaitlistedPatient>();
+            if (patients != null)
             foreach (object[] row in patients)
             {
                 if (row.Length == 7)
@@ -169,6 +170,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> beds = Database.Select("Select * FROM Bed WHERE state = 1 and ward = '" + ward + "' ORDER BY Bed_no");
             List<Bed> openbeds = new List<Bed>();
+            if (beds != null)
             foreach (object[] row in beds)
             {
                 if (row.Length == 6)

@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800"
              x:Name="Treathistory">
-    <Grid>
+    <Grid HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -21,15 +21,15 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition  Width="1*"/>
+            <ColumnDefinition  Width="1*"/>
+            <ColumnDefinition  Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lblPatientName" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Generate Patient Name" Style="{StaticResource ResourceKey=titleStyle}"/>
         <Label x:Name="lblHistory" Grid.Row="1" Content="History" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=headerStyle}"/>
-        <Label x:Name="lblDetails" Grid.Row="1" Grid.Column="4" Content="Generate Treatment Time and Day" HorizontalAlignment="Left" Grid.ColumnSpan="4" Style="{StaticResource ResourceKey=headerStyle}"/>
+        <Label x:Name="lblDetails" Grid.Row="1" Grid.Column="4" Content="Generate Treatment Time and Day" HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Style="{StaticResource ResourceKey=headerStyle}" Width="343"/>
         <DataGrid x:Name="dgHistory" IsReadOnly="True"  CanUserDeleteRows="False" AutoGenerateColumns="false"  ItemsSource="{Binding}" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="7" SelectionChanged="dgHistory_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Treatment Type" Binding="{Binding Path=Type}" Width="2*"/>
@@ -37,7 +37,7 @@
                 <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid x:Name="GridDetails" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="9">
+        <Grid x:Name="GridDetails" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="9" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="5*"/>
@@ -64,7 +64,7 @@
             <Label x:Name="lblPriority" Content="Treatment Priority: " HorizontalAlignment="Right"  Grid.Row="2" Height="35" VerticalAlignment="Bottom" Style="{StaticResource ResourceKey=textStyle}"/>
             <Label x:Name="lblDoctor" Content="Treating Doctor: " HorizontalAlignment="Right"  Grid.Row="3" Style="{StaticResource ResourceKey=textStyle}"/>
             <Label x:Name="lblNotes" Content="Treatment Notes: " HorizontalAlignment="Right"  Grid.Row="4" Style="{StaticResource ResourceKey=textStyle}"/>
-            <TextBox x:Name="txtType" Text="{Binding Path=treatment.Type,ElementName=Treathistory}" IsReadOnly="True"  Grid.Column="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtType" Text="{Binding Path=treatment.Type,ElementName=Treathistory}" IsReadOnly="True"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
             <TextBox x:Name="txtWard" Text="{Binding Path=waitlist.Ward,ElementName=Treathistory}"  IsReadOnly="True" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="txtPriority" Text="{Binding Path=waitlist.Priority,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="txtDoctor" Text="{Binding Path=treatment.Doctor,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>

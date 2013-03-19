@@ -30,6 +30,10 @@ namespace Hospipal.Database_Class
             {
                 return _PatientID;
             }
+            set
+            {
+                _PatientID = value;
+            }
         }
         public int HealthCareNo
         {
@@ -313,6 +317,7 @@ namespace Hospipal.Database_Class
 
             List<object[]> rows = Database.Select("Select * FROM Patient");
             List<Patient> getPatients = new List<Patient>();
+            if (rows != null)
             foreach (object[] row in rows)
             {
                 Patient newPatient = new Patient(Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(),  

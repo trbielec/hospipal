@@ -221,7 +221,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> rows = Database.Select("Select * FROM ReceivesTreatment WHERE patient = " + pid + " AND treatmentstatus = '" + status + "'");
             List<Treatment> getTreatments = new List<Treatment>();
-
+            if (rows != null)
             foreach (object[] row in rows)
             {
                 Treatment newTreatment = new Treatment(Convert.ToInt32(row[1]), row[2].ToString(),
@@ -237,7 +237,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> rows = Database.Select("Select * FROM Treatment");
             List<String> allTreatmentTypes = new List<String>();
-
+            if (rows != null)
             foreach (object[] row in rows)
             {
                 String treatmentType = row[0].ToString();

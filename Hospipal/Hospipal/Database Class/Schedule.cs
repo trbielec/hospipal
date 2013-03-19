@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace Hospipal.Database_Class
 {
-    class Schedule
+    public class Schedule
     {
         private int _sid;
         private DateTime _start_time;

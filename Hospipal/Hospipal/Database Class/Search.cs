@@ -51,6 +51,7 @@ namespace Hospipal.Database_Class
                                                 new DateTime(Convert.ToInt32(row[6]), Convert.ToInt32(row[5]), Convert.ToInt32(row[4])),
                                                 row[7].ToString(), row[8].ToString(), row[9].ToString(), row[10].ToString(),
                                                 row[11].ToString(), row[12].ToString(), row[13].ToString());
+                    newPatient.PatientID = Convert.ToInt32(row[0]);
                     getPatients.Add(newPatient);
                 }
             }
@@ -69,6 +70,7 @@ namespace Hospipal.Database_Class
             try
             {
                 List<object[]> employeeList = Database.Select(queryBuilt);
+                if(employeeList != null)
                 foreach (object[] row in employeeList)
                 {
                     Employee newEmployee = new Employee(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(),

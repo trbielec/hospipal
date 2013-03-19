@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Hospipal.Database_Class
 {
-    class Notification
+    public class Notification
     {
         private string _Text;
 
@@ -43,7 +43,9 @@ namespace Hospipal.Database_Class
 
         public void RetrieveNotification()
         {
-            _Text = Convert.ToString(Database.Select("SELECT * from Notification;").ElementAt(0).ElementAt(1));
+            List<object[]> text = Database.Select("SELECT * from Notification;");
+            if(text != null)
+            _Text = Convert.ToString(text.ElementAt(0).ElementAt(1));
             //MessageBoxResult result = MessageBox.Show("Retrieved value: " + _Text);
         }
 

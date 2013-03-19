@@ -16,12 +16,12 @@ namespace Hospipal.Database_Class
         private int _roomNo;
         private string _assigningNurse;
         private string _ward;
-       
 
-        
 
-      
-        #region Getters/Setters 
+
+
+
+        #region Getters/Setters
 
         public int bedNo
         {
@@ -35,7 +35,7 @@ namespace Hospipal.Database_Class
         {
             get
             {
-                Room getRoomName = new Room(_roomNo,_ward);
+                Room getRoomName = new Room(_roomNo, _ward);
                 if (_bedNo.ToString().Length < 2)
                     return getRoomName.RoomString + "00" + _bedNo.ToString();
                 else
@@ -116,11 +116,11 @@ namespace Hospipal.Database_Class
 
         public Bed(int bedNo, States state, int pid, int roomNo, string assigningNurse, string ward)
         {
-            _bedNo =  bedNo;
+            _bedNo = bedNo;
             _state = state;
-            _pid =  pid;
-            _roomNo =  roomNo;
-            _assigningNurse =  assigningNurse;
+            _pid = pid;
+            _roomNo = roomNo;
+            _assigningNurse = assigningNurse;
             _ward = ward;
         }
 
@@ -136,7 +136,7 @@ namespace Hospipal.Database_Class
                 foreach (object[] row in SingleRow)
                 {
                     _bedNo = Convert.ToInt32(row[0]);
-                    _state = (States) Convert.ToInt32(row[1]);
+                    _state = (States)Convert.ToInt32(row[1]);
                     _pid = Convert.ToInt32(row[2]);
                     _roomNo = Convert.ToInt32(row[3].ToString());
                     _assigningNurse = row[4].ToString();
@@ -159,15 +159,16 @@ namespace Hospipal.Database_Class
             return Database.Delete("DELETE FROM Bed WHERE bed_No = " + _bedNo);
         }
 
-        public static List<Bed> GetBeds(int RoomNo,string ward)
+        public static List<Bed> GetBeds(int RoomNo, string ward)
         {
             List<object[]> rooms = Database.Select("Select * FROM Bed WHERE roomno =" + RoomNo + " AND ward = '" + ward + "' ORDER BY Bed_no");
             List<Bed> getbeds = new List<Bed>();
-            foreach (object[] row in rooms)
-            {
-                Bed newBed = new Bed(Convert.ToInt32(row[0]), (States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), Convert.ToInt32(row[3]), row[4].ToString(),row[5].ToString());
-                getbeds.Add(newBed);
-            }
+            if (rooms != null)
+                foreach (object[] row in rooms)
+                {
+                    Bed newBed = new Bed(Convert.ToInt32(row[0]), (States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), Convert.ToInt32(row[3]), row[4].ToString(), row[5].ToString());
+                    getbeds.Add(newBed);
+                }
             return getbeds;
         }
     }

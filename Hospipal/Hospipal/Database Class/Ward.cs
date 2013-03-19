@@ -109,6 +109,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> wards = Database.Select("Select * FROM Ward");
             List<Ward> getwards = new List<Ward>();
+            if (wards != null)
             foreach (object[] row in wards)
             {
                 Ward newWard = new Ward(row[0].ToString(), row[1].ToString());

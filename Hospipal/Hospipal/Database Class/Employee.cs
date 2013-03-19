@@ -153,13 +153,17 @@ namespace Hospipal.Database_Class
         public static int GenerateNextEid()
         {
             List<object[]> results = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'Employee' AND table_schema = DATABASE();");
-            return Convert.ToInt32(results[0][0]);
+            if (results != null)
+                return Convert.ToInt32(results[0][0]);
+            else
+                return -1;
         }
 
         public static List<Employee> GetEmployees() //Send in empty string if no search
         {
             List<object[]> employeeList = Database.Select("Select * FROM Employee");
             List<Employee> getEmployees = new List<Employee>();
+            if (employeeList != null)
             foreach (object[] row in employeeList)
             {
                 Employee newEmployee = new Employee(Convert.ToInt32(row[0]), row[1].ToString(), row[2].ToString(),

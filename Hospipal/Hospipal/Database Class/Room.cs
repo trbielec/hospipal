@@ -126,6 +126,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> rooms = Database.Select("Select * FROM Room WHERE ward ='" + WardName + "'");
             List<Room> getrooms = new List<Room>();
+            if (rooms != null)
             foreach (object[] row in rooms)
             {
                 Room newRoom = new Room(Convert.ToInt32(row[0]),row[1].ToString(),Convert.ToInt32(row[2]));

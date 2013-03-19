@@ -146,6 +146,11 @@
                      Value="-1">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
                 </DataTrigger>
+                <DataTrigger
+                    Binding="{Binding ElementName=OpenBedsDG, Path=SelectedIndex}"
+                    Value="-1">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
 
