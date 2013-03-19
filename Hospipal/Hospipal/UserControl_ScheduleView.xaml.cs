@@ -25,43 +25,6 @@ namespace Hospipal
     public partial class UserControl_ScheduleView : UserControl
     {
 
-       /* private ObservableCollection<Appointment> appointments;
-
-        public ObservableCollection<Appointment> Appointments
-        {
-            get
-            {
-                return this.appointments;
-            }
-
-            set
-            {
-                this.appointments = value;
-            }
-        }*/
-
-
-        /*
-        private Resource selectedResource;
-        public Resource SelectedResource
-        {
-            get
-            {
-                return selectedResource;
-            }
-
-            set
-            {
-                if (selectedResource != value)
-                {
-                    selectedResource = value;
-                    OnPropertyChanged(() => this.SelectedResource);
-                }
-            }
-
-        }
-        */
-
         private Schedule schedule = new Schedule();
 
         public UserControl_ScheduleView()
@@ -96,22 +59,48 @@ namespace Hospipal
 
         void Schedule_DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            IOccurrence selectedAppt = scheduleView.SelectedAppointment;
+            Appointment sel = selectedAppt as Appointment;
+            Schedule sch = new Schedule();
+            sch.Sid = Convert.ToInt32(sel.UniqueId);
+            sch.Delete();
+            // Refresh view
+            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+            appointments = Schedule.Select();
+            scheduleView.AppointmentsSource = appointments;
+            
         }
-
-
-
-
 
         private void RadScheduleView_ShowDialog(object sender, ShowDialogEventArgs e)
         {
             if (e.DialogViewModel is AppointmentDialogViewModel)
+            {
                 e.Cancel = true;
+
+                if (scheduleView.SelectedSlot != null)
+                {
+                    Slot selectedSlot = scheduleView.SelectedSlot;
+
+                    UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
+
+                    addSchd.ShowDialog();
+                }
+            }
 
             if (e.DialogViewModel is ConfirmDialogViewModel)
             {
                 e.DefaultDialogResult = true;
                 e.Cancel = true;
+
+                IOccurrence selectedAppt = scheduleView.SelectedAppointment;
+                Appointment sel = selectedAppt as Appointment;
+                Schedule sch = new Schedule();
+                sch.Sid = Convert.ToInt32(sel.UniqueId);
+                sch.Delete();
+                // Refresh view
+                ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+                appointments = Schedule.Select();
+                scheduleView.AppointmentsSource = appointments;
             }
 
             var dialogViewModel = e.DialogViewModel as RecurrenceChoiceDialogViewModel;

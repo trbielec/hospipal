@@ -128,7 +128,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
-           return Database.Delete("DELETE FROM Schedule WHERE start = " + _start_time + " AND end = " + _end_time + " AND employee = " + _employee);
+           return Database.Delete("DELETE FROM Schedule WHERE sid = " + _sid);
         }
 
         public static ObservableCollection<Appointment> Select()
@@ -147,6 +147,25 @@ namespace Hospipal.Database_Class
                 allAppointments.Add(newAppt);               
             }
             return allAppointments;
+        }
+
+        public static Appointment Select(string sid)
+        {
+            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
+            Appointment apt = new Appointment();
+            foreach (object[] row in scheduleTable)
+            {
+                
+                if (sid.Equals(row[0].ToString()))
+                {
+                    apt.UniqueId = row[0].ToString();
+                    apt.Start = Convert.ToDateTime(row[1]);
+                    apt.End = Convert.ToDateTime(row[2]);
+                    apt.Subject = row[3].ToString();
+                    apt.Body = row[4].ToString();
+                }
+            }
+            return apt;
         }
 
         public static int GenerateNextEid()

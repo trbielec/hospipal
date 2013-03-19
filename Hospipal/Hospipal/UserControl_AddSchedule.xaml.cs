@@ -61,11 +61,11 @@ namespace Hospipal
         {
             InitializeComponent();
 
-            sidLabel.Content = Schedule.GenerateNextEid();
             schedule = new Schedule();
 
             Appointment sel = selectedAppt as Appointment;
 
+            sidLabel.Content = sel.UniqueId;
             Console.WriteLine(sel.ToString());
 
             startDateTimePicker.SelectedValue = sel.Start;
@@ -81,7 +81,6 @@ namespace Hospipal
         }
 
 
-
         void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -94,20 +93,25 @@ namespace Hospipal
             if (!_isSelected)
             {
                 schedule.Sid = Convert.ToInt32(sidLabel.Content);
+                schedule.Start_time = startDateTimePicker.SelectedValue.Value;
+                schedule.End_time = endDateTimePicker.SelectedValue.Value;
+                schedule.Ward = WardName.Text;
+                schedule.Employee = Convert.ToInt32(EmpID.Text);
+
                 schedule.Insert();
 
                 this.Close();
             }
             else
             {
-                /*
-                schedule.Start = startDateTimePicker.SelectedValue.Value;
-                schedule.End = endDateTimePicker.SelectedValue.Value;
+                schedule.Sid = Convert.ToInt32(sidLabel.Content);
+                schedule.Start_time = startDateTimePicker.SelectedValue.Value;
+                schedule.End_time = endDateTimePicker.SelectedValue.Value;
                 schedule.Ward = WardName.Text;
                 schedule.Employee = Convert.ToInt32(EmpID.Text);
 
                 schedule.Update();
-                */
+
                 this.Close();
             }
 
