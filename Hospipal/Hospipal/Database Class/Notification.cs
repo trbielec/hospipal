@@ -43,7 +43,8 @@ namespace Hospipal.Database_Class
 
         public void RetrieveNotification()
         {
-            _Text = Convert.ToString(Database.Select("SELECT * from Notification;").ElementAt(0).ElementAt(1));
+            //retrieve string from database and force uppercase (for noticeability)
+            _Text = Convert.ToString(Database.Select("SELECT * from Notification;").ElementAt(0).ElementAt(1)).ToUpper();
             //MessageBoxResult result = MessageBox.Show("Retrieved value: " + _Text);
         }
 
