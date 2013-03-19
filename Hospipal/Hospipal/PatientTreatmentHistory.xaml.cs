@@ -41,21 +41,21 @@ namespace Hospipal
         }
 
         List<Treatment> treatments;
+        Patient p;
 
-
-        public PatientTreatmentHistory(int Pid)
+        public PatientTreatmentHistory(int hcno)
         {
             InitializeComponent();
-            Patient p = new Patient(Pid);
+            p = new Patient(hcno);
             lblPatientName.Content = p.LastName + ", " + p.FirstName;
-            treatments = Treatment.GetTreatments(Pid,"History");
+            treatments = Treatment.GetTreatments(hcno,"History");
             dgHistory.DataContext = treatments;
 
         }
 
         private void Close(object sender, RoutedEventArgs e)
         {
-            Content = new PatientTreatmentView(treatment.PatientID);
+            Content = new PatientTreatmentView(p.HealthCareNo);
         }
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)

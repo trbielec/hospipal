@@ -30,7 +30,7 @@
         <Label x:Name="lblPatientName" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Generate Patient Name" Style="{StaticResource ResourceKey=titleStyle}"/>
         <Label x:Name="lblHistory" Grid.Row="1" Content="History" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=headerStyle}"/>
         <Label x:Name="lblDetails" Grid.Row="1" Grid.Column="4" Content="Generate Treatment Time and Day" HorizontalAlignment="Left" Grid.ColumnSpan="4" Style="{StaticResource ResourceKey=headerStyle}"/>
-        <DataGrid x:Name="dgHistory" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="7" SelectionChanged="dgHistory_SelectionChanged">
+        <DataGrid x:Name="dgHistory" ItemsSource="{Binding}" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="7" SelectionChanged="dgHistory_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Treatment Type" Binding="{Binding Path=Type}" Width="2*"/>
                 <DataGridTextColumn Header="Date" Binding="{Binding Path=DateToShortDateString}" Width="*"/>

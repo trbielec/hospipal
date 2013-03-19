@@ -74,6 +74,10 @@ namespace Hospipal.Database_Class
             {
                 return _Date.ToShortDateString();
             }
+            set 
+            {
+                _Date = Convert.ToDateTime(value);
+            }
         }
         public string Time
         {

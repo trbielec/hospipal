@@ -188,7 +188,7 @@ namespace Hospipal.Database_Class
 
         public static bool EditPatientInWaitlist(int pid, string ward, string priority, int rtid)
         {
-            return Database.Update("Update Set wardName='" + ward + "', priority='" + priority + "' WHERE treatmentID = " + rtid);
+            return Database.Update("Update Waitlist Set wardName='" + ward + "', priority='" + priority + "' WHERE treatmentID = " + rtid);
         }
         #endregion
     }

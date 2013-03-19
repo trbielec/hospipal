@@ -68,6 +68,7 @@ namespace Hospipal
             treatment.PatientID = patient.PatientID;
             waitlist.Pid = patient.PatientID;
             populatePreBoxFields();
+            boxDate.Text = System.DateTime.Today.ToString();
         }
 
         public AddTreatment(Treatment pTreatment)
@@ -104,9 +105,11 @@ namespace Hospipal
             }
 
             boxDoctors.DataContext = doctors;
+            boxDoctors.SelectedIndex = employeeIDs.IndexOf(treatment.Doctor);
             boxTreatmentType.DataContext = type;
             boxWard.DataContext = wards;
             boxDoctors.Items.Refresh();
+            boxTreatmentType.Items.Refresh();
             patient.Select();
             lblName.Content = patient.LastName + ", " + patient.FirstName;
         }
