@@ -22,7 +22,8 @@ namespace Hospipal
     public partial class PatientTreatmentView : UserControl
     {
         #region Attributes 
-        List<Treatment> Treatments;
+        List<Treatment> upTreatments;
+
         Patient patient;
        
         #endregion  
@@ -47,11 +48,16 @@ namespace Hospipal
             InitializeComponent();
             patient = new Patient(HCNO);
             lblName.Content = patient.LastName + ", " + patient.FirstName;
-            Treatments = Treatment.GetTreatments(patient.PatientID, "Upcoming");
-            dataGridTreatments.DataContext = Treatments;
+            upTreatments = Treatment.GetTreatments(patient.PatientID, "Upcoming");
+            List<Treatment> currentTreatment = Treatment.GetTreatments(patient.PatientID, "Current");
+            //if (len.currentTreatment < 1
+            treatment = currentTreatment[0];
+            WaitlistedPatient wPatient = new WaitlistedPatient(treatment.TreatmentID);
+            currentWardtb.Text = wPatient.Ward;
+            dataGridTreatments.DataContext = upTreatments;
         }
         #endregion
-
+        
 
         #region Event handlers
         /* Add button click event 
@@ -77,7 +83,7 @@ namespace Hospipal
         {
             if (dataGridTreatments.SelectedItems.Count > 0)
             {
-                Treatments.RemoveAt(dataGridTreatments.SelectedIndex);
+                upTreatments.RemoveAt(dataGridTreatments.SelectedIndex);
                 dataGridTreatments.Items.Refresh();
             }
         }
@@ -91,6 +97,11 @@ namespace Hospipal
         private void buttonStop_Click(object sender, RoutedEventArgs e)
         {
             //Content = new AddTreatment(patient.PatientID);
+        }
+
+        private void currentWardtb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
 
         /* Stop button click event 
