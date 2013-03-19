@@ -75,7 +75,8 @@ namespace Hospipal
             InitializeComponent();
             treatment = pTreatment;
             waitlist = new WaitlistedPatient(treatment.TreatmentID);
-            this.patient = new Patient(treatment.PatientID);
+            patient = new Patient();
+            patient.GetPatient(treatment.PatientID);
             populatePreBoxFields();
              _isNewTreatment  = false;
 
@@ -115,7 +116,7 @@ namespace Hospipal
         #region event handlers
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-            Content = new PatientTreatmentView(patient.PatientID);
+            Content = new PatientTreatmentView(patient.HealthCareNo);
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
@@ -125,12 +126,12 @@ namespace Hospipal
             if ((_isNewTreatment && treatment.Insert()))
             {
                 WaitlistedPatient.AddPatientToWaitlist(treatment.PatientID, waitlist.Ward, waitlist.Priority, Treatment.GenerateNextrtid() - 1);
-                Content = new PatientTreatmentView(treatment.PatientID);
+                Content = new PatientTreatmentView(patient.HealthCareNo);
             }
             else if (treatment.Update())
             {
-                WaitlistedPatient.AddPatientToWaitlist(treatment.PatientID, waitlist.Ward, waitlist.Priority, treatment.TreatmentID);
-                Content = new PatientTreatmentView(treatment.PatientID);
+                WaitlistedPatient.EditPatientInWaitlist(treatment.PatientID, waitlist.Ward, waitlist.Priority, treatment.TreatmentID);
+                Content = new PatientTreatmentView(patient.HealthCareNo);
             }
             else
             {

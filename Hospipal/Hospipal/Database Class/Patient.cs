@@ -280,6 +280,31 @@ namespace Hospipal.Database_Class
         {
             return Database.Delete("DELETE FROM Patient WHERE HC_NO = " + _HealthCareNo);
         }
+
+        public bool GetPatient(int PatientID)
+        {
+            List<object[]> SingleRow = Database.Select("SELECT * from Patient WHERE pid = " + PatientID);
+            if (SingleRow != null && SingleRow.Count > 0)
+            {
+                foreach (object[] row in SingleRow)
+                {
+                    _PatientID = Convert.ToInt32(row[0]);
+                    _HealthCareNo = Convert.ToInt32(row[1]);
+                    _FirstName = row[2].ToString();
+                    _LastName = row[3].ToString();
+                    _DOB = new DateTime(Convert.ToInt32(row[6]), Convert.ToInt32(row[5]), Convert.ToInt32(row[4]));
+                    _StreetAddress = row[7].ToString();
+                    _City = row[8].ToString();
+                    _Province = row[9].ToString();
+                    _PostalCode = row[10].ToString();
+                    _HomePhoneNo = row[11].ToString();
+                    _MobilePhoneNo = row[12].ToString();
+                    _WorkPhoneNo = row[13].ToString();
+                }
+                return true;
+            }
+            return false;
+        }
         #endregion
 
         #region List Functions
