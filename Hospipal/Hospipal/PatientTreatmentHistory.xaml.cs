@@ -48,14 +48,14 @@ namespace Hospipal
             InitializeComponent();
             p = new Patient(hcno);
             lblPatientName.Content = p.LastName + ", " + p.FirstName;
-            treatments = Treatment.GetTreatments(hcno,"History");
+            treatments = Treatment.GetTreatments(p.PatientID,"History");
             dgHistory.DataContext = treatments;
 
         }
 
         private void Close(object sender, RoutedEventArgs e)
         {
-            Content = new PatientTreatmentView(p.HealthCareNo);
+            Content = new UserControl_PatientsView();
         }
 
         private void dgHistory_SelectionChanged(object sender, SelectionChangedEventArgs e)
