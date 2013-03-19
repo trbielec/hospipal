@@ -85,6 +85,12 @@
                     <RowDefinition Height="80"/>
                     <RowDefinition Height="65*"/>
                 </Grid.RowDefinitions>
+                <Button x:Name="Patients_TreatmentHistoryButton" Style="{StaticResource PatientButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="4">
+                    <StackPanel>
+                        <Image Source="./Resources/Button Images/history.png"/>
+                    </StackPanel>
+                </Button>
+                
                 <Button x:Name="Patients_DeleteButton" Style="{StaticResource PatientButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="3">
                     <StackPanel>
                         <Image Source="./Resources/Button Images/trash.png"/>

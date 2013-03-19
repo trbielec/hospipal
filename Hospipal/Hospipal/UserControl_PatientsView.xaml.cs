@@ -38,8 +38,13 @@ namespace Hospipal
             Patients_AddButton.Click += new RoutedEventHandler(AddPatient);
             Patients_EditButton.Click += new RoutedEventHandler(EditPatient);
             Patients_DeleteButton.Click += new RoutedEventHandler(DeletePatient);
+            Patients_TreatmentHistoryButton.Click += new RoutedEventHandler(TreatmentHistory);
         }
 
+        private void TreatmentHistory(object sender, RoutedEventArgs e)
+        {
+            Content = new PatientTreatmentHistory((((Patient)Patients_DataGrid.SelectedItem).HealthCareNo));
+        }
 
         private void AddPatient(object sender, RoutedEventArgs e)
         {
