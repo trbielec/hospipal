@@ -25,6 +25,8 @@ namespace Hospipal
     public partial class UserControl_MainTabView : UserControl
     {
         private DispatcherTimer _timer;
+
+        #region Databinding
         Database_Class.Notification Notif = new Database_Class.Notification();
         
         private static DependencyProperty NotificationProperty =
@@ -37,6 +39,7 @@ namespace Hospipal
             get { return (string)GetValue(NotificationProperty); }
             set { SetValue(NotificationProperty, value); }
         }
+        #endregion
 
         public UserControl_MainTabView()
         {
@@ -61,9 +64,41 @@ namespace Hospipal
 
         }
 
+        #region event handlers
+        //When the notification bar loses keyboard focus, the retrieval is paused, text is sent to the database, and the timer is restarted
+        private void Notifications_Bar_LostFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            StopTimer();
+
+            #region Ugly Workaround
+            //Ugliest workaround for a bug in the history of man?
+            //A blank window is the only way I could find for the 'notification' text from the UI to be updated and pass into the following functions
+            Window window = new Window();
+                window.Visibility = Visibility.Hidden;
+                window.Show();
+                window.Height = 0;
+                window.Width = 0;
+                window.Top = 5000;
+                window.Hide();
+                window.Close();
+            #endregion
+
+            //Send the notification
+            Notif.Text = notification;
+            Notif.SendNotification();
+
+            StartTimer();
+
+            //Should it retrieve the notification right after sending? I decided not to
+            //Notif.RetrieveNotification();
+            //notification = Notif.Text;
+        }
+        #endregion
+
+        #region Timer Methods
         public void StartTimer()
         {
-            _timer.Interval = TimeSpan.FromMilliseconds(10000); //10 seconds
+            _timer.Interval = TimeSpan.FromMilliseconds(15000); //15 seconds
             _timer.Tick += new EventHandler(delegate(object s, EventArgs a)
             {
                 Notif.RetrieveNotification();
@@ -75,32 +110,6 @@ namespace Hospipal
         public void StopTimer()
         {
             _timer.Stop();
-        }
-
-        #region event handlers
-        private void Notifications_Bar_LostFocus(object sender, KeyboardFocusChangedEventArgs e)
-        {
-            StopTimer();
-            //Ugliest workaround for a bug in the history of man?
-            //A blank window is the only way I could find for the 'notification' text from the UI to be updated and pass into the following functions
-            Window window = new Window();
-                window.Visibility = Visibility.Hidden;
-                window.Show();
-                window.Height = 0;
-                window.Width = 0;
-                window.Top = 5000;
-                window.Hide();
-                window.Close();
-            
-            //Send the notification
-            Notif.Text = notification;
-            Notif.SendNotification();
-
-            StartTimer();
-
-            //Should it retrieve the notification right after sending? I decided not to
-            //Notif.RetrieveNotification();
-            //notification = Notif.Text;
         }
         #endregion
     }
