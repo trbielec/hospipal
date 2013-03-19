@@ -12,36 +12,48 @@ namespace Hospipal.Database_Class
 {
     class Schedule
     {
-        private DateTime _start;
-        private DateTime _end;
+        private int _sid;
+        private DateTime _start_time;
+        private DateTime _end_time;
         private int _employee;
         private string _ward;
 
 
 #region Getters/Setters
 
-
-        public DateTime Start
+        public int Sid
         {
             get
             {
-                return _start;
+                return _sid;
             }
             set
             {
-                _start = value;
+                _sid = value;
             }
         }
 
-        public DateTime End
+        public DateTime Start_time
         {
             get
             {
-                return _end;
+                return _start_time;
             }
             set
             {
-                _end = value;
+                _start_time = value;
+            }
+        }
+
+        public DateTime End_time
+        {
+            get
+            {
+                return _end_time;
+            }
+            set
+            {
+                _end_time = value;
             }
 
         }
@@ -76,13 +88,14 @@ namespace Hospipal.Database_Class
 
         public Schedule()
         {
+
         }
 
-        public Schedule(DateTime start, DateTime end, int employee, string ward)
+        public Schedule(int sid,DateTime start_time, DateTime end_time, int employee, string ward)
         {
-            
-            _start = start;
-            _end = end;
+            _sid = sid;
+            _start_time = start_time;
+            _end_time = end_time;
             _employee = employee;
             _ward = ward; 
         }
@@ -94,10 +107,9 @@ namespace Hospipal.Database_Class
 
         public bool Insert()
         {
-            MySqlCommand schedule = new MySqlCommand("Insert_Schedule(@start,@end,@employee,@ward);");
-
-            schedule.Parameters.AddWithValue("start", _start);
-            schedule.Parameters.AddWithValue("end", _end);
+            MySqlCommand schedule = new MySqlCommand("Insert_Schedule(@start_time,@end_time,@employee,@ward);");
+            schedule.Parameters.AddWithValue("start_time", _start_time);
+            schedule.Parameters.AddWithValue("end_time", _end_time);
             schedule.Parameters.AddWithValue("employee", _employee);
             schedule.Parameters.AddWithValue("ward", _ward);
             return Database.Insert(schedule);
@@ -105,10 +117,10 @@ namespace Hospipal.Database_Class
 
         public bool Update()
         {
-            MySqlCommand schedule = new MySqlCommand("Update_Schedule(@start,@end,@employee,@ward);");
-
-            schedule.Parameters.AddWithValue("start", _start);
-            schedule.Parameters.AddWithValue("end", _end);
+            MySqlCommand schedule = new MySqlCommand("Update_Schedule(@sid,@start_time,@end_time,@employee,@ward);");
+            schedule.Parameters.AddWithValue("sid", _sid);
+            schedule.Parameters.AddWithValue("start_time", _start_time);
+            schedule.Parameters.AddWithValue("end_time", _end_time);
             schedule.Parameters.AddWithValue("employee", _employee);
             schedule.Parameters.AddWithValue("ward", _ward);
             return Database.Update(schedule);
@@ -116,7 +128,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
-           return Database.Delete("DELETE FROM Schedule WHERE start = " + _start + " AND end = " + _end + " AND employee = " + _employee);
+           return Database.Delete("DELETE FROM Schedule WHERE start = " + _start_time + " AND end = " + _end_time + " AND employee = " + _employee);
         }
 
         public static ObservableCollection<Appointment> Select()
@@ -125,16 +137,22 @@ namespace Hospipal.Database_Class
             ObservableCollection<Appointment> allAppointments = new ObservableCollection<Appointment>();
             foreach (object[] row in scheduleTable)
             {
-                Appointment newAppt = new Appointment() { 
-                    Start = Convert.ToDateTime(row[0]),
-                    End = Convert.ToDateTime(row[1]),
-                    Subject = row[2].ToString(),
-                    Body = row[3].ToString(),
-                };
+                Appointment newAppt = new Appointment();
+                newAppt.UniqueId = row[0].ToString();
+                newAppt.Start = Convert.ToDateTime(row[1]);
+                newAppt.End = Convert.ToDateTime(row[2]);
+                newAppt.Subject = row[3].ToString();
+                newAppt.Body = row[4].ToString();
 
                 allAppointments.Add(newAppt);               
             }
             return allAppointments;
+        }
+
+        public static int GenerateNextEid()
+        {
+            List<object[]> results = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'Schedule' AND table_schema = DATABASE();");
+            return Convert.ToInt32(results[0][0]);
         }
         
         #endregion

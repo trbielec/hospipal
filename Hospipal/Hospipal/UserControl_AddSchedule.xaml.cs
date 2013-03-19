@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hospipal.Database_Class;
+using System.Collections.ObjectModel;
 
 using Telerik.Windows.Controls.ScheduleView;
 
@@ -39,34 +40,51 @@ namespace Hospipal
 
 
 
-        public UserControl_AddSchedule(UserControl_ScheduleView parentUC)
+        public UserControl_AddSchedule(Slot selectedSlot, UserControl_ScheduleView parentUC)
         {
             InitializeComponent();
+            sidLabel.Content = Schedule.GenerateNextEid();
             schedule = new Schedule();
+            
+            Console.WriteLine(selectedSlot.ToString());
+
+            startDateTimePicker.SelectedValue = selectedSlot.Start;
+            endDateTimePicker.SelectedValue = selectedSlot.End;
+
             SaveButton.Click += SaveButton_Click;
             CancelButton.Click += CancelButton_Click;
 
             ParentScheduleWindow = parentUC as UserControl_ScheduleView; 
         }
 
-        public UserControl_AddSchedule(Appointment appt, UserControl_ScheduleView parentUC)
+        public UserControl_AddSchedule(IOccurrence selectedAppt, UserControl_ScheduleView parentUC)
         {
             InitializeComponent();
+
+            sidLabel.Content = Schedule.GenerateNextEid();
             schedule = new Schedule();
-            
+
+            Appointment sel = selectedAppt as Appointment;
+
+            Console.WriteLine(sel.ToString());
+
+            startDateTimePicker.SelectedValue = sel.Start;
+            endDateTimePicker.SelectedValue = sel.End;
+
+            EmpID.Text = sel.Subject;
+            WardName.Text = sel.Body;
+
             _isSelected = true;
-
-
-
+            SaveButton.Click += SaveButton_Click;
+            CancelButton.Click += CancelButton_Click;
             ParentScheduleWindow = parentUC as UserControl_ScheduleView; 
-
         }
 
 
 
         void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
         }
 
         void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -74,9 +92,31 @@ namespace Hospipal
             SaveButton.Focus();
 
             if (!_isSelected)
+            {
+                schedule.Sid = Convert.ToInt32(sidLabel.Content);
                 schedule.Insert();
+
+                this.Close();
+            }
             else
+            {
+                /*
+                schedule.Start = startDateTimePicker.SelectedValue.Value;
+                schedule.End = endDateTimePicker.SelectedValue.Value;
+                schedule.Ward = WardName.Text;
+                schedule.Employee = Convert.ToInt32(EmpID.Text);
+
                 schedule.Update();
-        }
+                */
+                this.Close();
+            }
+
+            ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
+
+            appointments = Schedule.Select();
+
+            ParentScheduleWindow.scheduleView.AppointmentsSource = appointments;
+    }
+
     }
 }
