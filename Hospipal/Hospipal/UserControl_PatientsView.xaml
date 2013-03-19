@@ -115,7 +115,7 @@
                         <Image Source="./Resources/Button Images/add.png"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="buttonSearch" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="60" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Style="{StaticResource PatientButtons}"  Click="buttonSearch_Click">
+                <Button x:Name="buttonSearch" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="60" Height="60" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"  Click="buttonSearch_Click">
                     <Button.ToolTip>
                         <ToolTip>
                             <StackPanel>

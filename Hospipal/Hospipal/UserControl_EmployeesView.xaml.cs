@@ -72,7 +72,6 @@ namespace Hospipal
             {
                 validateInputs();
             }
-            clearBoxes();
         }
 
         private void clearBoxes()
