@@ -169,6 +169,28 @@
             <Setter Property="Image.Width" Value="54"/>
             <Setter Property="Image.Height" Value="54"/>
         </Style>
+        
+        <!-- Hides the Schedule Edit and Delete button if there is no appointment selected.-->
+        <Style TargetType="{x:Type Button}" x:Key="ScheduleDelEditButtons">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=scheduleView, Path=SelectedAppointment}" 
+                     Value="{x:Null}">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Hides the Schedule Add button if there is no appointment selected.-->
+        <Style TargetType="{x:Type Button}" x:Key="ScheduleAddButtons">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=scheduleView, Path=SelectedSlot}" 
+                     Value="{x:Null}">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
 
         <!-- Brush Resources-->
             

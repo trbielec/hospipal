@@ -6,7 +6,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              x:Name="scheduleControl"
-             Height="500" Width="500">
+             Height="300" Width="500" ResizeMode="NoResize"
+             WindowStartupLocation="CenterScreen"
+             Window.WindowStyle="ToolWindow">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80"/>

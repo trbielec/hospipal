@@ -29,17 +29,17 @@
                 <ColumnDefinition Width="*"/>  
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Name="Schedule_AddButton" Style="{StaticResource EmployeeButtons}" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" >
+            <Button Grid.Column="1" Name="Schedule_AddButton" Style="{StaticResource ScheduleAddButtons}" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" >
                 <StackPanel>
                     <Image Source="./Resources/Button Images/add.png"/>
                 </StackPanel>
             </Button>
-            <Button Grid.Column="2" Name="Schedule_EditButton" Style="{StaticResource EmployeeButtons}"  HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+            <Button Grid.Column="2" Name="Schedule_EditButton" Style="{StaticResource ScheduleDelEditButtons}"  HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/edit.png" Width="45"/>
                 </StackPanel>
             </Button>
-            <Button Grid.Column="3" Name="Schedule_DeleteButton" Style="{StaticResource EmployeeButtons}" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+            <Button Grid.Column="3" Name="Schedule_DeleteButton" Style="{StaticResource ScheduleDelEditButtons}" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/trash.png"/>
                 </StackPanel>
