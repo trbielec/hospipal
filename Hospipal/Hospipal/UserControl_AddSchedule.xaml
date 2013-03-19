@@ -24,19 +24,23 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Start" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <Label Content="End" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <Label Content="Employee ID" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-        <Label Content="Ward Name" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Schedule ID" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
-        <telerik:RadDateTimePicker Name="startDateTimePicker" Grid.Column="1" Grid.Row="1" InputMode="DateTimePicker" SelectedValue="{Binding Path=schedule.Start,ElementName=scheduleControl,Mode=TwoWay}"/>
-        <telerik:RadDateTimePicker Name="endDateTimePicker" Grid.Column="1" Grid.Row="2" InputMode="DateTimePicker" SelectedValue="{Binding Path=schedule.End,ElementName=scheduleControl,Mode=TwoWay}"/>
+        <Label Name="sidLabel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+        <Label Content="Start" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="End" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Employee ID" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <Label Content="Ward Name" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
-        <TextBox Name="EmpID" Grid.Column="4" Grid.Row="1" VerticalAlignment="Stretch" Text="{Binding Path=schedule.Employee,ElementName=scheduleControl,Mode=TwoWay}"/>
-        <TextBox Name="WardName" Grid.Column="4" Grid.Row="2" VerticalAlignment="Stretch" Text="{Binding Path=schedule.Ward,ElementName=scheduleControl,Mode=TwoWay}"/>
+        <telerik:RadDateTimePicker  Name="startDateTimePicker" Grid.Column="1" Grid.Row="2" InputMode="DateTimePicker" SelectedValue="{Binding Path=schedule.Start,ElementName=scheduleControl,Mode=TwoWay}"/>
+        <telerik:RadDateTimePicker Name="endDateTimePicker" Grid.Column="1" Grid.Row="3" InputMode="DateTimePicker" SelectedValue="{Binding Path=schedule.End,ElementName=scheduleControl,Mode=TwoWay}"/>
+
+        <TextBox Name="EmpID" Grid.Column="4" Grid.Row="2" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Text="{Binding Path=schedule.Employee,ElementName=scheduleControl,Mode=TwoWay}"/>
+        <TextBox Name="WardName" Grid.Column="4" Grid.Row="3" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Text="{Binding Path=schedule.Ward,ElementName=scheduleControl,Mode=TwoWay}"/>
         
         
         <Button Grid.Column="4" Grid.Row="6" Name="SaveButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">

@@ -77,14 +77,19 @@ namespace Hospipal
 
         void Schedule_AddButton_Click(object sender, RoutedEventArgs e)
         {
-            UserControl_AddSchedule addSchd = new UserControl_AddSchedule(this);
+
+            Slot selectedSlot = scheduleView.SelectedSlot;
+
+            UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
 
             addSchd.ShowDialog();
         }
 
         void Schedule_EditButton_Click(object sender, RoutedEventArgs e)
         {
-            UserControl_AddSchedule addSchd = new UserControl_AddSchedule(this);
+            IOccurrence selectedAppt = scheduleView.SelectedAppointment;
+
+            UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedAppt, this);
 
             addSchd.ShowDialog();
         }
