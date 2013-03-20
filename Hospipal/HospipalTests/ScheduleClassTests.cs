@@ -74,5 +74,49 @@ namespace HospipalTests
             int next = Convert.ToInt32(obj[0][0]);
             Assert.True(Schedule.GenerateNextEid() == next);
         }
+
+        #region Get/Set Tests
+        [TestCase]
+        public void TestGetSetSid()
+        {
+            Schedule s = new Schedule();
+            s.Sid = 1;
+            Assert.True(s.Sid == 1);
+        }
+
+        [TestCase]
+        public void TestGetSetStartTime()
+        {
+            Schedule r = new Schedule();
+            DateTime d = new DateTime(2013, 2, 3);
+            r.Start_time = d;
+            Assert.True(r.Start_time == d);
+        }
+
+        [TestCase]
+        public void TestGetSetEndTime()
+        {
+            Schedule r = new Schedule();
+            DateTime d = new DateTime(2013, 2, 3);
+            r.End_time = d;
+            Assert.True(r.End_time == d);
+        }
+
+        [TestCase]
+        public void TestGetSetEmployee()
+        {
+            Schedule r = new Schedule();
+            r.Employee = 1;
+            Assert.True(r.Employee == 1);
+        }
+
+        [TestCase]
+        public void TestGetSetWard()
+        {
+            Schedule r = new Schedule();
+            r.Ward = "UTW";
+            Assert.True(r.Ward == "UTW");
+        }
+        #endregion
     }
 }

@@ -44,5 +44,14 @@ namespace HospipalTests
             n.Text = oldText;
             n.SendNotification();
         }
+
+        [TestCase]
+        public void TestGetSetText()
+        {
+            Notification n = new Notification("Test");
+            Assert.True(n.Text == "Test");
+            n.Text = "T";
+            Assert.True(n.Text == "T");
+        }
     }
 }

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Hospipal.Database_Class;
 using System.Collections.Generic;
+using Hospipal;
 
 namespace HospipalTests
 {
@@ -69,12 +70,99 @@ namespace HospipalTests
             Treatment treatment = list[0];
             treatment.Delete();
         }
-        /*
+
         [TestCase]
         public void TestGetTreatmentTypes()
         {
-            Assert.IsNotEmpty(Treatment.GetTreatmentTypes());
+            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History5");
+            t.Insert();
+            t.Select();
+            List<string> list = Treatment.GetTreatmentTypes();
+            Assert.True(list.Count >= 1);
+
+            t.Delete();
         }
-         */  //No Treatment Types is not a test.
+
+        [TestCase]
+        public void TestGenerateNextRtid()
+        {
+            List<object[]> obj = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'ReceivesTreatment'AND table_schema = DATABASE();");
+            int next = Convert.ToInt32(obj[0][0]);
+            Assert.True(Treatment.GenerateNextrtid() == next);
+        }
+
+        [TestCase]
+        public void TestSelectWithNoTid()
+        {
+            Treatment t = new Treatment();
+            Assert.False(t.Select());
+        }
+
+        #region Get/Set Tests
+        [TestCase]
+        public void TestGetSetPatientId()
+        {
+            Treatment r = new Treatment();
+            r.PatientID = 1;
+            Assert.True(r.PatientID == 1);
+        }
+
+        [TestCase]
+        public void TestGetSetType()
+        {
+            Treatment r = new Treatment();
+            r.Type = "Test";
+            Assert.True(r.Type == "Test");
+        }
+
+        [TestCase]
+        public void TestGetSetDate()
+        {
+            Treatment r = new Treatment();
+            DateTime d = new DateTime(2013, 2, 3);
+            r.Date = d;
+            Assert.True(r.Date == d);
+        }
+
+        [TestCase]
+        public void TestGetSetDateString()
+        {
+            Treatment r = new Treatment();
+            r.DateToShortDateString = "2/3/2013";
+            Assert.True(r.DateToShortDateString == "2/3/2013"); 
+        }
+
+        [TestCase]
+        public void TestGetSetTime()
+        {
+            Treatment r = new Treatment();
+            r.Time = "Test";
+            Assert.True(r.Time == "Test");
+        }
+
+        [TestCase]
+        public void TestGetSetNotes()
+        {
+            Treatment r = new Treatment();
+            r.Notes = "Test";
+            Assert.True(r.Notes == "Test");
+        }
+
+        [TestCase]
+        public void TestGetSetDoctor()
+        {
+            Treatment r = new Treatment();
+            r.Doctor = 1;
+            Assert.True(r.Doctor == 1);
+        }
+
+        [TestCase]
+        public void TestGetSetStatus()
+        {
+            Treatment r = new Treatment();
+            r.Status = "Test";
+            Assert.True(r.Status == "Test");
+        }
+        #endregion
     }
 }

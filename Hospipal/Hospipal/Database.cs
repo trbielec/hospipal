@@ -40,7 +40,7 @@ namespace Hospipal
             return db.Insert(command);
         }
 
-        internal static bool CheckConnection()
+        public static bool CheckConnection()
         {
             return db.TestConnection();
         }

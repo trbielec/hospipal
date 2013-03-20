@@ -60,5 +60,39 @@ namespace HospipalTests
 
             ward.Delete();
         }
+
+        [TestCase]
+        public void TestOverrideToString()
+        {
+            Ward w = new Ward();
+            w.WardName = "Test";
+            Assert.True(w.ToString() == "Test");
+        }
+
+        [TestCase]
+        public void TestSelectWithInvalidWard()
+        {
+            Ward w = new Ward("InvalidWard");
+            Assert.False(w.Select());
+        }
+
+        #region Get/Set Tests
+        [TestCase]
+        public void TestGetSetWardName()
+        {
+            Ward w = new Ward();
+            w.WardName = "Test";
+            Assert.True(w.WardName == "Test");
+        }
+
+        [TestCase]
+        public void TestGetSetWardSlug()
+        {
+            Ward w = new Ward();
+            w.SlugName = "Test";
+            Assert.True(w.SlugName == "Test");
+        }
+
+        #endregion
     }
 }
