@@ -45,7 +45,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> text = Database.Select("SELECT * from Notification;");
             if(text != null)
-            _Text = Convert.ToString(text.ElementAt(0).ElementAt(1));
+            _Text = Convert.ToString(text.ElementAt(0).ElementAt(1)).ToUpper();
             //MessageBoxResult result = MessageBox.Show("Retrieved value: " + _Text);
         }
 

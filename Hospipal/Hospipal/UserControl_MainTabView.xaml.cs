@@ -48,9 +48,8 @@ namespace Hospipal
             PatientsTab.Content = new UserControl_PatientsView();
             EmployeesTab.Content = new UserControl_EmployeesView();
             WardsTab.Content = new UserControl_Wards();
-            WaitlsitTab.Content = new WaitlistView();
             SchedulingTab.Content = new UserControl_ScheduleView();
-
+            WaitlistTab.Content = new WaitlistView();
             //Add event handler for notification text box
             Notifications_Bar.LostKeyboardFocus += new KeyboardFocusChangedEventHandler(Notifications_Bar_LostFocus);
 
@@ -75,10 +74,10 @@ namespace Hospipal
             //A blank window is the only way I could find for the 'notification' text from the UI to be updated and pass into the following functions
             Window window = new Window();
                 window.Visibility = Visibility.Hidden;
-                window.Show();
                 window.Height = 0;
                 window.Width = 0;
                 window.Top = 5000;
+                window.Show();
                 window.Hide();
                 window.Close();
             #endregion
@@ -112,5 +111,11 @@ namespace Hospipal
             _timer.Stop();
         }
         #endregion
+
+        private void Notifications_Bar_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+          TextBox textbox = sender as TextBox;
+                     
+        }
     }
 }

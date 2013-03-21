@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Ward:" Height="25" Width="50"/>
-            <ComboBox Grid.Column="1" Name="WardSelectionBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="28" SelectionChanged="WardSelectionBoxEvent"/>
+            <ComboBox Grid.Column="1" Name="WardSelectionBox" MouseEnter="WardSelectionBox_MouseEnter_1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="28" SelectionChanged="WardSelectionBoxEvent"/>
             <Button Grid.Column="2" Grid.Row="0" Name="RefreshWaitlistButton" Style="{StaticResource RefreshWaitlistButton}"  Click="RefreshViewEvent" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="26" Height="28">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/refresh.png" RenderTransformOrigin="1.799,1.906" Height="20" Width="20"/>

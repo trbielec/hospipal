@@ -21,12 +21,12 @@
             <telerik:RadTabItem x:Name="EmployeesTab" Header="Employees" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="WardsTab" Header="Wards" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="SchedulingTab" Header="Scheduling" Height="32" Width="100" FontSize="14" />
-            <telerik:RadTabItem x:Name="WaitlsitTab" Header="Waitlist" Height="32" Width="100" FontSize="14" />
+            <telerik:RadTabItem x:Name="WaitlistTab" Header="Waitlist" Height="32" Width="100" FontSize="14"/>
         </telerik:RadTabControl>
 
         
         <!--<Label Grid.Row="1" Grid.ColumnSpan="1" Width="90" Height="20" Content="Press Tab to Submit" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>-->
-        <TextBox Grid.Row="1" ToolTipService.ToolTip="Press Tab to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
+        <TextBox Grid.Row="1" ToolTipService.ToolTip="Press Tab to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" PreviewTextInput="Notifications_Bar_PreviewTextInput" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
         
         <!--<Button Grid.Row="1" Content="Button" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75"/>-->
     </Grid>

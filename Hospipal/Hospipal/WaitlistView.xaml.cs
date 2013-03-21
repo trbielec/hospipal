@@ -103,5 +103,12 @@ namespace Hospipal
         {
             WardSelectionBoxEvent(null, null);
         }
+        private void WardSelectionBox_MouseEnter_1(object sender, MouseEventArgs e)
+        {
+
+            wards = Ward.GetWards();
+            WardSelectionBox.ItemsSource = wards;
+            WardSelectionBox.Items.Refresh();
+        }
     }
 }
