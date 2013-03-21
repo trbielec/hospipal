@@ -32,7 +32,7 @@ namespace Hospipal
             wards = Ward.GetWards();
             WardSelectionBox.ItemsSource = wards;
             WardSelectionBox.DisplayMemberPath = "WardName";
-            WardSelectionBox.SelectedValuePath = "WardName";
+            WardSelectionBox.SelectedValuePath = "SlugName";
         }
 
         private void WardSelectionBoxEvent(object sender, SelectionChangedEventArgs e)

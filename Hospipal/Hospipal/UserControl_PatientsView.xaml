@@ -100,11 +100,7 @@
                     </StackPanel>
                 </Button>
                 
-                <Button x:Name="Patients_DeleteButton" Style="{StaticResource PatientButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="4">
-                    <StackPanel>
-                        <Image Source="./Resources/Button Images/trash.png"/>
-                    </StackPanel>
-                </Button>
+                
                 <Button x:Name="Patients_EditButton" Style="{StaticResource PatientButtons}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
                     <StackPanel>
                         <Image Source="./Resources/Button Images/edit.png" Width="45"/>
