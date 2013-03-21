@@ -86,7 +86,7 @@
                     <RowDefinition Height="65"/>
                     <RowDefinition Height="65"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Patients_TreatmentHistoryButton" Style="{StaticResource PatientButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="5">
+                <Button x:Name="Patients_TreatmentHistoryButton" Style="{StaticResource PatientButtons}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="2">
                     <Button.ToolTip>
                         <ToolTip>
                             <StackPanel>
@@ -101,12 +101,12 @@
                 </Button>
                 
                 
-                <Button x:Name="Patients_EditButton" Style="{StaticResource PatientButtons}" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+                <Button x:Name="Patients_EditButton" Style="{StaticResource PatientButtons}" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
                     <StackPanel>
                         <Image Source="./Resources/Button Images/edit.png" Width="45"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Patients_AddButton" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+                <Button x:Name="Patients_AddButton" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
                     <StackPanel>
                         <Image Source="./Resources/Button Images/add.png"/>
                     </StackPanel>
