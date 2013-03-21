@@ -103,6 +103,17 @@
             </Style.Triggers>
         </Style>
 
+        <!-- Hides the Stop Button if there is no current treatment.-->
+        <Style TargetType="{x:Type Button}" x:Key="StopButton">
+            <Style.Triggers>
+                <DataTrigger 
+                     Binding ="{Binding ElementName=currentDatetb, Path=Text.Length}" 
+                     Value="0">
+                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected ward.-->
         <Style TargetType="{x:Type Button}" x:Key="WardButtons">
             <Style.Triggers>

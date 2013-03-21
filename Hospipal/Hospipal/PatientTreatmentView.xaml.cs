@@ -50,10 +50,14 @@ namespace Hospipal
             lblName.Content = patient.LastName + ", " + patient.FirstName;
             upTreatments = Treatment.GetTreatments(patient.PatientID, "Upcoming");
             List<Treatment> currentTreatment = Treatment.GetTreatments(patient.PatientID, "Current");
-            //if (len.currentTreatment < 1
-            treatment = currentTreatment[0];
-            WaitlistedPatient wPatient = new WaitlistedPatient(treatment.TreatmentID);
-            currentWardtb.Text = wPatient.Ward;
+            if (currentTreatment.Capacity > 0)
+            {
+                treatment = currentTreatment[0];
+                WaitlistedPatient wPatient = new WaitlistedPatient(treatment.TreatmentID);
+                currentWardtb.Text = wPatient.Ward;
+            }
+            
+            
             dataGridTreatments.DataContext = upTreatments;
         }
         #endregion
@@ -92,12 +96,14 @@ namespace Hospipal
         {
             Content = new UserControl_PatientsView();
         }
-        #endregion
 
         private void buttonStop_Click(object sender, RoutedEventArgs e)
         {
             //Content = new AddTreatment(patient.PatientID);
         }
+        #endregion
+
+       
 
         private void currentWardtb_TextChanged(object sender, TextChangedEventArgs e)
         {

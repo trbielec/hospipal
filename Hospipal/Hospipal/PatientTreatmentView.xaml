@@ -73,9 +73,9 @@
                 <TextBox x:Name="currentTypetb" Grid.Column="1" Grid.Row="4" IsReadOnly="True" Text="{Binding Path=treatment.DateToShortDateString,ElementName=treatmentControl}"  HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="currentTimetb" Grid.Column="3" Grid.Row="3" IsReadOnly="True" Text="{Binding Path=treatment.Time,ElementName=treatmentControl}"  HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="currentWardtb" Grid.Column="3" Grid.Row="4" IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
-                <TextBox x:Name="currentNotestb" Grid.Column="1" Grid.Row="5" IsReadOnly="True" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=treatment.Notes,ElementName=treatmentControl}"/>
+                <TextBox x:Name="currentNotestb" Grid.Column="1" Grid.Row="5" IsReadOnly="True" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Path=treatment.Notes,ElementName=treatmentControl}"/>
 
-                <Button x:Name="CancelTreatmentbtn" Grid.Row="5" HorizontalAlignment="Center" Click="buttonStop_Click" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Column="4" Grid.RowSpan="2">
+                <Button x:Name="CancelTreatmentbtn" Grid.Row="5" HorizontalAlignment="Center" Click="buttonStop_Click" Style="{StaticResource StopButton}" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Column="4" Grid.RowSpan="2">
                     <Button.ToolTip>
                         <ToolTip>
                             <StackPanel>
