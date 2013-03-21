@@ -74,13 +74,8 @@ namespace HospipalTests
         [TestCase]
         public void TestGetTreatmentTypes()
         {
-            Treatment t = new Treatment(100000, "UnitTestTreatment", 1, 1, 1, "", "", 1, "History5");
-            t.Insert();
-            t.Select();
             List<string> list = Treatment.GetTreatmentTypes();
             Assert.True(list.Count >= 1);
-
-            t.Delete();
         }
 
         [TestCase]

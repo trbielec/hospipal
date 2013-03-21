@@ -108,6 +108,8 @@ namespace Hospipal
             boxDoctors.SelectedIndex = employeeIDs.IndexOf(treatment.Doctor);
             boxTreatmentType.DataContext = type;
             boxWard.DataContext = wards;
+            boxWard.DisplayMemberPath = "WardName";
+            boxWard.SelectedValuePath = "SlugName";
             boxDoctors.Items.Refresh();
             boxTreatmentType.Items.Refresh();
             patient.Select();

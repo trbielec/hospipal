@@ -13,7 +13,7 @@ namespace Hospipal.Database_Class
         private int pid;
         private string fname;
         private string lname;
-        private string wardname;
+        private string wardslug;
         private string priority;
         private int treatmentId;
         private string treatment;
@@ -60,11 +60,11 @@ namespace Hospipal.Database_Class
         {
             get
             {
-                return wardname;
+                return wardslug;
             }
             set
             {
-                wardname=value;
+                wardslug=value;
             }
         }
         public string Priority
@@ -129,7 +129,7 @@ namespace Hospipal.Database_Class
                 {
                     waitlistId = Convert.ToInt32(row[0]);
                     pid = Convert.ToInt32(row[1]);
-                    wardname = row[2].ToString();
+                    wardslug = row[2].ToString();
                     priority = row[3].ToString();
                 }
             }
