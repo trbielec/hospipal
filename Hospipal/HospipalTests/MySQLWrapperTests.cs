@@ -96,6 +96,12 @@ namespace HospipalTests
             Assert.False(wrapper.Delete(query));
         }
 
+        [TestCase]
+        public void TestDatabaseCheckConnection()
+        {
+            Assert.True(Database.CheckConnection());
+        }
+
         [TestFixtureTearDown]
         public void tearDown()
         {

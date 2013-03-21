@@ -67,5 +67,40 @@ namespace HospipalTests
 
             room.Delete();
         }
+
+        #region Get/Set Tests
+        [TestCase]
+        public void TestGetSetFloorNo()
+        {
+            Room r = new Room();
+            r.FloorNo = 1;
+            Assert.True(r.FloorNo == 1);
+        }
+
+        [TestCase]
+        public void TestGetSetRoomNo()
+        {
+            Room r = new Room();
+            r.RoomNo = 1;
+            Assert.True(r.RoomNo == 1);
+        }
+
+        [TestCase]
+        public void TestGetRoomString()
+        {
+            Room r = new Room(1, "UTW");
+            Assert.True(r.RoomString == "UTW001");
+            r.RoomNo = 11;
+            Assert.True(r.RoomString == "UTW011");
+        }
+
+        [TestCase]
+        public void TestGetSetWardName()
+        {
+            Room r = new Room();
+            r.WardName = "Test";
+            Assert.True(r.WardName == "Test");
+        }
+        #endregion
     }
 }
