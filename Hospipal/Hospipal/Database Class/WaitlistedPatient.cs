@@ -64,7 +64,7 @@ namespace Hospipal.Database_Class
             }
             set
             {
-                wardslug=value;
+                wardslug = value;
             }
         }
         public string Priority
@@ -90,7 +90,7 @@ namespace Hospipal.Database_Class
                 treatment = value;
             }
         }
-        #endregion 
+        #endregion
 
         #region Constructors
         public WaitlistedPatient(int waitlistId, int pid, string fname, string lname, string priority, int rtid, string treatment)
@@ -106,7 +106,7 @@ namespace Hospipal.Database_Class
         //FOR EXISTING WAITLIST ITEMS
         public WaitlistedPatient(int rtid)
         {
-            treatmentId = rtid; 
+            treatmentId = rtid;
             Select();
         }
 
@@ -138,7 +138,7 @@ namespace Hospipal.Database_Class
         public bool AssignPatientToBed(int bedId)
         {
             string query = "update Bed set pid = " + pid + ", state = 0 where bed_no = " + bedId + ";" +
-                           "UPDATE ReceivesTreatment set treatmentStatus = 'Current' WHERE patient = " 
+                           "UPDATE ReceivesTreatment set treatmentStatus = 'Current' WHERE patient = "
                            + pid + " AND rtid = " + treatmentId + ";";
             return Database.Update(query);
         }
@@ -153,17 +153,29 @@ namespace Hospipal.Database_Class
         #region Static Methods
         public static List<WaitlistedPatient> GetWaitlistedPatientsForWard(string ward)
         {
-            List<object[]> patients = Database.Select("SELECT waitlistId, pid, fname, lname, priority, treatmentID, treatment  from Waitlist, Patient, ReceivesTreatment where Waitlist.patientId = Patient.pid and ReceivesTreatment.rtid = Waitlist.treatmentID and Waitlist.wardName = '"+ ward + "' order by priority='Low', priority='Medium', priority='High', waitlistId;");
+            List<object[]> patients = Database.Select("Select WL.waitlistId, WL.patientId, P.fname, P.lname, WL.priority, WL.treatmentID, TM.treatment " +
+                                                        "FROM Waitlist as WL " +
+                                                        "INNER JOIN (SELECT patient,rtid,treatment " +
+                                                                    "FROM ReceivesTreatment " +
+                                                                    "WHERE treatmentStatus = 'Upcoming' " +
+                                                                    "AND patient NOT IN(	Select patient " +
+                                                                    "FROM ReceivesTreatment " +
+                                                                    "WHERE treatmentStatus = 'Current') " +
+                                                                    ") as TM " +
+                                                        "ON WL.treatmentID = TM.rtid " +
+                                                        "INNER JOIN Patient as P on P.pid = WL.patientID " +
+                                                        "WHERE WL.wardName = '" + ward + "' " +
+                                                        "ORDER BY priority='Low',priority='Medium',priority='High';");
             List<WaitlistedPatient> getpatients = new List<WaitlistedPatient>();
             if (patients != null)
-            foreach (object[] row in patients)
-            {
-                if (row.Length == 7)
+                foreach (object[] row in patients)
                 {
-                    WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]), row[6].ToString());
-                    getpatients.Add(newPatient);
+                    if (row.Length == 7)
+                    {
+                        WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]), row[6].ToString());
+                        getpatients.Add(newPatient);
+                    }
                 }
-            }
 
             return getpatients;
         }
@@ -173,14 +185,14 @@ namespace Hospipal.Database_Class
             List<object[]> beds = Database.Select("Select * FROM Bed WHERE state = 1 and ward = '" + ward + "' ORDER BY Bed_no");
             List<Bed> openbeds = new List<Bed>();
             if (beds != null)
-            foreach (object[] row in beds)
-            {
-                if (row.Length == 6)
+                foreach (object[] row in beds)
                 {
-                    Bed newBed = new Bed(Convert.ToInt32(row[0]), (Bed.States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), Convert.ToInt32(row[3]), row[4].ToString(), row[5].ToString());
-                    openbeds.Add(newBed);
+                    if (row.Length == 6)
+                    {
+                        Bed newBed = new Bed(Convert.ToInt32(row[0]), (Bed.States)Convert.ToInt32(row[1].ToString()), Convert.ToInt32(row[2]), Convert.ToInt32(row[3]), row[4].ToString(), row[5].ToString());
+                        openbeds.Add(newBed);
+                    }
                 }
-            }
 
             return openbeds;
         }
