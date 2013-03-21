@@ -137,7 +137,9 @@ namespace Hospipal.Database_Class
 
         public bool AssignPatientToBed(int bedId)
         {
-            string query = "update Bed set pid = " + pid + ", state = 0 where bed_no = " + bedId + ";";
+            string query = "update Bed set pid = " + pid + ", state = 0 where bed_no = " + bedId + ";" +
+                           "UPDATE ReceivesTreatment set treatmentStatus = 'Current' WHERE patient = " 
+                           + pid + " AND rtid = " + treatmentId + ";";
             return Database.Update(query);
         }
 
