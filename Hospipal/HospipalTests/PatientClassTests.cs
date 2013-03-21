@@ -183,7 +183,8 @@ namespace HospipalTests
         {
             Patient p = new Patient();
             p.DOB = new DateTime(2013, 2, 3);
-            Assert.True(p.getDOB == "2/3/2013");
+            String date = p.DOB.ToShortDateString();
+            Assert.True(p.getDOB == date);
         }
         #endregion
     }

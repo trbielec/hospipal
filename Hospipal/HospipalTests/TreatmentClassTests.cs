@@ -121,15 +121,16 @@ namespace HospipalTests
             Treatment r = new Treatment();
             DateTime d = new DateTime(2013, 2, 3);
             r.Date = d;
-            Assert.True(r.Date == d);
+            Assert.True(r.Date.CompareTo(d) == 0);
         }
 
         [TestCase]
         public void TestGetSetDateString()
         {
             Treatment r = new Treatment();
-            r.DateToShortDateString = "2/3/2013";
-            Assert.True(r.DateToShortDateString == "2/3/2013"); 
+            r.Date = new DateTime(2012, 12, 12);
+            String date = r.Date.ToShortDateString();
+            Assert.True(r.DateToShortDateString == date); 
         }
 
         [TestCase]

@@ -37,7 +37,6 @@ namespace Hospipal
 
             Patients_AddButton.Click += new RoutedEventHandler(AddPatient);
             Patients_EditButton.Click += new RoutedEventHandler(EditPatient);
-            Patients_DeleteButton.Click += new RoutedEventHandler(DeletePatient);
             Patients_TreatmentHistoryButton.Click += new RoutedEventHandler(TreatmentHistory);
         }
 
@@ -173,19 +172,6 @@ namespace Hospipal
             if (Patients_DataGrid.SelectedItems.Count > 0)
                 Content = new PatientInformation(((Patient)Patients_DataGrid.SelectedItem));
         }
-
-        /*private void PatientsListLostFocus(object sender, RoutedEventArgs e)
-        {
-            Patients_DeleteButton.Visibility = System.Windows.Visibility.Hidden;
-            Patients_EditButton.Visibility = System.Windows.Visibility.Hidden;
-
-        }
-
-        private void PatientsListHaveFocus(object sender, RoutedEventArgs e)
-        {
-            Patients_DeleteButton.Visibility = System.Windows.Visibility.Visible;
-            Patients_EditButton.Visibility = System.Windows.Visibility.Visible;
-        }*/
 
     }
 }
