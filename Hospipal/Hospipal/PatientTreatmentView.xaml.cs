@@ -50,10 +50,16 @@ namespace Hospipal
             lblName.Content = patient.LastName + ", " + patient.FirstName;
             upTreatments = Treatment.GetTreatments(patient.PatientID, "Upcoming");
             List<Treatment> currentTreatment = Treatment.GetTreatments(patient.PatientID, "Current");
-            //if (len.currentTreatment < 1
-            treatment = currentTreatment[0];
-            WaitlistedPatient wPatient = new WaitlistedPatient(treatment.TreatmentID);
-            currentWardtb.Text = wPatient.Ward;
+            if (currentTreatment.Capacity > 0)
+            {
+                treatment = currentTreatment[0];
+                //WaitlistedPatient wPatient = new WaitlistedPatient(treatment.TreatmentID);
+
+                currentWardtb.Text = Database.Select("SELECT Ward.ward_name FROM Ward WHERE ward_slug IN (Select Bed.ward FROM Bed WHERE Bed.pid =" + patient.PatientID + ")")[0].ElementAt(0).ToString();
+                
+            }
+            
+            
             dataGridTreatments.DataContext = upTreatments;
         }
         #endregion
@@ -92,19 +98,19 @@ namespace Hospipal
         {
             Content = new UserControl_PatientsView();
         }
-        #endregion
 
         private void buttonStop_Click(object sender, RoutedEventArgs e)
         {
-            //Content = new AddTreatment(patient.PatientID);
+            //Remove patient from bed
+            WaitlistedPatient.RemovePatientFromBed(int bedId, int rtID)
+            //Convert treatment to history
+
+            //Refresh screen with no treatment present
+
+
+           
         }
+        #endregion
 
-        private void currentWardtb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        /* Stop button click event 
-         */
     }
 }

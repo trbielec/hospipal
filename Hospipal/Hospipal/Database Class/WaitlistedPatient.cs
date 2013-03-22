@@ -143,6 +143,13 @@ namespace Hospipal.Database_Class
             return Database.Update(query);
         }
 
+        public bool RemovePatientFromBed(int bedId, int rtID)
+        {
+            string query = "update Bed set pid = 0, state = 1 where bed_no = " + bedId + ";" +
+                           "UPDATE ReceivesTreatment set treatmentStatus = 'History' WHERE rtid = " + rtID + ";";
+            return Database.Update(query);
+        }
+
         public bool RemovedPatientFromWaitlist()
         {
             string query = "delete from Waitlist where waitlistId = " + waitlistId + ";";
