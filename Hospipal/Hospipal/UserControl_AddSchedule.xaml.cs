@@ -25,6 +25,9 @@ namespace Hospipal
     public partial class UserControl_AddSchedule : Window
     {
 
+        private List<Ward> wards;
+        private List<Employee> employee;
+
         private bool _isSelected = false;
 
         private UserControl_ScheduleView ParentScheduleWindow = null;
@@ -37,9 +40,7 @@ namespace Hospipal
             get { return (Schedule)GetValue(ScheduleProperty); }
             set { SetValue(ScheduleProperty, value); }
         }
-
-
-
+        
         public UserControl_AddSchedule(Slot selectedSlot, UserControl_ScheduleView parentUC)
         {
             InitializeComponent();
@@ -50,6 +51,16 @@ namespace Hospipal
 
             startDateTimePicker.SelectedValue = selectedSlot.Start;
             endDateTimePicker.SelectedValue = selectedSlot.End;
+
+            wards = Ward.GetWards();
+            WardName.ItemsSource = wards;
+            WardName.SelectedIndex = 0;
+
+            employee = Employee.GetEmployees();
+            foreach(Employee i in employee){
+                EmpID.Items.Add(i.Fname);
+            }
+            EmpID.SelectedIndex = 0;
 
             SaveButton.Click += SaveButton_Click;
             CancelButton.Click += CancelButton_Click;
@@ -72,7 +83,32 @@ namespace Hospipal
             endDateTimePicker.SelectedValue = sel.End;
 
             EmpID.Text = sel.Subject;
-            WardName.Text = sel.Location;
+
+            wards = Ward.GetWards();
+            WardName.ItemsSource = wards;
+
+            foreach (Ward i in wards)
+            {
+                if ((sel.Location.ToString()).CompareTo(i.WardName.ToString()) == 0)
+                {
+                    WardName.SelectedItem = i;
+                }
+            }
+
+            employee = Employee.GetEmployees();
+
+            foreach (Employee i in employee)
+            {
+                EmpID.Items.Add(i.Fname);
+            }
+
+            foreach (Employee i in employee)
+            {
+                if (sel.Subject.CompareTo(i.Eid.ToString()) == 0)
+                {
+                    EmpID.SelectedItem = i.Fname;
+                }
+            }
 
             _isSelected = true;
             SaveButton.Click += SaveButton_Click;
@@ -95,8 +131,17 @@ namespace Hospipal
                 schedule.Sid = Convert.ToInt32(sidLabel.Content);
                 schedule.Start_time = startDateTimePicker.SelectedValue.Value;
                 schedule.End_time = endDateTimePicker.SelectedValue.Value;
-                schedule.Ward = WardName.Text;
-                schedule.Employee = Convert.ToInt32(EmpID.Text);
+                schedule.Ward = WardName.SelectedItem.ToString();
+
+                employee = Employee.GetEmployees();
+
+                foreach (Employee i in employee)
+                {
+                    if (EmpID.SelectedItem.ToString().CompareTo(i.Fname.ToString()) == 0)
+                    {
+                        schedule.Employee = Convert.ToInt32(i.Eid);
+                    }
+                }
 
                 schedule.Insert();
 
@@ -107,8 +152,17 @@ namespace Hospipal
                 schedule.Sid = Convert.ToInt32(sidLabel.Content);
                 schedule.Start_time = startDateTimePicker.SelectedValue.Value;
                 schedule.End_time = endDateTimePicker.SelectedValue.Value;
-                schedule.Ward = WardName.Text;
-                schedule.Employee = Convert.ToInt32(EmpID.Text);
+                schedule.Ward = WardName.SelectedItem.ToString();
+
+                employee = Employee.GetEmployees();
+
+                foreach (Employee i in employee)
+                {
+                    if (EmpID.SelectedItem.ToString().CompareTo(i.Fname.ToString()) == 0)
+                    {
+                        schedule.Employee = Convert.ToInt32(i.Eid);
+                    }
+                }
 
                 schedule.Update();
 

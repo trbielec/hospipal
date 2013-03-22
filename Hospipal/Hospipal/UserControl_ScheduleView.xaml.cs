@@ -30,17 +30,18 @@ namespace Hospipal
         public UserControl_ScheduleView()
         {
             InitializeComponent();
+            
+            scheduleView.AllowDrop = false;
+
             this.Loaded += UserControl_ScheduleView_Loaded;
 
             Schedule_AddButton.Click += Schedule_AddButton_Click;
             Schedule_EditButton.Click += Schedule_EditButton_Click;
             Schedule_DeleteButton.Click += Schedule_DeleteButton_Click;
-
         }
 
         void Schedule_AddButton_Click(object sender, RoutedEventArgs e)
         {
-
             Slot selectedSlot = scheduleView.SelectedSlot;
 
             UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
@@ -80,9 +81,7 @@ namespace Hospipal
                 if (scheduleView.SelectedSlot != null)
                 {
                     Slot selectedSlot = scheduleView.SelectedSlot;
-
                     UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
-
                     addSchd.ShowDialog();
                 }
             }
@@ -117,7 +116,6 @@ namespace Hospipal
             appointments = Schedule.Select();
 
             scheduleView.AppointmentsSource = appointments;
-            
         }
     }
 }
