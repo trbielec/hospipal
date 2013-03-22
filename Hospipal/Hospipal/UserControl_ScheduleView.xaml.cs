@@ -113,19 +113,7 @@ namespace Hospipal
         void UserControl_ScheduleView_Loaded(object sender, RoutedEventArgs e)
         {
             ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
-
-
-            /*
-            Appointment appt = new Appointment();
-            appt.Subject = "New appointment";
-            appt.Start = new DateTime(2013, 3, 15, 00, 00, 00);
-            appt.End = new DateTime(2013, 3, 15, 05, 00, 00);
             
-            appointments.Add(appt);
-            Console.WriteLine(appt.Start.ToString());
-             * 
-            */
-
             appointments = Schedule.Select();
 
             scheduleView.AppointmentsSource = appointments;

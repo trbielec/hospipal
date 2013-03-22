@@ -142,7 +142,14 @@ namespace Hospipal.Database_Class
                 newAppt.Start = Convert.ToDateTime(row[1]);
                 newAppt.End = Convert.ToDateTime(row[2]);
                 newAppt.Subject = row[3].ToString();
-                newAppt.Body = row[4].ToString();
+                newAppt.Location = row[4].ToString();
+                newAppt.Body = "Body";
+                /*
+                newAppt.Body = "Start - " + newAppt.Start.ToString() + "\n" +
+                            "End - " + newAppt.End.ToString() + "\n" +
+                            "Ward - " + newAppt.Location.ToString();
+                */
+
 
                 allAppointments.Add(newAppt);               
             }
@@ -161,8 +168,14 @@ namespace Hospipal.Database_Class
                     apt.UniqueId = row[0].ToString();
                     apt.Start = Convert.ToDateTime(row[1]);
                     apt.End = Convert.ToDateTime(row[2]);
-                    apt.Subject = row[3].ToString();
-                    apt.Body = row[4].ToString();
+                    //apt.Subject = row[3].ToString();
+                    apt.Location = row[4].ToString();
+                    apt.Body = "Body";
+                    /*
+                    apt.Body = "Start - " + apt.Start.ToString() + "\n" +
+                                "End - " + apt.End.ToString() + "\n" +
+                                "Ward - " + apt.Location.ToString();
+                     */
                 }
             }
             return apt;

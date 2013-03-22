@@ -72,7 +72,7 @@ namespace Hospipal
             endDateTimePicker.SelectedValue = sel.End;
 
             EmpID.Text = sel.Subject;
-            WardName.Text = sel.Body;
+            WardName.Text = sel.Location;
 
             _isSelected = true;
             SaveButton.Click += SaveButton_Click;
@@ -120,7 +120,7 @@ namespace Hospipal
             appointments = Schedule.Select();
 
             ParentScheduleWindow.scheduleView.AppointmentsSource = appointments;
-    }
+        }
 
     }
 }
