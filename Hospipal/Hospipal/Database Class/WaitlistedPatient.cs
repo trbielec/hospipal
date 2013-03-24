@@ -143,7 +143,7 @@ namespace Hospipal.Database_Class
             return Database.Update(query);
         }
 
-        public bool RemovePatientFromBed(int bedId, int rtID)
+        public static bool RemovePatientFromBed(int bedId, int rtID)
         {
             string query = "update Bed set pid = 0, state = 1 where bed_no = " + bedId + ";" +
                            "UPDATE ReceivesTreatment set treatmentStatus = 'History' WHERE rtid = " + rtID + ";";

@@ -117,7 +117,8 @@ namespace Hospipal
           TextBox textbox = sender as TextBox;
                    
         }
-        private void WaitlistTab_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+
+        private void HospipalTabControl_SelectionChanged(object sender, RadSelectionChangedEventArgs e)
         {
             WaitlistTab.Content = new WaitlistView();
         }

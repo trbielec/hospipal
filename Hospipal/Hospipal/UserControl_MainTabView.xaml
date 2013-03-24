@@ -16,12 +16,12 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <telerik:RadTabControl Grid.Row="0" Name="HospipalTabControl">
+        <telerik:RadTabControl Grid.Row="0" Name="HospipalTabControl" SelectionChanged="HospipalTabControl_SelectionChanged">
             <telerik:RadTabItem x:Name="PatientsTab" Header="Patients" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="EmployeesTab" Header="Employees" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="WardsTab" Header="Wards" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="SchedulingTab" Header="Scheduling" Height="32" Width="100" FontSize="14" />
-            <telerik:RadTabItem x:Name="WaitlistTab" Header="Waitlist" Height="32" Width="100" MouseLeftButtonUp="WaitlistTab_MouseLeftButtonUp" FontSize="14"/>
+            <telerik:RadTabItem x:Name="WaitlistTab" Header="Waitlist" Height="32" Width="100" FontSize="14"/>
         </telerik:RadTabControl>
 
         

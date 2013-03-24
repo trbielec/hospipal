@@ -60,13 +60,9 @@
             </Grid.RowDefinitions>
             <!-- 14 Rows-->
             <Label x:Name="lblType" Content="Treatment Type: " HorizontalAlignment="Right" Style="{StaticResource ResourceKey=textStyle}"/>
-            <Label x:Name="lblWard" Content="Assigning Ward: " HorizontalAlignment="Right" Grid.Row="1" Style="{StaticResource ResourceKey=textStyle}"/>
-            <Label x:Name="lblPriority" Content="Treatment Priority: " HorizontalAlignment="Right"  Grid.Row="2" Height="35" VerticalAlignment="Bottom" Style="{StaticResource ResourceKey=textStyle}"/>
-            <Label x:Name="lblDoctor" Content="Treating Doctor: " HorizontalAlignment="Right"  Grid.Row="3" Style="{StaticResource ResourceKey=textStyle}"/>
+            <Label x:Name="lblDoctor" Content="Treating Doctor ID: " HorizontalAlignment="Right"  Grid.Row="3" Style="{StaticResource ResourceKey=textStyle}"/>
             <Label x:Name="lblNotes" Content="Treatment Notes: " HorizontalAlignment="Right"  Grid.Row="4" Style="{StaticResource ResourceKey=textStyle}"/>
             <TextBox x:Name="txtType" Text="{Binding Path=treatment.Type,ElementName=Treathistory}" IsReadOnly="True"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-            <TextBox x:Name="txtWard" Text="{Binding Path=waitlist.Ward,ElementName=Treathistory}"  IsReadOnly="True" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtPriority" Text="{Binding Path=waitlist.Priority,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="txtDoctor" Text="{Binding Path=treatment.Doctor,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox x:Name="txtNotes" Text="{Binding Path=treatment.Notes,ElementName=Treathistory}" IsReadOnly="True" Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" VerticalAlignment="Stretch"/>
             <Button x:Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="Close"  Grid.Column="3" Grid.RowSpan="2" Grid.Row="9">

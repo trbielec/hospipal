@@ -101,14 +101,9 @@ namespace Hospipal
 
         private void buttonStop_Click(object sender, RoutedEventArgs e)
         {
-            //Remove patient from bed
-            //WaitlistedPatient.RemovePatientFromBed(int bedId, int rtID);
-            //Convert treatment to history
-
-            //Refresh screen with no treatment present
-
-
-           
+            Bed patientInBed = new Bed(treatment.PatientID);
+            WaitlistedPatient.RemovePatientFromBed(patientInBed.bedNo,treatment.TreatmentID);
+            Content = new PatientTreatmentView(patient.HealthCareNo);
         }
         #endregion
 
