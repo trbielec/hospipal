@@ -93,7 +93,7 @@ namespace Hospipal.Database_Class
         #endregion
 
         #region Constructors
-        public WaitlistedPatient(int waitlistId, int pid, string fname, string lname, string priority, int rtid, string treatment)
+        public WaitlistedPatient(int waitlistId, int pid, string fname, string lname, string priority, int rtid, string treatment,string ward)
         {
             this.waitlistId = waitlistId;
             this.pid = pid;
@@ -102,6 +102,7 @@ namespace Hospipal.Database_Class
             this.priority = priority;
             this.treatmentId = rtid;
             this.treatment = treatment;
+            this.wardslug = ward;
         }
         //FOR EXISTING WAITLIST ITEMS
         public WaitlistedPatient(int rtid)
@@ -179,7 +180,7 @@ namespace Hospipal.Database_Class
                 {
                     if (row.Length == 7)
                     {
-                        WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]), row[6].ToString());
+                        WaitlistedPatient newPatient = new WaitlistedPatient(Convert.ToInt32(row[0]), Convert.ToInt32(row[1]), row[2].ToString(), row[3].ToString(), row[4].ToString(), Convert.ToInt32(row[5]), row[6].ToString(),ward);
                         getpatients.Add(newPatient);
                     }
                 }

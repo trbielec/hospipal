@@ -127,8 +127,13 @@ namespace Hospipal
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             buttonSave.Focus(); //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
+            if(boxDoctors.SelectedIndex > 0)
             treatment.Doctor = employeeIDs[boxDoctors.SelectedIndex];
-            if ((_isNewTreatment && treatment.Insert()))
+            if (boxPriority.SelectedIndex < 0 || boxTreatmentType.SelectedIndex < 0 || boxWard.SelectedIndex < 0)
+            {
+                MessageBox.Show("Treatment Type, Ward and Priority are required fields.");
+            }
+            else if ((_isNewTreatment && treatment.Insert()))
             {
                 WaitlistedPatient.AddPatientToWaitlist(treatment.PatientID, waitlist.Ward, waitlist.Priority, Treatment.GenerateNextrtid() - 1);
                 Content = new PatientTreatmentView(patient.HealthCareNo);

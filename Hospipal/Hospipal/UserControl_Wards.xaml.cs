@@ -135,13 +135,13 @@ namespace Hospipal
                 if (BedDG.Items.Count > 0) //hard limit 99 beds in one room
                 {
                     Bed LastBed = ((Bed)BedDG.Items[BedDG.Items.Count - 1]);
-                    newBed = new Bed(LastBed.bedNo + 1, (Bed.States)1, 0, LastBed.roomNo, "", LastBed.ward);  //Non-patients have a patient id of 0.
+                    newBed = new Bed(LastBed.bedNo + 1, Bed.States.Available, 0, LastBed.roomNo, "", LastBed.ward);  //Non-patients have a patient id of 0.
                 }
                 else
                 {
                     int roomNo = ((Room)RoomDG.SelectedItem).RoomNo;
                     string wardName = ((Ward)WardDG.SelectedItem).SlugName;
-                    newBed = new Bed(1, (Bed.States)1, 0, roomNo, "", wardName);
+                    newBed = new Bed(1, Bed.States.Available, 0, roomNo, "", wardName);
                 }
                 newBed.Insert();
 
