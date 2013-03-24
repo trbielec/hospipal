@@ -126,12 +126,16 @@ namespace Hospipal
         {
             SaveButton.Focus();
 
+           
+
             if (!_isSelected)
             {
                 schedule.Sid = Convert.ToInt32(sidLabel.Content);
                 schedule.Start_time = startDateTimePicker.SelectedValue.Value;
                 schedule.End_time = endDateTimePicker.SelectedValue.Value;
                 schedule.Ward = WardName.SelectedItem.ToString();
+
+
 
                 employee = Employee.GetEmployees();
 
