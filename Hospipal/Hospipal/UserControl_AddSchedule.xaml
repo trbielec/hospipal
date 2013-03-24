@@ -36,7 +36,7 @@
         <Label Content="Employee" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <Label Content="Ward Name" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
-        <telerik:RadDateTimePicker  Name="startDateTimePicker" Grid.Column="1" Grid.Row="2" InputMode="DateTimePicker" SelectedValue="{Binding Path=schedule.Start,ElementName=scheduleControl,Mode=TwoWay}"/>
+        <telerik:RadDateTimePicker Name="startDateTimePicker" Grid.Column="1" Grid.Row="2" InputMode="DateTimePicker" SelectedValue="{Binding Path=schedule.Start,ElementName=scheduleControl,Mode=TwoWay}"/>
         <telerik:RadDateTimePicker Name="endDateTimePicker" Grid.Column="1" Grid.Row="3" InputMode="DateTimePicker" SelectedValue="{Binding Path=schedule.End,ElementName=scheduleControl,Mode=TwoWay}"/>
 
         <ComboBox Name="EmpID" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" VerticalContentAlignment="Center" />

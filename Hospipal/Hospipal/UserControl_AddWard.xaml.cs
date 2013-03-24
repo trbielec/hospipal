@@ -63,7 +63,14 @@ namespace Hospipal
 
         private void Save(object sender, RoutedEventArgs e)
         {
-                SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
+            SaveButton.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
+
+            if (string.IsNullOrEmpty(WardNametb.Text) || string.IsNullOrEmpty(slugNametb.Text))
+            {
+                MessageBox.Show("Please add Ward and Slug Name");
+            }
+            else
+            {
                 if ((_isNewWard && ward.Insert()))
                 {
                     ParentWardsWindow.WardDG.DataContext = Ward.GetWards();
@@ -72,8 +79,10 @@ namespace Hospipal
                 else
                 {
                     MessageBox.Show("The Ward already exists.");
+                    WardNametb.Text = "";
+                    slugNametb.Text = "";
                 }
-
+            }
          }
     }
 }
