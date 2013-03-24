@@ -62,7 +62,11 @@ namespace Hospipal
         private void Save(object sender, RoutedEventArgs e)
         {
                 Savebtn.Focus();  //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
-                if ((_isNewPatient && patient.Insert()) || patient.Update())
+                if (HealthCaretb.Text.Equals("") || FirstNametb.Text.Equals("") || LastNametb.Text.Equals(""))
+                {
+                    MessageBox.Show("HealthCare No, First Name and Last Name are required fields. Make sure that they are not blank.");
+                }
+                else if ((_isNewPatient && patient.Insert()) || patient.Update())
                 {
                     Content = new UserControl_PatientsView();   
                 }

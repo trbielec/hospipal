@@ -73,9 +73,10 @@ namespace Hospipal
                     employee.Insert();
                 else
                     employee.Update();
+
+                Content = new UserControl_EmployeesView();
+            }
             }
 
-            Content = new UserControl_EmployeesView(); 
-        }
     }
 }

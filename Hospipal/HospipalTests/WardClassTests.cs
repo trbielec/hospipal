@@ -29,18 +29,6 @@ namespace HospipalTests
         }
 
         [TestCase]
-        public void TestWardUpdate()
-        {
-            Ward ward = new Ward("UnitTestWard", "UTW");
-            ward.Insert();
-
-            ward.SlugName = "TEST";
-            Assert.True(ward.Update());
-
-            ward.Delete();
-        }
-
-        [TestCase]
         public void TestWardDelete()
         {
             Ward ward = new Ward("UnitTestWard", "UTW");

@@ -115,7 +115,11 @@ namespace Hospipal
         private void Notifications_Bar_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
           TextBox textbox = sender as TextBox;
-                     
+                   
+        }
+        private void WaitlistTab_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            WaitlistTab.Content = new WaitlistView();
         }
     }
 }

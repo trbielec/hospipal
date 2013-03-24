@@ -46,7 +46,7 @@ namespace Hospipal
 
                 beds = WaitlistedPatient.GetOpenBedsForWard(selectedWard);
                 OpenBedsDG.DataContext = beds;
-            }   
+            }
         }
 
         private void AssignPatientToBed(object sender, RoutedEventArgs e)
@@ -95,7 +95,7 @@ namespace Hospipal
                 MessageBoxButton buttons = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Error;
 
-                MessageBox.Show(messageboxtext, caption, buttons, icon); 
+                MessageBox.Show(messageboxtext, caption, buttons, icon);
             }
         }
 
@@ -103,12 +103,6 @@ namespace Hospipal
         {
             WardSelectionBoxEvent(null, null);
         }
-        private void WardSelectionBox_MouseEnter_1(object sender, MouseEventArgs e)
-        {
-
-            wards = Ward.GetWards();
-            WardSelectionBox.ItemsSource = wards;
-            WardSelectionBox.Items.Refresh();
-        }
     }
+
 }
