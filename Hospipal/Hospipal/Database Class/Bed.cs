@@ -114,11 +114,6 @@ namespace Hospipal.Database_Class
 
         }
 
-        public Bed(int patient)
-        {
-            _pid = patient;
-            Select();
-        }
         public Bed(int bedNo, States state, int pid, int roomNo, string assigningNurse, string ward)
         {
             _bedNo = bedNo;
@@ -135,7 +130,7 @@ namespace Hospipal.Database_Class
 
         public bool Select()
         {
-            List<object[]> SingleRow = Database.Select("SELECT * from Bed WHERE pid = " + _pid);
+            List<object[]> SingleRow = Database.Select("SELECT * from Bed WHERE bed_no = " + _bedNo);
             if (SingleRow != null && SingleRow.Count > 0)
             {
                 foreach (object[] row in SingleRow)
