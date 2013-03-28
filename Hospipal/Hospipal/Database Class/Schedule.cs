@@ -135,6 +135,7 @@ namespace Hospipal.Database_Class
         {
             List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
             ObservableCollection<Appointment> allAppointments = new ObservableCollection<Appointment>();
+            if (scheduleTable != null)
             foreach (object[] row in scheduleTable)
             {
                 Appointment newAppt = new Appointment();
