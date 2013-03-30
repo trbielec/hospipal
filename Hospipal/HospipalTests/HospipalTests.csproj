@@ -61,6 +61,7 @@
     <Compile Include="EmployeeClassTests.cs" />
     <Compile Include="MySQLWrapperTests.cs" />
     <Compile Include="PatientClassTests.cs" />
+    <Compile Include="PrescriptionClassTests.cs" />
     <Compile Include="RoomClassTests.cs" />
     <Compile Include="TreatmentClassTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
