@@ -201,7 +201,8 @@ namespace Hospipal.Database_Class
 
         private bool CheckDuplicates()
         {
-            if (Database.Select("Select * from Patient WHERE HC_NO = " + _HealthCareNo).Count > 0)
+            
+            if (_HealthCareNo != null && Database.Select("Select * from Patient WHERE HC_NO = " + _HealthCareNo).Count > 0)
                 return Convert.ToInt32(Database.Select("SELECT * from Patient WHERE HC_NO = " + _HealthCareNo).ElementAt(0).ElementAt(0)) == _PatientID;
             else
                 return true;

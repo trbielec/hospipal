@@ -100,7 +100,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
-            return Database.Delete("DELETE FROM Ward WHERE ward_name = '" + _wardName + "'");
+            return Database.Delete("DELETE FROM Ward WHERE ward_slug = '" + _slugName + "'");
         }
 
         #endregion

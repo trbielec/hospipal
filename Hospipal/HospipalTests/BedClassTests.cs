@@ -20,13 +20,6 @@ namespace HospipalTests
         }
 
         [TestCase]
-        public void TestBedSelectWithInvalidBedNo()
-        {
-            Bed bed = new Bed(-1, Bed.States.Available, 0, 1, "", "UnitTestWard");
-            Assert.False(bed.Select());
-        }
-
-        [TestCase]
         public void TestInsertBeds()
         {
             Bed bed = new Bed(1, Bed.States.Available, 0, 1, "", "UnitTestWard");
