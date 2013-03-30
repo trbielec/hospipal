@@ -42,6 +42,11 @@
             <EventSetter Event="DataObject.Pasting" Handler="noPaste">
             </EventSetter>
         </Style>
+    <!-- Postal Code -->
+        <Style TargetType="{x:Type TextBox}" x:Key="postalCode" BasedOn="{StaticResource textStyle}">
+            <EventSetter Event="PreviewTextInput" Handler="checkPostalCode">
+            </EventSetter>
+        </Style>
 
         <!-- Makes textboxes numeric and letter only input-->
         <Style TargetType="{x:Type TextBox}" x:Key="AlphaAndNumeric" BasedOn="{StaticResource textStyle}">

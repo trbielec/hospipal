@@ -31,19 +31,36 @@ namespace Hospipal
             a.Handled = regex.IsMatch(a.Text);
         }
 
+        private void checkPostalCode(object sender, TextCompositionEventArgs a)
+        {
+            TextBox text = (TextBox)a.OriginalSource;
+            int modulus = text.Text.Count() % 2;
+            switch (modulus)
+            {
+                case 0:
+                    a.Handled = (char.IsDigit(a.Text[0]));
+                    break;
+                case 1:
+                    a.Handled = (char.IsLetter(a.Text[0]));
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void checkInputLetters(object sender, TextCompositionEventArgs a)
         {
             Regex regex = new Regex(@"[^\w\s.]");
             a.Handled = regex.IsMatch(a.Text);
         }
 
-        private void noPaste(object sender, DataObjectPastingEventArgs  e)
+        private void noPaste(object sender, DataObjectPastingEventArgs e)
         {
-            if (e.DataObject.GetDataPresent(typeof(String))) 
+            if (e.DataObject.GetDataPresent(typeof(String)))
             {
-                String text = (String)e.DataObject.GetData(typeof(String)); 
-                if (textAllowed(text)) e.CancelCommand(); 
-            } 
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (textAllowed(text)) e.CancelCommand();
+            }
             else e.CancelCommand();
         }
 

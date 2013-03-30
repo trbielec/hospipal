@@ -94,9 +94,23 @@
 
                
                 
-                <TextBox x:Name="Provincetb" Grid.Column="1" Grid.Row="7"  Text="{Binding Path=patient.Province,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="50"/>
+                <ComboBox x:Name="Provincetb" Grid.Column="1" Grid.Row="7"  SelectedValue="{Binding Path=patient.Province,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                    <ComboBoxItem x:Name="AB" Content="Alberta" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="BC" Content="British Columbia" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="MB" Content="Manitoba" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="NB" Content="New Brunswick" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="NFL" Content="Newfoundland Labrador" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="NWT" Content="Northwest Territories" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="NS" Content="Nova Scotia" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="NV" Content="Nunavut" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="ON" Content="Ontario" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="PEI" Content="Prince Edward Island" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="QB" Content="Quebec" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="SK" Content="Saskatchewan" HorizontalAlignment="Left" Width="275"/>
+                    <ComboBoxItem x:Name="YK" Content="Yukon" HorizontalAlignment="Left" Width="275"/>
+                </ComboBox>
                 <TextBox x:Name="Citytb" Grid.Column="1" Grid.Row="8"  Text="{Binding Path=patient.City,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="50"/>
-                <TextBox x:Name="PostalCodetb" Grid.Column="1" Grid.Row="9"  Text="{Binding Path=patient.PostalCode,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="6" />
+                <TextBox x:Name="PostalCodetb" Grid.Column="1" Grid.Row="9" Style="{StaticResource ResourceKey=postalCode}" Text="{Binding  Path=patient.PostalCode,ElementName=patientControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="6" />
 
                 <TextBox x:Name="Hometb" Grid.Column="4" Grid.Row="7"  Text="{Binding Path=patient.HomePhoneNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource Numeric}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
                 <TextBox x:Name="Worktb" Grid.Column="4" Grid.Row="8"  Text="{Binding Path=patient.WorkPhoneNo,ElementName=patientControl,Mode=TwoWay}" Style="{StaticResource Numeric}" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxLength="10"/>
