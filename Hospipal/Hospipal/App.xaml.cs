@@ -75,5 +75,13 @@ namespace Hospipal
             Regex regex = new Regex(@"[^\w\s.]");
             return regex.IsMatch(text);
         }
+
+        private void noSpaces(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
