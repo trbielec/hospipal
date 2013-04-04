@@ -41,7 +41,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Row ="0" Grid.Column="1" HorizontalAlignment="Stretch" Name="ButtonLogin" Content="Login" VerticalAlignment="Center" FontSize="14" Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Button Grid.Row ="0" Grid.Column="3" HorizontalAlignment="Stretch" Name="ButtonReset" Content="Reset" VerticalAlignment="Center" FontSize="14" Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Button Grid.Row ="0" Grid.Column="3" HorizontalAlignment="Stretch" Name="ButtonReset" Content="Reset" VerticalAlignment="Center" FontSize="14" Height="32" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="ButtonReset_Click"/>
             </Grid>
             <Image HorizontalAlignment="Stretch" Stretch="Uniform" Width="280" Height="280" VerticalAlignment="Top" Source=".\Resources\Hospipal_Icon.png"/>
 
