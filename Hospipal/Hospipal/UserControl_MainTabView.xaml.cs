@@ -44,6 +44,7 @@ namespace Hospipal
         public UserControl_MainTabView()
         {
             InitializeComponent();
+            
 
             PatientsTab.Content = new UserControl_PatientsView();
             EmployeesTab.Content = new UserControl_EmployeesView();
