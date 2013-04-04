@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Telerik.Windows.Controls;
 using System.Security;
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -39,13 +40,13 @@ namespace Hospipal
             {
                 userName = LoginBox.Text;
                 userPassword = PasswordBox.Password;
-                //if (userPassword == "123")
+                //if (Login.VerifyLogin(userName, userPassword))
                 //{
                     Content = new UserControl_MainTabView();
                 //}
                 //else
                 //{
-                //    MessageBox.Show("Login credentials not valid!")
+                 //   MessageBox.Show("Login credentials not valid!");
                 //}
 
             }

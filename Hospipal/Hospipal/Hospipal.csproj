@@ -77,7 +77,6 @@
     </Compile>
     <Compile Include="Database Class\Bed.cs" />
     <Compile Include="Database Class\Login.cs" />
-    <Compile Include="Database Class\Login1.cs" />
     <Compile Include="Database Class\Prescription.cs" />
     <Compile Include="Database Class\Search.cs" />
     <Compile Include="Database Class\Employee.cs" />

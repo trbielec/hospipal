@@ -11,32 +11,23 @@ namespace Hospipal.Database_Class
 {
     class Login
     {
-     
-        public static List<string> GetUserData(string userName)
-        {
-            List<string> fieldsFromDatabase = new List<string>();
-            try
-            {
-                List<object[]> dbLogin = Database.Select("SELECT * FROM Employee WHERE userName='" + userName +"'");
-                foreach (object[] row in dbLogin)
-                {
-                    fieldsFromDatabase.Add(row[0].ToString());
-                    fieldsFromDatabase.Add(row[1].ToString());
-                    fieldsFromDatabase.Add(row[2].ToString());
-                    fieldsFromDatabase.Add(row[3].ToString());
-                    fieldsFromDatabase.Add(row[4].ToString());
-                }
-            }
-            catch (Exception)
-            {
-                System.Windows.MessageBox.Show("Error getting data from database and/or converting");
-            }
-            return fieldsFromDatabase;
-        }
 
-                public static void CreateLogin(int eid, string fname, string lname)
+        public static bool CreateLogin(int eid, string fname, string lname)
         {
+            string userName = fname + "." + eid.ToString();
+            string tempPassword = "password";
+            int firstLogin = 1;
             
+            byte[] salt = CreateSalt();
+            byte[] hash = CreateHash(tempPassword, salt);
+
+            MySqlCommand login = new MySqlCommand("Insert_Login(@userName, @hashPW, @salt, @eID, @firstLogin);");
+            login.Parameters.AddWithValue("userName", userName);
+            login.Parameters.AddWithValue("hashPw", hash);
+            login.Parameters.AddWithValue("salt", salt);
+            login.Parameters.AddWithValue("eID", eid);
+            login.Parameters.AddWithValue("firstLogin", firstLogin);
+            return Database.Insert(login);
         }
 
         public static bool VerifyLogin(string userName, string password)
