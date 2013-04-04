@@ -40,6 +40,11 @@ namespace Hospipal
             return db.Insert(command);
         }
 
+        internal static List<object[]> Select(MySql.Data.MySqlClient.MySqlCommand command)
+        {
+            return db.Select(command);
+        }
+
         public static bool CheckConnection()
         {
             return db.TestConnection();
