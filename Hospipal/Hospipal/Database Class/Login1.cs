@@ -4,11 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace Hospipal.Database_Class
 {
-    public class Login
+    public class Login1
     {
+        public static void CreateLogin(int eid, string fname, string lname)
+        {
+            
+        }
+
+        public static bool VerifyLogin(string userName, string password)
+        {
+            MySqlCommand login = new MySqlCommand("Select_Login(@userName);");
+            login.Parameters.AddWithValue("userName", userName);
+
+            List<object[]> loginInfo = Database.Select(login);
+
+            if (loginInfo == null || loginInfo.Count() != 1)
+            {
+                return false;
+            }
+
+            byte[] hashedPassword = (byte[])loginInfo[0][1];
+            byte[] salt = (byte[])loginInfo[0][2];
+
+            return ValidatePassword(password, hashedPassword, salt);
+            
+        }
+
         /// Salted password hashing with PBKDF2-SHA1.
         /// Adapted for our needs from: www: http://crackstation.net/hashing-security.htm
         private const int SALT_BYTES = 24;
@@ -31,11 +57,16 @@ namespace Hospipal.Database_Class
             return salt;
         }
 
-        public static bool ValidatePassword(string password, byte[] storedHash, byte[] salt)
+        private static bool ValidatePassword(string password, byte[] storedHash, byte[] salt)
         {
             // Create test hash from salt and password provided and check
             byte[] testHash = Hash(password, salt);
             return SlowEquals(storedHash, testHash);
+        }
+
+        private static string CreateUsername(string fname, string lname)
+        {
+            return null;
         }
 
         // Compares two byte arrays in length-constant time. This comparison

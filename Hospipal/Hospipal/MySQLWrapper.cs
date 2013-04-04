@@ -106,6 +106,11 @@ namespace Hospipal
             return RunQueryWithReturn(query);
         }
 
+        public List<object[]> Select(MySqlCommand command)
+        {
+            return RunQueryWithReturn(command);
+        }
+
         /*
          * Delete: Used to run an DELETE query
          *  @param query
