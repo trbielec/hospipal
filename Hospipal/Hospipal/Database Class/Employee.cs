@@ -151,6 +151,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
+            Database.Delete("DELETE FROM Login WHERE eid = " + _eid);
             return Database.Delete("DELETE FROM Employee WHERE eid = " + _eid);
         }
 

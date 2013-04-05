@@ -14,30 +14,33 @@ namespace Hospipal.Database_Class
 
         public static bool CreateLogin(int eid, string fname, string lname)
         {
-            string userName = fname + "." + eid.ToString();
+            string userName = fname + eid.ToString();
             string tempPassword = "password";
             int firstLogin = 1;
             
             byte[] salt = CreateSalt();
             byte[] hash = CreateHash(tempPassword, salt);
 
-            MySqlCommand login = new MySqlCommand("Insert_Login(@userName, @hashPW, @salt, @eID, @firstLogin);");
-            login.Parameters.AddWithValue("userName", userName);
-            login.Parameters.AddWithValue("hashPw", hash);
-            login.Parameters.AddWithValue("salt", salt);
-            login.Parameters.AddWithValue("eID", eid);
-            login.Parameters.AddWithValue("firstLogin", firstLogin);
+            MySqlCommand login = new MySqlCommand();
+            string SQL = "INSERT INTO Login VALUES(@userName, @hashPw, @salt, @eid, @firstLogin)";
+            login.CommandText = SQL;
+            login.Parameters.AddWithValue("@userName", userName);
+            login.Parameters.AddWithValue("@hashPw", hash);
+            login.Parameters.AddWithValue("@salt", salt);
+            login.Parameters.AddWithValue("@eid", eid);
+            login.Parameters.AddWithValue("@firstLogin", firstLogin);
             return Database.Insert(login);
         }
 
         public static bool VerifyLogin(string userName, string password)
         {
-            MySqlCommand login = new MySqlCommand("Select_Login(@userName);");
-            login.Parameters.AddWithValue("userName", userName);
+            MySqlCommand login = new MySqlCommand();
+            string SQL = "SELECT * FROM Login WHERE userName = @userName;";
+            login.CommandText = SQL;
+            login.Parameters.AddWithValue("@userName", userName);
 
             List<object[]> loginInfo = Database.Select(login);
-
-            if (loginInfo == null || loginInfo.Count() != 1)
+            if (loginInfo == null || loginInfo.Count() != 1 || loginInfo[0][0].ToString() != userName)
             {
                 return false;
             }
@@ -45,15 +48,42 @@ namespace Hospipal.Database_Class
             byte[] hashedPassword = (byte[])loginInfo[0][1];
             byte[] salt = (byte[])loginInfo[0][2];
 
-            return ValidatePassword(password, hashedPassword, salt);
-            
+            if(ValidatePassword(password, hashedPassword, salt)) 
+            {
+                int firstLogin = Convert.ToInt32(loginInfo[0][4]);
+                if (firstLogin == 1)
+                {
+                    ForcePasswordReset(userName, salt);
+                }
+
+                int eid = Convert.ToInt32(loginInfo[0][3]);
+                SQL = "SELECT employee_type FROM Employee WHERE eid = " + eid;
+                List<object[]> employee = Database.Select(SQL);
+                if (employee != null && employee.Count != 0)
+                {
+                    Properties.Settings.Default.Role = employee[0][0].ToString();
+                }
+                else
+                {
+                    Properties.Settings.Default.Role = "Support Staff";
+                }
+
+                return true;
+            }
+            return false;
         }
 
+        private static void ForcePasswordReset(string userName, byte[] salt)
+        {
+
+        }
+
+        #region Hashing Functions
         /// Salted password hashing with PBKDF2-SHA1.
         /// Adapted for our needs from: www: http://crackstation.net/hashing-security.htm
         private const int SALT_BYTES = 24;
         private const int HASH_BYTES = 24;
-        private const int PBKDF2_ITERATIONS = 1000;
+        private const int PBKDF2_ITERATIONS = 100;
 
         public static byte[] CreateHash(string password, byte[] salt)
         {
@@ -78,11 +108,6 @@ namespace Hospipal.Database_Class
             return SlowEquals(storedHash, testHash);
         }
 
-        private static string CreateUsername(string fname, string lname)
-        {
-            return null;
-        }
-
         // Compares two byte arrays in length-constant time. This comparison
         // method is used so that password hashes cannot be extracted from
         // on-line systems using a timing attack and then attacked off-line.
@@ -101,7 +126,8 @@ namespace Hospipal.Database_Class
             pbkdf2.IterationCount = PBKDF2_ITERATIONS;
             return pbkdf2.GetBytes(HASH_BYTES);
         }
-    
-    }
 
+        #endregion
+
+    }
 }
