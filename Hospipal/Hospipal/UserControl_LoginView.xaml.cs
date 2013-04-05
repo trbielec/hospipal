@@ -33,13 +33,13 @@ namespace Hospipal
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            
+            /*
             string userName = "";
             string userPassword;
 
             if (!string.IsNullOrWhiteSpace(LoginBox.Text) && !string.IsNullOrWhiteSpace(PasswordBox.Password))
             {
-                /*
+                
                 userName = LoginBox.Text;
                 userPassword = PasswordBox.Password;
                 if (Login.VerifyLogin(userName, userPassword))

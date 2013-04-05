@@ -83,7 +83,7 @@ namespace Hospipal.Database_Class
         /// Adapted for our needs from: www: http://crackstation.net/hashing-security.htm
         private const int SALT_BYTES = 24;
         private const int HASH_BYTES = 24;
-        private const int PBKDF2_ITERATIONS = 100;
+        private const int PBKDF2_ITERATIONS = 1000;
 
         public static byte[] CreateHash(string password, byte[] salt)
         {
