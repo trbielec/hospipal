@@ -92,6 +92,9 @@
       <SubType>Code</SubType>
       <DependentUpon>EmployeeInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PasswordReset.xaml.cs">
+      <DependentUpon>PasswordReset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatientInformation.xaml.cs">
       <DependentUpon>PatientInformation.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,9 @@
       <DependentUpon>PrescriptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="PrescriptionMainView.xaml.cs">
+      <DependentUpon>PrescriptionMainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl_AddSchedule.xaml.cs">
       <DependentUpon>UserControl_AddSchedule.xaml</DependentUpon>
     </Compile>
@@ -155,6 +161,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PasswordReset.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PatientInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +178,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PrescriptionView.xaml">
+    <Page Include="PrescriptionMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

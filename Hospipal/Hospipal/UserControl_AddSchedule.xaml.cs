@@ -68,28 +68,25 @@ namespace Hospipal
             ParentScheduleWindow = parentUC as UserControl_ScheduleView; 
         }
 
-        public UserControl_AddSchedule(IOccurrence selectedAppt, UserControl_ScheduleView parentUC)
+        public UserControl_AddSchedule(Appointment selectedAppt, UserControl_ScheduleView parentUC)
         {
             InitializeComponent();
 
             schedule = new Schedule();
 
-            Appointment sel = selectedAppt as Appointment;
+            sidLabel.Content = selectedAppt.Url;
 
-            sidLabel.Content = sel.UniqueId;
-            Console.WriteLine(sel.ToString());
+            startDateTimePicker.SelectedValue = selectedAppt.Start;
+            endDateTimePicker.SelectedValue = selectedAppt.End;
 
-            startDateTimePicker.SelectedValue = sel.Start;
-            endDateTimePicker.SelectedValue = sel.End;
-
-            EmpID.Text = sel.Subject;
+            EmpID.Text = selectedAppt.Subject;
 
             wards = Ward.GetWards();
             WardName.ItemsSource = wards;
 
             foreach (Ward i in wards)
             {
-                if ((sel.Location.ToString()).CompareTo(i.WardName.ToString()) == 0)
+                if ((selectedAppt.Location.ToString()).CompareTo(i.WardName.ToString()) == 0)
                 {
                     WardName.SelectedItem = i;
                 }
@@ -104,7 +101,7 @@ namespace Hospipal
 
             foreach (Employee i in employee)
             {
-                if (sel.Subject.CompareTo(i.Eid.ToString()) == 0)
+                if (selectedAppt.Subject.CompareTo(i.Eid.ToString()) == 0)
                 {
                     EmpID.SelectedItem = i.Fname;
                 }
@@ -143,7 +140,7 @@ namespace Hospipal
                     }
                 }
 
-                if (schedule.CheckforConflicts())
+                if (schedule.CheckforInsertConflicts())
                     schedule.Insert();
                 else
                     MessageBox.Show("Proposed schedule conflicts with an existing schedule.");
@@ -167,7 +164,7 @@ namespace Hospipal
                     }
                 }
 
-                if (schedule.CheckforConflicts() )
+                if (schedule.CheckforUpdateConflicts() )
                     schedule.Update();
                 else
                     MessageBox.Show("Proposed schedule conflicts with an existing schedule.");

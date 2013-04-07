@@ -123,5 +123,11 @@ namespace Hospipal
         {
             WaitlistTab.Content = new WaitlistView();
         }
+
+        private void LogoutClick(object sender, RoutedEventArgs e)
+        {
+            Content = new UserControl_LoginView();
+            Properties.Settings.Default.Role = "";
+        }
     }
 }
