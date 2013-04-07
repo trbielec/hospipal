@@ -39,6 +39,17 @@ namespace Hospipal
             get { return (string)GetValue(NotificationProperty); }
             set { SetValue(NotificationProperty, value); }
         }
+
+        private static DependencyProperty NotifInfoProperty =
+                          DependencyProperty.Register("NotifInfo", typeof(string),
+                                                      typeof(UserControl_MainTabView));
+
+
+        public string NotifInfo
+        {
+            get { return (string)GetValue(NotifInfoProperty); }
+            set { SetValue(NotifInfoProperty, value); }
+        }
         #endregion
 
         public UserControl_MainTabView()
@@ -57,6 +68,7 @@ namespace Hospipal
             //Retrience Notification when the tab page loads
             Notif.RetrieveNotification();
             notification = Notif.Text;
+            NotifInfo = Notif.TheirRole + " at " + Notif.Then.ToString() + ":";
 
             //Start a timer to retrieve notifications via polling
             _timer = new DispatcherTimer();
@@ -103,6 +115,7 @@ namespace Hospipal
             {
                 Notif.RetrieveNotification();
                 notification = Notif.Text;
+                NotifInfo = Notif.TheirRole + " at " + Notif.Then.ToString() + ":";
             });
             _timer.Start();
         }
