@@ -117,24 +117,6 @@ namespace Hospipal.Database_Class
                     DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
                     int currScheduleEmployee = Convert.ToInt32(row[3]);
 
-                    if (_start_time != currScheduleStart && _end_time != currScheduleEnd)
-                    {
-
-                    }
-
-                    if (currScheduleEmployee == _employee)
-                        return false;
-
-
-
-
-
-
-
-
-
-
-
                     // No conflict for schedules of different employees
                     if (_employee != currScheduleEmployee)
                         return true;
@@ -213,19 +195,23 @@ namespace Hospipal.Database_Class
                             {
                                 foreach (object[] rowx in thirdList)
                                 {
+                                    int otherScheduleID = Convert.ToInt32(row[0]);
                                     DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
                                     DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
-
-                                    if (_end_time <= otherScheduleStart)
+                                    if (otherScheduleID != _sid)
                                     {
-                                        return true;
+                                        if (_end_time <= otherScheduleStart)
+                                        {
+                                            return true;
+                                        }
+                                        else if (_start_time >= otherScheduleEnd)
+                                        {
+                                            return true;
+                                        }
+                                        else
+                                            return false;
                                     }
-                                    else if (_start_time >= otherScheduleEnd)
-                                    {
-                                        return true;
-                                    }
-                                    else
-                                        return false;
+                                    
                                 }
                             }
                         }

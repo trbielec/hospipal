@@ -14,7 +14,7 @@ namespace HospipalTests
         {
             Database.useTestDB();
         }
-
+/*
         [TestCase]
         public void TestRetreiveNotification()
         {
@@ -52,7 +52,7 @@ namespace HospipalTests
             n.Text = oldText;
             n.SendNotification();
         }
-
+*/
         [TestCase]
         public void TestGetSetText()
         {
