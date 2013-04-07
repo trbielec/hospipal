@@ -27,5 +27,6 @@
 
         <Label x:Name="NotifTime" Height="25" Content="{Binding Path=NotifInfo, ElementName=MainView, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <TextBox Grid.Row="1" Grid.Column="1" Height ="21" ToolTipService.ToolTip="Press Tab after editing to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" PreviewTextInput="Notifications_Bar_PreviewTextInput" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
+        <Button x:Name="buttonLogout" Content="Logout" Grid.Column="1" HorizontalAlignment="Right" Margin="0,6,6,0" VerticalAlignment="Top" Width="103" Background="#FFE8E8E8" Click="LogoutClick"/>
     </Grid>
 </UserControl>
