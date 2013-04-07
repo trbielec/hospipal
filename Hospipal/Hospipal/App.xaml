@@ -211,8 +211,8 @@
         <!-- Hiding elements based on user roles -->
         <!-- This set of styles all hide controls on certain screens based on which user role type is accessing the system-->
         
-        <!-- Hides control from nurses-->
-        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenNurse" >
+        <!-- Hides control from doctors and nurses-->
+        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenEmployee" >
             <Style.Setters>
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
@@ -223,7 +223,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style TargetType="{x:Type Control}" x:Key="HiddenWhenNurse" >
+        <Style TargetType="{x:Type Control}" x:Key="HiddenWhenEmployee" >
             <Style.Setters>
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
@@ -240,7 +240,7 @@
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
                     <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
@@ -251,59 +251,7 @@
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
-                    <Setter Property="Visibility" Value="Hidden" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <!-- Hides control from nurses AND support stagg-->
-        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenNurseOrSupportStaff" >
-            <Style.Setters>
-                <Setter Property="Visibility" Value="Visible" />
-            </Style.Setters>
-            <Style.Triggers>
                 <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type Control}" x:Key="HiddenWhenNurseOrSupportStaff" >
-            <Style.Setters>
-                <Setter Property="Visibility" Value="Visible" />
-            </Style.Setters>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
-                    <Setter Property="Visibility" Value="Hidden" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
-                    <Setter Property="Visibility" Value="Hidden" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <!-- Hides control from doctor-->
-        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenDoctor" >
-            <Style.Setters>
-                <Setter Property="Visibility" Value="Visible" />
-            </Style.Setters>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Doctor">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type Control}" x:Key="HiddenWhenDoctor" >
-            <Style.Setters>
-                <Setter Property="Visibility" Value="Visible" />
-            </Style.Setters>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Doctor">
                     <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
