@@ -9,6 +9,11 @@ namespace HospipalTests
     [TestFixture]
     public class EmployeeClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+        }
 
         [TestCase]
         public void TestEmployeeInsert()

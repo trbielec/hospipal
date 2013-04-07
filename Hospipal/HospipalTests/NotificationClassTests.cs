@@ -9,6 +9,12 @@ namespace HospipalTests
     [TestFixture]
     public class NotificationClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+        }
+
         [TestCase]
         public void TestRetreiveNotification()
         {
@@ -17,11 +23,11 @@ namespace HospipalTests
             n.RetrieveNotification();
             string oldText = n.Text;
 
-            n.Text = "Test Text";
+            n.Text = "unit test";
             n.SendNotification();
             n.RetrieveNotification();
             
-            Assert.True(n.Text.Equals("Test Text"));
+            Assert.True(n.Text.Equals("UNIT TEST"));
 
             n.Text = oldText;
             n.SendNotification();
@@ -31,12 +37,14 @@ namespace HospipalTests
         public void TestSendNotification()
         {
             Notification n = new Notification();
+
             // Save old text if any exists
             n.RetrieveNotification();
             string oldText = n.Text;
 
             n.Text = "Test Text";
             n.SendNotification();
+            n.Text.ToUpper();
 
             string s = Database.Select("SELECT * from Notification")[0][1].ToString();
             Assert.True(n.Text.Equals(s));

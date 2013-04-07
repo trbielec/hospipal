@@ -10,6 +10,7 @@ namespace Hospipal
     {
         private static MySQLWrapper db = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPal", "ismacaul_seng403", "seng403");
 
+
         public static bool Insert(string query)
         {
             return db.Insert(query);
@@ -48,6 +49,11 @@ namespace Hospipal
         public static bool CheckConnection()
         {
             return db.TestConnection();
+        }
+
+        public static void useTestDB()
+        {
+            db = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPalTestDB", "ismacaul_seng403", "seng403");
         }
     }
 }
