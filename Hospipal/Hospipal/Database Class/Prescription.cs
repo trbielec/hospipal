@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ namespace Hospipal.Database_Class
         private int _Doctor;
         private string _prescriptionName;
         private string _notes;
-        private DateTime _startDate;
-        private DateTime _endDate;
+        private MySqlDateTime _startDate;
+        private MySqlDateTime _endDate;
         private string _status;
         #endregion
 
@@ -53,7 +54,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-        public DateTime StartDate
+        public MySqlDateTime StartDate
         {
             get
             {
@@ -69,14 +70,14 @@ namespace Hospipal.Database_Class
         {
             get
             {
-                return _startDate.ToShortDateString();
+                return _startDate.ToString();
             }
-            set 
+            set
             {
-                _startDate = Convert.ToDateTime(value);
+                _startDate = new MySqlDateTime(Convert.ToDateTime(value));
             }
         }
-        public DateTime EndDate
+        public MySqlDateTime EndDate
         {
             get
             {
@@ -92,11 +93,11 @@ namespace Hospipal.Database_Class
         {
             get
             {
-                return _endDate.ToShortDateString();
+                return _endDate.ToString();
             }
             set 
             {
-                _endDate = Convert.ToDateTime(value);
+                _endDate = new MySqlDateTime(Convert.ToDateTime(value));
             }
         }
 
@@ -143,15 +144,15 @@ namespace Hospipal.Database_Class
 
         public Prescription()
         {
-            _startDate = new DateTime();
+            _startDate = new MySqlDateTime(new DateTime());
         }
 
         public Prescription(int pID, int doc, string pxName, string notes, DateTime startDate, DateTime endDate, string status)
         {
 
             _patientID = pID;
-            _startDate = startDate;
-            _endDate = endDate;
+            _startDate = new MySqlDateTime(startDate);
+            _endDate = new MySqlDateTime(endDate);
             _prescriptionName = pxName;
             _notes = notes;
             _Doctor = doc;
@@ -175,8 +176,8 @@ namespace Hospipal.Database_Class
                         _Doctor = Convert.ToInt32(row[2]);
                         _prescriptionName = row[3].ToString();
                         _notes = row[4].ToString();
-                        _startDate = Convert.ToDateTime(row[5]);
-                        _endDate = Convert.ToDateTime(row[6]);
+                        _startDate = new MySqlDateTime(Convert.ToDateTime(row[5]));
+                        _endDate = new MySqlDateTime( Convert.ToDateTime(row[6]));
                         _status = row[7].ToString();
                        
                     }
@@ -194,11 +195,11 @@ namespace Hospipal.Database_Class
             prescription.Parameters.AddWithValue("doctor", _Doctor); 
             prescription.Parameters.AddWithValue("pxName", _prescriptionName);
             prescription.Parameters.AddWithValue("pxNotes", _notes);
-            prescription.Parameters.AddWithValue("startDate", StartDateToShortDateString);
-            prescription.Parameters.AddWithValue("endDate", EndDateToShortDateString);
+            prescription.Parameters.AddWithValue("startDate", _startDate.Year + "-" + _startDate.Month + "-" + _startDate.Day);
+            prescription.Parameters.AddWithValue("endDate", _endDate.Year + "-" + _endDate.Month + "-" + _endDate.Day);
             prescription.Parameters.AddWithValue("status", _status);
-            
 
+            _prescriptionID = GenerateNextprid();
             return Database.Insert(prescription);
 
         }
@@ -213,12 +214,17 @@ namespace Hospipal.Database_Class
             prescription.Parameters.AddWithValue("doctor", _Doctor);
             prescription.Parameters.AddWithValue("pxName", _prescriptionName);
             prescription.Parameters.AddWithValue("pxNotes", _notes);
-            prescription.Parameters.AddWithValue("startDate", StartDateToShortDateString);
-            prescription.Parameters.AddWithValue("endDate", EndDateToShortDateString);
+            prescription.Parameters.AddWithValue("startDate", _startDate.Year + "-" + _startDate.Month + "-" + _startDate.Day);
+            prescription.Parameters.AddWithValue("endDate", _endDate.Year + "-" + _endDate.Month + "-" + _endDate.Day);
             prescription.Parameters.AddWithValue("status", _status);
             return Database.Update(prescription);
         }
 
+        public static bool CheckDatesForStatusChanges()
+        {
+            return Database.Update("UPDATE Prescription SET prescriptionstatus = 'Current' WHERE CURRENT_DATE >= startdate AND prescriptionstatus = 'Upcoming'") &&
+                    Database.Update("UPDATE Prescription SET prescriptionstatus = 'History' WHERE CURRENT_DATE >= enddate AND prescriptionstatus = 'Current'");
+        }
         public bool Delete()
         {
             return Database.Delete("Delete from Prescription WHERE prid = " + _prescriptionID);
@@ -226,6 +232,8 @@ namespace Hospipal.Database_Class
         #endregion
 
         #region List Functions
+
+        
 
         public static List<Prescription> GetPrescriptions(int pid,string status)
         {

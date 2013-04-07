@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Hospipal.Database_Class;
 using System.Collections.Generic;
 using Hospipal;
+using MySql.Data.Types;
 
 namespace HospipalTests
 {
@@ -74,6 +75,17 @@ namespace HospipalTests
             prescription.Delete();
         }
 
+        [TestCase]
+        public void TestCheckDatesForStatusChanges()
+        {
+            Prescription p = new Prescription(100000, 1, "Test-Prescription", "Test-Notes", new DateTime(2013,4,6), new DateTime(2013,4,6), "Upcoming");
+            p.Insert();
+            Prescription.CheckDatesForStatusChanges();
+            p.Select();
+            Assert.True(p.Status == "History");
+            p.Delete();
+
+        }
         
         [TestCase]
         public void TestGenerateNextRtid()
@@ -111,8 +123,8 @@ namespace HospipalTests
         public void TestGetSetStartDateString()
         {
             Prescription r = new Prescription();
-            r.StartDate = new DateTime(2012, 12, 12);
-            String date = r.StartDate.ToShortDateString();
+            r.StartDate = new MySqlDateTime(new DateTime(2012, 12, 12));
+            String date = r.StartDate.ToString();
             Assert.True(r.StartDateToShortDateString == date);
         }
 
@@ -120,8 +132,8 @@ namespace HospipalTests
         public void TestGetSetEndDateString()
         {
             Prescription r = new Prescription();
-            r.EndDate = new DateTime(2012, 12, 12);
-            String date = r.EndDate.ToShortDateString();
+            r.EndDate = new MySqlDateTime(new DateTime(2012, 12, 12));
+            String date = r.EndDate.ToString();
             Assert.True(r.EndDateToShortDateString == date);
         }
         [TestCase]
