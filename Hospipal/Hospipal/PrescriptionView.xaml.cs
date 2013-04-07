@@ -44,6 +44,10 @@ namespace Hospipal
 
         #region Constructors
 
+        public PrescriptionView()
+        {
+            InitializeComponent();
+        }
         public PrescriptionView(int healthCareNo) //New
         {
             InitializeComponent();
@@ -98,9 +102,9 @@ namespace Hospipal
             buttonSave.Focus(); //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
             if (boxDoctors.SelectedIndex > 0)
                 prescription.Doctor = employeeIDs[boxDoctors.SelectedIndex];
-            if (1 ==1)
+            if (DateTime.Compare(dpStartDate.SelectedDate.Value,dpEndDate.SelectedDate.Value) > 0)
             {
-                MessageBox.Show("");
+                MessageBox.Show("The start date must occur before the end date");
             }
             else if ((Caller=="New" && prescription.Insert()))
             {
