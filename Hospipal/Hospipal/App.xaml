@@ -98,13 +98,16 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Hides the Employee Edit and Delete button if there is no selected row.-->
+        <!-- Hides the Employee Edit and Delete button if there is no selected row or if role is employee.-->
         <Style TargetType="{x:Type Button}" x:Key="EmployeeButtons">
             <Style.Triggers>
                 <DataTrigger 
                      Binding ="{Binding ElementName=Employee_DataGrid, Path=SelectedIndex}" 
                      Value="-1">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -120,7 +123,7 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected ward.-->
+        <!-- Hides the Ward Edit and Delete button as well as Room Add Button if there is no selected ward or if role is employee or support staff.-->
         <Style TargetType="{x:Type Button}" x:Key="WardButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -128,10 +131,16 @@
                      Value="-1">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
+                </DataTrigger>
             </Style.Triggers>
         </Style>
 
-        <!-- Hides the Room Delete button and Bed Add and Delete Button if there is no selected row.-->
+        <!-- Hides the Room Delete button and Bed Add and Delete Button if there is no selected row or if role is employee or support staff.-->
         <Style TargetType="{x:Type Button}" x:Key="RoomButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -139,17 +148,26 @@
                      Value="-1">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
+                </DataTrigger>
             </Style.Triggers>
         </Style>
 
 
-        <!-- Hides the Treatment Edit and Delete button if there is no selected row.-->
+        <!-- Hides the Treatment Edit and Delete button if there is no selected row or if role is support staff.-->
         <Style TargetType="{x:Type Button}" x:Key="TreatmentButtons">
             <Style.Triggers>
                 <DataTrigger 
                      Binding ="{Binding ElementName=boxHistory, Path=SelectedIndex}" 
                      Value="-1">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -186,7 +204,7 @@
             <Setter Property="Image.Height" Value="54"/>
         </Style>
         
-        <!-- Hides the Schedule Edit and Delete button if there is no appointment selected.-->
+        <!-- Hides the Schedule Edit and Delete button if there is no appointment selected or if role is employee or support staff.-->
         <Style TargetType="{x:Type Button}" x:Key="ScheduleDelEditButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -194,16 +212,28 @@
                      Value="{x:Null}">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
+                </DataTrigger>
             </Style.Triggers>
         </Style>
 
-        <!-- Hides the Schedule Add button if there is no appointment selected.-->
+        <!-- Hides the Schedule Add button if there is no appointment selected or if role is employee or support staff.-->
         <Style TargetType="{x:Type Button}" x:Key="ScheduleAddButtons">
             <Style.Triggers>
                 <DataTrigger 
                      Binding ="{Binding ElementName=scheduleView, Path=SelectedSlot}" 
                      Value="{x:Null}">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Button.Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -217,7 +247,7 @@
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
                     <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
@@ -228,7 +258,7 @@
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
                     <Setter Property="Visibility" Value="Hidden" />
                 </DataTrigger>
             </Style.Triggers>
@@ -240,7 +270,7 @@
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
                     <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
@@ -251,8 +281,22 @@
                 <Setter Property="Visibility" Value="Visible" />
             </Style.Setters>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
                     <Setter Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenNotAdmin" >
+            <Style.Setters>
+                <Setter Property="Visibility" Value="Visible" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Employee">
+                    <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>

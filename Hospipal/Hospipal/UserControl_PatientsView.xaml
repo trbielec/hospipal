@@ -106,7 +106,7 @@
                         <Image Source="./Resources/Button Images/edit.png" Width="45"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Patients_AddButton" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60">
+                <Button x:Name="Patients_AddButton" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Style="{StaticResource CollapsedWhenEmployee}">
                     <StackPanel>
                         <Image Source="./Resources/Button Images/add.png"/>
                     </StackPanel>
