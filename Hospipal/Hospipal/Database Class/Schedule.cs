@@ -19,7 +19,7 @@ namespace Hospipal.Database_Class
         private string _ward;
 
 
-#region Getters/Setters
+        #region Getters/Setters
 
         public int Sid
         {
@@ -82,7 +82,7 @@ namespace Hospipal.Database_Class
             }
         }
 
-#endregion
+        #endregion
 
         #region Constructors
 
@@ -104,6 +104,37 @@ namespace Hospipal.Database_Class
 
 
         #region Database functions
+
+        public bool CheckforConflicts()
+        {
+            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
+            if (scheduleTable != null)
+
+                foreach (object[] row in scheduleTable)
+                {
+                    // Conflict if start times or end times the same
+                    if (_start_time == Convert.ToDateTime(row[1]) ||
+                         _end_time == Convert.ToDateTime(row[2]))
+                        return false;
+
+                    // New schedule starts before start time of existing schedule
+                    if (_start_time < Convert.ToDateTime(row[1]))
+                    {
+                        // Conflict if SS starts before end time of PS
+                        if (Convert.ToDateTime(row[1]) < _end_time)
+                            return false;
+                    }
+                    // Else new schedule starts after start time of existing schedule
+                    else
+                    {
+                        //Conflict if PS starts before end time of PS
+                        if (_start_time < Convert.ToDateTime(row[2]))
+                            return false;
+                    }
+                }
+
+            return true;
+        }
 
         public bool Insert()
         {
