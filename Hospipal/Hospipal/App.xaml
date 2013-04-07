@@ -166,9 +166,6 @@
                      Value="-1">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
-                    <Setter Property="Button.Visibility" Value="Hidden" />
-                </DataTrigger>
             </Style.Triggers>
         </Style>
 

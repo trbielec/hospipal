@@ -49,7 +49,10 @@ namespace Hospipal
             InitializeComponent();
             _isNewPatient = false;  //A new patient will not have a health care no to reference
             patient = Patient;
-            buttonTreatment.Visibility = Visibility.Visible;
+            if (Properties.Settings.Default.Role != "Support Staff")
+            {
+                buttonTreatment.Visibility = Visibility.Visible;
+            }
         }
 
         private void Cancel(object sender, RoutedEventArgs e)
