@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="Hospipal.PrescriptionMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             x:Name="prescriptionControl"
+             d:DesignHeight="600" d:DesignWidth="800" HorizontalAlignment="Center">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="lblPrescription" Content="Prescriptions" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ResourceKey=titleStyle}" Grid.ColumnSpan="3"/>
+            <Grid  Grid.RowSpan="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="38"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120*"/>
+                    <ColumnDefinition Width="193*"/>
+                    <ColumnDefinition Width="111*"/>
+                    <ColumnDefinition Width="206*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="lblPatientName" Content="Patient Name" Grid.Row="1"/>
+                <Label x:Name="lblPName" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.ColumnSpan="4"  Grid.Row="1" Grid.Column="1"/>
+                <Label x:Name="lblCurrent" Content="Current Prescriptions" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ResourceKey=headerStyle}" Grid.Row="2" Grid.ColumnSpan="4" />
+                <Label x:Name="lblUpcoming" Grid.Row="6" Content="Upcoming Prescriptions" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ResourceKey=headerStyle}" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
+                <Label x:Name="lblHistory" Grid.Row="11" Content="Prescription History" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ResourceKey=headerStyle}" Grid.ColumnSpan="4" Grid.RowSpan="3"/>
+
+
+
+                <DataGrid x:Name="dataGridPrescriptionHist" IsReadOnly="True" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="13" Grid.RowSpan="4"  CanUserDeleteRows="False" AutoGenerateColumns="false" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Prescription Name" Binding="{Binding Path=Name}" Width="1*"/>
+                        <DataGridTextColumn Header="Scheduled Time" Binding="{Binding Path=Time}" Width="1*"/>
+                        <DataGridTextColumn Header="Issuing Doctor" Binding="{Binding Path=Doctor}" Width="1*"/>
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid x:Name="dataGridPrescriptionCurrent" IsReadOnly="True" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3" Grid.RowSpan="4"  CanUserDeleteRows="False" AutoGenerateColumns="false" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Prescription Name" Binding="{Binding Path=Name}" Width="1*"/>
+                        <DataGridTextColumn Header="Scheduled Time" Binding="{Binding Path=Time}" Width="1*"/>
+                        <DataGridTextColumn Header="Issuing Doctor" Binding="{Binding Path=Doctor}" Width="1*"/>
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid x:Name="dataGridPrescriptionUp" IsReadOnly="True" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8" Grid.RowSpan="4"  CanUserDeleteRows="False" AutoGenerateColumns="false" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Prescription Name" Binding="{Binding Path=Name}" Width="1*"/>
+                        <DataGridTextColumn Header="Scheduled Time" Binding="{Binding Path=Time}" Width="1*"/>
+                        <DataGridTextColumn Header="Issuing Doctor" Binding="{Binding Path=Doctor}" Width="1*"/>
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+            <Button x:Name="buttonCancel" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click" Grid.Column="3" Grid.Row="7">
+                <Image Source="Resources/Button Images/cancel.png" Height="48"/>
+            </Button>
+            
+            <Button x:Name="buttonRemove" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4" Click="buttonRemove_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                <Image Source="Resources/Button Images/trash.png" Height="48"/>
+            </Button>
+            <Button x:Name="buttonAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3" Click="buttonAdd_Click"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+                <Image Source="Resources/Button Images/add.png" Height="47"/>
+            </Button>
+
+
+        </Grid>
+    </Grid>
+</UserControl>
