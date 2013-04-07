@@ -12,6 +12,10 @@ namespace Hospipal.Database_Class
     public class Notification
     {
         private string _Text;
+        private DateTime _Now;
+        private string _Role;
+        private DateTime _Then;
+        private string _TheirRole;
 
 
         #region Getters/Setters
@@ -26,6 +30,23 @@ namespace Hospipal.Database_Class
                 _Text = value;
             }
         }
+
+        public DateTime Then
+        {
+            get
+            {
+                return _Then;
+            }
+        }
+
+        public string TheirRole
+        {
+            get
+            {
+                return _TheirRole;
+            }
+        }
+        
         #endregion
 
         #region Constructors
@@ -43,17 +64,24 @@ namespace Hospipal.Database_Class
 
         public void RetrieveNotification()
         {
-            List<object[]> text = Database.Select("SELECT * from Notification;");
+            List<object[]> text = Database.Select("SELECT * from Notification order by ROW desc LIMIT 1;");
             if(text != null && text.Count > 0 )
             _Text = Convert.ToString(text.ElementAt(0).ElementAt(1)).ToUpper();
+            _Then = (DateTime)text.ElementAt(0).ElementAt(2);
+            _TheirRole = Convert.ToString(text.ElementAt(0).ElementAt(3));
+
             //MessageBoxResult result = MessageBox.Show("Retrieved value: " + _Text);
         }
 
         public void SendNotification()
         {
+            _Now = DateTime.Now;
+            _Role = Properties.Settings.Default.Role;
             //MessageBoxResult result = MessageBox.Show("Value to send to database: " + _Text);
-            MySqlCommand notification = new MySqlCommand("Update_Notification(@_Text);");
+            MySqlCommand notification = new MySqlCommand("Insert_Notification(@_Text,@_Now,@_Role);");
             notification.Parameters.AddWithValue("_Text", _Text);
+            notification.Parameters.AddWithValue("_Now", _Now);
+            notification.Parameters.AddWithValue("_Role", _Role);
             Database.Update(notification);
         }
         #endregion

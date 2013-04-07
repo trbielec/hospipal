@@ -10,13 +10,14 @@
              d:DesignHeight="500" d:DesignWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <telerik:RadTabControl Grid.Row="0" Name="HospipalTabControl" SelectionChanged="HospipalTabControl_SelectionChanged">
+        <telerik:RadTabControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Name="HospipalTabControl" SelectionChanged="HospipalTabControl_SelectionChanged">
             <telerik:RadTabItem x:Name="PatientsTab" Header="Patients" Height="32" Width="100" FontSize="14" />
             <telerik:RadTabItem x:Name="EmployeesTab" Header="Employees" Height="32" Width="100" FontSize="14" Style="{StaticResource CollapsedWhenNurse}"/>
             <telerik:RadTabItem x:Name="WardsTab" Header="Wards" Height="32" Width="100" FontSize="14"/>
@@ -24,10 +25,7 @@
             <telerik:RadTabItem x:Name="WaitlistTab" Header="Waitlist" Height="32" Width="100" FontSize="14"/>
         </telerik:RadTabControl>
 
-        
-        <!--<Label Grid.Row="1" Grid.ColumnSpan="1" Width="90" Height="20" Content="Press Tab to Submit" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>-->
-        <TextBox Grid.Row="1" ToolTipService.ToolTip="Press Tab to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" PreviewTextInput="Notifications_Bar_PreviewTextInput" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
-        
-        <!--<Button Grid.Row="1" Content="Button" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75"/>-->
+        <Label x:Name="NotifTime" Height="25" Content="{Binding Path=NotifInfo, ElementName=MainView, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Height ="21" ToolTipService.ToolTip="Press Tab after editing to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" PreviewTextInput="Notifications_Bar_PreviewTextInput" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
     </Grid>
 </UserControl>
