@@ -120,14 +120,14 @@ namespace Hospipal.Database_Class
                     // New schedule starts before start time of existing schedule
                     if (_start_time < Convert.ToDateTime(row[1]))
                     {
-                        // Conflict if SS starts before end time of PS
+                        // Conflict if existing schedule starts before end time of new schedule
                         if (Convert.ToDateTime(row[1]) < _end_time)
                             return false;
                     }
                     // Else new schedule starts after start time of existing schedule
                     else
                     {
-                        //Conflict if PS starts before end time of PS
+                        //Conflict if new schedule starts before end time of existing schedule
                         if (_start_time < Convert.ToDateTime(row[2]))
                             return false;
                     }
