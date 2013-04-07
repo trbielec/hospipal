@@ -126,9 +126,14 @@ namespace Hospipal.Database_Class
             employee.Parameters.AddWithValue("specialty", _specialty);
             employee.Parameters.AddWithValue("employee_type", _employee_type);
             employee.Parameters.AddWithValue("supervisor_id", _supervisor_id);
-            
-            // We know that the generated ID is unique so go ahead and insert
-            return Database.Insert(employee);
+
+            if (Database.Insert(employee))
+            {
+                return Login.CreateLogin(_eid, _fname, _lname);
+            }
+
+            return false;
+            // We know that the generated ID is unique so go ahead and inser
         }
 
         public bool Update()
@@ -146,6 +151,7 @@ namespace Hospipal.Database_Class
 
         public bool Delete()
         {
+            Database.Delete("DELETE FROM Login WHERE eid = " + _eid);
             return Database.Delete("DELETE FROM Employee WHERE eid = " + _eid);
         }
 

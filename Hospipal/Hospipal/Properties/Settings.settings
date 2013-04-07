@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">server=s403g01.cpsc.ucalgary.ca;User Id=ismacaul_seng403;password=seng403;Persist Security Info=True;database=ismacaul_HospiPal</Value>
     </Setting>
+    <Setting Name="Role" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -126,16 +126,12 @@ namespace Hospipal
         {
             SaveButton.Focus();
 
-           
-
             if (!_isSelected)
             {
                 schedule.Sid = Convert.ToInt32(sidLabel.Content);
                 schedule.Start_time = startDateTimePicker.SelectedValue.Value;
                 schedule.End_time = endDateTimePicker.SelectedValue.Value;
                 schedule.Ward = WardName.SelectedItem.ToString();
-
-
 
                 employee = Employee.GetEmployees();
 
@@ -147,7 +143,10 @@ namespace Hospipal
                     }
                 }
 
-                schedule.Insert();
+                if (schedule.CheckforConflicts())
+                    schedule.Insert();
+                else
+                    MessageBox.Show("Proposed schedule conflicts with an existing schedule.");
 
                 this.Close();
             }
@@ -168,7 +167,10 @@ namespace Hospipal
                     }
                 }
 
-                schedule.Update();
+                if (schedule.CheckforConflicts() )
+                    schedule.Update();
+                else
+                    MessageBox.Show("Proposed schedule conflicts with an existing schedule.");
 
                 this.Close();
             }

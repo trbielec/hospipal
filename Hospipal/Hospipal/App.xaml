@@ -1,6 +1,7 @@
 ﻿<Application x:Class="Hospipal.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"             
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:properties="clr-namespace:Hospipal.Properties"
              StartupUri="MainWindow.xaml">
 
 
@@ -131,7 +132,6 @@
         </Style>
 
         <!-- Hides the Room Delete button and Bed Add and Delete Button if there is no selected row.-->
-
         <Style TargetType="{x:Type Button}" x:Key="RoomButtons">
             <Style.Triggers>
                 <DataTrigger 
@@ -204,6 +204,63 @@
                      Binding ="{Binding ElementName=scheduleView, Path=SelectedSlot}" 
                      Value="{x:Null}">
                     <Setter Property="Button.Visibility" Value="Hidden"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Hiding elements based on user roles -->
+        <!-- This set of styles all hide controls on certain screens based on which user role type is accessing the system-->
+        
+        <!-- Hides control from nurses-->
+        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenNurse" >
+            <Style.Setters>
+                <Setter Property="Visibility" Value="Visible" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger  Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Doctor">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger  Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Hides control from support staff-->
+        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenSupportStaff" >
+            <Style.Setters>
+                <Setter Property="Visibility" Value="Visible" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger  Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger  Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Doctor">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Hides control from doctor-->
+        <Style TargetType="{x:Type Control}" x:Key="CollapsedWhenDoctor" >
+            <Style.Setters>
+                <Setter Property="Visibility" Value="Visible" />
+            </Style.Setters>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Doctor">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger  Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Support Staff">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger  Binding="{Binding Source={x:Static properties:Settings.Default}, Path=Role, Mode=TwoWay}" Value="Nurse">
+                    <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
