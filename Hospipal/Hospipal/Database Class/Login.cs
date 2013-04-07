@@ -68,20 +68,20 @@ namespace Hospipal.Database_Class
                     string employeeType = employee[0][0].ToString();
                     if (employeeType == "Doctor" || employeeType == "Nurse")
                     {
-                        Properties.Settings.Default.Role = "Employee";
+                        Properties.Settings.Default.Role = "employee";
                     }
                     else if (employeeType == "Admin")
                     {
-                        Properties.Settings.Default.Role = "Admin";
+                        Properties.Settings.Default.Role = "admin";
                     }
                     else
                     {
-                        Properties.Settings.Default.Role = "Support Staff";
+                        Properties.Settings.Default.Role = "support staff";
                     }
                 }
                 else
                 {
-                    Properties.Settings.Default.Role = "Support Staff";
+                    Properties.Settings.Default.Role = "support staff";
                 }
 
                 return SUCCESS;
