@@ -9,6 +9,13 @@ namespace HospipalTests
     [TestFixture]
     public class WaitlistedPatientTests
     {
+        [SetUp]
+        public void Setup()
+        {
+            Database.useTestDB();
+            Console.WriteLine("WaitlistedPatient Tests!");   
+        }
+
         [TestCase]
         public void TestAssignPatientToBed()
         {
@@ -52,9 +59,9 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test-WLP", "Test-WLP", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment treat = new Treatment(p.PatientID, "UTW", 1, 1, 1, "", "", 1, "WLP");
+            Treatment treat = new Treatment(p.PatientID, "UTW", 1, 1, 1, "", "", 1, "Upcoming");
             treat.Insert();
-            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "WLP");
+            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "Upcoming");
             Treatment t = list[0];
 
             WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UTW", "High", t.TreatmentID);
@@ -90,9 +97,9 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test-WLP", "Test-WLP", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment treat = new Treatment(p.PatientID, "UnitTestTreatment-WLP", 1, 1, 1, "", "", 1, "WLP");
+            Treatment treat = new Treatment(p.PatientID, "UnitTestTreatment-WLP", 1, 1, 1, "", "", 1, "Upcoming");
             treat.Insert();
-            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "WLP");
+            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "Upcoming");
             Treatment t = list[0];
 
             WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard-WLP", "High", t.TreatmentID);
@@ -145,9 +152,9 @@ namespace HospipalTests
             Patient p = new Patient(10000, "Test-WLP", "Test-WLP", new DateTime(), "", "", "", "", "", "", "");
             p.Insert();
             p.Select();
-            Treatment treat = new Treatment(p.PatientID, "UnitTestTreatment-WLP", 1, 1, 1, "", "", 1, "WLP");
+            Treatment treat = new Treatment(p.PatientID, "UnitTestTreatment-WLP", 1, 1, 1, "", "", 1, "Upcoming");
             treat.Insert();
-            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "WLP");
+            List<Treatment> list = Treatment.GetTreatments(p.PatientID, "Upcoming");
             Treatment t = list[0];
 
             WaitlistedPatient.AddPatientToWaitlist(p.PatientID, "UnitTestWard-WLP", "High", t.TreatmentID);
