@@ -105,7 +105,7 @@ namespace Hospipal.Database_Class
 
         #region Database functions
 
-        public bool CheckforConflicts()
+        public bool CheckforInsertConflicts()
         {
             List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
             if (scheduleTable != null)
@@ -116,6 +116,24 @@ namespace Hospipal.Database_Class
                     DateTime currScheduleStart = Convert.ToDateTime(row[1]);
                     DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
                     int currScheduleEmployee = Convert.ToInt32(row[3]);
+
+                    if (_start_time != currScheduleStart && _end_time != currScheduleEnd)
+                    {
+
+                    }
+
+                    if (currScheduleEmployee == _employee)
+                        return false;
+
+
+
+
+
+
+
+
+
+
 
                     // No conflict for schedules of different employees
                     if (_employee != currScheduleEmployee)
@@ -142,6 +160,85 @@ namespace Hospipal.Database_Class
                 }
             return true;
         }
+
+
+
+        public bool CheckforUpdateConflicts()
+        {
+            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
+            if (scheduleTable != null)
+
+                foreach (object[] row in scheduleTable)
+                {
+                    int currScheduleID = Convert.ToInt32(row[0]);
+                    DateTime currScheduleStart = Convert.ToDateTime(row[1]);
+                    DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
+                    int currScheduleEmployee = Convert.ToInt32(row[3]);
+
+                    if(currScheduleID == _sid)
+                    {
+                        if (currScheduleEmployee == _employee)
+                        {
+                            List<object[]> thirdList = Database.Select("SELECT * from Schedule WHERE employee = " +_employee);
+
+                            if (thirdList != null)          //conflicts for current employee
+                            {
+                                foreach (object[] rowx in thirdList)
+                                {
+                                    int otherScheduleID = Convert.ToInt32(row[0]);
+                                    DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
+                                    DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
+
+                                    if (otherScheduleID != _sid)
+                                    {
+                                        if (_end_time <= otherScheduleStart)
+                                        {
+                                            return true;
+                                        }
+                                        else if (_start_time >= otherScheduleEnd)
+                                        {
+                                            return true;
+                                        }
+                                        else
+                                            return false;
+                                    }
+                                }
+                            }
+                        }
+                        else if (currScheduleEmployee != _employee)
+                        {
+                            List<object[]> thirdList = Database.Select("SELECT * from Schedule WHERE employee = " + _employee);
+
+                            if (thirdList != null)          //conflicts for differnt employee
+                            {
+                                foreach (object[] rowx in thirdList)
+                                {
+                                    DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
+                                    DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
+
+                                    if (_end_time <= otherScheduleStart)
+                                    {
+                                        return true;
+                                    }
+                                    else if (_start_time >= otherScheduleEnd)
+                                    {
+                                        return true;
+                                    }
+                                    else
+                                        return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            return true;
+        }
+
+
+
+
+
+
 
         public bool Insert()
         {

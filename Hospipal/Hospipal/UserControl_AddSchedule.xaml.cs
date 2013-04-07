@@ -140,7 +140,7 @@ namespace Hospipal
                     }
                 }
 
-                if (schedule.CheckforConflicts())
+                if (schedule.CheckforInsertConflicts())
                     schedule.Insert();
                 else
                     MessageBox.Show("Proposed schedule conflicts with an existing schedule.");
@@ -164,7 +164,7 @@ namespace Hospipal
                     }
                 }
 
-                if (schedule.CheckforConflicts() )
+                if (schedule.CheckforUpdateConflicts() )
                     schedule.Update();
                 else
                     MessageBox.Show("Proposed schedule conflicts with an existing schedule.");
