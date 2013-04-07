@@ -112,26 +112,31 @@ namespace Hospipal.Database_Class
 
                 foreach (object[] row in scheduleTable)
                 {
+                    int currScheduleID = Convert.ToInt32(row[0]);
                     DateTime currScheduleStart = Convert.ToDateTime(row[1]);
                     DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
+                    int currScheduleEmployee = Convert.ToInt32(row[3]);
 
-                    // Conflict if start times or end times the same
+                    // No conflict for schedules of different employees
+                    if (_employee != currScheduleEmployee)
+                        return true;
+
                     if (_start_time == currScheduleStart ||
-                        _end_time == currScheduleEnd)
+                        _end_time == currScheduleEnd && currScheduleID != _sid)
                         return false;
 
                     // New schedule starts before start time of existing schedule
-                    if (_start_time < currScheduleStart)
+                    if (_start_time <= currScheduleStart && currScheduleID != _sid)
                     {
-                        // Conflict if existing schedule starts before end time of new schedule
-                        if (currScheduleStart < _end_time)
+                        
+                        if (_end_time < currScheduleEnd )
                             return false;
                     }
                     // Else new schedule starts after start time of existing schedule
                     else
                     {
-                        //Conflict if new schedule starts before end time of existing schedule
-                        if (_start_time < currScheduleEnd)
+             
+                        if (currScheduleEnd < _end_time && currScheduleID != _sid)
                             return false;
                     }
                 }
