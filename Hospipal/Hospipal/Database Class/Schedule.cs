@@ -105,38 +105,140 @@ namespace Hospipal.Database_Class
 
         #region Database functions
 
-        public bool CheckforConflicts()
+        public bool CheckforInsertConflicts()
         {
             List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
             if (scheduleTable != null)
 
                 foreach (object[] row in scheduleTable)
                 {
+                    int currScheduleID = Convert.ToInt32(row[0]);
                     DateTime currScheduleStart = Convert.ToDateTime(row[1]);
                     DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
+                    int currScheduleEmployee = Convert.ToInt32(row[3]);
 
-                    // Conflict if start times or end times the same
+                    if (_start_time != currScheduleStart && _end_time != currScheduleEnd)
+                    {
+
+                    }
+
+                    if (currScheduleEmployee == _employee)
+                        return false;
+
+
+
+
+
+
+
+
+
+
+
+                    // No conflict for schedules of different employees
+                    if (_employee != currScheduleEmployee)
+                        return true;
+
                     if (_start_time == currScheduleStart ||
-                        _end_time == currScheduleEnd)
+                        _end_time == currScheduleEnd && currScheduleID != _sid)
                         return false;
 
                     // New schedule starts before start time of existing schedule
-                    if (_start_time < currScheduleStart)
+                    if (_start_time <= currScheduleStart && currScheduleID != _sid)
                     {
-                        // Conflict if existing schedule starts before end time of new schedule
-                        if (currScheduleStart < _end_time)
+                        
+                        if (_end_time < currScheduleEnd )
                             return false;
                     }
                     // Else new schedule starts after start time of existing schedule
                     else
                     {
-                        //Conflict if new schedule starts before end time of existing schedule
-                        if (_start_time < currScheduleEnd)
+             
+                        if (currScheduleEnd < _end_time && currScheduleID != _sid)
                             return false;
                     }
                 }
             return true;
         }
+
+
+
+        public bool CheckforUpdateConflicts()
+        {
+            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
+            if (scheduleTable != null)
+
+                foreach (object[] row in scheduleTable)
+                {
+                    int currScheduleID = Convert.ToInt32(row[0]);
+                    DateTime currScheduleStart = Convert.ToDateTime(row[1]);
+                    DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
+                    int currScheduleEmployee = Convert.ToInt32(row[3]);
+
+                    if(currScheduleID == _sid)
+                    {
+                        if (currScheduleEmployee == _employee)
+                        {
+                            List<object[]> thirdList = Database.Select("SELECT * from Schedule WHERE employee = " +_employee);
+
+                            if (thirdList != null)          //conflicts for current employee
+                            {
+                                foreach (object[] rowx in thirdList)
+                                {
+                                    int otherScheduleID = Convert.ToInt32(row[0]);
+                                    DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
+                                    DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
+
+                                    if (otherScheduleID != _sid)
+                                    {
+                                        if (_end_time <= otherScheduleStart)
+                                        {
+                                            return true;
+                                        }
+                                        else if (_start_time >= otherScheduleEnd)
+                                        {
+                                            return true;
+                                        }
+                                        else
+                                            return false;
+                                    }
+                                }
+                            }
+                        }
+                        else if (currScheduleEmployee != _employee)
+                        {
+                            List<object[]> thirdList = Database.Select("SELECT * from Schedule WHERE employee = " + _employee);
+
+                            if (thirdList != null)          //conflicts for differnt employee
+                            {
+                                foreach (object[] rowx in thirdList)
+                                {
+                                    DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
+                                    DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
+
+                                    if (_end_time <= otherScheduleStart)
+                                    {
+                                        return true;
+                                    }
+                                    else if (_start_time >= otherScheduleEnd)
+                                    {
+                                        return true;
+                                    }
+                                    else
+                                        return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            return true;
+        }
+
+
+
+
+
+
 
         public bool Insert()
         {
@@ -173,6 +275,7 @@ namespace Hospipal.Database_Class
             {
                 Appointment newAppt = new Appointment();
                 newAppt.UniqueId = row[0].ToString();
+                newAppt.Url = row[0].ToString();
                 newAppt.Start = Convert.ToDateTime(row[1]);
                 newAppt.End = Convert.ToDateTime(row[2]);
                 newAppt.Subject = "Employee:  " + row[3].ToString() + Environment.NewLine + "Ward: " + row[4].ToString();
@@ -192,6 +295,7 @@ namespace Hospipal.Database_Class
                 if (sid.Equals(row[0].ToString()))
                 {
                     apt.UniqueId = row[0].ToString();
+                    apt.Url = row[0].ToString();
                     apt.Start = Convert.ToDateTime(row[1]);
                     apt.End = Convert.ToDateTime(row[2]);
                     apt.Subject = row[3].ToString();

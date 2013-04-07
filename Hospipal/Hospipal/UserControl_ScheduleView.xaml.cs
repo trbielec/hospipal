@@ -43,7 +43,6 @@ namespace Hospipal
         void Schedule_AddButton_Click(object sender, RoutedEventArgs e)
         {
             Slot selectedSlot = scheduleView.SelectedSlot;
-
             UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
 
             addSchd.ShowDialog();
@@ -51,8 +50,8 @@ namespace Hospipal
 
         void Schedule_EditButton_Click(object sender, RoutedEventArgs e)
         {
-            IOccurrence selectedAppt = scheduleView.SelectedAppointment;
-
+            IOccurrence sel = scheduleView.SelectedAppointment;
+            Appointment selectedAppt = sel as Appointment;
             UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedAppt, this);
 
             addSchd.ShowDialog();
@@ -84,13 +83,21 @@ namespace Hospipal
                     UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
                     addSchd.ShowDialog();
                 }
+
+                if (scheduleView.SelectedAppointment != null)
+                {
+                    IOccurrence sel = scheduleView.SelectedAppointment;
+                    Appointment selectedAppt = sel as Appointment;
+                    UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedAppt, this);
+                    addSchd.ShowDialog();
+                }
             }
 
             if (e.DialogViewModel is ConfirmDialogViewModel)
             {
                 e.DefaultDialogResult = true;
                 e.Cancel = true;
-
+                /*
                 IOccurrence selectedAppt = scheduleView.SelectedAppointment;
                 Appointment sel = selectedAppt as Appointment;
                 Schedule sch = new Schedule();
@@ -100,6 +107,7 @@ namespace Hospipal
                 ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
                 appointments = Schedule.Select();
                 scheduleView.AppointmentsSource = appointments;
+                */
             }
 
             var dialogViewModel = e.DialogViewModel as RecurrenceChoiceDialogViewModel;
