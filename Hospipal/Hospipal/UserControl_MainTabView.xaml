@@ -25,16 +25,7 @@
             <telerik:RadTabItem x:Name="WaitlistTab" Header="Waitlist" Height="32" Width="100" FontSize="14"/>
         </telerik:RadTabControl>
 
-<<<<<<< HEAD
         <Label x:Name="NotifTime" Height="25" Content="{Binding Path=NotifInfo, ElementName=MainView, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <TextBox Grid.Row="1" Grid.Column="1" Height ="21" ToolTipService.ToolTip="Press Tab after editing to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" PreviewTextInput="Notifications_Bar_PreviewTextInput" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
-=======
-        
-        <!--<Label Grid.Row="1" Grid.ColumnSpan="1" Width="90" Height="20" Content="Press Tab to Submit" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>-->
-        <TextBox Grid.Row="1" ToolTipService.ToolTip="Press Tab to Submit" VerticalAlignment="Bottom" Name="Notifications_Bar" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" PreviewTextInput="Notifications_Bar_PreviewTextInput" TextWrapping="Wrap" Text="{Binding Path=notification, ElementName=MainView, Mode=TwoWay}" />
-        <Button x:Name="buttonLogout" Content="Logout" HorizontalAlignment="Right" Margin="0,6,6,0" VerticalAlignment="Top" Width="75" Click="LogoutClick" Background="#FFD8D8D8"/>
-
-        <!--<Button Grid.Row="1" Content="Button" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75"/>-->
->>>>>>> e60de7cb9e0f9436bf0ca50dd54190d64ae5803f
     </Grid>
 </UserControl>
