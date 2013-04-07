@@ -85,9 +85,9 @@
                 <DataGrid x:Name="dataGridPrescriptionCurrent" IsReadOnly="True" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3" Grid.RowSpan="4"  CanUserDeleteRows="False" AutoGenerateColumns="false" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Prescription Name" Binding="{Binding Path=Name}" Width="1*"/>
-                        <DataGridTextColumn Header="Scheduled Time" Binding="{Binding Path=Time}" Width="1*"/>
                         <DataGridTextColumn Header="Issuing Doctor" Binding="{Binding Path=Doctor}" Width="1*"/>
-                       
+                        <DataGridTextColumn Header="Start Date" Binding="{Binding Path=StartDate}" Width="1*"/>
+                        <DataGridTextColumn Header="End Date" Binding="{Binding Path=EndDate}" Width="1*"/>
 
 
                     </DataGrid.Columns>

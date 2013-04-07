@@ -20,9 +20,46 @@ namespace Hospipal
     /// </summary>
     public partial class PrescriptionMainView : UserControl
     {
+        /*
+        private static readonly DependencyProperty PrescriptionProperty =
+                         DependencyProperty.Register("treatment", typeof(Treatment),
+                                                     typeof(PatientTreatmentView));
+        */
+
         public PrescriptionMainView()
         {
             InitializeComponent();
         }
+
+
+
+
+        #region Event handlers
+        /* Add button click event 
+         */
+        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+        {
+           // Content = new Prescription(prescription.HealthCareNo);
+        }
+
+     
+        /* Remove button click event
+         */
+        private void buttonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (dataGridTreatments.SelectedItems.Count > 0)
+            {
+                upTreatments.RemoveAt(dataGridPrescriptionUp.SelectedIndex);
+                dataGridTreatments.Items.Refresh();
+            }
+             */
+        }
+
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        {
+           // Content = new PrescriptionView();
+        }
+        #endregion
     }
 }
