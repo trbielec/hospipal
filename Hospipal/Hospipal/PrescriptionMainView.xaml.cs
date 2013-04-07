@@ -32,7 +32,9 @@ namespace Hospipal
         }
 
 
-
+        public PrescriptionMainView(int HealthCareNo)
+        {
+        }
 
         #region Event handlers
         /* Add button click event 
