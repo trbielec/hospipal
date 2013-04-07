@@ -45,21 +45,6 @@ namespace Hospipal
                 LoginBox.IsReadOnly = true;
                 PasswordBox.IsEnabled = true;
 
-                /*
-                if (Login.VerifyLogin(userName, userPassword))
-                {
-                    Content = new UserControl_MainTabView();
-                }
-                else if (userPassword == "123") 
-                {
-                    Content = new UserControl_MainTabView();   
-                }
-                else
-                {
-                    MessageBox.Show("Login credentials not valid!");
-                }
-                 * */
-
                 if (userPassword == "admin")
                 {
                     Content = new UserControl_MainTabView();
