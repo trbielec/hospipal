@@ -77,7 +77,6 @@
     </Compile>
     <Compile Include="Database Class\Bed.cs" />
     <Compile Include="Database Class\Login.cs" />
-    <Compile Include="Database Class\Login1.cs" />
     <Compile Include="Database Class\Prescription.cs" />
     <Compile Include="Database Class\Search.cs" />
     <Compile Include="Database Class\Employee.cs" />
@@ -101,6 +100,9 @@
     </Compile>
     <Compile Include="PatientTreatmentView.xaml.cs">
       <DependentUpon>PatientTreatmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrescriptionView.xaml.cs">
+      <DependentUpon>PrescriptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="UserControl_AddSchedule.xaml.cs">
@@ -164,6 +166,10 @@
     <Page Include="PatientTreatmentView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PrescriptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl_AddSchedule.xaml">
       <SubType>Designer</SubType>
