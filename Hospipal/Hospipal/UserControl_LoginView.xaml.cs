@@ -33,7 +33,7 @@ namespace Hospipal
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             string userName = "";
             string userPassword;
 
@@ -42,6 +42,8 @@ namespace Hospipal
                 
                 userName = LoginBox.Text;
                 userPassword = PasswordBox.Password;
+                
+                /*
                 if (Login.VerifyLogin(userName, userPassword))
                 {
                     Content = new UserControl_MainTabView();
@@ -54,14 +56,16 @@ namespace Hospipal
                 {
                     MessageBox.Show("Login credentials not valid!");
                 }
+                 * */
 
+                
             }
             else
             {
                 MessageBox.Show("One of the fields is empty, please verify.");
             }
-             */
-            Content = new UserControl_MainTabView();
+             
+            //Content = new UserControl_MainTabView();
         }
 
         private void ButtonReset_Click(object sender, RoutedEventArgs e)

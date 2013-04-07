@@ -32,7 +32,7 @@ namespace Hospipal.Database_Class
             return Database.Insert(login);
         }
 
-        public static bool VerifyLogin(string userName, string password)
+        public static int VerifyLogin(string userName, string password)
         {
             MySqlCommand login = new MySqlCommand();
             string SQL = "SELECT * FROM Login WHERE userName = @userName;";
@@ -51,9 +51,9 @@ namespace Hospipal.Database_Class
             if(ValidatePassword(password, hashedPassword, salt)) 
             {
                 int firstLogin = Convert.ToInt32(loginInfo[0][4]);
-                if (firstLogin == 1)
+                if (firstLogin != 0)
                 {
-                    ForcePasswordReset(userName, salt);
+                    return firstLogin;
                 }
 
                 int eid = Convert.ToInt32(loginInfo[0][3]);
@@ -68,14 +68,14 @@ namespace Hospipal.Database_Class
                     Properties.Settings.Default.Role = "Support Staff";
                 }
 
-                return true;
+                return firstLogin;
             }
-            return false;
+            return -1;
         }
 
         private static void ForcePasswordReset(string userName, byte[] salt)
         {
-
+          
         }
 
         #region Hashing Functions
