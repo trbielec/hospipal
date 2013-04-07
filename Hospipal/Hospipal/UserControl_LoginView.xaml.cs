@@ -48,7 +48,7 @@ namespace Hospipal
                 if (userPassword == "admin")
                 {
                     Content = new UserControl_MainTabView();
-                    Properties.Settings.Default.Role = "admin";
+                    Properties.Settings.Default.Role = "Admin";
                 }
                 else
                 {
