@@ -112,23 +112,26 @@ namespace Hospipal.Database_Class
 
                 foreach (object[] row in scheduleTable)
                 {
+                    DateTime currScheduleStart = Convert.ToDateTime(row[1]);
+                    DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
+
                     // Conflict if start times or end times the same
-                    if (_start_time == Convert.ToDateTime(row[1]) ||
-                         _end_time == Convert.ToDateTime(row[2]))
+                    if (_start_time == currScheduleStart ||
+                        _end_time == currScheduleEnd)
                         return false;
 
                     // New schedule starts before start time of existing schedule
-                    if (_start_time < Convert.ToDateTime(row[1]))
+                    if (_start_time < currScheduleStart)
                     {
                         // Conflict if existing schedule starts before end time of new schedule
-                        if (Convert.ToDateTime(row[1]) < _end_time)
+                        if (currScheduleStart < _end_time)
                             return false;
                     }
                     // Else new schedule starts after start time of existing schedule
                     else
                     {
                         //Conflict if new schedule starts before end time of existing schedule
-                        if (_start_time < Convert.ToDateTime(row[2]))
+                        if (_start_time < currScheduleEnd)
                             return false;
                     }
                 }
@@ -172,15 +175,8 @@ namespace Hospipal.Database_Class
                 newAppt.UniqueId = row[0].ToString();
                 newAppt.Start = Convert.ToDateTime(row[1]);
                 newAppt.End = Convert.ToDateTime(row[2]);
-                newAppt.Subject = row[3].ToString();
+                newAppt.Subject = "Employee:  " + row[3].ToString() + Environment.NewLine + "Ward: " + row[4].ToString();
                 newAppt.Location = row[4].ToString();
-                /*
-                newAppt.Body = "Start - " + newAppt.Start.ToString() + "\n" +
-                            "End - " + newAppt.End.ToString() + "\n" +
-                            "Ward - " + newAppt.Location.ToString();
-                */
-
-
                 allAppointments.Add(newAppt);               
             }
             return allAppointments;
@@ -200,11 +196,6 @@ namespace Hospipal.Database_Class
                     apt.End = Convert.ToDateTime(row[2]);
                     apt.Subject = row[3].ToString();
                     apt.Location = row[4].ToString();
-                    /*
-                    apt.Body = "Start - " + apt.Start.ToString() + "\n" +
-                                "End - " + apt.End.ToString() + "\n" +
-                                "Ward - " + apt.Location.ToString();
-                     */
                 }
             }
             return apt;
