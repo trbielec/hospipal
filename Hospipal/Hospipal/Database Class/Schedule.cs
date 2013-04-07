@@ -173,6 +173,7 @@ namespace Hospipal.Database_Class
             {
                 Appointment newAppt = new Appointment();
                 newAppt.UniqueId = row[0].ToString();
+                newAppt.Url = row[0].ToString();
                 newAppt.Start = Convert.ToDateTime(row[1]);
                 newAppt.End = Convert.ToDateTime(row[2]);
                 newAppt.Subject = "Employee:  " + row[3].ToString() + Environment.NewLine + "Ward: " + row[4].ToString();
@@ -192,6 +193,7 @@ namespace Hospipal.Database_Class
                 if (sid.Equals(row[0].ToString()))
                 {
                     apt.UniqueId = row[0].ToString();
+                    apt.Url = row[0].ToString();
                     apt.Start = Convert.ToDateTime(row[1]);
                     apt.End = Convert.ToDateTime(row[2]);
                     apt.Subject = row[3].ToString();
