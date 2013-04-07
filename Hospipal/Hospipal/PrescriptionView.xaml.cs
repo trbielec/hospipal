@@ -90,7 +90,7 @@ namespace Hospipal
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-            Content = new PatientTreatmentView(patient.HealthCareNo);
+            Content = new PrescriptionMainView(patient.HealthCareNo);
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
@@ -104,11 +104,11 @@ namespace Hospipal
             }
             else if ((Caller=="New" && prescription.Insert()))
             {
-                Content = new PrescriptionMainView();
+                Content = new PrescriptionMainView(patient.HealthCareNo);
             }
             else if (prescription.Update())
             {
-                Content = new PrescriptionMainView();
+                Content = new PrescriptionMainView(patient.HealthCareNo);
             }
             else
             {
