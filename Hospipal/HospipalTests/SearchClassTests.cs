@@ -2,12 +2,19 @@
 using NUnit.Framework;
 using Hospipal.Database_Class;
 using System.Collections.Generic;
+using Hospipal;
 
 namespace HospipalTests
 {
     [TestFixture]
     public class SearchClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+        }
+
         #region PatientSearchTests
         [TestCase]
         public void TestSearchPatientWithValidQueryByExactFname()
@@ -495,8 +502,6 @@ namespace HospipalTests
 
             Search search = new Search("Patient");
             search.UseInputs(db, s);
-
-            Console.WriteLine(search.GetBuiltQuery());
 
             List<Patient> p = Search.SearchPatient(search.GetBuiltQuery());
             Assert.True(p.Count >= 2);

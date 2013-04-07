@@ -203,6 +203,9 @@ namespace Hospipal
          */
         public bool TestConnection()
         {
+            if (database != "ismacaul_HospiPalTestDB")
+                Console.WriteLine(database);
+
             if (OpenConnection())
             {
                 CloseConnection();

@@ -8,9 +8,16 @@ using Hospipal;
 
 namespace HospipalTests
 {
+
     [TestFixture]
     public class ScheduleClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+        }
+
         [TestCase]
         public void TestScheduleInsert()
         {

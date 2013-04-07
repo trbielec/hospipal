@@ -9,6 +9,13 @@ namespace HospipalTests
     [TestFixture]
     public class TreatmentClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+            Console.WriteLine("Treatment Tests!");
+        }
+
         [TestCase]
         public void TestTreatmentSelect()
         {
