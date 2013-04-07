@@ -76,27 +76,29 @@ namespace Hospipal
             if (e.DialogViewModel is AppointmentDialogViewModel)
             {
                 e.Cancel = true;
-
-                if (scheduleView.SelectedSlot != null)
+                if (Properties.Settings.Default.Role != "Support Staff" && Properties.Settings.Default.Role != "Employee")
                 {
-                    Slot selectedSlot = scheduleView.SelectedSlot;
-                    UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
-                    addSchd.ShowDialog();
-                    Console.WriteLine("bazinga!!");
-                    Console.WriteLine("bazinga!!");
-                    Console.WriteLine("bazinga!!");
-                }
+                    if (scheduleView.SelectedSlot != null)
+                    {
+                        Slot selectedSlot = scheduleView.SelectedSlot;
+                        UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
+                        addSchd.ShowDialog();
+                        Console.WriteLine("bazinga!!");
+                        Console.WriteLine("bazinga!!");
+                        Console.WriteLine("bazinga!!");
+                    }
 
-                else if (scheduleView.SelectedAppointment != null)
-                {
-                    IOccurrence sel = scheduleView.SelectedAppointment;
-                    Appointment selectedAppt = sel as Appointment;
-                    UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedAppt, this);
-                    addSchd.ShowDialog();
+                    else if (scheduleView.SelectedAppointment != null)
+                    {
+                        IOccurrence sel = scheduleView.SelectedAppointment;
+                        Appointment selectedAppt = sel as Appointment;
+                        UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedAppt, this);
+                        addSchd.ShowDialog();
 
-                    Console.WriteLine("WHAT IS HAPPENIN!!");
-                    Console.WriteLine("WHAT IS HAPPENIN!!");
-                    Console.WriteLine("WHAT IS HAPPENIN!!");
+                        Console.WriteLine("WHAT IS HAPPENIN!!");
+                        Console.WriteLine("WHAT IS HAPPENIN!!");
+                        Console.WriteLine("WHAT IS HAPPENIN!!");
+                    }
                 }
             }
 
