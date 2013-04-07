@@ -87,6 +87,7 @@
                         <DataGridTextColumn Header="Prescription Name" Binding="{Binding Path=Name}" Width="1*"/>
                         <DataGridTextColumn Header="Scheduled Time" Binding="{Binding Path=Time}" Width="1*"/>
                         <DataGridTextColumn Header="Issuing Doctor" Binding="{Binding Path=Doctor}" Width="1*"/>
+                       
 
 
                     </DataGrid.Columns>
