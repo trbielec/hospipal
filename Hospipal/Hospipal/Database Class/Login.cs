@@ -9,8 +9,11 @@ using System.Security.Cryptography;
 
 namespace Hospipal.Database_Class
 {
-    class Login
+    public class Login
     {
+        public const int SUCCESS = 0;
+        public const int FAILURE = -1;
+        public const int RESET = 1;
 
         public static bool CreateLogin(int eid, string fname, string lname)
         {
@@ -42,7 +45,7 @@ namespace Hospipal.Database_Class
             List<object[]> loginInfo = Database.Select(login);
             if (loginInfo == null || loginInfo.Count() != 1 || loginInfo[0][0].ToString() != userName)
             {
-                return false;
+                return FAILURE;
             }
 
             byte[] hashedPassword = (byte[])loginInfo[0][1];
@@ -53,7 +56,8 @@ namespace Hospipal.Database_Class
                 int firstLogin = Convert.ToInt32(loginInfo[0][4]);
                 if (firstLogin != 0)
                 {
-                    return firstLogin;
+                    ForcePasswordReset(userName, password, salt);
+                    return RESET;
                 }
 
                 int eid = Convert.ToInt32(loginInfo[0][3]);
@@ -61,26 +65,54 @@ namespace Hospipal.Database_Class
                 List<object[]> employee = Database.Select(SQL);
                 if (employee != null && employee.Count != 0)
                 {
-                    Properties.Settings.Default.Role = employee[0][0].ToString();
+                    string employeeType = employee[0][0].ToString();
+                    if (employeeType == "Doctor" || employeeType == "Nurse")
+                    {
+                        Properties.Settings.Default.Role = "Employee";
+                    }
+                    else if (employeeType == "Admin")
+                    {
+                        Properties.Settings.Default.Role = "Admin";
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.Role = "Support Staff";
+                    }
                 }
                 else
                 {
                     Properties.Settings.Default.Role = "Support Staff";
                 }
 
-                return firstLogin;
+                return SUCCESS;
             }
-            return -1;
+            return FAILURE;
         }
 
-        private static void ForcePasswordReset(string userName, byte[] salt)
+        private static bool ForcePasswordReset(string userName, string password, byte[] salt)
         {
-          
+            PasswordReset window = new PasswordReset(password);
+            window.ShowDialog();
+
+            if (window.Status)
+            {
+                byte[] hash = CreateHash(window.Password, salt);
+
+                MySqlCommand update = new MySqlCommand();
+                string SQL = "UPDATE Login SET hashedPassword = @newHash, firstLogin = 0 WHERE userName = @userName;";
+                update.CommandText = SQL;
+                update.Parameters.AddWithValue("@newHash", hash);
+                update.Parameters.AddWithValue("@userName", userName);
+
+                return Database.Update(update);
+            }
+
+            return false;            
         }
 
         #region Hashing Functions
         /// Salted password hashing with PBKDF2-SHA1.
-        /// Adapted for our needs from: www: http://crackstation.net/hashing-security.htm
+        /// Adapted for our needs from: http://crackstation.net/hashing-security.htm
         private const int SALT_BYTES = 24;
         private const int HASH_BYTES = 24;
         private const int PBKDF2_ITERATIONS = 1000;

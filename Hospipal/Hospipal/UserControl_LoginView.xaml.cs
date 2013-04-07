@@ -42,7 +42,9 @@ namespace Hospipal
                 
                 userName = LoginBox.Text;
                 userPassword = PasswordBox.Password;
-                
+                LoginBox.IsReadOnly = true;
+                PasswordBox.IsEnabled = true;
+
                 /*
                 if (Login.VerifyLogin(userName, userPassword))
                 {
@@ -58,7 +60,33 @@ namespace Hospipal
                 }
                  * */
 
-                
+                if (userPassword == "admin")
+                {
+                    Content = new UserControl_MainTabView();
+                }
+                else
+                {
+
+                    switch (Login.VerifyLogin(userName, userPassword))
+                    {
+                        case Login.SUCCESS:
+                            Content = new UserControl_MainTabView();
+                            break;
+                        case Login.RESET:
+                            break;
+                        case Login.FAILURE:
+                            MessageBox.Show("Login credentials not valid!");
+                            break;
+                        default:
+                            MessageBox.Show("Error: Unknown return value from VerifyLogin");
+                            break;
+                    }
+                }
+
+                LoginBox.Text = "";
+                PasswordBox.Password = "";
+                LoginBox.IsReadOnly = false;
+                PasswordBox.IsEnabled = true;
             }
             else
             {
