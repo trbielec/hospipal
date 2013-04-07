@@ -4,6 +4,7 @@ using NUnit.Framework;
 using MySql.Data.MySqlClient;
 using Hospipal;
 
+
 namespace HospipalTests
 {
     [TestFixture]
@@ -26,7 +27,7 @@ namespace HospipalTests
         [TestCase]
         public void TestTestConnectionMethodWithInvalidServer()
         {
-            wrapper = new MySQLWrapper("", "ismacaul_HospiPal", "ismacaul_seng403", "seng403");
+            wrapper = new MySQLWrapper("", "ismacaul_HospiPalTestDB", "ismacaul_seng403", "seng403");
             Assert.False(wrapper.TestConnection());
         }
 
@@ -40,21 +41,21 @@ namespace HospipalTests
         [TestCase]
         public void TestTestConnectionMethidWithInvalidUserID() 
         {
-            wrapper = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPal", "seng403", "seng403");
+            wrapper = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPalTestDB", "seng403", "seng403");
             Assert.False(wrapper.TestConnection());
         }
 
         [TestCase]
         public void TestTestConnectionMethidInvalidPassword() 
         {
-            wrapper = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPal", "ismacaul_seng403", "seng400");
+            wrapper = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPalTestDB", "ismacaul_seng403", "seng400");
             Assert.False(wrapper.TestConnection());
         }
 
         [TestCase]
         public void TestTestConnectionMethidWithValidValues() 
         {
-            wrapper = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPal", "ismacaul_seng403", "seng403");
+            wrapper = new MySQLWrapper("s403g01.cpsc.ucalgary.ca", "ismacaul_HospiPalTestDB", "ismacaul_seng403", "seng403");
             Assert.True(wrapper.TestConnection());
         }
 

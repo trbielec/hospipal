@@ -46,7 +46,7 @@
                 <DataGridTextColumn Header="Ward" Binding="{Binding Path=WardName}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Column="0" Grid.Row="2" Name="Ward_AddButton" Click="WardAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60">
+        <Button Grid.Column="0" Grid.Row="2" Name="Ward_AddButton" Click="WardAdd" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Margin="10,0,0,0" Width="60" Height="60" Style="{StaticResource CollapsedWhenNotAdmin}">
             <StackPanel>
                 <Image Source="./Resources/Button Images/add.png"/>
             </StackPanel>

@@ -89,7 +89,7 @@
                 <RowDefinition Height="90*"/>
                 <RowDefinition Height="47*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="Employees_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="2">
+            <Button x:Name="Employees_AddButton" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Width="60" Height="60" Grid.Row="2" Style="{StaticResource CollapsedWhenEmployee}">
                 <StackPanel>
                     <Image Source="./Resources/Button Images/add.png"/>
                 </StackPanel>

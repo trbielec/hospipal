@@ -68,8 +68,12 @@ namespace Hospipal.Database_Class
             if(text != null && text.Count > 0 )
             _Text = Convert.ToString(text.ElementAt(0).ElementAt(1)).ToUpper();
             _Then = (DateTime)text.ElementAt(0).ElementAt(2);
-            _TheirRole = Convert.ToString(text.ElementAt(0).ElementAt(3));
-
+            
+            string check_role = Convert.ToString(text.ElementAt(0).ElementAt(3));
+            if (check_role == "")
+                _TheirRole = "UNKNOWN";
+            else
+                _TheirRole = check_role;
             //MessageBoxResult result = MessageBox.Show("Retrieved value: " + _Text);
         }
 

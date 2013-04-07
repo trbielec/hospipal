@@ -36,7 +36,7 @@ namespace Hospipal.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Employee")]
         public string Role {
             get {
                 return ((string)(this["Role"]));

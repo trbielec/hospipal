@@ -10,6 +10,12 @@ namespace HospipalTests
     [TestFixture]
     class PrescriptionClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+        }
+
         [TestCase]
         public void TestPrescriptionSelect()
         {

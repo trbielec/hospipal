@@ -1,13 +1,21 @@
 ﻿using System;
 using NUnit.Framework;
 using Hospipal.Database_Class;
+using Hospipal;
 using System.Collections.Generic;
 
 namespace HospipalTests
 {
+
     [TestFixture]
     public class BedClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+        }
+
         [TestCase]
         public void TestBedSelect()
         {

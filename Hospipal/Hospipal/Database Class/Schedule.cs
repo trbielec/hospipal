@@ -117,47 +117,19 @@ namespace Hospipal.Database_Class
                     DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
                     int currScheduleEmployee = Convert.ToInt32(row[3]);
 
-                    if (_start_time != currScheduleStart && _end_time != currScheduleEnd)
+                   
+                    if (_end_time <= currScheduleStart)
                     {
-
-                    }
-
-                    if (currScheduleEmployee == _employee)
-                        return false;
-
-
-
-
-
-
-
-
-
-
-
-                    // No conflict for schedules of different employees
-                    if (_employee != currScheduleEmployee)
                         return true;
-
-                    if (_start_time == currScheduleStart ||
-                        _end_time == currScheduleEnd && currScheduleID != _sid)
-                        return false;
-
-                    // New schedule starts before start time of existing schedule
-                    if (_start_time <= currScheduleStart && currScheduleID != _sid)
-                    {
-                        
-                        if (_end_time < currScheduleEnd )
-                            return false;
                     }
-                    // Else new schedule starts after start time of existing schedule
+                    else if (_start_time >= currScheduleEnd)
+                    {
+                        return true;
+                    }
                     else
-                    {
-             
-                        if (currScheduleEnd < _end_time && currScheduleID != _sid)
-                            return false;
-                    }
+                        return false;
                 }
+
             return true;
         }
 
@@ -209,23 +181,27 @@ namespace Hospipal.Database_Class
                         {
                             List<object[]> thirdList = Database.Select("SELECT * from Schedule WHERE employee = " + _employee);
 
-                            if (thirdList != null)          //conflicts for differnt employee
+                            if (thirdList != null)          //conflicts for different employee
                             {
                                 foreach (object[] rowx in thirdList)
                                 {
+                                    int otherScheduleID = Convert.ToInt32(row[0]);
                                     DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
                                     DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
-
-                                    if (_end_time <= otherScheduleStart)
+                                    if (otherScheduleID != _sid)
                                     {
-                                        return true;
+                                        if (_end_time <= otherScheduleStart)
+                                        {
+                                            return true;
+                                        }
+                                        else if (_start_time >= otherScheduleEnd)
+                                        {
+                                            return true;
+                                        }
+                                        else
+                                            return false;
                                     }
-                                    else if (_start_time >= otherScheduleEnd)
-                                    {
-                                        return true;
-                                    }
-                                    else
-                                        return false;
+                                    
                                 }
                             }
                         }
@@ -233,12 +209,6 @@ namespace Hospipal.Database_Class
                 }
             return true;
         }
-
-
-
-
-
-
 
         public bool Insert()
         {
@@ -278,14 +248,14 @@ namespace Hospipal.Database_Class
                 newAppt.Url = row[0].ToString();
                 newAppt.Start = Convert.ToDateTime(row[1]);
                 newAppt.End = Convert.ToDateTime(row[2]);
-                newAppt.Subject = "Employee:  " + row[3].ToString() + Environment.NewLine + "Ward: " + row[4].ToString();
+                newAppt.Subject = "Employee:  " + GetFullName(row[3].ToString()) + Environment.NewLine + "Ward: " + row[4].ToString();
                 newAppt.Location = row[4].ToString();
                 allAppointments.Add(newAppt);               
             }
             return allAppointments;
         }
 
-        public static Appointment Select(string sid)
+        /*public static Appointment Select(string sid)
         {
             List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
             Appointment apt = new Appointment();
@@ -303,14 +273,22 @@ namespace Hospipal.Database_Class
                 }
             }
             return apt;
-        }
+        }*/
 
         public static int GenerateNextEid()
         {
             List<object[]> results = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'Schedule' AND table_schema = DATABASE();");
             return Convert.ToInt32(results[0][0]);
         }
-        
+
+        public static string GetFullName(string empID)
+        {
+            List<object[]> nameResult = Database.Select("SELECT * FROM Employee WHERE eid = " + empID);
+            if (nameResult != null)
+                return (nameResult[0][1].ToString() + " " + nameResult[0][2].ToString());
+            else
+                return null;
+        }
         #endregion
     }
 }

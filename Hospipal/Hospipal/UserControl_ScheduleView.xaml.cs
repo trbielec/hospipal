@@ -82,14 +82,21 @@ namespace Hospipal
                     Slot selectedSlot = scheduleView.SelectedSlot;
                     UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
                     addSchd.ShowDialog();
+                    Console.WriteLine("bazinga!!");
+                    Console.WriteLine("bazinga!!");
+                    Console.WriteLine("bazinga!!");
                 }
 
-                if (scheduleView.SelectedAppointment != null)
+                else if (scheduleView.SelectedAppointment != null)
                 {
                     IOccurrence sel = scheduleView.SelectedAppointment;
                     Appointment selectedAppt = sel as Appointment;
                     UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedAppt, this);
                     addSchd.ShowDialog();
+
+                    Console.WriteLine("WHAT IS HAPPENIN!!");
+                    Console.WriteLine("WHAT IS HAPPENIN!!");
+                    Console.WriteLine("WHAT IS HAPPENIN!!");
                 }
             }
 

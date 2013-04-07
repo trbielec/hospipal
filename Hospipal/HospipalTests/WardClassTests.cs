@@ -2,12 +2,19 @@
 using NUnit.Framework;
 using Hospipal.Database_Class;
 using System.Collections.Generic;
+using Hospipal;
 
 namespace HospipalTests
 {
     [TestFixture]
     public class WardClassTests
     {
+        [SetUp]
+        public void SetDB()
+        {
+            Database.useTestDB();
+        }
+
         [TestCase]
         public void TestWardSelect()
         {

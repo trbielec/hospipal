@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
+using Hospipal.Database_Class;
 
 namespace Hospipal
 {
@@ -20,21 +13,33 @@ namespace Hospipal
     /// </summary>
     public partial class PrescriptionMainView : UserControl
     {
-        /*
-        private static readonly DependencyProperty PrescriptionProperty =
-                         DependencyProperty.Register("treatment", typeof(Treatment),
-                                                     typeof(PatientTreatmentView));
-        */
+        List<Prescription> prescripHist;
+        List<Prescription> prescripUp;
+        List<Prescription> prescripCurrent;
 
-        public PrescriptionMainView()
+        Patient patient;
+        
+        
+        private static readonly DependencyProperty PrescriptionProperty =
+                         DependencyProperty.Register("prescription", typeof(Prescription),
+                                                     typeof(PrescriptionMainView));
+        
+
+        public PrescriptionMainView(int HCNO)
         {
             InitializeComponent();
+            patient = new Patient(HCNO);
+            lblPName.Content = patient.LastName + ", " + patient.FirstName;
+            prescripHist = Prescription.GetPrescriptions(patient.PatientID, "History");
+            prescripUp = Prescription.GetPrescriptions(patient.PatientID, "Upcoming");
+            prescripCurrent = Prescription.GetPrescriptions(patient.PatientID, "Current");
+
+            //Data binding settings
+            dataGridPrescriptionHist.DataContext = prescripHist;
+            dataGridPrescriptionUp.DataContext = prescripUp;
+            dataGridPrescriptionCurrent.DataContext = prescripCurrent;
         }
 
-
-        public PrescriptionMainView(int HealthCareNo)
-        {
-        }
 
         #region Event handlers
         /* Add button click event 
