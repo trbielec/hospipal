@@ -104,11 +104,11 @@ namespace Hospipal
             }
             else if ((Caller=="New" && prescription.Insert()))
             {
-                Content = new PrescriptionMainView(patient.HealthCareNo);
+                Content = new PrescriptionMainView();
             }
             else if (prescription.Update())
             {
-                Content = new PrescriptionMainView(patient.HealthCareNo);
+                Content = new PrescriptionMainView();
             }
             else
             {
