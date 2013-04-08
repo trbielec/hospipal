@@ -244,37 +244,17 @@ namespace Hospipal.Database_Class
             foreach (object[] row in scheduleTable)
             {
                 Appointment newAppt = new Appointment();
-                newAppt.UniqueId = row[0].ToString();
                 newAppt.Url = row[0].ToString();
                 newAppt.Start = Convert.ToDateTime(row[1]);
                 newAppt.End = Convert.ToDateTime(row[2]);
+                newAppt.Body = row[3].ToString();
                 newAppt.Subject = "Employee:  " + GetFullName(row[3].ToString()) + Environment.NewLine + "Ward: " + row[4].ToString();
                 newAppt.Location = row[4].ToString();
-                allAppointments.Add(newAppt);               
+                allAppointments.Add(newAppt);                  
             }
             return allAppointments;
         }
-
-        /*public static Appointment Select(string sid)
-        {
-            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
-            Appointment apt = new Appointment();
-            foreach (object[] row in scheduleTable)
-            {
-                
-                if (sid.Equals(row[0].ToString()))
-                {
-                    apt.UniqueId = row[0].ToString();
-                    apt.Url = row[0].ToString();
-                    apt.Start = Convert.ToDateTime(row[1]);
-                    apt.End = Convert.ToDateTime(row[2]);
-                    apt.Subject = row[3].ToString();
-                    apt.Location = row[4].ToString();
-                }
-            }
-            return apt;
-        }*/
-
+        
         public static int GenerateNextEid()
         {
             List<object[]> results = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'Schedule' AND table_schema = DATABASE();");

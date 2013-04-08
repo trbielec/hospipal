@@ -46,8 +46,6 @@ namespace Hospipal
             InitializeComponent();
             sidLabel.Content = Schedule.GenerateNextEid();
             schedule = new Schedule();
-            
-            Console.WriteLine(selectedSlot.ToString());
 
             startDateTimePicker.SelectedValue = selectedSlot.Start;
             endDateTimePicker.SelectedValue = selectedSlot.End;
@@ -79,7 +77,7 @@ namespace Hospipal
             startDateTimePicker.SelectedValue = selectedAppt.Start;
             endDateTimePicker.SelectedValue = selectedAppt.End;
 
-            EmpID.Text = selectedAppt.Subject;
+            EmpID.Text = selectedAppt.Body;
 
             wards = Ward.GetWards();
             WardName.ItemsSource = wards;
@@ -101,7 +99,7 @@ namespace Hospipal
 
             foreach (Employee i in employee)
             {
-                if (selectedAppt.Subject.CompareTo(i.Eid.ToString()) == 0)
+                if (selectedAppt.Body.CompareTo(i.Eid.ToString()) == 0)
                 {
                     EmpID.SelectedItem = i.Fname;
                 }

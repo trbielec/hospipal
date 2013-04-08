@@ -62,7 +62,7 @@ namespace Hospipal
             IOccurrence selectedAppt = scheduleView.SelectedAppointment;
             Appointment sel = selectedAppt as Appointment;
             Schedule sch = new Schedule();
-            sch.Sid = Convert.ToInt32(sel.UniqueId);
+            sch.Sid = Convert.ToInt32(sel.Url);
             sch.Delete();
             // Refresh view
             ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
@@ -83,9 +83,6 @@ namespace Hospipal
                         Slot selectedSlot = scheduleView.SelectedSlot;
                         UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedSlot, this);
                         addSchd.ShowDialog();
-                        Console.WriteLine("bazinga!!");
-                        Console.WriteLine("bazinga!!");
-                        Console.WriteLine("bazinga!!");
                     }
 
                     else if (scheduleView.SelectedAppointment != null)
@@ -94,29 +91,14 @@ namespace Hospipal
                         Appointment selectedAppt = sel as Appointment;
                         UserControl_AddSchedule addSchd = new UserControl_AddSchedule(selectedAppt, this);
                         addSchd.ShowDialog();
-
-                        Console.WriteLine("WHAT IS HAPPENIN!!");
-                        Console.WriteLine("WHAT IS HAPPENIN!!");
-                        Console.WriteLine("WHAT IS HAPPENIN!!");
                     }
                 }
             }
 
             if (e.DialogViewModel is ConfirmDialogViewModel)
             {
-                e.DefaultDialogResult = true;
+                e.DefaultDialogResult = false;
                 e.Cancel = true;
-                /*
-                IOccurrence selectedAppt = scheduleView.SelectedAppointment;
-                Appointment sel = selectedAppt as Appointment;
-                Schedule sch = new Schedule();
-                sch.Sid = Convert.ToInt32(sel.UniqueId);
-                sch.Delete();
-                // Refresh view
-                ObservableCollection<Appointment> appointments = new ObservableCollection<Appointment>();
-                appointments = Schedule.Select();
-                scheduleView.AppointmentsSource = appointments;
-                */
             }
 
             var dialogViewModel = e.DialogViewModel as RecurrenceChoiceDialogViewModel;
