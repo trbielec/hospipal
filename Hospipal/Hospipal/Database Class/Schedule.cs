@@ -107,7 +107,7 @@ namespace Hospipal.Database_Class
 
         public bool CheckforInsertConflicts()
         {
-            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
+            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule WHERE employee = " + _employee);
             if (scheduleTable != null)
 
                 foreach (object[] row in scheduleTable)
@@ -117,14 +117,14 @@ namespace Hospipal.Database_Class
                     DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
                     int currScheduleEmployee = Convert.ToInt32(row[3]);
 
-                   
+
                     if (_end_time <= currScheduleStart)
                     {
-                        return true;
+                        continue;
                     }
                     else if (_start_time >= currScheduleEnd)
                     {
-                        return true;
+                        continue;
                     }
                     else
                         return false;
@@ -137,7 +137,7 @@ namespace Hospipal.Database_Class
 
         public bool CheckforUpdateConflicts()
         {
-            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule");
+            List<object[]> scheduleTable = Database.Select("SELECT * from Schedule WHERE employee = " + _employee);
             if (scheduleTable != null)
 
                 foreach (object[] row in scheduleTable)
@@ -147,66 +147,23 @@ namespace Hospipal.Database_Class
                     DateTime currScheduleEnd = Convert.ToDateTime(row[2]);
                     int currScheduleEmployee = Convert.ToInt32(row[3]);
 
-                    if(currScheduleID == _sid)
+                    if (currScheduleID != _sid)
                     {
-                        if (currScheduleEmployee == _employee)
+                        if (_end_time <= currScheduleStart)
                         {
-                            List<object[]> thirdList = Database.Select("SELECT * from Schedule WHERE employee = " +_employee);
-
-                            if (thirdList != null)          //conflicts for current employee
-                            {
-                                foreach (object[] rowx in thirdList)
-                                {
-                                    int otherScheduleID = Convert.ToInt32(row[0]);
-                                    DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
-                                    DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
-
-                                    if (otherScheduleID != _sid)
-                                    {
-                                        if (_end_time <= otherScheduleStart)
-                                        {
-                                            return true;
-                                        }
-                                        else if (_start_time >= otherScheduleEnd)
-                                        {
-                                            return true;
-                                        }
-                                        else
-                                            return false;
-                                    }
-                                }
-                            }
+                            continue;
                         }
-                        else if (currScheduleEmployee != _employee)
+                        else if (_start_time >= currScheduleEnd)
                         {
-                            List<object[]> thirdList = Database.Select("SELECT * from Schedule WHERE employee = " + _employee);
-
-                            if (thirdList != null)          //conflicts for different employee
-                            {
-                                foreach (object[] rowx in thirdList)
-                                {
-                                    int otherScheduleID = Convert.ToInt32(row[0]);
-                                    DateTime otherScheduleStart = Convert.ToDateTime(row[1]);
-                                    DateTime otherScheduleEnd = Convert.ToDateTime(row[2]);
-                                    if (otherScheduleID != _sid)
-                                    {
-                                        if (_end_time <= otherScheduleStart)
-                                        {
-                                            return true;
-                                        }
-                                        else if (_start_time >= otherScheduleEnd)
-                                        {
-                                            return true;
-                                        }
-                                        else
-                                            return false;
-                                    }
-                                    
-                                }
-                            }
+                            continue;
                         }
+                        else
+                            return false;
+
                     }
+                   
                 }
+
             return true;
         }
 
