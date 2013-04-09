@@ -44,7 +44,7 @@ namespace Hospipal
         public UserControl_AddSchedule(Slot selectedSlot, UserControl_ScheduleView parentUC)
         {
             InitializeComponent();
-            sidLabel.Content = Schedule.GenerateNextEid();
+            sidLabel.Content = Schedule.GenerateNextSid();
             schedule = new Schedule();
 
             startDateTimePicker.SelectedValue = selectedSlot.Start;

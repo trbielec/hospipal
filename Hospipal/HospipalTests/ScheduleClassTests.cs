@@ -21,7 +21,7 @@ namespace HospipalTests
         [TestCase]
         public void TestScheduleInsert()
         {
-            Schedule s = new Schedule(Schedule.GenerateNextEid(), new DateTime(), new DateTime(), 1, "STW");
+            Schedule s = new Schedule(Schedule.GenerateNextSid(), new DateTime(), new DateTime(), 1, "STW");
             Assert.True(s.Insert());
 
             s.Delete();
@@ -30,7 +30,7 @@ namespace HospipalTests
         [TestCase]
         public void TestScheduleUpdate()
         {
-            Schedule s = new Schedule(Schedule.GenerateNextEid(), new DateTime(), new DateTime(), 1, "STW");
+            Schedule s = new Schedule(Schedule.GenerateNextSid(), new DateTime(), new DateTime(), 1, "STW");
             s.Insert();
 
             s.Start_time = new DateTime(2014, 10, 2);
@@ -42,7 +42,7 @@ namespace HospipalTests
         [TestCase]
         public void TestScheduleDelete()
         {
-            Schedule s = new Schedule(Schedule.GenerateNextEid(), new DateTime(), new DateTime(), 1, "STW");
+            Schedule s = new Schedule(Schedule.GenerateNextSid(), new DateTime(), new DateTime(), 1, "STW");
             s.Insert();
 
             Assert.True(s.Delete());
@@ -51,7 +51,7 @@ namespace HospipalTests
         [TestCase]
         public void TestScheduleSelectForAllAppointments()
         {
-            Schedule s = new Schedule(Schedule.GenerateNextEid(), new DateTime(), new DateTime(), 1, "STW");
+            Schedule s = new Schedule(Schedule.GenerateNextSid(), new DateTime(), new DateTime(), 1, "STW");
             s.Insert();
 
             ObservableCollection<Appointment> appts = Schedule.Select();
@@ -64,31 +64,55 @@ namespace HospipalTests
         [TestCase]
         public void TestScheduleCheckforInsertConflicts()
         {
-            Schedule s1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 11, 0, 0), new DateTime(2013, 4, 1, 12, 30, 0), 1, "A");
+            Schedule s1 = new Schedule(Schedule.GenerateNextSid(), new DateTime(2013, 4, 1, 11, 0, 0), new DateTime(2013, 4, 1, 12, 30, 0), 1, "A");
             s1.Insert();
 
-            Schedule overlapAfterS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 12, 0, 0), new DateTime(2013, 4, 1, 13, 0, 0), 2, "B");
+            Schedule overlapAfterS1 = new Schedule(Schedule.GenerateNextSid(), new DateTime(2013, 4, 1, 12, 0, 0), new DateTime(2013, 4, 1, 13, 0, 0), 2, "B");
             Assert.False(overlapAfterS1.CheckforInsertConflicts());
 
-            Schedule overlapBeforeS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 10, 0, 0), new DateTime(2013, 4, 1, 12, 0, 0), 2, "B");
+            Schedule overlapBeforeS1 = new Schedule(Schedule.GenerateNextSid(), new DateTime(2013, 4, 1, 10, 0, 0), new DateTime(2013, 4, 1, 12, 0, 0), 2, "B");
             Assert.False(overlapBeforeS1.CheckforInsertConflicts());
 
-            Schedule insideS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 11, 30, 1), new DateTime(2013, 4, 1, 12, 0, 0), 2, "B");
+            Schedule insideS1 = new Schedule(Schedule.GenerateNextSid(), new DateTime(2013, 4, 1, 11, 30, 1), new DateTime(2013, 4, 1, 12, 0, 0), 2, "B");
             Assert.False(insideS1.CheckforInsertConflicts());
 
-            Schedule containsS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 10, 0, 0), new DateTime(2013, 4, 1, 13, 0, 0), 2, "B");
+            Schedule containsS1 = new Schedule(Schedule.GenerateNextSid(), new DateTime(2013, 4, 1, 10, 0, 0), new DateTime(2013, 4, 1, 13, 0, 0), 2, "B");
             Assert.False(containsS1.CheckforInsertConflicts());
 
-            Schedule noS1Overlap = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 13, 0, 0), new DateTime(2013, 4, 1, 14, 0, 0), 2, "B");
+            Schedule noS1Overlap = new Schedule(Schedule.GenerateNextSid(), new DateTime(2013, 4, 1, 13, 0, 0), new DateTime(2013, 4, 1, 14, 0, 0), 2, "B");
             Assert.True(noS1Overlap.CheckforInsertConflicts());
+
+            s1.Delete();
         }
+
+        [TestCase]
+        public void TestScheduleCheckforUpdateConflicts()
+        {
+            int nextId = Schedule.GenerateNextSid();
+
+            Schedule s1 = new Schedule(nextId, new DateTime(2013, 4, 1, 11, 0, 0), new DateTime(2013, 4, 1, 12, 30, 0), 1, "A");
+            s1.Insert();
+            Schedule s2 = new Schedule(Schedule.GenerateNextSid(), new DateTime(2013, 4, 1, 11, 0, 0), new DateTime(2013, 4, 1, 12, 30, 0), 2, "B"); 
+            s2.Insert();
+
+            s1.Start_time = new DateTime(2013, 4, 1, 12, 0, 0);
+            s1.End_time = new DateTime(2013, 4, 1, 13, 0, 0);
+            Assert.True(s1.CheckforUpdateConflicts());
+
+            s1.Employee = 2;
+            Assert.False(s1.CheckforUpdateConflicts());
+
+            s1.Delete();
+            s2.Delete();
+        }
+
 
         [TestCase]
         public void TestScheduleGenerateNextSID()
         {
             List<object[]> obj = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'Schedule'AND table_schema = DATABASE();");
             int next = Convert.ToInt32(obj[0][0]);
-            Assert.True(Schedule.GenerateNextEid() == next);
+            Assert.True(Schedule.GenerateNextSid() == next);
         }
 
         #region Get/Set Tests

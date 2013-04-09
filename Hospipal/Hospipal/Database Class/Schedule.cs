@@ -255,7 +255,7 @@ namespace Hospipal.Database_Class
             return allAppointments;
         }
         
-        public static int GenerateNextEid()
+        public static int GenerateNextSid()
         {
             List<object[]> results = Database.Select("SELECT Auto_increment FROM information_schema.tables WHERE table_name= 'Schedule' AND table_schema = DATABASE();");
             return Convert.ToInt32(results[0][0]);
