@@ -87,7 +87,8 @@ namespace Hospipal
 
         private void Employee_DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (Employee_DataGrid.SelectedItems.Count > 0)
+
+            if (Employee_DataGrid.SelectedItems.Count > 0 && Properties.Settings.Default.Role != "Employee")
                 Content = new EmployeeInformation(((Employee)Employee_DataGrid.SelectedItem));
         }
 
