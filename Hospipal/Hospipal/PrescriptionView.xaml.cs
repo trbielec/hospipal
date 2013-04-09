@@ -54,6 +54,8 @@ namespace Hospipal
             this.patient = new Patient(healthCareNo);
             this.prescription = new Prescription();
             prescription.PatientID = patient.PatientID;
+            prescription.StartDate = new DateTime();
+            prescription.EndDate = new DateTime();
             populatePreBoxFields();
         }
 
@@ -102,13 +104,14 @@ namespace Hospipal
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             buttonSave.Focus(); //This is to lose focus on the last text field as data binding will not grab the last piece of data because textchanged is not fired off until focus is lost
+            prescription.Status = "Upcoming";
             if (boxDoctors.SelectedIndex > 0)
                 prescription.Doctor = employeeIDs[boxDoctors.SelectedIndex];
             if (DateTime.Compare(dpStartDate.SelectedDate.Value,dpEndDate.SelectedDate.Value) > 0)
             {
                 MessageBox.Show("The start date must occur before the end date");
             }
-            else if ((Caller=="New" && prescription.Insert()))
+            else if ((Caller == "New" && prescription.Insert()))
             {
                 Content = new PrescriptionMainView(patient.HealthCareNo);
             }
