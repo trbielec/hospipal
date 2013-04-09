@@ -13,40 +13,54 @@ namespace Hospipal
     /// </summary>
     public partial class PrescriptionMainView : UserControl
     {
+        #region Attributes
         List<Prescription> prescripHist;
         List<Prescription> prescripUp;
         List<Prescription> prescripCurrent;
 
         Patient patient;
         
-        
+        //Needed for data bindings
         private static readonly DependencyProperty PrescriptionProperty =
                          DependencyProperty.Register("prescription", typeof(Prescription),
                                                      typeof(PrescriptionMainView));
-        
+        #endregion
 
+        #region Constructor
         public PrescriptionMainView(int HCNO)
         {
             InitializeComponent();
+            //grab current patient to display name
             patient = new Patient(HCNO);
             lblPName.Content = patient.LastName + ", " + patient.FirstName;
+
+            //populate the three Datagrid lists
             prescripHist = Prescription.GetPrescriptions(patient.PatientID, "History");
             prescripUp = Prescription.GetPrescriptions(patient.PatientID, "Upcoming");
             prescripCurrent = Prescription.GetPrescriptions(patient.PatientID, "Current");
 
-            //Data binding settings
+            //set data to Datagrids
             dataGridPrescriptionHist.DataContext = prescripHist;
             dataGridPrescriptionUp.DataContext = prescripUp;
             dataGridPrescriptionCurrent.DataContext = prescripCurrent;
         }
+        #endregion
 
+        #region Getters/Setters
+        private Prescription prescription
+        {
+            get { return (Prescription)GetValue(PrescriptionProperty); }
+            set { SetValue(PrescriptionProperty, value); }
+        }
+
+        #endregion
 
         #region Event handlers
         /* Add button click event 
          */
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-           // Content = new Prescription(prescription.HealthCareNo);
+           Content = new PrescriptionView(patient.HealthCareNo);
         }
 
      
@@ -54,13 +68,13 @@ namespace Hospipal
          */
         private void buttonRemove_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            if (dataGridTreatments.SelectedItems.Count > 0)
+            
+            if (dataGridPrescriptionUp.SelectedItems.Count > 0)
             {
-                upTreatments.RemoveAt(dataGridPrescriptionUp.SelectedIndex);
-                dataGridTreatments.Items.Refresh();
+                prescripUp.RemoveAt(dataGridPrescriptionUp.SelectedIndex);
+                dataGridPrescriptionUp.Items.Refresh();
             }
-             */
+             
         }
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e)

@@ -52,6 +52,8 @@ namespace Hospipal
         {
             InitializeComponent();
             this.patient = new Patient(healthCareNo);
+            this.prescription = new Prescription();
+            prescription.PatientID = patient.PatientID;
             populatePreBoxFields();
         }
 

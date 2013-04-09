@@ -74,7 +74,7 @@ namespace Hospipal.Database_Class
             }
             set
             {
-                _startDate = new MySqlDateTime(Convert.ToDateTime(value));
+                if (value != "") _startDate = new MySqlDateTime(Convert.ToDateTime(value));
             }
         }
         public MySqlDateTime EndDate
@@ -97,7 +97,8 @@ namespace Hospipal.Database_Class
             }
             set 
             {
-                _endDate = new MySqlDateTime(Convert.ToDateTime(value));
+
+                if (value != ""){_endDate = new MySqlDateTime(Convert.ToDateTime(value));}
             }
         }
 

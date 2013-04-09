@@ -52,6 +52,7 @@ namespace Hospipal
             if (Properties.Settings.Default.Role != "Support Staff")
             {
                 buttonTreatment.Visibility = Visibility.Visible;
+                buttonPrescription.Visibility = Visibility.Visible;
             }
         }
 
@@ -92,6 +93,11 @@ namespace Hospipal
         private void buttonGoToHistory_Click(object sender, RoutedEventArgs e)
         {
            Content = new PatientTreatmentHistory(patient.HealthCareNo);
+        }
+
+        private void buttonPrescription_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new PrescriptionMainView(patient.HealthCareNo);
         }
         
     }

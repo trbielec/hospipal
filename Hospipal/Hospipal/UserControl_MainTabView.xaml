@@ -7,7 +7,7 @@
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              x:Class="Hospipal.UserControl_MainTabView" 
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="800">
+             >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
