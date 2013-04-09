@@ -62,16 +62,25 @@ namespace HospipalTests
         }
 
         [TestCase]
-        public void TestScheduleSelectForSingleAppointment()
+        public void TestScheduleCheckforInsertConflicts()
         {
-            int sid = Schedule.GenerateNextEid();
-            Schedule s = new Schedule(sid, new DateTime(), new DateTime(), 1, "STW");
-            s.Insert();
+            Schedule s1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 11, 0, 0), new DateTime(2013, 4, 1, 12, 30, 0), 1, "A");
+            s1.Insert();
 
-            Appointment a = Schedule.Select(sid.ToString());
-            Assert.True(Convert.ToInt32(a.UniqueId) == sid);
+            Schedule overlapAfterS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 12, 0, 0), new DateTime(2013, 4, 1, 13, 0, 0), 2, "B");
+            Assert.False(overlapAfterS1.CheckforInsertConflicts());
 
-            s.Delete();
+            Schedule overlapBeforeS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 10, 0, 0), new DateTime(2013, 4, 1, 12, 0, 0), 2, "B");
+            Assert.False(overlapBeforeS1.CheckforInsertConflicts());
+
+            Schedule insideS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 11, 30, 1), new DateTime(2013, 4, 1, 12, 0, 0), 2, "B");
+            Assert.False(insideS1.CheckforInsertConflicts());
+
+            Schedule containsS1 = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 10, 0, 0), new DateTime(2013, 4, 1, 13, 0, 0), 2, "B");
+            Assert.False(containsS1.CheckforInsertConflicts());
+
+            Schedule noS1Overlap = new Schedule(Schedule.GenerateNextEid(), new DateTime(2013, 4, 1, 13, 0, 0), new DateTime(2013, 4, 1, 14, 0, 0), 2, "B");
+            Assert.True(noS1Overlap.CheckforInsertConflicts());
         }
 
         [TestCase]

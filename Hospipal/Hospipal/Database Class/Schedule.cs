@@ -264,10 +264,10 @@ namespace Hospipal.Database_Class
         public static string GetFullName(string empID)
         {
             List<object[]> nameResult = Database.Select("SELECT * FROM Employee WHERE eid = " + empID);
-            if (nameResult != null)
+            if (nameResult.Count > 0)
                 return (nameResult[0][1].ToString() + " " + nameResult[0][2].ToString());
             else
-                return null;
+                return "";
         }
         #endregion
     }
