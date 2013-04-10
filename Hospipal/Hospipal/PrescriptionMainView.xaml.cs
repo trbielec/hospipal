@@ -34,6 +34,9 @@ namespace Hospipal
             patient = new Patient(HCNO);
             lblPName.Content = patient.LastName + ", " + patient.FirstName;
 
+            //set to upcioming or history based on date
+            Prescription.CheckDatesForStatusChanges();
+
             //populate the three Datagrid lists
             prescripHist = Prescription.GetPrescriptions(patient.PatientID, "History");
             prescripUp = Prescription.GetPrescriptions(patient.PatientID, "Upcoming");
