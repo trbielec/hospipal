@@ -54,8 +54,8 @@ namespace Hospipal
             this.patient = new Patient(healthCareNo);
             this.prescription = new Prescription();
             prescription.PatientID = patient.PatientID;
-            prescription.StartDate = new DateTime();
-            prescription.EndDate = new DateTime();
+            prescription.StartDate = new MySql.Data.Types.MySqlDateTime(new DateTime());
+            prescription.EndDate = new MySql.Data.Types.MySqlDateTime(new DateTime());
             populatePreBoxFields();
         }
 
