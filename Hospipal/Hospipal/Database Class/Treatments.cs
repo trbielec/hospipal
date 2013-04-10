@@ -76,7 +76,13 @@ namespace Hospipal.Database_Class
             }
             set 
             {
-                _Date = Convert.ToDateTime(value);
+                try
+                {
+                    _Date = Convert.ToDateTime(value);
+                }
+                catch (System.FormatException e)
+                {
+                }
             }
         }
         public string Time

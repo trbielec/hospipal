@@ -70,12 +70,18 @@ namespace Hospipal.Database_Class
         {
             get
             {
-                return _startDate.ToString();
+                return _startDate.ToString().Split(' ')[0];
             }
             set
             {
-                if (value != "") _startDate = new MySqlDateTime(Convert.ToDateTime(value));
-            }
+                try
+                {
+                    if (value != "") _startDate = new MySqlDateTime(Convert.ToDateTime(value));
+                }
+                catch (System.FormatException e)
+                {
+                }
+                }
         }
         public MySqlDateTime EndDate
         {
@@ -93,12 +99,18 @@ namespace Hospipal.Database_Class
         {
             get
             {
-                return _endDate.ToString();
+                return _endDate.ToString().Split(' ')[0];
             }
             set 
             {
 
-                if (value != ""){_endDate = new MySqlDateTime(Convert.ToDateTime(value));}
+                try
+                {
+                    if (value != "") _endDate = new MySqlDateTime(Convert.ToDateTime(value));
+                }
+                catch (System.FormatException e)
+                {
+                }
             }
         }
 
@@ -145,7 +157,6 @@ namespace Hospipal.Database_Class
 
         public Prescription()
         {
-            _startDate = new MySqlDateTime(new DateTime());
         }
 
         public Prescription(int pID, int doc, string pxName, string notes, DateTime startDate, DateTime endDate, string status)
