@@ -69,6 +69,7 @@
     <Compile Include="ScheduleClassTests.cs" />
     <Compile Include="SearchClassTests.cs" />
     <Compile Include="NotificationClassTests.cs" />
+    <Compile Include="LoginClassTests.cs" />
     <Compile Include="WaitlistedPatientTests.cs" />
     <Compile Include="WardClassTests.cs" />
   </ItemGroup>
