@@ -82,7 +82,7 @@ namespace Hospipal
 
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
-           // Content = new PrescriptionView();
+           Content = new PatientInformation(patient);
         }
         #endregion
     }
