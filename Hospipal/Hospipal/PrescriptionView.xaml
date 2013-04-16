@@ -42,8 +42,9 @@
             <TextBox x:Name="txtPrescription" Text="{Binding Path=prescription.PrescriptionName, ElementName=prescriptionControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"/>
             <ComboBox x:Name="boxDoctors" ItemsSource="{Binding}"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"/>
             <DatePicker x:Name="dpStartDate" Text="{Binding Path=prescription.StartDateToShortDateString, ElementName=prescriptionControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"/>
-            <DatePicker x:Name="dpEndDate" Text="{Binding Path=prescription.EndDateToShortDateString, ElementName=prescriptionControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"/>
-            <TextBox x:Name="txtNotes" Text="{Binding Path=precription.Notes,ElementName=prescriptionControl,Mode=TwoWay}" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="7" Grid.RowSpan="4"/>
+            <DatePicker x:Name="dpEndDate" Text="{Binding Path=prescription.EndDateToShortDateString, ElementName=prescriptionControl,Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6">
+            </DatePicker>
+            <TextBox x:Name="txtNotes" Text="{Binding Path=prescription.Notes,ElementName=prescriptionControl,Mode=TwoWay}" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="7" Grid.RowSpan="4"/>
 
 
             <Button x:Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Grid.RowSpan="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="buttonCancel_Click" Grid.Column="2" Grid.Row="13">
